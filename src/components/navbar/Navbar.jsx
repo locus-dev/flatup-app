@@ -1,13 +1,26 @@
+import {useNavigate} from 'react-router-dom';
+
 import "./navbar.css"
 
-const Navbar = ({ navigation }) => {
+const Navbar = () => {
+
+  const navigate = useNavigate();
+
+  const handleLogin =() =>{
+      navigate("/login", {state: {}})
+  }
+
+  const handleRegister =() =>{
+    navigate("/register", {state: {}})
+} 
+
   return (
     <div className="navbar">
         <div className="navContainer">
             <span className="logo">FlatApp</span>
             <div className="navItems">
-                <button className="navButton" title="Ir para tela de Cadastro" onPress={() => navigation.navigate('register')}>Cadastro</button>
-                <button className="navButton">Login</button>
+                <button className="navButton" onClick={handleRegister}>Cadastro</button>
+                <button className="navButton" onClick={handleLogin}>Login</button>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ const Featured = () => {
     return (
         <div className="featured">
             <div className="featuredItem">
-                <img src="https://th.bing.com/th/id/OIP.0-TBXnW35olX_CN6CHSpfAHaE7?w=266&h=180&c=7&r=0&o=5&pid=1.7" alt="" className="featureImg" />
+                <img src="./flat01.jpg" alt="" className="featureImg" />
                 <div className="featuredTitles">
                     <h1>Suape</h1>
                     <p>Desfrute do melhor flat da orla de Suape-Pe</p>
@@ -13,7 +13,7 @@ const Featured = () => {
                 </div>
             </div>
             <div className="featuredItem">
-                <img src="https://th.bing.com/th/id/OIP.CdnOCgO9Wi3xYUF7k1ob8QHaE8?w=278&h=185&c=7&r=0&o=5&pid=1.7" alt="" className="featureImg" />
+                <img src="./flat02.jpg" alt="" className="featureImg" />
                 <div className="featuredTitles">
                     <h1>Veneza</h1>
                     <p>Venha curtir as férias aqui na Veneza brasileira-Recife.</p>
@@ -22,7 +22,7 @@ const Featured = () => {
                 </div>
             </div>
             <div className="featuredItem">
-                <img src="./baixados.jpeg" alt="" className="featureImg" />
+                <img src="./breach01.jpg" alt="" className="featureImg" />
                 <div className="featuredTitles">
                     <h1>Porto de Galinhas</h1>
                     <p>Conhecido por "Caribe Brasileiro", a praia de porto de Galinhas é muito visitada.</p>

@@ -45,24 +45,22 @@ const Header = ({type}) => {
     navigate("/hotels", {state: {destination, date, options}})
   }
 
+  const handleHotelList =() =>{
+    navigate("/hotels", {state: {destination, date, options}})
+  }
+
   return (
     <div className="header">
       <div className={type ==="list" ? "headerContainer listmode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItem active">
-            <FontAwesomeIcon icon={faBed} />
+            <FontAwesomeIcon icon={faBed} onClick={handleHotelList} />
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faCar} />
-          </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faBed} />
-          </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faBed} />
           </div>
         </div>
         {type !== "list" && <><h1 className="headerTitle">Está a procura de um flat na beira da praia?</h1>

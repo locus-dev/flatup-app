@@ -3,10 +3,10 @@ import "./searchItem.css"
 const SearchItem = () => {
   return (
     <div className="searchItem">
-        <img src="./eita.jpeg" className="siImg" />
+        <img src="./flat01.jpg" className="siImg" />
         <div className="siDesc">
             <h1 className="siTitle">Beira de praia top</h1>
-            <span  className="siDistance">a 50 metros do Coqueiro de Boa viagem</span>
+            <span  className="siDistance">50 metros do Coqueiro de Boa viagem</span>
             <span className="siSubtitle">
                 Possui um cooler de refrigeracao
             </span>
