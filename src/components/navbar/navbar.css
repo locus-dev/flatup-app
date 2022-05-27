@@ -1,10 +1,14 @@
 .navbar{
-    background-image: url("/public/beach01.jpg");
+    background: linear-gradient(rgb(46, 46, 46), rgba(255, 255, 255, 0));
 
     margin-top: -8px;
-    height: 50px;
+    height: 70px;
     display: flex;
     justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 300000;
+    width: 100%;
     
 }
 
