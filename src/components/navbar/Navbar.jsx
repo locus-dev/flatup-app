@@ -14,10 +14,14 @@ const Navbar = () => {
     navigate("/register", {state: {}})
 } 
 
+const handleHome =() =>{
+  navigate("/", {state: {}})
+} 
+
   return (
     <div className="navbar">
         <div className="navContainer">
-            <span className="logo">FlatApp</span>
+            <span className="logo" onClick={handleHome}>FlatApp</span>
             <div className="navItems">
                 <button className="navButton" onClick={handleRegister}>Cadastro</button>
                 <button className="navButton" onClick={handleLogin}>Login</button>

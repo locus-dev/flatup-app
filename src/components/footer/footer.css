@@ -1,5 +1,5 @@
 .footer{
-    width: 100%;
+    width: 92%;
 }
 
 .fLists{
@@ -12,6 +12,10 @@
 .fList{
     list-style: none;
     padding: 0;
+}
+
+.fText{
+    padding-bottom: 20px;
 }
 
 .fListItem{

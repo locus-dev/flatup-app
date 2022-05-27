@@ -17,7 +17,7 @@ const Footer = () => {
                 <li className="fListItem">Viagem Com Dicas</li>
             </ul>
         </div>
-        <div className="fText">Copyright @teste</div>
+        <div className="fText">copyright ©</div>
     </div>
   )
 }
