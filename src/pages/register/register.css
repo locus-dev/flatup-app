@@ -1,105 +1,105 @@
-.listContainer{
-    display: table;
-    justify-content: center;
-    margin-top: 20px;
-    align-items: center;
-    padding-top: 20px;
-    
-}
-
-.listWrapper{
-    width: 100%;
-    max-width: 1024px;
+main{
     display: flex;
-    margin-left: 20px;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.listSearch{
-    flex: 1;
-    background-color: rgb(127, 236, 255);
-    padding: 10px;
-    border-radius: 4px;
-    margin-left: 320px;
-    position: sticky;
-    top: 10px;
-    height: max-content;
+.other-side{
+    background-image: url("https://www.hdwallpapers.in/download/tropical_beach_aerial_view-1440x2560.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 100vh;
 }
 
-.lsTitle{
-    font-size: 20px;
-    color: #555;
-    margin-bottom: 10px;
+.side-form{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.lsItem{
+.form-box{
+    width: 350px;
+    border-radius: 10px;
+    padding: 10px 30px;
+    height: 600px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+}
+
+.form-control{
+    display: flex;
+    flex-direction:column;
     margin-bottom: 10px;
 }
 
-.lsItem>label{
-    font-size: 12px;
-
+.input{
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: 40px;
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
 }
-.lsItem>input{
-    height: 30px;
-    border: none;
-    padding: 5px;
+
+.form-button{
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 0;
+    background-color: rgb(0, 153, 255);
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
 }
 
-.lsItem>span{
-    height: 30px;
-    background-color: white;
-    padding: 5px;
+#forgot-senha{
+    margin-top: 5px;
+    color: rgb(53, 53, 53);
+}
+
+.login-social{
+    height: 40px;
     display: flex;
     align-items: center;
+    flex-direction: center;
+    width: 45%;
     cursor: pointer;
-}
-
-.lsOptions{
+    border-radius: 6px;
+    border: 0;
     padding: 10px;
-    
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
 }
 
-.lsOptionItem{
+#facebook{
+    background-color: #4267b2;
+    color: white;
+}
+
+.login-social svg{
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+.login-socialbox{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
-    color: #555;
-    font-size: 12px;
+    align-items: center;
 }
 
-.lsOptionInput{
-    width: 300px;
+.or{
+    text-align: center;
 }
 
-.listSearch>button{
-    padding: 10px;
-    background-color: #0071c2;
-    color: white;
-    border: none;
-    width: 100%;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-
-
-.listResult{
-    position: absolute;
-    display: inline-block;
-    margin-left: 40px;
-    width: 100vh;
-    margin-top: -400px;
-    flex: 1;
-}
-
-.navButton{
-    margin-left: 20px;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    color: #003580;
+.registre{
+    text-align: center;
 }
