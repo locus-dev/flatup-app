@@ -1,14 +1,15 @@
 import "./searchItem.css"
 
 const SearchItem = () => {
+
   return (
     <div className="searchItem">
-        <img src="./flat01.jpg" className="siImg" />
+        <img src="./flat01.jpg" alt="flat01" className="siImg" />
         <div className="siDesc">
-            <h1 className="siTitle">Beira de praia top</h1>
+            <h1 className="siTitle">Flats incriveis na beira da praia!</h1>
             <span  className="siDistance">50 metros do Coqueiro de Boa viagem</span>
             <span className="siSubtitle">
-                Possui um cooler de refrigeracao
+                Ambiente climatizado
             </span>
             <span className="siFeatures">
                 1 porta - 1 quarto - 1/2 sala - 3 switch
@@ -18,7 +19,8 @@ const SearchItem = () => {
                 pode cancelar depois se quiser
             </span>
         </div>
-        <div className="siDetails">Detalhes</div>
+        <div className="siDetails"><a href="/Immobile:id">Detalhes</a></div>
+
     </div>
   )
 }

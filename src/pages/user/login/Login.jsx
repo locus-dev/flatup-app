@@ -1,17 +1,9 @@
-//import Featured from "../../components/featured/Featured";
-import FeaturedProperties from "../../components/featuredProperties/FeaturedProperties";
-import Footer from "../../components/footer/Footer";
-import Header from "../../components/header/Header";
-import MailList from "../../components/mailList/MailList";
-import Navbar from "../../components/navbar/Navbar";
-//import PropertyList from "../../components/propertyList/PropertyList";
 import "./login.css";
 
 const Login = () => {
   return (
     <div>
       <main>
-
 
         <div className="side-form">
           <div className="form-box">
@@ -40,13 +32,12 @@ const Login = () => {
               <label className="lsOptionText" for="senha">Senha</label>
               <input type="password" min={0} className="input" placeholder="Senha" id="senha" />
             </div>
-            <a href="#" id="forgot-senha">Esqueci a senha</a>
+            <a href="/forgot" id="forgot-senha">Esqueci a senha</a>
 
             <button type="submit" className="form-button">Entrar</button>
-            <p className="registre">Ainda não tem conta? <a href="#">Registre-se</a></p>
+            <p className="registre">Ainda não tem conta? <a href="/register">Registre-se</a></p>
           </div>
         </div>
-
 
         <div className="other-side">
         </div>

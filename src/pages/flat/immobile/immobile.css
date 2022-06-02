@@ -1,9 +1,17 @@
-.listContainer{
+/* .listContainer{
     display: table;
     justify-content: center;
     margin-top: 20px;
     align-items: center;
     
+} */
+
+.listContainer{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
 .listWrapper{
@@ -83,8 +91,6 @@
     font-weight: 500;
     cursor: pointer;
 }
-
-
 
 .listResult{
     position: absolute;

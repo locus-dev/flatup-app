@@ -1,0 +1,105 @@
+main{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.other-side{
+    background-image: url("https://www.hdwallpapers.in/download/tropical_beach_aerial_view-1440x2560.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 100vh;
+}
+
+.side-form{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-box{
+    width: 350px;
+    border-radius: 10px;
+    padding: 10px 30px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-control{
+    display: flex;
+    flex-direction:column;
+    margin-bottom: 10px;
+}
+
+.input{
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: 40px;
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.form-button{
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 0;
+    background-color: rgb(0, 153, 255);
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+#forgot-senha{
+    margin-top: 5px;
+    color: rgb(53, 53, 53);
+}
+
+.login-social{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: center;
+    width: 45%;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 0;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#facebook{
+    background-color: #4267b2;
+    color: white;
+}
+
+.login-social svg{
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+.login-socialbox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.or{
+    text-align: center;
+}
+
+.registre{
+    text-align: center;
+}

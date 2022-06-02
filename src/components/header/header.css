@@ -78,6 +78,7 @@
 .headerSearchInput{
     border: none;
     outline: none;
+    position: relative;
 }
 
 .headerSearchText{

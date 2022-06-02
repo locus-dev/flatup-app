@@ -4,21 +4,23 @@ import {
   Route,
 } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Hotel from "./pages/hotel/Hotel";
-import List from "./pages/list/List";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
-import Profile from "./pages/profile/Profile";
+import Immobile from "./pages/flat/immobile/Immobile";
+import List from "./pages/flat/list/List";
+import Login from "./pages/user/login/Login";
+import Register from "./pages/user/register/Register";
+import Profile from "./pages/user/profile/Profile";
+import Forgot from "./pages/user/forgot/Forgot"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/hotels" element={<List />} />
-        <Route path="/hotels:id" element={<Hotel />} />
+        <Route path="/Immobiles" element={<List />} />
+        <Route path="/Immobile:id" element={<Immobile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot" element={<Forgot/>} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
