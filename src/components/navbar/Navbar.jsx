@@ -23,8 +23,8 @@ const handleHome =() =>{
         <div className="navContainer">
             <span className="logo" onClick={handleHome}>FlatApp</span>
             <div className="navItems">
-                <button className="navButton" onClick={handleRegister}>Cadastro</button>
-                <button className="navButton" onClick={handleLogin}>Login</button>
+                <button className="navButton" id="loginButton" onClick={handleLogin}>Entrar</button>
+                <button className="navButton" id="cadastroButton" onClick={handleRegister}>Cadastro</button>
             </div>
         </div>
     </div>

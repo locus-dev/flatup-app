@@ -48,15 +48,6 @@ const Header = ({type}) => {
   return (
     <div className="header">
       <div className={type ==="list" ? "headerContainer listmode" : "headerContainer"}>
-        <div className="headerList">
-
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faPlane} />
-          </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faCar} />
-          </div>
-        </div>
         {type !== "list" && <><h1 className="headerTitle">Está a procura de um flat na beira da praia?</h1>
         <p className="headerDesc">
           Aqui você irá encontrar as melhores possibilidades de flat.

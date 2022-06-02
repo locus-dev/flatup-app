@@ -1,9 +1,10 @@
 .navbar{
-    background: linear-gradient(rgb(46, 46, 46), rgba(255, 255, 255, 0));
-
+    background: white;
     margin-top: -8px;
     height: 70px;
     display: flex;
+    border-bottom: 1px solid rgb(207, 207, 207);
+    box-shadow: 0 0 10px rgb(32, 32, 32,0.2);
     justify-content: center;
     position: fixed;
     top: 0;
@@ -17,12 +18,14 @@
     max-width: 1024px;
     color: white;
     display: flex;
-    align-items: center;
+    align-items: center;    
+    margin-top: 8px;
     justify-content: space-between;
 }
 
 .logo{
     font-weight: 500;
+    color: #003580;
 }
 
 .navButton{
@@ -30,5 +33,30 @@
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    font-size: 16px;
     color: #003580;
+}
+
+#cadastroButton{
+    border: 1px solid #003580;
+    width: 120px;
+    height: 35px;
+    background-color: transparent;
+    border-radius: 50px;
+    transition: all 400ms;
+}
+
+#cadastroButton:hover{
+    background-color: #003580;
+    color: white;
+}
+
+#loginButton{
+    border: 0;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+#loginButton:hover{
+    border-bottom: 2px solid #003580;
 }
