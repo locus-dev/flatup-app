@@ -6,7 +6,7 @@ import MailList from "../../../components/mailList/MailList";
 import Navbar from '../../../components/navbar/Navbar'
 import SearchItem from "../../../components/searchItem/SearchItem"
 
-const Immobile = () => {
+const CadastrarImovel = () => {
 
   return (
     <div>
@@ -20,4 +20,4 @@ const Immobile = () => {
   )
 }
 
-export default Immobile
+export default CadastrarImovel
