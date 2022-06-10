@@ -1,84 +1,69 @@
 .header{
-    
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url('../../../public/bg.png') center no-repeat #0071c2;
     background-size: cover;
     color: white;
     display: flex;
     justify-content: center;
-    position: relative;
 }
 
 .headerContainer{
     width: 100%;
     max-width: 1024px;
-    margin: 100px 0px 100px 0px;
-}
-
-.headerContainer.listMode{
-    margin: 100px 0px 0px 0px;
-}
-
-.headerList{
+    height: 400px;
     display: flex;
-    gap: 40px;
-    margin-bottom: 50px;
+    flex-direction: column;
+    justify-content: center;
 }
-
-.headerListItem{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.headerListItem.active{
-    border: 1px solid white;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.headerDesc{
-    margin: 20px 0px;
-}
-
 .headerBtn{
     background-color: #0071c2;
     color: white;
-    font-weight: 500;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     border: none;
-    padding: 10px;
     cursor: pointer;
+    transition: all 400ms;
+}
+
+.headerBtn:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
+    filter:brightness(0.9);
 }
 
 .headerSearch{
     height: 30px;
     background-color: white;
-    border: 3px solid #febb02;
+    height: 60px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding: 10px 0px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: -25px;
-    width: 100%;
+    justify-content: space-between;
+    border-radius: 30px;
     max-width: 1024px;
+    padding: 0 5px ;
+    margin-top: 30px;
+    box-shadow: 1px 1px 5px  rgba(0, 0, 0, 0.541);
 }
 
-.headerIcon{
-    color: lightgray;
+.headerDesc, .headerTitle{
+    margin: 0;
 }
 
-.headerSearchItem{
+.titulo-central{
     display: flex;
     align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .headerSearchInput{
-    border: none;
+    height: 50px;
+    border-radius: 30px;
+    padding-left: 20px;   
     outline: none;
-    position: relative;
+    width: 920px;
+    border: 0;
+    font-size: 16px;
 }
 
 .headerSearchText{

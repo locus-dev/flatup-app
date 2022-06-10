@@ -1,9 +1,5 @@
 import {
   faBed,
-  faCalendarDays,
-  faCar,
-  faPerson,
-  faPlane
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {DateRange} from 'react-date-range'
@@ -48,63 +44,23 @@ const Header = ({type}) => {
   return (
     <div className="header">
       <div className={type ==="list" ? "headerContainer listmode" : "headerContainer"}>
-        {type !== "list" && <><h1 className="headerTitle">Está a procura de um flat na beira da praia?</h1>
-        <p className="headerDesc">
-          Aqui você irá encontrar as melhores possibilidades de flat.
-        </p>
-        <button className="headerBtn">Login/ Cadastrar</button>
+        {type !== "list" && <>
+        <div className="titulo-central">
+          <h1 className="headerTitle">Está a procura de um flat na beira da praia?</h1>
+          <p className="headerDesc">
+            Aqui você irá encontrar as melhores possibilidades de flat.
+          </p>
+        </div>
         <div className="headerSearch">
           <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faBed} className="headerIcon"/>
-            <input type="text" placeholder="onde voce vai" className="headerSearchInput" onChange={e => setDestination(e.target.value)} />
+            <input type="text" placeholder="Pra onde você vai?" className="headerSearchInput" onChange={e => setDestination(e.target.value)} />
           </div>
           <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faCalendarDays} className="headerIcon"/>
-            <span onClick={() => setOpenDate(!openDate)} className="headerSearchText">{`${format(
-              date[0].startDate, 
-              "MM/dd/yyyy"
-              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
-            {openDate && <DateRange 
-              editableDateInputs={true}
-              onChange={item => setDate([item.selection])}
-              moveRangeOnFirstSelection={false}
-              ranges={date}
-              className="date"
-              minDate={new Date()}
-            />}
-          </div>
-          <div className="headerSearchItem">
-            <FontAwesomeIcon icon={faPerson} className="headerIcon"/>
-            <span onClick={()=> setOpenOptions(!openOptions)} className="headerSearchText">{`${options.adult} adulto · ${options.children} criança · ${options.room} sala`}</span>
-            {openOptions && <div className="options">
-              <div className="optionItem">
-                <span className="optionText">Adulto</span>
-                <div className="optionCounter">
-                  <button disabled={options.adult <= 0} className="optionCounterButton" onClick={()=>handleOption("adult", "d")}>-</button>
-                  <span className="optionCounterNumber">{options.adult}</span>
-                  <button className="optionCounterButton" onClick={()=>handleOption("adult", "i")}>+</button>
-                </div>
-              </div>
-              <div className="optionItem">
-                <span className="optionText">Criança</span>
-                <div className="optionCounter">
-                  <button disabled={options.children <= 0} className="optionCounterButton" onClick={()=>handleOption("children", "d")}>-</button>
-                  <span className="optionCounterNumber">{options.children}</span>
-                  <button className="optionCounterButton" onClick={()=>handleOption("children", "i")}>+</button>
-                </div>
-              </div>
-              <div className="optionItem">
-                <span className="optionText">Sala</span>
-                <div className="optionCounter">
-                  <button disabled={options.room <= 0} className="optionCounterButton" onClick={()=>handleOption("room", "d")}>-</button>
-                  <span className="optionCounterNumber">{options.room}</span>
-                  <button className="optionCounterButton" onClick={()=>handleOption("room", "i")}>+</button>
-                </div>
-              </div>
-            </div>}
-          </div>
-          <div className="headerSearchItem">
-            <button className="headerBtn" onClick={handleSearch}>Pesquisar</button>
+            <button className="headerBtn" onClick={handleSearch}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            </button>
           </div>
         </div> </>}
       </div>

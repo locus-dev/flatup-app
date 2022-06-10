@@ -25,6 +25,7 @@ const handleHome =() =>{
             <div className="navItems">
                 <button className="navButton" id="loginButton" onClick={handleLogin}>Entrar</button>
                 <button className="navButton" id="cadastroButton" onClick={handleRegister}>Cadastro</button>
+                <miniBar/>
             </div>
         </div>
     </div>
