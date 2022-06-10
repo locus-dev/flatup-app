@@ -1,15 +1,15 @@
 .navbar{
-    background: linear-gradient(rgb(46, 46, 46), rgba(255, 255, 255, 0));
-
+    background: white;
     margin-top: -8px;
     height: 70px;
     display: flex;
+    border-bottom: 1px solid rgb(207, 207, 207);
+    box-shadow: 0 0 10px rgb(32, 32, 32,0.2);
     justify-content: center;
     position: fixed;
     top: 0;
     z-index: 300000;
     width: 100%;
-    
 }
 
 .navContainer{
@@ -17,12 +17,14 @@
     max-width: 1024px;
     color: white;
     display: flex;
-    align-items: center;
+    align-items: center;    
+    margin-top: 8px;
     justify-content: space-between;
 }
 
 .logo{
     font-weight: 500;
+    color: #0071c2;
 }
 
 .navButton{
@@ -30,5 +32,89 @@
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    color: #003580;
+    font-size: 16px;
+    color: #1d1d1d;
+}
+
+#cadastroButton{
+    width: 120px;
+    height: 35px;
+    background-color: #0071c2;
+    border-radius: 50px;
+    color: #fff;
+    transition: all 400ms;
+}
+
+#cadastroButton:hover{
+    background-color: #003580;
+    color: white;
+}
+
+#loginButton{
+    border: 0;
+    font-weight: 600;
+    color: #1d1d1d;
+    background-color: transparent;
+    transition: all 400ms;
+}
+
+#loginButton:hover{
+    outline: 1px solid #0071c2;
+}
+
+.navItems{
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+.search-box{
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+}
+
+.search-box:hover > input{
+    width: 200px;
+    padding: 0 10px;
+}
+
+.search-box:hover > .icon{
+    background-color: #0071c2;
+}
+
+.icon:hover{
+    transform: rotate(360deg) scale(0.8);
+}
+
+input{
+    width: 0;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    background: none;
+    font-size: 1.1rem;
+    transition: 500ms ease;
+    line-height: 40px;
+    color: #1d1d1d;
+    border-bottom: 1px solid rgb(104, 104, 104);
+}
+
+.icon{
+    color: #fff;
+    float: right;
+    width: 40px;
+    font-size: 1.3rem;
+    height: 40px;
+    border-radius: 50%;
+    background: #0071c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 400ms;
+    cursor: pointer;
+    text-decoration: none;
 }
