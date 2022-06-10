@@ -12,6 +12,9 @@ const Home = () => {
     <div>
       <Navbar />
       <Header />
+      <div className="locatesContainer">
+
+      </div>
       <div className="homeContainer">        
           <FeaturedProperties />
           <FeaturedProperties />

@@ -24,7 +24,7 @@
 
 .logo{
     font-weight: 500;
-    color: #003580;
+    color: #0071c2;
 }
 
 .navButton{
@@ -37,11 +37,11 @@
 }
 
 #cadastroButton{
-    border: 1px solid #003580;
     width: 120px;
     height: 35px;
-    background-color: transparent;
+    background-color: #0071c2;
     border-radius: 50px;
+    color: #fff;
     transition: all 400ms;
 }
 
@@ -53,9 +53,68 @@
 #loginButton{
     border: 0;
     font-weight: 600;
+    color: #1d1d1d;
     background-color: transparent;
+    transition: all 400ms;
 }
 
 #loginButton:hover{
-    border-bottom: 2px solid #003580;
+    outline: 1px solid #0071c2;
+}
+
+.navItems{
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+.search-box{
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+}
+
+.search-box:hover > input{
+    width: 200px;
+    padding: 0 10px;
+}
+
+.search-box:hover > .icon{
+    background-color: #0071c2;
+}
+
+.icon:hover{
+    transform: rotate(360deg) scale(0.8);
+}
+
+input{
+    width: 0;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    background: none;
+    font-size: 1.1rem;
+    transition: 500ms ease;
+    line-height: 40px;
+    color: #1d1d1d;
+    border-bottom: 1px solid rgb(104, 104, 104);
+}
+
+.icon{
+    color: #fff;
+    float: right;
+    width: 40px;
+    font-size: 1.3rem;
+    height: 40px;
+    border-radius: 50%;
+    background: #0071c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 400ms;
+    cursor: pointer;
+    text-decoration: none;
 }
