@@ -1,38 +1,38 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import uuid from "node-uuid";
 
-const cadastroEndereco = () => {
-	const [UF, setUF] = useState({});
-	const [cidade, setCidade] = useState({});
+const CadastroEndereco = () => {
+	const [listaUF, setlistaUF] = useState([]);
+	const [UF, setUF] = useState([]);
+	const [cidade, setCidade] = useState([]);
 
 	useEffect(() => {
 		axios
 			.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
 			.then((resposta) => {
-				setUF(resposta);
-			})
-			.catch();
-
-		axios
-			.get(
-				"https://servicodados.ibge.gov.br/api/v1/localidades/estados/{UF.id}/municipios"
-			)
-			.then((resposta) => {
-				setCidade(resposta);
-			})
-			.catch();
+				setlistaUF(resposta.data);
+			});
 	}, []);
 
 	function buscarCep() {
 		// Implementar depois
 	}
 
-	function selectUF() {
+	function selectUF(id) {
 		// Implementar depois
+		setUF(listaUF[id]);
 	}
 
 	function selectCidade() {
 		// Implementar depois
+		axios
+			.get(
+				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${UF.id}/municipios`
+			)
+			.then((resposta) => {
+				setCidade(resposta.data);
+			})
 	}
 
 	return (
@@ -57,24 +57,36 @@ const cadastroEndereco = () => {
 				<label>Ponto de Referência</label>
 				<input type="text" name="pt_referencia" />
 			</div>
-			type="text"
+			<div>
+				<label>CEP</label>
+				<div>
+					<input type="text" name="cep" />
+					{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
+				</div>
+			</div>
+			<div>
+				<label>UF</label>
+				<select name="uf">
+					{/* {listaUF.map((item) => {
+						return (
+							<option key={uuid()} value={item.id} onClick={selectUF(item.id)}>
+								{item.nome}
+							</option>
+						);
+					})} */}
+				</select>
+			</div>
 			<div>
 				<label>Cidade</label>
 				{/* <input type="text" name="cidade"/> */}
 				<select name="cidade">
-					<option></option>
-				</select>
-			</div>
-			<div>
-				<label>CEP</label>
-				<input type="text" name="" />
-				<button onClick={buscarCep()}>Buscar CEP</button>
-			</div>
-			<div>
-				<label>UF</label>
-				{/* <input type="text" name="uf"/> */}
-				<select name="uf" value={UF}>
-					<option></option>
+					{/* {cidade.map((item) => {
+				return (
+					<option value={item.id}>
+						{item.nome}
+					</option>
+				);
+			})} */}
 				</select>
 			</div>
 			{/* <div>
@@ -85,4 +97,4 @@ const cadastroEndereco = () => {
 	);
 };
 
-export default cadastroEndereco;
+export default CadastroEndereco;
