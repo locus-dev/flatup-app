@@ -1,3 +1,6 @@
+
+@import url("https://cdn.syncfusion.com/ej2/bootstrap5.css");
+
 .App {
   text-align: center;
 }
@@ -35,4 +38,147 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.listaPersonagem{
+  margin-top: -930px;
+  margin-right: 40px;
+}
+@media ( max-width : 1280px) {
+	.listaPersonagem {
+    padding-left: 320px;
+  }
+}
+
+.addPersonagem{
+  margin-top: -930px;
+  margin-left: 440px;
+}
+
+.atualizarPersonagem{
+  margin-top: -930px;
+  margin-left: 440px;
+}
+
+.listaFilme{
+  margin-top: -930px;
+  margin-right: 40px;
+}
+
+@media ( max-width : 1280px) {
+	.listaFilme {
+    padding-left: 320px;
+  }
+}
+
+.addFilme{
+  margin-top: -930px;
+  margin-left: 440px;
+}
+
+.atualizarFilme{
+  margin-top: -930px;
+  margin-left: 440px;
+}
+
+
+.listaCatalogo{
+  margin-top: -930px;
+  margin-right: 40px;
+}
+
+@media ( max-width : 1280px) {
+	.listaCatalogo {
+    padding-left: 320px;
+  }
+}
+
+.addCatalogo{
+  margin-top: -930px;
+  margin-left: 440px;
+}
+
+.atualizarCatalogo{
+  margin-top: -930px;
+  margin-left: 440px;
+}
+
+.Sidebar{
+  padding: 30px;
+  height: 1077px;
+  width: 300px;
+  background-color: #2f4050
+}
+
+@media ( max-width : 412px) {
+	.Sidebar {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 120px;
+  }
+  .SidebarList{
+    height: auto;
+    padding: 0;
+    width: 75%;
+  }
+  .menuLateral{
+    width: 75%;
+  }
+  .SidebarList .row{
+    width: 75%;
+    height: 20px;
+    list-style-type: none;
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    color: antiquewhite;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+}
+
+.SidebarList{
+  height: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.SidebarList .row{
+  width: 100%;
+  height: 60px;
+  list-style-type: none;
+  margin: 0%;
+  display: flex;
+  flex-direction: row;
+  color: antiquewhite;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.SidebarList .row:hover{
+  cursor: pointer;
+  background-color: #293846;
+}
+
+.SidebarList  #active {
+  background-color: #293846;
+}
+
+.row #icon {
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+
+.row #title {
+  flex: 70%;
+}
+
+.menuLateral{
+  width: 100%;
 }

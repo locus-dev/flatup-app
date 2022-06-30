@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css';
+
+import SideBar from './components/SideBar'
+import AddImovel from './components/Imovel/AddImovel';
+import ListImovel from './components/Imovel/ListImovel';
+import AtualizarImovel from './components/Imovel/AtualizarImovel';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <SideBar />
+        <Routes>
+          <Route path="/ListarImoveis"  element={<ListImovel />}></Route>
+          <Route path="/addImovel" element={<AddImovel />}></Route>
+          <Route path="/editarImovel/:id" element={<AtualizarImovel/>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
