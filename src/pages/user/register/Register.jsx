@@ -1,10 +1,43 @@
 import "./register.css";
+import React from 'react';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+import Navbar from "../../../components/navbar/Navbar";
 
 const Register = () => {
+
+  const state = {
+    nome: '',
+  }
+
+  const handleChange = event => {
+    this.setState({ nome: event.target.value });
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    const user = {
+      nome: this.state.nome
+    };
+
+    axios.post('', { user })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+
+  const navigate = useNavigate();
+
+  const register =() =>{
+      navigate("/register", {state: {}})
+  }
+
   return (
     <div>
       <main>
-
+      <Navbar />
         <div className="side-form">
           <div className="form-box">
             <h1>Registro</h1>
@@ -24,25 +57,19 @@ const Register = () => {
             </div>
 
             <h3 className="or">Ou</h3>
-            <div className="form-control">
-              <label className="lsOptionText" for="email">Email </label>
-              <input type="email" min={0} className="input" placeholder="Email" id="email" />
-            </div>
-            <div className="form-control">
-              <label className="lsOptionText" for="email">Nome </label>
-              <input type="email" min={0} className="input" placeholder="Nome Completo" id="email" />
-            </div>
-            <div className="form-control">
-              <label className="lsOptionText" for="email">Senha </label>
-              <input type="email" min={0} className="input" placeholder="Senha" id="email" />
-            </div>
-            <div className="form-control">
-              <label className="lsOptionText" for="senha">Confirmar Senha</label>
-              <input type="password" min={0} className="input" placeholder="Confirmar Senha" id="senha" />
-            </div>
-
-            <button type="submit" className="form-button">Entrar</button>
-            <p className="registre">Já tem conta? <a href="/login">Logar-se</a></p>
+            
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-control">
+                <label className="lsOptionText" for="email">Email </label>
+                <input type="email" onChange={this.handleChange} min={0} className="input" placeholder="Email" id="email" />
+              </div>
+              <div className="form-control">
+                <label className="lsOptionText" for="email">Senha </label>
+                <input type="password" min={0} className="input" placeholder="Senha" id="senha" />
+              </div>
+              <button type="submit" className="form-button" onClick={register}>Registrar</button>
+              <p className="registre">Já tem conta? <a href="/login">Logar-se</a></p>
+            </form>
           </div>
         </div>
 

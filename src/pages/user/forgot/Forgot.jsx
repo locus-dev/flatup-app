@@ -1,10 +1,12 @@
 import "./forgot.css";
+import Navbar from "../../../components/navbar/Navbar";
 
 const Forgot = () => {
   return (
     <div>
       <main>
 
+      <Navbar />
         <div className="side-form">
           <div className="form-box">
             <h3>Esqueceu Senha</h3>
