@@ -22,6 +22,8 @@ form div div div {
     flex-direction: column;
 }
 
-.pt-2 {
-    display: hidden;
+.form-carrossel {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
 }

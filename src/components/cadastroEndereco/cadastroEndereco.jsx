@@ -3,15 +3,18 @@ import axios from "axios";
 import uuid from "node-uuid";
 
 const CadastroEndereco = () => {
-	const [listaUF, setlistaUF] = useState([]);
-	const [UF, setUF] = useState([]);
-	const [cidade, setCidade] = useState([]);
+	const [listaUF, setListaUF] = useState([]);
+	const [listaCidade, setListaCidade] = useState([]);
+	// const [UF, setUF] = useState([]);
+
+	var UF = [];
+	var cidade = [];
 
 	useEffect(() => {
 		axios
 			.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
 			.then((resposta) => {
-				setlistaUF(resposta.data);
+				setListaUF(resposta.data);
 			});
 	}, []);
 
@@ -21,17 +24,20 @@ const CadastroEndereco = () => {
 
 	function selectUF(id) {
 		// Implementar depois
-		setUF(listaUF[id]);
+		UF = listaUF[id];
+		// console.log(UF)
+		selectCidade(UF)
 	}
 
-	function selectCidade() {
+	function selectCidade(UF) {
 		// Implementar depois
 		axios
 			.get(
-				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${UF.id}/municipios`
+				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${UF.sigla}/municipios`
 			)
 			.then((resposta) => {
-				setCidade(resposta.data);
+				setListaCidade(resposta.data);
+				// console.log(listaCidade)
 			})
 	}
 
@@ -67,26 +73,26 @@ const CadastroEndereco = () => {
 			<div>
 				<label>UF</label>
 				<select name="uf">
-					{/* {listaUF.map((item) => {
+					{listaUF.map((item) => {
 						return (
-							<option key={uuid()} value={item.id} onClick={selectUF(item.id)}>
+							<option key={item.id} value={item.id} onClick={() => {selectUF(item.id)}}>
 								{item.nome}
 							</option>
 						);
-					})} */}
+					})}
 				</select>
 			</div>
 			<div>
 				<label>Cidade</label>
 				{/* <input type="text" name="cidade"/> */}
 				<select name="cidade">
-					{/* {cidade.map((item) => {
-				return (
-					<option value={item.id}>
-						{item.nome}
-					</option>
-				);
-			})} */}
+					{listaCidade.map((item) => {
+						return (
+							<option value={item.id}>
+								{item.nome}
+							</option>
+						);
+					})}
 				</select>
 			</div>
 			{/* <div>
