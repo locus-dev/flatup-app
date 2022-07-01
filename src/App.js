@@ -10,7 +10,7 @@ import Login from "./pages/user/login/Login";
 import Register from "./pages/user/register/Register";
 import Profile from "./pages/user/profile/Profile";
 import Forgot from "./pages/user/forgot/Forgot";
-import CadastrarImovel from "./pages/flat/immobile/CadastrarImovel";
+import CadastrarImovel from "./pages/flat/cadastrarImovel/CadastrarImovel";
 
 function App() {
   return (

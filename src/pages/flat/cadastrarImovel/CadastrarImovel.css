@@ -1,0 +1,29 @@
+form input {
+    width: unset;
+    /* border: unset; */
+    outline: unset;
+    padding: unset;
+}
+
+form {
+    width: 80%;
+}
+
+form div div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    margin: 1rem;
+}
+
+form div div div {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-carrossel {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
+}

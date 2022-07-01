@@ -11,8 +11,8 @@ const CadastrarImovel = () => {
   return (
     <div>
       <Navbar />
+      <CadastrarImovel/>
         <div className="listContainer">
-          <SearchItem />
           <MailList />
           <Footer />
         </div>
