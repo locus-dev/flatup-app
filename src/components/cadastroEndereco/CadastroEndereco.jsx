@@ -42,35 +42,35 @@ const CadastroEndereco = () => {
 	}
 
 	return (
-		<div>
-			<div>
+		<div className="form-body">
+			<div className="form-control">
 				<label>Logradouro</label>
-				<input type="text" name="logradouro" />
+				<input className="input" type="text" name="logradouro" />
 			</div>
-			<div>
+			<div className="form-control">
 				<label>Número</label>
-				<input type="text" name="numero" />
+				<input className="input" type="text" name="numero" />
 			</div>
-			<div>
+			<div className="form-control">
 				<label>Complemento</label>
-				<input type="text" name="complemento" />
+				<input className="input" type="text" name="complemento" />
 			</div>
-			<div>
+			<div className="form-control">
 				<label>Bairro</label>
-				<input type="text" name="bairro" />
+				<input className="input" type="text" name="bairro" />
 			</div>
-			<div>
+			<div className="form-control">
 				<label>Ponto de Referência</label>
-				<input type="text" name="pt_referencia" />
+				<input className="input" type="text" name="pt_referencia" />
 			</div>
-			<div>
+			<div className="form-control">
 				<label>CEP</label>
-				<div>
-					<input type="text" name="cep" />
+				<div className="form-control">
+					<input className="input" type="text" name="cep" />
 					{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 				</div>
 			</div>
-			<div>
+			<div className="form-control">
 				<label>UF</label>
 				<select name="uf">
 					{listaUF.map((item) => {
@@ -82,9 +82,9 @@ const CadastroEndereco = () => {
 					})}
 				</select>
 			</div>
-			<div>
+			<div className="form-control">
 				<label>Cidade</label>
-				{/* <input type="text" name="cidade"/> */}
+				{/* <input className="input" type="text" name="cidade"/> */}
 				<select name="cidade">
 					{listaCidade.map((item) => {
 						return (
@@ -95,9 +95,9 @@ const CadastroEndereco = () => {
 					})}
 				</select>
 			</div>
-			{/* <div>
+			{/* <div className="form-control">
 			<label>País</label>
-			<input type="text" name="nacionalidade"/>
+			<input className="input" type="text" name="nacionalidade"/>
 		</div> */}
 		</div>
 	);
