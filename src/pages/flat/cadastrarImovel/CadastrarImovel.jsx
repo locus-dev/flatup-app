@@ -1,40 +1,38 @@
 import Footer from "../../../components/footer/Footer";
-import Header from "../../../components/header/Header";
-import MailList from "../../../components/mailList/MailList";
 import Navbar from "../../../components/navbar/Navbar";
 import CadastroEndereco from "../../../components/cadastroEndereco/CadastroEndereco";
 import "./CadastrarImovel.css";
+import { useState } from "react";
 
 const CadastrarImovel = () => {
+	const [payload, setPayload] = useState({});
+
 	function rodarCarrossel(sentido) {}
 
 	return (
-		<div>
+		<div className="componente">
 			<Navbar />
 			<form className="form-carrossel">
-				<div className="carrossel-slide" id="slide-1">
+				<div className="" id="slide-1">
 					<h2>Endereço</h2>
+					{/* TODO => Fazer os inputs dentro do componente "CadastroEndereco" passarem seus values para a const payload que será um objeto JSON */}
 					<CadastroEndereco />
 					<button
-						className="button"
+						id="seguir"
+						className="button form-button"
 						type="button"
 						onClick={function () {
-							// document.getElementById('slide-2').style.right = 0
-							// document.getElementById('slide-2').style.left = 0
 							document.getElementById("slide-1").style.display =
 								"none";
 							document.getElementById("slide-2").style.display =
 								"flex";
-
-							// document.getElementById("slide-2").style.transform = "translateX(-1000px)";
-							// document.getElementById("slide-2").style.transition = "transform 1s";
 						}}
 					>
 						Seguir
 					</button>
 				</div>
 
-				<div className="carrossel-slide" id="slide-2">
+				<div className="" id="slide-2">
 					<h2>Informações adicionais</h2>
 					<div className="form-body">
 						<div className="form-control">
@@ -115,11 +113,9 @@ const CadastrarImovel = () => {
 
 					<div className="form-footer">
 						<button
-							className="button"
+							className="button form-button"
 							type="button"
 							onClick={function () {
-								// document.getElementById('slide-1').style.right = 0
-								// document.getElementById('slide-1').style.left = 0
 								document.getElementById(
 									"slide-2"
 								).style.display = "none";
@@ -130,12 +126,13 @@ const CadastrarImovel = () => {
 						>
 							Voltar
 						</button>
-						<button type="submit" className="button">
+						<button type="submit" className="button form-button" id="enviar">
 							Enviar
 						</button>
 					</div>
 				</div>
 			</form>
+			<Footer />
 		</div>
 	);
 };

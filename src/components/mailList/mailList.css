@@ -13,9 +13,10 @@
 .mailInputContainer>input{
     width: 300px;
     height: 30px;
-    padding: 1px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
     border: none;
     margin-right: 10px;
+    background-color: #01191d69;
 }
 
 .mailInputContainer>button{

@@ -65,10 +65,8 @@ const CadastroEndereco = () => {
 			</div>
 			<div className="form-control">
 				<label>CEP</label>
-				<div className="form-control">
 					<input className="input" type="text" name="cep" />
 					{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
-				</div>
 			</div>
 			<div className="form-control">
 				<label>UF</label>

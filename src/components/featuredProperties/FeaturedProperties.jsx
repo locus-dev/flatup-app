@@ -15,7 +15,7 @@ const FeaturedProperties = () => {
         </div>
         <div className="fpItem">
             <img src="./flat02.jpg" alt="" className="fpImg" />
-            <span className="fpName">Chalé aconhedor em Garanhuns</span>
+            <span className="fpName">Chalé acolhedor em Garanhuns</span>
             <span className="fpCity">Garanhuns, PE</span>
             <span className="fpPrice">R$315/noite</span>
             <div className="fpRating">
