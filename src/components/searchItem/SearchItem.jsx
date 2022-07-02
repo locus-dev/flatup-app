@@ -4,7 +4,7 @@ const SearchItem = () => {
 
   return (
     <div className="searchItem">
-        <img src="./flat01.jpg" alt="flat01" className="siImg" />
+        <img src="../flat01.jpg" alt="flat01" className="siImg" />
         <div className="siDesc">
             <h1 className="siTitle">Flats incriveis na beira da praia!</h1>
             <span  className="siDistance">50 metros do Coqueiro de Boa viagem</span>
@@ -19,7 +19,7 @@ const SearchItem = () => {
                 pode cancelar depois se quiser
             </span>
         </div>
-        <div className="siDetails"><a href="/Immobile:id">Detalhes</a></div>
+        <div className="siDetails"><a href="/imoveis:id">Detalhes</a></div>
 
     </div>
   )
