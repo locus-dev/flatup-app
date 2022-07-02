@@ -11,7 +11,7 @@ const Navbar = () => {
   }
 
   const handleRegister =() =>{
-    navigate("/register", {state: {}})
+    navigate("/registro", {state: {}})
 } 
 
 const handleHome =() =>{

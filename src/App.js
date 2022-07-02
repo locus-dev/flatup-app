@@ -17,13 +17,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Immobiles" element={<List />} />
-        <Route path="/Immobile:id" element={<Immobile />} />
-        <Route path="/imovel/cadastrar" element={<CadastrarImovel />} />
+        <Route path="/imoveis" element={<List />} />
+        <Route path="/imoveis:id" element={<Immobile />} />
+        <Route path="/imoveis/cadastrar" element={<CadastrarImovel />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot" element={<Forgot/>} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/registro" element={<Register />} />
+        <Route path="/usuario/recuperar" element={<Forgot/>} />
+        <Route path="/perfil" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

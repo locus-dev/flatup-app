@@ -38,7 +38,7 @@ const Header = ({type}) => {
   };
 
   const handleSearch =() =>{
-    navigate("/Immobiles", {state: {destination, date, options}})
+    navigate("/imoveis", {state: {destination, date, options}})
   }
 
   return (

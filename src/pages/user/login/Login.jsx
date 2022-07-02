@@ -32,10 +32,10 @@ const Login = () => {
               <label className="lsOptionText" for="senha">Senha</label>
               <input type="password" min={0} className="input" placeholder="Senha" id="senha" />
             </div>
-            <a href="/forgot" id="forgot-senha">Esqueci a senha</a>
+            <a href="/usuario/recuperar" id="forgot-senha">Esqueci a senha</a>
 
             <button type="submit" className="form-button">Entrar</button>
-            <p className="registre">Ainda não tem conta? <a href="/register">Registre-se</a></p>
+            <p className="registre">Ainda não tem conta? <a href="/registro">Registre-se</a></p>
           </div>
         </div>
 
