@@ -5,8 +5,8 @@ const MailList = () => {
     <div className="mail">
         <h2 className="mailTitle">Cadastre-se em nosso newsletter</h2>
         <div className="mailInputContainer">
-            <input type="text" placeholder=" Seu e-mail..." />
-            <button>Inscreva-se</button>
+            <input type="text" placeholder="Seu e-mail..." className="input"/>
+            <button className="button">Inscreva-se</button>
         </div>
     </div>
   )

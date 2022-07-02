@@ -1,41 +1,41 @@
-html {
-    height: 100%;
-}
-
-body{
+body {
     overflow-x: hidden;
-    height: 100%;
 }
 
-.form-control{
+.form-body,
+.form-carrossel,
+.form-control,
+.form-footer,
+#slide-1,
+#slide-2 {
     display: flex;
-    flex-direction:column;
-    margin-bottom: 10px;
-    margin: 1rem;
 }
 
-.input{
-    border: 1px solid rgb(53, 53, 53);
+.form-control,
+#slide-1,
+#slide-2 {
+    flex-direction: column;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    margin: 2rem;
+}
+
+.input {
+    border: 1.25px solid rgb(209, 209, 209);
     border-radius: 5px;
+    background-color: rgba(112, 112, 112, 0.185);
     height: 25px;
     margin-top: 5px;
     padding: 5px 10px;
     font-size: 16px;
     width: 200px;
+    color: aliceblue;
 }
 
-.carrossel-slide{
-    /* border: 1px solid red; */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-#slide-1, #slide-2{
-    /* position: absolute; */
-    display: flex;
-    flex-direction: column;
-    /* margin-top: 5rem; */
+#slide-1,
+#slide-2 {
     transition: all 400ms;
 
     justify-content: center;
@@ -44,22 +44,15 @@ body{
     width: 80%;
 }
 
-#slide-2{
-    /* margin-top: 4rem; */
-    position: absolute;
-    /* margin-left: -10000px; */
-    z-index: 3;
+#slide-2 {
     display: none;
-
-    justify-content: center;
 }
 
 .form-body {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 
-    /* width: 80%; */
+    justify-content: space-evenly;
 }
 
 .checkbox {
@@ -68,12 +61,11 @@ body{
 }
 
 .form-carrossel {
-    display: flex;
     justify-content: center;
+    height: 100%;
 }
 
 .form-footer {
-    display: flex;
     justify-content: space-between;
     width: 60%;
 }
@@ -81,12 +73,38 @@ body{
 .button {
     width: 8rem;
     height: 2rem;
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+    background-color: rgb(0, 153, 255);
+    color: aliceblue;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 form {
-    /* background-color: rgb(129, 165, 219); */
-    color: black;
-    margin-top: 4rem;
+    color: whitesmoke;
+    margin-top: 1rem;
     padding: 4rem;
-    /* background-color: rgb(106, 123, 199); */
+    /* background-color: #0071c2; */
+    background: rgb(42, 35, 91);
+    background: linear-gradient(28deg, rgba(42, 35, 91, 1) 12%, rgba(0, 113, 194, 1) 100%);
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+#seguir {
+    margin-left: 75%;
+}
+
+#enviar:hover {
+    background-color: rgb(16, 187, 158);
+}
+
+.componente {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
