@@ -3,6 +3,7 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Navbar from "../../components/navbar/Navbar";
+import Featured from "../../components/featured/Featured";
 import "./home.css";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
 
       </div>
       <div className="homeContainer">
+        {/* <Featured/> */}
           <FeaturedProperties />
           <FeaturedProperties />
           <FeaturedProperties />
