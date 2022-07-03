@@ -34,7 +34,12 @@ const Navbar = () => {
 							id=""
 							onClick={() => {
 								axios
-									.get(config.URL + "/imovel/listar", {})
+									.get(config.URL + "/imovel/listar", 
+										{
+											headers: {
+												"Access-Control-Allow-Origin": "*",
+											},
+										})
 									.then((resposta) => {
 										navigate("/imoveis", resposta);
 									})

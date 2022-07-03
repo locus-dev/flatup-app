@@ -43,11 +43,18 @@ const Header = ({ type }) => {
 
 	const handleSearch = () => {
 		axios
-			.get(config.URL + "/imovel/listar", {
+			.get(config.URL + "/imovel/listar", 
+			{
 				destino: destination,
 				data: date,
 				opcoes: options,
-			})
+			},
+			{
+				headers:{
+					"Access-Control-Allow-Origin":"*"
+				}
+			}
+			)
 			.then((resposta) => {
 				navigate("/imoveis", resposta);
 			})
