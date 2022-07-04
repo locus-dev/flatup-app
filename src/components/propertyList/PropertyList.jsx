@@ -4,7 +4,7 @@ const PropertyList = () => {
   return (
     <div className="pList">
         <div className="pListItem">
-            <img src="./flat01.jpg" alt="" className="pListImg" />
+            <Imagem src="./flat01.jpg" alt="" className="pListImg"/>
             <div className="pListTitles">
                 <h1>Flat</h1>
             </div>
