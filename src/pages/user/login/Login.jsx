@@ -1,17 +1,17 @@
-import {
-	getAuth,
-	signInWithPopup,
-	signInWithEmailAndPassword,
-	createUserWithEmailAndPassword,
-	GoogleAuthProvider,
-	FacebookAuthProvider,
-} from "firebase/auth";
-import "./login.css";
-import Navbar from "../../../components/navbar/Navbar";
+import axios from "axios";
+import { useState } from "react";
 import { initializeApp } from "firebase/app";
+import {
+	FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../../components/navbar/Navbar";
+import config from "../../../config";
+import "./login.css";
 
 const Login = () => {
+	const [emailSenha, setEmailSenha] = useState({});
+
 	const firebaseConfig = {
 		apiKey: "AIzaSyAdfLPSnZEzmyvvQpJB_2z2yij8I9ZL0u8",
 		authDomain: "flatup-e23c8.firebaseapp.com",
@@ -96,6 +96,7 @@ const Login = () => {
 						</div>
 
 						<h3 className="or">Ou</h3>
+						{/* <form action={config.URL + '/auth'} method="POST"> */}
 						<div className="form-control">
 							<label className="lsOptionText" for="email">
 								Email{" "}
@@ -103,6 +104,7 @@ const Login = () => {
 							<input
 								type="email"
 								min={0}
+								value={emailSenha.email}
 								className="input"
 								placeholder="Email"
 								id="email"
@@ -115,6 +117,7 @@ const Login = () => {
 							<input
 								type="password"
 								min={0}
+								value={emailSenha.senha}
 								className="input"
 								placeholder="Senha"
 								id="senha"
@@ -124,9 +127,28 @@ const Login = () => {
 							Esqueci a senha
 						</a>
 
-						<button type="submit" className="form-button">
+						<button type="submit" className="form-button" onClick={() => {
+							axios.post(config.URL + '/auth',
+							// {
+							// headers: {                  
+							// 	"Access-Control-Allow-Origin": "*",
+							// 	"Access-Control-Allow-Headers": "Authorization", 
+							// 	"Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
+							// 	"Content-Type": "application/json;charset=UTF-8"                   
+							// },
+							new Headers().append("Access-Control-Allow-Origin", "*")
+							,{
+								"email": emailSenha.email,
+								"senha": emailSenha.senha
+							}, 
+						// }
+							).then(
+
+							)
+						}}>
 							Entrar
 						</button>
+						{/* </form> */}
 						<p className="registre">
 							Ainda não tem conta?{" "}
 							<a href="/registro">Registre-se</a>

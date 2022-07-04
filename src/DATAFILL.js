@@ -31,7 +31,24 @@ const DATA = {
             valor_diaria: 135,
             avaliacao: 8.6,
             imagem: "./media/imoveis/flat04.jpg"
-        }
+        },
+        // {
+        //     id: 5,
+        //     titulo_anuncio: "Suape",
+        //     descricao: "Desfrute do melhor flat da orla de Suape-Pe",
+        //     valor_diaria: 450,
+        //     avaliacao: 8.9,
+        //     imagem: "./media/imoveis/flat05.jpg"
+        // },
+        // {
+        //     id: 6,
+        //     titulo_anuncio: "Porto de Galinhas",
+        //     descricao: "Conhecido por 'Caribe Brasileiro', a praia de porto de Galinhas é muito visitada.",
+        //     valor_diaria: 1550,
+        //     avaliacao: 9.8,
+        //     imagem: "./media/imoveis/flat06.jpg"
+        // }
+
     ]
 }
 

@@ -81,7 +81,7 @@ body {
     font-weight: 600;
 }
 
-form {
+.form-carrossel { 
     color: whitesmoke;
     margin-top: 1rem;
     padding: 4rem;
