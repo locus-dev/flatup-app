@@ -3,13 +3,12 @@ import ImovelService from '../../services/ImovelService';
 import { useNavigate } from 'react-router-dom';
 
 
-import axios from 'axios';
+
 
 const AddImovel = () => {
     const navigate = useNavigate();
 
-    const[climatizado, setClimatizado] = useState('');
-    const[statusOcupacao, setStatusOcupacao] = useState('');
+   
 
     const [endereco, setEndereco] = useState({
         logradouro: '',
@@ -90,11 +89,14 @@ const AddImovel = () => {
     }
 
     return (
+
         
-        <div className='flex max-w-5xl mx-auto shadow border-b addCatalogo'>
-            <div className='px-10 py-10 columns-2'>
+        
+        <div className='flex max-w-5xl mx-auto shadow border-b addImovel'>
+           
+            <div className='px-5 py-5 columns-1'>
                 <div className='font-thin text-2xl tracking-wider'>
-                    <h1>Adicionar Imovel climatizado: {imovel.climatizado}  Status: {imovel.statusOcupacao} </h1>
+                    <h1>Adicionar Imovel climatizado </h1>
                 </div>
                 <div className='items-center justify-center h-20 w-full'>
                     <label className='block text-gray-600 text-sm font-normal'>Climatizado:</label>
@@ -268,7 +270,7 @@ const AddImovel = () => {
 
                 <div className='items-center justify-center h-14 w-full my-5 space-x-2 pt-6'>
                     <button onClick={salvarImovel} className='rounded text-white font-semibold bg-green-400 hover:bg-green-600 py-2 px-2'>Salvar</button>
-                    <button onClick={() => navigate("/ListarImoveis")} className='rounded text-white font-semibold bg-red-400 hover:bg-red-600 py-2 px-2'>Cancelar</button>
+                    <button onClick={() => navigate("/ListarImoveis")} data-bs-dismiss="modal" className='rounded text-white font-semibold bg-red-400 hover:bg-red-600 py-2 px-2'>Cancelar</button>
                 </div>
             </div>
         </div>

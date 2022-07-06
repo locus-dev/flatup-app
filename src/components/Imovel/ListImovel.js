@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ImovelService from '../../services/ImovelService'
-import '../../../src/App.css';
+import '../../components/Imovel/css/Imovel.css';
 import Imovel from './Imovel';
+import AddImovel from './AddImovel';
+import AtualizarImovel from "./AtualizarImovel";
 
-import axios from 'axios';
 
 const ListImovel = () => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const ListImovel = () => {
     const [imoveis, setImoveis] = useState([]);
 
 
-   
+
 
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const ListImovel = () => {
             try {
                 const response = await ImovelService.listarImoveis();
                 setImoveis(response.data);
-                
+
             } catch (error) {
                 console.log(error);
             }
@@ -35,7 +36,7 @@ const ListImovel = () => {
 
     const deleteImovel = (e, id) => {
         e.preventDefault();
-        
+
         ImovelService.deleteImovel(id).then((res) => {
             if (imoveis) {
                 setImoveis((prevElement) => {
@@ -48,16 +49,19 @@ const ListImovel = () => {
 
     return (
         <>
-            <div className='container mx-auto my-6 listaCatalogo'>
+            <div className='container mx-auto my-6 listaImovel'>
                 <div className='container'>
-                    
+
                     <button
-                        onClick={() => navigate("/addImovel")}
+                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        aria-expanded="false"
+                        data-toggle="collapse"
+
                         className='ronded bg-slate-600 text-white px-6 py-2 font-semibold m-3'>
                         Adicionar Imóvel
                     </button>
-                    
-                    <a 
+
+                    <a
                         _target="_blank"
                         href='http://localhost:8081/imovel/pdf'
                         className='ronded bg-green-500 text-white px-8 py-2 font-semibold'
@@ -65,6 +69,24 @@ const ListImovel = () => {
                         Gerar PDF
                     </a>
 
+                </div>
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <AddImovel />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <AtualizarImovel />
+                        </div>
+                    </div>
                 </div>
 
                 <div className='flex shadow border-b'>

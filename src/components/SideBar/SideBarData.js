@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeIcon from '@material-ui/icons/Home';
-import LocalMovies from '@material-ui/icons/LocalMovies'
+import People from '@material-ui/icons/People'
 
 export const SideBarData = [
     {
@@ -12,6 +12,12 @@ export const SideBarData = [
         title: "Imóveis",
         icon: <HomeIcon />,
         link: "/ListarImoveis"
+
+    },
+    {
+        title: "Usuários",
+        icon: <People />,
+        link: "/ListarUsuarios"
 
     }
 ]   

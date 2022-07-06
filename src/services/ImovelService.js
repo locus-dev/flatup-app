@@ -25,6 +25,7 @@ class ImovelService{
     }
 
     buscarImovelPeloId(id){
+        
         return axios.get(IMOVEL_API_BASE_URL+ "/buscarPorId/" + id);
     }
 

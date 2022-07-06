@@ -1,0 +1,20 @@
+.listaUsuario {
+    margin-top: -930px;
+    margin-right: 40px;
+}
+
+@media (max-width : 1280px) {
+    .listaUsuario {
+        padding-left: 320px;
+    }
+}
+
+.addUsuario {
+    margin-top: -930px;
+    margin-left: 440px;
+}
+
+.atualizarUsuario {
+    margin-top: -930px;
+    margin-left: 440px;
+}

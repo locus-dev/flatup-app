@@ -1,20 +1,35 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css';
 
-import SideBar from './components/SideBar'
+import SideBar from './components/SideBar/SideBar'
 import AddImovel from './components/Imovel/AddImovel';
 import ListImovel from './components/Imovel/ListImovel';
 import AtualizarImovel from './components/Imovel/AtualizarImovel';
+
+import AddUsuario from './components/Usuario/AddUsuario';
+import ListUsuario from './components/Usuario/ListUsuario';
+import AtualizarUsuario from './components/Usuario/AtualizarUsuario';
+import Home from './components/Home/Home';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <SideBar />
+        {/* <SideBar /> */}
+        <Home />
         <Routes>
+          
           <Route path="/ListarImoveis"  element={<ListImovel />}></Route>
           <Route path="/addImovel" element={<AddImovel />}></Route>
           <Route path="/editarImovel/:id" element={<AtualizarImovel/>}></Route>
+
+
+          <Route path="/ListarUsuarios"  element={<ListUsuario />}></Route>
+          <Route path="/addUsuario" element={<AddUsuario />}></Route>
+          <Route path="/editarUsuario/:id" element={<AtualizarUsuario/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
