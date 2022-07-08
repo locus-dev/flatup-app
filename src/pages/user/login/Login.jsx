@@ -10,7 +10,8 @@ import config from "../../../config";
 import "./login.css";
 
 const Login = () => {
-	const [emailSenha, setEmailSenha] = useState({});
+	const [email, setEmail] = useState(null);
+	const [senha, setSenha] = useState(null);
 
 	const firebaseConfig = {
 		apiKey: "AIzaSyAdfLPSnZEzmyvvQpJB_2z2yij8I9ZL0u8",
@@ -104,10 +105,11 @@ const Login = () => {
 							<input
 								type="email"
 								min={0}
-								value={emailSenha.email}
+								value={email}
 								className="input"
 								placeholder="Email"
 								id="email"
+								onChange={e => setEmail(e.target.value)}
 							/>
 						</div>
 						<div className="form-control">
@@ -117,10 +119,11 @@ const Login = () => {
 							<input
 								type="password"
 								min={0}
-								value={emailSenha.senha}
+								value={senha}
 								className="input"
 								placeholder="Senha"
 								id="senha"
+								onChange={e => setSenha(e.target.value)}
 							/>
 						</div>
 						<a href="/usuario/recuperar" id="forgot-senha">
@@ -129,23 +132,16 @@ const Login = () => {
 
 						<button type="submit" className="form-button" onClick={() => {
 							axios.post(config.URL + '/auth',
-							// {
-							// headers: {                  
-							// 	"Access-Control-Allow-Origin": "*",
-							// 	"Access-Control-Allow-Headers": "Authorization", 
-							// 	"Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
-							// 	"Content-Type": "application/json;charset=UTF-8"                   
-							// },
-							new Headers().append("Access-Control-Allow-Origin", "*")
-							,{
-								"email": emailSenha.email,
-								"senha": emailSenha.senha
-							}, 
-						// }
-							).then(
-
-							)
-						}}>
+							{
+							  'email': email,
+							  'senha': senha
+							}).then((data) => {
+								console.log(data)
+							}).catch((error) => {
+								console.log(error)
+							});
+						}
+						}>
 							Entrar
 						</button>
 						{/* </form> */}
