@@ -34,9 +34,9 @@ const Imovel = ({ imovel, deleteImovel }) => {
 
             <td className="text-right px-6 py-4 font-medium text-sm">
                 <button
-                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                   /*  data-bs-toggle="modal" data-bs-target="#exampleModal"
                     aria-expanded="true"
-                    data-toggle="collapse"
+                    data-toggle="collapse" */
 
                     onClick={(e) => editarImovel(e, imovel.id)}
                     className="rounded text-white font-semibold bg-green-400 houver:bg-green-600 py-600 py-2 px-2">

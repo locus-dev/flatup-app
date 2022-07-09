@@ -21,7 +21,7 @@ const AtualizarImovel = () => {
     })
 
     const [imovel, setImovel] = useState({
-        id: id,
+        idImovel: id,
         climatizado: "",
         statusOcupacao: '',
         idEnderecoFK: {
@@ -137,9 +137,9 @@ const AtualizarImovel = () => {
                     <input
                         type="text"
                         className='h-10 w-96 border mt-2 px-2 py-2'
-                        value={endereco.logradouro}
+                        value={imovel.idEnderecoFK.logradouro}
                         name='logradouro'
-                        onChange={(e) => handleEnderecoChange(e)}
+                        onChange={(e) => handleChange(e)}
                     >
                     </input>
                 </div>
@@ -148,9 +148,9 @@ const AtualizarImovel = () => {
                     <input
                         type="text"
                         className='h-10 w-96 border mt-2 px-2 py-2'
-                        value={endereco.bairro}
+                        value={imovel.idEnderecoFK.bairro}
                         name='bairro'
-                        onChange={(e) => handleEnderecoChange(e)}
+                        onChange={(e) => handleChange(e)}
                     >
                     </input>
                 </div>
@@ -159,9 +159,9 @@ const AtualizarImovel = () => {
                     <input
                         type="text"
                         className='h-10 w-96 border mt-2 px-2 py-2'
-                        value={endereco.pontoReferencia}
+                        value={imovel.idEnderecoFK.pontoReferencia}
                         name='pontoReferencia'
-                        onChange={(e) => handleEnderecoChange(e)}
+                        onChange={(e) => handleChange(e)}
                     >
                     </input>
                 </div>
@@ -170,9 +170,9 @@ const AtualizarImovel = () => {
                     <input
                         type="text"
                         className='h-10 w-96 border mt-2 px-2 py-2'
-                        value={endereco.cep}
+                        value={imovel.idEnderecoFK.cep}
                         name='cep'
-                        onChange={(e) => handleEnderecoChange(e)}
+                        onChange={(e) => handleChange(e)}
                     >
                     </input>
                 </div>
@@ -191,9 +191,9 @@ const AtualizarImovel = () => {
                     <input
                         type="text"
                         className='h-10 w-96 border mt-2 px-2 py-2'
-                        value={endereco.numero}
+                        value={imovel.idEnderecoFK.numero}
                         name='numero'
-                        onChange={(e) => handleEnderecoChange(e)}
+                        onChange={(e) => handleChange(e)}
                     >
                     </input>
                 </div>
@@ -202,9 +202,9 @@ const AtualizarImovel = () => {
                     <input
                         type="text"
                         className='h-10 w-96 border mt-2 px-2 py-2'
-                        value={endereco.complemento}
+                        value={imovel.idEnderecoFK.complemento}
                         name='complemento'
-                        onChange={(e) => handleEnderecoChange(e)}
+                        onChange={(e) => handleChange(e)}
                     >
                     </input>
                 </div>
@@ -213,9 +213,9 @@ const AtualizarImovel = () => {
                     <input
                         type="text"
                         className='h-10 w-96 border mt-2 px-2 py-2'
-                        value={endereco.uf}
+                        value={imovel.idEnderecoFK.uf}
                         name='uf'
-                        onChange={(e) => handleEnderecoChange(e)}
+                        onChange={(e) => handleChange(e)}
                     >
                     </input>
                 </div>
@@ -224,9 +224,9 @@ const AtualizarImovel = () => {
                     <input
                         type="text"
                         className='h-10 w-96 border mt-2 px-2 py-2'
-                        value={endereco.nacionalidade}
+                        value={imovel.idEnderecoFK.nacionalidade}
                         name='nacionalidade'
-                        onChange={(e) => handleEnderecoChange(e)}
+                        onChange={(e) => handleChange(e)}
                     >
                     </input>
                 </div>

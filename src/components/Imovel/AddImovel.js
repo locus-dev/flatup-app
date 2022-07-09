@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const AddImovel = () => {
     const navigate = useNavigate();
 
-   
+
 
     const [endereco, setEndereco] = useState({
         logradouro: '',
@@ -43,7 +43,7 @@ const AddImovel = () => {
         quantSuite: ''
     });
 
-   
+
     const handleChange = (e) => {
         const value = e.target.value;
         console.log(value);
@@ -90,10 +90,10 @@ const AddImovel = () => {
 
     return (
 
-        
-        
+
+
         <div className='flex max-w-5xl mx-auto shadow border-b addImovel'>
-           
+            
             <div className='px-5 py-5 columns-1'>
                 <div className='font-thin text-2xl tracking-wider'>
                     <h1>Adicionar Imovel climatizado </h1>
@@ -123,7 +123,7 @@ const AddImovel = () => {
                     </select>
                 </div>
                 <div className='items-center justify-center h-20 w-full'>
-                   
+
                     <label className='block text-gray-600 text-sm font-normal'>Logradouro:</label>
                     <input
                         type="text"

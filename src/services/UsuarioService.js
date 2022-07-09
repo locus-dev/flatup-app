@@ -5,7 +5,6 @@ const USUARIO_API_BASE_URL = "http://localhost:8081/usuario";
 class UsuarioService {
 
     salvarUsuario(usuario){
-        console.log(usuario)
         return axios.post(USUARIO_API_BASE_URL+ "/salvar" + usuario);
     }
 

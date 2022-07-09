@@ -23,8 +23,11 @@ function Home ()  {
         fetchData();
     }, []);
 
-    const a = () => {
+    const navegarParaImovel = () => {
         navigate("/ListarImoveis")
+    }
+    const navegarParaUsuario = () => {
+        navigate("/ListarUsuarios")
     }
     return (
         <div className='Home'>
@@ -35,7 +38,7 @@ function Home ()  {
                     {/* <a href="#!">
                         <img className="rounded-t-lg" src="https://th.bing.com/th/id/OIP.ocP2uvz-I12ALwGTXMXItAHaEK?w=329&h=185&c=7&r=0&o=5&pid=1.7" alt="" />
                     </a> */}
-                    <div className="p-6" onClick={a}>
+                    <div className="p-6" onClick={navegarParaImovel}>
                         
                         <h5 className="text-gray-900  font-medium mb-2 text-3xl">Imóveis</h5>
                         <p className="text-gray-700 text-9xl mb-4">
@@ -48,7 +51,7 @@ function Home ()  {
                     {/* <a href="#!">
                         <img className="rounded-t-lg" src="https://th.bing.com/th/id/OIP.5nSdNOKMXD4x7qd_fG6TlQHaFD?w=260&h=180&c=7&r=0&o=5&pid=1.7" />
                     </a> */}
-                    <div className="p-6">
+                    <div className="p-6" onClick={navegarParaUsuario}>
                         <h5 className="text-gray-900  font-medium mb-2 text-4xl">Usuários</h5>
                         <p className="text-gray-700 text-9xl mb-4">
                         {json[1]}

@@ -1,7 +1,7 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const Usuario = ({usuario, deleteUsuario}) => {
+const Usuario = ({ usuario, deleteUsuario }) => {
     const navigate = useNavigate();
 
     const editarUsuario = (e, id) => {
@@ -19,7 +19,7 @@ const Usuario = ({usuario, deleteUsuario}) => {
                 <div className="text-sm text-gray-500">{usuario.senha}</div>
             </td>
 
-            
+
             <td className="text-right px-6 py-4 font-medium text-sm">
                 <button
                     onClick={(e) => editarUsuario(e, usuario.id)}
@@ -31,7 +31,7 @@ const Usuario = ({usuario, deleteUsuario}) => {
                     onClick={(e) => deleteUsuario(e, usuario.id)}
                     className="rounded text-white font-semibold bg-red-400 hover:bg-red-600 py-600 py-2 px-2">
                     Remover
-                
+
                 </button>
             </td>
         </tr>
