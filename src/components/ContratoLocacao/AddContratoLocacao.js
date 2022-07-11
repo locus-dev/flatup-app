@@ -6,7 +6,7 @@ import axios from 'axios';
 const AddContratoLocacao = () => {
     const navigate = useNavigate();
 
-    const [opcaoImovel, setOpcaoImovel] = useState('');
+    /* const [opcaoImovel, setOpcaoImovel] = useState(''); */
 
     const [imoveis, setImoveis] = useState([])
 
@@ -36,7 +36,7 @@ const AddContratoLocacao = () => {
         e.preventDefault();
 
         const contratoLocacaoMontado = {
-            idImovelFK: Number(opcaoImovel),
+            idImovelFK: Number(contratoLocacao.opcaoImovel),
             diasLocacao: contratoLocacao.diasLocacao,
             valorLocacao: contratoLocacao.valorLocacao,
             checkIn: contratoLocacao.checkIn,
@@ -62,7 +62,7 @@ const AddContratoLocacao = () => {
                         <label className='block text-gray-600 text-sm font-normal'>ID do imóvel:</label>
                     </div>
                     <div className='mt-2'>
-                        <select className='w-80' onChange={e => setOpcaoImovel({ ...opcaoImovel, id: e.target.value })}>
+                        <select className='w-80' onChange={(e) => handleChange(e)}>
                             {imoveis.map((imovel) => (
                                 <option key={imovel.idImovel} value={imovel.idImovel} >{imovel.idImovel}</option>
                             ))}

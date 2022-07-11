@@ -13,6 +13,8 @@ const AtualizarUsuario = () => {
         senha: ''
     });
 
+    console.log(usuario.idUsuario)
+
     const handleChange = (e) => {
         const value = e.target.value;
         setUsuario({ ...usuario, [e.target.name]: value});

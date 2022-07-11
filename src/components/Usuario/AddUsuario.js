@@ -18,13 +18,13 @@ const AddUsuario = () => {
 
     const salvarUsuario = (e) => {
         e.preventDefault();
-        /* const usuarioMontado = {
+        const usuarioMontado = {
             email: usuario.email,
             senha: usuario.senha
-        } */
+        }
 
        
-        UsuarioService.salvarUsuario(usuario).then((response) => {
+        UsuarioService.salvarUsuario(usuarioMontado).then((response) => {
             navigate('/ListarUsuarios')
         }).catch((error) => {
             console.log(error);

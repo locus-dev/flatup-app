@@ -64,7 +64,7 @@ function Home ()  {
 
                     </div>
                 </div>
-                <div className="rounded-lg shadow-lg bg-white w-40 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300  max-w-sm m-2 hover:shadow-blue-500" id="cardCatalogo">
+                <div className="rounded-lg shadow-lg bg-white w-40 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300   max-w-sm m-2 hover:shadow-blue-500" id="cardCatalogo">
                     <a href="#!">
                         <img className="rounded-t-lg" src="https://th.bing.com/th/id/OIP.i0YK_eytBN9d3gS5fhPPKgHaE8?w=204&h=136&c=7&r=0&o=5&pid=1.7" alt="" />
                     </a>
