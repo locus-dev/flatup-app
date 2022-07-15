@@ -3,9 +3,9 @@ import axios from "axios";
 
 // ============ Tipos dos parâmetros das funções =============
 //      rota: String, parametros: JSON, dados: JSON
-export default function ConsumoDaAPI() {
-
-	function get(rota, parametros, dados) {
+export default class ConsumoDaAPI {
+	constructor() {}
+	get(rota, dados, parametros={}) {
 		return axios
 			.get(config.URL + rota, (dados.params = parametros))
 			.then(function (resposta) {
@@ -14,7 +14,7 @@ export default function ConsumoDaAPI() {
 			.catch();
 	}
 
-	function post(rota, parametros, dados) {
+	post(rota, dados, parametros={}) {
 		return axios
 			.get(config.URL + rota, (dados.params = parametros))
 			.then(function (resposta) {
@@ -23,7 +23,7 @@ export default function ConsumoDaAPI() {
 			.catch();
 	}
 
-	function put(rota, parametros, dados) {
+	put(rota, dados, parametros={}) {
 		return axios
 			.get(config.URL + rota, (dados.params = parametros))
 			.then(function (resposta) {
@@ -32,7 +32,7 @@ export default function ConsumoDaAPI() {
 			.catch();
 	}
 
-	function delete_(rota, parametros, dados) {
+	delete_(rota, dados, parametros={}) {
 		return axios
 			.get(config.URL + rota, (dados.params = parametros))
 			.then(function (resposta) {

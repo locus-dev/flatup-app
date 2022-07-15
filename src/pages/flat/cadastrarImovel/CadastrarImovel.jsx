@@ -1,11 +1,27 @@
+import { useState } from "react";
+import CadastroEndereco from "../../../components/cadastroEndereco/CadastroEndereco";
 import Footer from "../../../components/footer/Footer";
 import Navbar from "../../../components/navbar/Navbar";
-import CadastroEndereco from "../../../components/cadastroEndereco/CadastroEndereco";
 import "./CadastrarImovel.css";
-import { useState } from "react";
+import axios from "axios";
+import config from "../../../config";
+import { useLocation } from "react-router-dom";
 
-const CadastrarImovel = () => {
-	const [payload, setPayload] = useState({});
+const CadastrarImovel = (props) => {
+	const [payload, setPayload] = useState({
+		areaLazer: true,
+		areaM2: 0,
+		climatizado: "string",
+		idEnderecoFK: 0,
+		idImovel: 0,
+		piscina: true,
+		quantQuarto: 0,
+		quantSuite: 0,
+		statusOcupacao: "string",
+	});
+	const [token, setToken] = useState({});
+
+	const location = useLocation();
 
 	function rodarCarrossel(sentido) {}
 
@@ -37,7 +53,12 @@ const CadastrarImovel = () => {
 					<div className="form-body">
 						<div className="form-control">
 							<label>Tamanho em m²</label>
-							<input className="input" type="text" name="" />
+							<input
+								className="input"
+								type="text"
+								name=""
+								onChange={(e) => setPayload(e.target.value)}
+							/>
 						</div>
 
 						<div className="form-control">
@@ -126,9 +147,24 @@ const CadastrarImovel = () => {
 						>
 							Voltar
 						</button>
-						<button type="submit" className="button form-button" id="enviar">
+						<span
+							className="button form-button"
+							id="enviar"
+							onClick={() =>
+								axios
+									.post(config.URL + "/imovel/salvar", {
+										headers: {
+											Authorization:
+												"Bearer " +
+												location.state.token,
+										},
+										data: payload,
+									})
+									.then()
+							}
+						>
 							Enviar
-						</button>
+						</span>
 					</div>
 				</div>
 			</form>

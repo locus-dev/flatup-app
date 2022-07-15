@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
 import { initializeApp } from "firebase/app";
 import {
-	FacebookAuthProvider, getAuth, GoogleAuthProvider, signInWithPopup
+	FacebookAuthProvider,
+	getAuth,
+	GoogleAuthProvider,
+	signInWithPopup,
 } from "firebase/auth";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 import config from "../../../config";
@@ -109,7 +112,7 @@ const Login = () => {
 								className="input"
 								placeholder="Email"
 								id="email"
-								onChange={e => setEmail(e.target.value)}
+								onChange={(e) => setEmail(e.target.value)}
 							/>
 						</div>
 						<div className="form-control">
@@ -123,25 +126,34 @@ const Login = () => {
 								className="input"
 								placeholder="Senha"
 								id="senha"
-								onChange={e => setSenha(e.target.value)}
+								onChange={(e) => setSenha(e.target.value)}
 							/>
 						</div>
 						<a href="/usuario/recuperar" id="forgot-senha">
 							Esqueci a senha
 						</a>
 
-						<button type="submit" className="form-button" onClick={() => {
-							axios.post(config.URL + '/auth',
-							{
-							  'email': email,
-							  'senha': senha
-							}).then((data) => {
-								console.log(data)
-							}).catch((error) => {
-								console.log(error)
-							});
-						}
-						}>
+						<button
+							// type="submit"
+							className="form-button"
+							onClick={() => {
+								axios
+									.post(config.URL + "/auth", {
+										email: email,
+										senha: senha,
+									})
+									.then((data) => {
+										// TODO: apagar console.log
+										console.log(data.data.token);
+										navigate("/imoveis/cadastrar", {
+											state: {token:data.data.token} ,
+										});
+									})
+									.catch((error) => {
+										console.log(error);
+									});
+							}}
+						>
 							Entrar
 						</button>
 						{/* </form> */}
