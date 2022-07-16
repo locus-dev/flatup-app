@@ -5,11 +5,18 @@ import MailList from "../../components/mailList/MailList";
 import Navbar from "../../components/navbar/Navbar";
 import Featured from "../../components/featured/Featured";
 import "./home.css";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Home = () => {
+
+  const location = useLocation();
+  location.state = location.state ? location.state : {};
+
   return (
     <div>
-      <Navbar />
+      <Navbar token={location.state.token}/>
+    {/* <Navbar undefined/> */}
       <Header />
       <div className="locatesContainer">
 

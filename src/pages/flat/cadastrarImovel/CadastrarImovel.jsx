@@ -1,13 +1,14 @@
+import axios from "axios";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import CadastroEndereco from "../../../components/cadastroEndereco/CadastroEndereco";
 import Footer from "../../../components/footer/Footer";
 import Navbar from "../../../components/navbar/Navbar";
-import "./CadastrarImovel.css";
-import axios from "axios";
 import config from "../../../config";
-import { useLocation } from "react-router-dom";
+import "./CadastrarImovel.css";
+import { useNavigate } from "react-router-dom";
 
-const CadastrarImovel = (props) => {
+const CadastrarImovel = () => {
 	const [payload, setPayload] = useState({
 		areaLazer: true,
 		areaM2: 0,
@@ -22,17 +23,18 @@ const CadastrarImovel = (props) => {
 	const [token, setToken] = useState({});
 
 	const location = useLocation();
+	const navigate = useNavigate();
 
 	function rodarCarrossel(sentido) {}
 
 	return (
 		<div className="componente">
-			<Navbar />
+			<Navbar token={location.state.token}/>
 			<form className="form-carrossel">
 				<div className="" id="slide-1">
 					<h2>Endereço</h2>
 					{/* TODO => Fazer os inputs dentro do componente "CadastroEndereco" passarem seus values para a const payload que será um objeto JSON */}
-					<CadastroEndereco />
+					<CadastroEndereco props={payload} />
 					<button
 						id="seguir"
 						className="button form-button"
@@ -57,18 +59,34 @@ const CadastrarImovel = (props) => {
 								className="input"
 								type="text"
 								name=""
-								onChange={(e) => setPayload(e.target.value)}
+								onChange={(e) => {
+									payload.areaM2 = e.target.value;
+								}}
 							/>
 						</div>
 
 						<div className="form-control">
 							<label>Número de quartos</label>
-							<input className="input" type="text" name="" />
+							<input
+								className="input"
+								type="text"
+								name=""
+								onChange={(e) => {
+									payload.quantQuarto = e.target.value;
+								}}
+							/>
 						</div>
 
 						<div className="form-control">
 							<label>Número de suites</label>
-							<input className="input" type="text" name="" />
+							<input
+								className="input"
+								type="text"
+								name=""
+								onChange={(e) => {
+									payload.quantSuite = e.target.value;
+								}}
+							/>
 						</div>
 
 						<div className="form-control">
@@ -78,6 +96,10 @@ const CadastrarImovel = (props) => {
 									className="input checkbox"
 									type="radio"
 									name="climatizado"
+									value="SIM"
+									onChange={(e) => {
+										payload.climatizado = e.target.value;
+									}}
 								/>
 								<span>Sim</span>
 							</div>
@@ -86,6 +108,10 @@ const CadastrarImovel = (props) => {
 									className="input checkbox"
 									type="radio"
 									name="climatizado"
+									value="NAO"
+									onChange={(e) => {
+										payload.climatizado = e.target.value;
+									}}
 								/>
 								<span>Não</span>
 							</div>
@@ -98,6 +124,10 @@ const CadastrarImovel = (props) => {
 									className="input checkbox"
 									type="radio"
 									name="area-lazer"
+									value={true}
+									onChange={(e) => {
+										payload.areaLazer = e.target.value;
+									}}
 								/>
 								<span>Sim</span>
 							</div>
@@ -106,6 +136,10 @@ const CadastrarImovel = (props) => {
 									className="input checkbox"
 									type="radio"
 									name="area-lazer"
+									value={false}
+									onChange={(e) => {
+										payload.areaLazer = e.target.value;
+									}}
 								/>
 								<span>Não</span>
 							</div>
@@ -118,6 +152,10 @@ const CadastrarImovel = (props) => {
 									className="input checkbox"
 									type="radio"
 									name="piscina"
+									value={true}
+									onChange={(e) => {
+										payload.piscina = e.target.value;
+									}}
 								/>
 								<span>Sim</span>
 							</div>
@@ -126,6 +164,10 @@ const CadastrarImovel = (props) => {
 									className="input checkbox"
 									type="radio"
 									name="piscina"
+									value={false}
+									onChange={(e) => {
+										payload.piscina = e.target.value;
+									}}
 								/>
 								<span>Não</span>
 							</div>
@@ -160,7 +202,13 @@ const CadastrarImovel = (props) => {
 										},
 										data: payload,
 									})
-									.then()
+									.then((resposta) => {
+										navigate(`/imoveis/${resposta.id}`, {
+											state: {
+												token: location.state.token,
+											},
+										});
+									})
 							}
 						>
 							Enviar

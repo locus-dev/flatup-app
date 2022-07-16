@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import uuid from "node-uuid";
 
-const CadastroEndereco = () => {
+const CadastroEndereco = (props) => {
 	const [listaUF, setListaUF] = useState([]);
 	const [listaCidade, setListaCidade] = useState([]);
 	// const [UF, setUF] = useState([]);

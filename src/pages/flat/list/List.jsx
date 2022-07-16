@@ -14,8 +14,6 @@ const List = () => {
       <Header/> 
         <div className="listContainer">
           <SearchItem />
-          <SearchItem />
-          <SearchItem />
           <MailList />
           <Footer />
         </div>

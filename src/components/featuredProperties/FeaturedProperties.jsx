@@ -1,6 +1,6 @@
-import "./featuredProperties.css";
-import DATA from "../../DATAFILL";
 import { useNavigate } from "react-router-dom";
+import DATA from "../../DATAFILL";
+import "./featuredProperties.css";
 
 const FeaturedProperties = () => {
     const navigate = useNavigate();
@@ -9,7 +9,7 @@ const FeaturedProperties = () => {
 		<div className="fp">
 			{DATA.imoveis.map((item) => {
 				return (
-					<div className="fpItem" onClick={() => {navigate("/imoveis", item.id)}}>
+					<div key={item.id} className="fpItem" onClick={() => {navigate("/imoveis", item.id)}}>
 						<img src={item.imagem} alt="" className="fpImg" />
 						<span className="fpName">{item.titulo_anuncio}</span>
 						<span className="fpCity">{item.descricao}</span>

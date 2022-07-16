@@ -1,8 +1,9 @@
 .searchItem {
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
     padding: 15px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     display: flex;
+    flex-direction: column;
     margin-left: 10px;
     justify-content: space-between;
     gap: 20px;
@@ -52,6 +53,6 @@
 }
 
 .searchItem1 {
-    width: 18rem;
-    height: 12rem;
+    width: 50rem;
+    height: 28rem;
 }

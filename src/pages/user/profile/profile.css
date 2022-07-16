@@ -1,0 +1,33 @@
+#aqui {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    width: 60%;
+
+}
+
+#aqui img {
+    margin-bottom: 5rem;
+}
+
+#aqui div, .classe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#aqui div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 120%;
+}
+
+#aqui div input {
+    margin: 2rem;
+    text-align: center;
+}
