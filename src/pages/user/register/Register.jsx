@@ -1,83 +1,174 @@
 import "./register.css";
-import React from 'react';
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import React, { useContext } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
+import { useState } from "react";
+import config from "../../../config";
+import { ContextoUsuario } from "../../../App";
 
 const Register = () => {
+	const [email, setEmail] = useState();
+	const [senha, setSenha] = useState();
 
-  const state = {
-    nome: '',
-  }
+	const contexto = useContext(ContextoUsuario);
+	const navigate = useNavigate();
 
-  const handleChange = event => {
-    this.setState({ nome: event.target.value });
-  }
+	const state = {
+		nome: "",
+	};
 
-  const handleSubmit = event => {
-    event.preventDefault();
+	const handleChange = (event) => {
+		this.setState({ nome: event.target.value });
+	};
 
-    const user = {
-      nome: this.state.nome
-    };
+	const handleSubmit = (event) => {
+		event.preventDefault();
 
-    axios.post('', { user })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-  }
+		const user = {
+			nome: this.state.nome,
+		};
 
-  const navigate = useNavigate();
+		axios.post("", { user }).then((res) => {
+			console.log(res);
+			console.log(res.data);
+		});
+	};
 
-  const register =() =>{
-      navigate("/register", {state: {}})
-  }
+	// const navigate = useNavigate();
 
-  return (
-    <div>
-      <main>
-      <Navbar />
-        <div className="side-form">
-          <div className="form-box">
-            <h1>Registro</h1>
-            <p>Fazer Registro como:</p>
-            <div className="login-socialbox">
-              <button className="login-social"type="button"><span><i className="fab fa-facebook-f"></i>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google" viewBox="0 0 16 16">
-                  <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
-                </svg>
-                </span> <span>Google</span>  </button>
+	// const register =() =>{
+	//     navigate("/register", {state: {}})
+	// }
 
-              <button  className="login-social" type="button" id="facebook"><span><i className="fab fa-google-plus-g"></i>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-facebook" viewBox="0 0 16 16">
-                  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
-                </svg>
-                </span> <span>Facebook</span> </button>
-            </div>
+	return (
+		<div>
+			<main>
+				<Navbar />
+				<div className="side-form">
+					<div className="form-box">
+						<h1>Registro</h1>
+						<p>Fazer Registro como:</p>
+						<div className="login-socialbox">
+							<button className="login-social" type="button">
+								<span>
+									<i className="fab fa-facebook-f"></i>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										fill="currentColor"
+										className="bi bi-google"
+										viewBox="0 0 16 16"
+									>
+										<path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+									</svg>
+								</span>{" "}
+								<span>Google</span>{" "}
+							</button>
 
-            <h3 className="or">Ou</h3>
-            
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-control">
-                <label className="lsOptionText" for="email">Email </label>
-                <input type="email" onChange={this.handleChange} min={0} className="input" placeholder="Email" id="email" />
-              </div>
-              <div className="form-control">
-                <label className="lsOptionText" for="email">Senha </label>
-                <input type="password" min={0} className="input" placeholder="Senha" id="senha" />
-              </div>
-              <button type="submit" className="form-button" onClick={register}>Registrar</button>
-              <p className="registre">Já tem conta? <a href="/login">Logar-se</a></p>
-            </form>
-          </div>
-        </div>
+							<button
+								className="login-social"
+								type="button"
+								id="facebook"
+							>
+								<span>
+									<i className="fab fa-google-plus-g"></i>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										fill="currentColor"
+										className="bi bi-facebook"
+										viewBox="0 0 16 16"
+									>
+										<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+									</svg>
+								</span>{" "}
+								<span>Facebook</span>{" "}
+							</button>
+						</div>
 
-        <div className="other-side">
-        </div>
-      </main>
-    </div>
-  )
-}
+						<h3 className="or">Ou</h3>
 
-export default Register
+						<div>
+							<div className="form-control">
+								<label className="lsOptionText" for="email">
+									Email{" "}
+								</label>
+								<input
+									type="email"
+									onChange={(e) => setEmail(e.target.value)}
+									min={0}
+									value={email}
+									className="input"
+									placeholder="Email"
+									id="email"
+								/>
+							</div>
+							<div className="form-control">
+								<label className="lsOptionText" for="email">
+									Senha{" "}
+								</label>
+								<input
+									type="password"
+									onChange={(e) => setSenha(e.target.value)}
+									min={0}
+									value={senha}
+									className="input"
+									placeholder="Senha"
+									id="senha"
+								/>
+							</div>
+							<button
+								// type="submit"
+								className="form-button"
+								onClick={() => {
+
+                  // Cadastra o Usuário
+									axios
+										.post(config.URL + "/usuario/salvar", {
+											email: email,
+											senha: senha,
+										})
+										.then(() => {
+
+                      // Faz login
+											axios
+												.post(config.URL + "/auth", {
+													email: email,
+													senha: senha,
+												})
+												.then((data) => {
+													contexto.setToken(
+														data.data.token
+													);
+													navigate("/");
+												})
+												.catch((error) => {
+													console.log(error);
+												});
+										})
+
+                    
+										.catch((erro) => {
+											console.log(erro);
+										});
+								}}
+							>
+								Registrar
+							</button>
+							<p className="registre">
+								Já tem conta? <a href="/login">Logar-se</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div className="other-side"></div>
+			</main>
+		</div>
+	);
+};
+
+export default Register;
