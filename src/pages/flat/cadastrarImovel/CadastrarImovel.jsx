@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import CadastroEndereco from "../../../components/cadastroEndereco/CadastroEndereco";
 import Footer from "../../../components/footer/Footer";
@@ -7,6 +7,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import config from "../../../config";
 import "./CadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
+import { ContextoUsuario } from "../../../App";
 
 const CadastrarImovel = () => {
 	const [payload, setPayload] = useState({
@@ -22,14 +23,17 @@ const CadastrarImovel = () => {
 	});
 	const [token, setToken] = useState({});
 
-	const location = useLocation();
+	// const location = useLocation();
 	const navigate = useNavigate();
+
+	const contexto = useContext(ContextoUsuario);
+
 
 	function rodarCarrossel(sentido) {}
 
 	return (
 		<div className="componente">
-			<Navbar token={location.state.token}/>
+			<Navbar/>
 			<form className="form-carrossel">
 				<div className="" id="slide-1">
 					<h2>Endereço</h2>
@@ -198,14 +202,14 @@ const CadastrarImovel = () => {
 										headers: {
 											Authorization:
 												"Bearer " +
-												location.state.token,
+												contexto.token,
 										},
 										data: payload,
 									})
 									.then((resposta) => {
 										navigate(`/imoveis/${resposta.id}`, {
 											state: {
-												token: location.state.token,
+												token: contexto.token,
 											},
 										});
 									})

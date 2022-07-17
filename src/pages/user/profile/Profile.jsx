@@ -18,7 +18,7 @@ const Profile = () => {
           <input type="text" className="input" name="telefone" value="(81) 91564-6452"/>
           <input type="text" className="input" name="data_nascimento" value="07/06/2000"/>
           <input type="text" className="input" name="cpf" value="453.654.584-98"/>
-          <button onClick={() => navigate("/imoveis/cadastrar", {state:{token:location.state.token}})}>Cadastrar Imóvel</button>
+          <button onClick={() => navigate("/imoveis/cadastrar")}>Cadastrar Imóvel</button>
         </div>
       </div>
       <Footer/>

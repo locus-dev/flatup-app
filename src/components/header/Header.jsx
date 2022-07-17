@@ -10,6 +10,8 @@ import axios from "axios";
 import config from "../../config.js";
 
 import "./header.css";
+import { useContext } from "react";
+import { ContextoUsuario } from "../../App.js";
 
 const Header = ({ type }) => {
 	const [destination, setDestination] = useState("");
@@ -29,6 +31,9 @@ const Header = ({ type }) => {
 		room: 1,
 	});
 
+
+	const contexto = useContext(ContextoUsuario);
+
 	const navigate = useNavigate();
 
 	const handleOption = (name, operation) => {
@@ -43,18 +48,16 @@ const Header = ({ type }) => {
 
 	const handleSearch = () => {
 		axios
-			.get(config.URL + "/imovel/listar", 
-			{
-				destino: destination,
-				data: date,
-				opcoes: options,
-			},
-			{
-				headers:{
-					"Access-Control-Allow-Origin":"*"
-				}
-			}
-			)
+			.get(config.URL + "/imovel/listar", {
+				headers: {
+					Authorization: "Bearer " + contexto.token,
+				},
+				data: {
+					destino: destination,
+					data: date,
+					opcoes: options,
+				},
+			})
 			.then((resposta) => {
 				navigate("/imoveis", resposta);
 			})

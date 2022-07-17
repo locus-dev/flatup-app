@@ -11,7 +11,10 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 import config from "../../../config";
 import "./login.css";
+import { ContextoUsuario } from "../../../App";
+import { useContext } from "react";
 
+// App.SettarToken("fnfnfn")
 const Login = () => {
 	const [email, setEmail] = useState(null);
 	const [senha, setSenha] = useState(null);
@@ -42,6 +45,9 @@ const Login = () => {
 			navigate("/");
 		});
 	}
+
+	const contexto = useContext(ContextoUsuario);
+
 	return (
 		<div>
 			<main>
@@ -142,9 +148,8 @@ const Login = () => {
 										senha: senha,
 									})
 									.then((data) => {
-										navigate("/", {
-											state: {token:data.data.token} ,
-										});
+										contexto.setToken(data.data.token);
+										navigate("/");
 									})
 									.catch((error) => {
 										console.log(error);

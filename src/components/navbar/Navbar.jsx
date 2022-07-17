@@ -3,8 +3,10 @@ import axios from "axios";
 import config from "../../config";
 
 import "./navbar.css";
+import { useContext } from "react";
+import { ContextoUsuario } from "../../App";
 
-const Navbar = (props) => {
+const Navbar = () => {
 	const navigate = useNavigate();
 
 	const handleLogin = () => {
@@ -18,6 +20,8 @@ const Navbar = (props) => {
 	const handleHome = () => {
 		navigate("/", { state: {} });
 	};
+
+	const contexto = useContext(ContextoUsuario);
 
 	return (
 		<div className="navbar">
@@ -38,18 +42,23 @@ const Navbar = (props) => {
 							className="icon"
 							onClick={() => {
 								axios
-									.get(config.URL + "/imovel/listar")
+									.get(config.URL + "/imovel/listar", {
+										headers: {
+											Authorization:
+												"Bearer " + contexto.token,
+										},
+									})
 									.then((resposta) => {
 										navigate("/imoveis", {
 											state: {
-												token: props.token,
+												token: contexto.token,
 												dados: resposta,
 											},
 										});
 									})
 									.catch(
 										navigate("/imoveis", {
-											state: { token: props.token },
+											state: { token: contexto.token },
 										})
 									);
 							}}
@@ -68,11 +77,17 @@ const Navbar = (props) => {
 					</div>
 
 					{/* {console.log(props.token)} */}
-					{props.token ? (
+					{contexto.token ? (
 						<>
-							<img id="icone-perfil" 
-							src="./media/assets/perfil.png"
-							onClick={() => navigate("/perfil", {state:{token:props.token}})}></img>
+							<img
+								id="icone-perfil"
+								src="./media/assets/perfil.png"
+								onClick={() =>
+									navigate("/perfil", {
+										state: { token: contexto.token },
+									})
+								}
+							></img>
 						</>
 					) : (
 						<>
