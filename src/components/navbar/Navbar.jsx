@@ -49,12 +49,14 @@ const Navbar = () => {
 										},
 									})
 									.then((resposta) => {
-										navigate("/imoveis", {
-											state: {
-												token: contexto.token,
-												dados: resposta,
-											},
-										});
+										navigate("/imoveis"
+										//, {
+											// state: {
+											// 	token: contexto.token,
+											// 	dados: resposta,
+											// },
+										//}
+										);
 									})
 									.catch(
 										navigate("/imoveis", {

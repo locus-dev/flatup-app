@@ -9,17 +9,18 @@ import { useLocation } from "react-router-dom";
 import { ContextoUsuario } from "../../../App";
 
 const List = () => {
-	// const location = useLocation();
-	// location.state = location.state ? location.state : {};
+	const location = useLocation();
+	location.state = location.state ? location.state : {};
 
 	const contexto = useContext(ContextoUsuario);
 
+	console.log(contexto)
 	return (
 		<div>
-			<Navbar token={contexto.token} />
+			<Navbar />
 			<Header />
 			<div className="listContainer">
-				<SearchItem />
+				<SearchItem dados={location.state.dados}/>
 				<MailList />
 				<Footer />
 			</div>

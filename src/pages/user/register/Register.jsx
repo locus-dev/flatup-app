@@ -8,8 +8,8 @@ import config from "../../../config";
 import { ContextoUsuario } from "../../../App";
 
 const Register = () => {
-	const [email, setEmail] = useState();
-	const [senha, setSenha] = useState();
+	const [email, setEmail] = useState("");
+	const [senha, setSenha] = useState("");
 
 	const contexto = useContext(ContextoUsuario);
 	const navigate = useNavigate();
@@ -104,10 +104,11 @@ const Register = () => {
 									className="input"
 									placeholder="Email"
 									id="email"
+                  name="email"
 								/>
 							</div>
 							<div className="form-control">
-								<label className="lsOptionText" for="email">
+								<label className="lsOptionText" for="senha">
 									Senha{" "}
 								</label>
 								<input
@@ -118,6 +119,7 @@ const Register = () => {
 									className="input"
 									placeholder="Senha"
 									id="senha"
+                  name="senha"
 								/>
 							</div>
 							<button

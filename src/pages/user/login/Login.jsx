@@ -16,8 +16,8 @@ import { useContext } from "react";
 
 // App.SettarToken("fnfnfn")
 const Login = () => {
-	const [email, setEmail] = useState(null);
-	const [senha, setSenha] = useState(null);
+	const [email, setEmail] = useState("");
+	const [senha, setSenha] = useState("");
 
 	const firebaseConfig = {
 		apiKey: "AIzaSyAdfLPSnZEzmyvvQpJB_2z2yij8I9ZL0u8",
@@ -114,6 +114,7 @@ const Login = () => {
 								type="email"
 								min={0}
 								value={email}
+								name="email"
 								className="input"
 								placeholder="Email"
 								id="email"
@@ -128,6 +129,7 @@ const Login = () => {
 								type="password"
 								min={0}
 								value={senha}
+								name="senha"
 								className="input"
 								placeholder="Senha"
 								id="senha"

@@ -2,7 +2,7 @@ import DATA from "../../DATAFILL";
 import "./searchItem.css";
 import { useNavigate } from "react-router-dom";
 
-const SearchItem = () => {
+const SearchItem = (dados) => {
 	const navigate = useNavigate();
 
 	return (
