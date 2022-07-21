@@ -1,8 +1,40 @@
 import React from 'react'
+import { useContext } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ContextoUsuario } from '../../../App'
+import Footer from '../../../components/footer/Footer'
+import Header from '../../../components/header/Header'
+import Navbar from '../../../components/navbar/Navbar'
+import "./profile.css"
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const contexto = useContext(ContextoUsuario);
+
   return (
-    <div>Tela de Perfil</div>
+    <div className="classe">
+      <Navbar/>
+      <div id="aqui">
+        <div>
+          <button onClick={() => navigate("/concluir-cadastro")}>Conclua seu cadastro</button>
+          <img src='./media/assets/perfil.png' width="130" height="130"></img>
+        </div>
+        <div>
+          <input type="text" className="input" name="nome" value="Joaquim Aguiar"/>
+          <input type="text" className="input" name="telefone" value="(81) 91564-6452"/>
+          <input type="text" className="input" name="data_nascimento" value="07/06/2000"/>
+          <input type="text" className="input" name="cpf" value="453.654.584-98"/>
+          <button onClick={() => navigate("/imoveis/cadastrar")}>Cadastrar Imóvel</button>
+          <button onClick={() => {
+            contexto.setToken()
+            navigate("/")
+            }}>Log out</button>
+        </div>
+      </div>
+      <Footer/>
+    </div>
   )
 }
 

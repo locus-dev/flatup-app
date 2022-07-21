@@ -8,6 +8,7 @@
 }
 
 .featuredItem{
+    /* background: linear-gradient(0deg, rgba(42,35,91,1) 31%, rgba(12,23,31,0.33375348430387786) 100%);  */
     position: relative;
     color: white;
     border-radius: 10px;
