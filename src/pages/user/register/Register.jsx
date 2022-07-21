@@ -1,5 +1,6 @@
 import "./register.css";
 import React, { useContext } from "react";
+// import API from "../../../services/API";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";

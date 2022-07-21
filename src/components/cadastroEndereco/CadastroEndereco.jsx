@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+// import API from "../../services/API";
 import axios from "axios";
 import uuid from "node-uuid";
 
@@ -15,6 +16,8 @@ const CadastroEndereco = (props) => {
 			.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
 			.then((resposta) => {
 				setListaUF(resposta.data);
+			}).catch((error) => {
+				console.log(error);
 			});
 	}, []);
 
@@ -38,7 +41,9 @@ const CadastroEndereco = (props) => {
 			.then((resposta) => {
 				setListaCidade(resposta.data);
 				// console.log(listaCidade)
-			})
+			}).catch((error) => {
+				console.log(error);
+			});
 	}
 
 	return (

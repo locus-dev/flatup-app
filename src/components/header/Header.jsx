@@ -6,6 +6,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+// import API from "../../services/API";
 import axios from "axios";
 import config from "../../config.js";
 
@@ -60,8 +61,9 @@ const Header = ({ type }) => {
 			})
 			.then((resposta) => {
 				navigate("/imoveis", resposta);
-			})
-			.catch();
+			}).catch((error) => {
+				console.log(error);
+			});
 	};
 
 	return (

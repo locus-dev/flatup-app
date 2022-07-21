@@ -17,7 +17,10 @@ const Profile = () => {
     <div className="classe">
       <Navbar/>
       <div id="aqui">
-        <img src='./media/assets/perfil.png' width="130" height="130"></img>
+        <div>
+          <button onClick={() => navigate("/concluir-cadastro")}>Conclua seu cadastro</button>
+          <img src='./media/assets/perfil.png' width="130" height="130"></img>
+        </div>
         <div>
           <input type="text" className="input" name="nome" value="Joaquim Aguiar"/>
           <input type="text" className="input" name="telefone" value="(81) 91564-6452"/>

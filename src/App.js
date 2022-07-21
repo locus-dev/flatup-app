@@ -7,16 +7,13 @@ import Home from "./pages/home/Home";
 import Forgot from "./pages/user/forgot/Forgot";
 import Login from "./pages/user/login/Login";
 import Profile from "./pages/user/profile/Profile";
+import ConcluirCadastroPessoa from "./pages/user/profile/ConcluirCadastroPessoa";
 import Register from "./pages/user/register/Register";
 
 const ContextoUsuario = createContext(null);
 
 function App() {
 	const [token, setToken] = useState(null);
-
-  function SettarToken (novoToken) {
-    setToken(novoToken)
-  }
 
 	return (
 		<BrowserRouter>
@@ -29,6 +26,9 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/registro" element={<Register />} />
 					<Route path="/usuario/recuperar" element={<Forgot />} />
+					<Route path="/perfil" element={<Profile />} />
+					<Route path="/concluir-cadastro" element={<ConcluirCadastroPessoa />} />
+					<Route path="/perfil" element={<Profile />} />
 					<Route path="/perfil" element={<Profile />} />
 				</Routes>
 			</ContextoUsuario.Provider>
