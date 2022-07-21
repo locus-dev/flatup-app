@@ -1,5 +1,5 @@
 const config = {
-    URL: "http://localhost:8081",
+    URL: "https://flatupapi.herokuapp.com"
 }
 
 export default config;
