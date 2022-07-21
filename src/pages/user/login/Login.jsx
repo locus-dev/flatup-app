@@ -51,6 +51,7 @@ const Login = () => {
 
 	return (
 		<div>
+			<Navbar />
 			<main>
 				<div className="side-form">
 					<div className="form-box">
@@ -59,6 +60,7 @@ const Login = () => {
 						<div className="login-socialbox">
 							<button
 								className="login-social"
+								id="google"
 								type="button"
 								onClick={() => {
 									socialLogin(google);

@@ -2,6 +2,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow-y: hidden;
 }
 
 .other-side{
@@ -34,13 +35,14 @@ main{
 .form-control{
     display: flex;
     flex-direction:column;
-    margin-bottom: 10px;
+    margin: 0 0 20px 0;
+    width: 100%;
 }
 
 .input{
-    border: 1px solid gray;
     border-radius: 5px;
     height: 40px;
+    width: auto;
     margin-top: 5px;
     padding: 5px 10px;
     font-size: 16px;
@@ -86,6 +88,11 @@ main{
     color: white;
 }
 
+#google{
+    background-color: #db4437;
+    color: white;
+}
+
 .login-social svg{
     margin-top: 3px;
     margin-right: 10px;
@@ -103,4 +110,11 @@ main{
 
 .registre{
     text-align: center;
+}
+
+.tiziu{
+    border: 1px solid red;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
 }
