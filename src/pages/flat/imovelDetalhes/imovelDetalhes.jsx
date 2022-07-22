@@ -11,7 +11,7 @@ const ImovelDetalhe = ({   }) => {
         navigate(`/editarImovel/${id}`);
     };
 
- 
+                                                
 
 
     return (

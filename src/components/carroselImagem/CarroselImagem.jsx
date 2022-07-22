@@ -59,7 +59,6 @@ const CarroselImagem = () =>{
               textAlign: "center",
               maxHeight: "500px",
               marginTop: "5px",
-              marginBottom: "20px"
             }}
           />
         </div>
