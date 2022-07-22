@@ -8,6 +8,7 @@ import Forgot from "./pages/user/forgot/Forgot";
 import Login from "./pages/user/login/Login";
 import Profile from "./pages/user/profile/Profile";
 import Register from "./pages/user/register/Register";
+import TelaImovel from "./pages/flat/telaImovel/telaImovel";
 
 const ContextoUsuario = createContext(null);
 
@@ -30,6 +31,7 @@ function App() {
 					<Route path="/registro" element={<Register />} />
 					<Route path="/usuario/recuperar" element={<Forgot />} />
 					<Route path="/perfil" element={<Profile />} />
+					<Route path="/telaImovel" element={<TelaImovel />} />
 				</Routes>
 			</ContextoUsuario.Provider>
 		</BrowserRouter>
