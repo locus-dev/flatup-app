@@ -1,4 +1,4 @@
-import "./forgot.css";
+import "./recuperarSenha.css";
 import Navbar from "../../../components/navbar/Navbar";
 
 const Forgot = () => {

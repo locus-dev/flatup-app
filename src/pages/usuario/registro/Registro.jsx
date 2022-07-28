@@ -1,4 +1,4 @@
-import "./register.css";
+import "./registro.css";
 import React, { useContext } from "react";
 // import API from "../../../services/API";
 import axios from "axios";

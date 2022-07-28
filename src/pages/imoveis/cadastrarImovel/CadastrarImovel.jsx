@@ -8,6 +8,7 @@ import config from "../../../config";
 import "./CadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
 import { ContextoUsuario } from "../../../App";
+import Mapa from "../../../components/mapa/Mapa";
 
 const CadastrarImovel = () => {
 	const [payload, setPayload] = useState({
@@ -193,7 +194,8 @@ const CadastrarImovel = () => {
 						>
 							Voltar
 						</button>
-						<span
+						<button
+							type="button"
 							className="button form-button"
 							id="enviar"
 							onClick={() =>
@@ -216,7 +218,7 @@ const CadastrarImovel = () => {
 							}
 						>
 							Enviar
-						</span>
+						</button>
 					</div>
 				</div>
 			</form>

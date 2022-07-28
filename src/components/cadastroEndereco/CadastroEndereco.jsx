@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 // import API from "../../services/API";
 import axios from "axios";
 import uuid from "node-uuid";
+import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 
 const CadastroEndereco = (props) => {
 	const [listaUF, setListaUF] = useState([]);
@@ -97,6 +98,9 @@ const CadastroEndereco = (props) => {
 						);
 					})}
 				</select>
+			</div>
+			<div>
+				<BotaoLocalizacao/>
 			</div>
 			{/* <div className="form-control">
 			<label>País</label>

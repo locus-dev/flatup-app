@@ -19,6 +19,7 @@ const FeaturedProperties = () => {
 			Authorization:
 				"Bearer " +
 				contexto.token,
+				"Access-Control-Allow-Origin":"*"
 		}})
 		.then((data) => {
 			setDados(data.data)

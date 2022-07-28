@@ -5,7 +5,7 @@ import { ContextoUsuario } from '../../../App'
 import Footer from '../../../components/footer/Footer'
 import Header from '../../../components/header/Header'
 import Navbar from '../../../components/navbar/Navbar'
-import "./profile.css"
+import "./perfil.css"
 
 const Profile = () => {
   const navigate = useNavigate();
