@@ -15,6 +15,7 @@ import { ContextoUsuario } from "../../../App";
 import { useContext } from "react";
 import CarroselImagem from "../../../components/carroselImagem/CarroselImagem"
 import ImovelDetalhe from "../imovelDetalhes/imovelDetalhes"
+import {Button} from "reactstrap"
 
 // App.SettarToken("fnfnfn")
 const telaImovel = () => {
@@ -72,7 +73,6 @@ const telaImovel = () => {
 					<CarroselImagem />
 					<br /><br />
 					<ImovelDetalhe/>
-
 				</div>
 
 			</main>
