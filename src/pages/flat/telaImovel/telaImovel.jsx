@@ -71,7 +71,6 @@ const telaImovel = () => {
 						</a>
 					</div>
 					<CarroselImagem />
-					<br /><br />
 					<ImovelDetalhe/>
 				</div>
 
