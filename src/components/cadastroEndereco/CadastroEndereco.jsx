@@ -17,6 +17,7 @@ const CadastroEndereco = (props) => {
 			.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
 			.then((resposta) => {
 				setListaUF(resposta.data);
+				console.log(resposta.data)
 			}).catch((error) => {
 				console.log(error);
 			});
@@ -26,10 +27,15 @@ const CadastroEndereco = (props) => {
 		// Implementar depois
 	}
 
-	function selectUF(id) {
-		// Implementar depois
-		UF = listaUF[id];
-		// console.log(UF)
+	function selectUF(sigla) {
+		
+		console.log(sigla)
+
+		listaUF.forEach(uf =>{
+			if(uf.sigla == sigla) {
+				UF = sigla
+			}
+		})
 		selectCidade(UF)
 	}
 
@@ -37,11 +43,11 @@ const CadastroEndereco = (props) => {
 		// Implementar depois
 		axios
 			.get(
-				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${UF.sigla}/municipios`
+				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${UF}/municipios`
 			)
 			.then((resposta) => {
 				setListaCidade(resposta.data);
-				// console.log(listaCidade)
+				console.log(resposta)
 			}).catch((error) => {
 				console.log(error);
 			});
@@ -77,9 +83,9 @@ const CadastroEndereco = (props) => {
 			<div className="form-control">
 				<label>UF</label>
 				<select name="uf">
-					{listaUF.map((item) => {
+					{listaUF.map((item, index) => {
 						return (
-							<option key={item.id} value={item.id} onClick={() => {selectUF(item.id)}}>
+							<option key={item.id} value={item.id} onClick={() => {selectUF(item.sigla)}}>
 								{item.nome}
 							</option>
 						);

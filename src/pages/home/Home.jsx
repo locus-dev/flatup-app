@@ -6,13 +6,13 @@ import Navbar from "../../components/navbar/Navbar";
 import "./home.css";
 import { useContext } from "react";
 import { ContextoUsuario } from "../../App";
-import {getLocation} from "../../services/geolocalizacao";
+// import {getLocation} from "../../services/geolocalizacao";
 import Mapa from "../../components/mapa/Mapa";
 
 const Home = () => {
 	const contexto = useContext(ContextoUsuario);
 	
-	var position = getLocation()
+	// var position = getLocation()
 	return (
 		<div>
 			<Navbar />
