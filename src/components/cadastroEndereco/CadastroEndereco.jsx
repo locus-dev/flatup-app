@@ -14,11 +14,15 @@ const CadastroEndereco = (props) => {
 
 	useEffect(() => {
 		axios
-			.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+			.get(
+				"https://servicodados.ibge.gov.br/api/v1/localidades/estados",
+				{ hearders: { "Access-Control-Allow-Origin": "*" } }
+			)
 			.then((resposta) => {
 				setListaUF(resposta.data);
-				console.log(resposta.data)
-			}).catch((error) => {
+				console.log(resposta.data);
+			})
+			.catch((error) => {
 				console.log(error);
 			});
 	}, []);
@@ -28,27 +32,28 @@ const CadastroEndereco = (props) => {
 	}
 
 	function selectUF(sigla) {
-		
-		console.log(sigla)
+		console.log(sigla);
 
-		listaUF.forEach(uf =>{
-			if(uf.sigla == sigla) {
-				UF = sigla
+		listaUF.forEach((uf) => {
+			if (uf.sigla == sigla) {
+				UF = sigla;
 			}
-		})
-		selectCidade(UF)
+		});
+		selectCidade(UF);
 	}
 
 	function selectCidade(UF) {
 		// Implementar depois
 		axios
 			.get(
-				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${UF}/municipios`
+				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${UF}/municipios`,
+				{ hearders: { "Access-Control-Allow-Origin": "*" } }
 			)
 			.then((resposta) => {
 				setListaCidade(resposta.data);
-				console.log(resposta)
-			}).catch((error) => {
+				console.log(resposta);
+			})
+			.catch((error) => {
 				console.log(error);
 			});
 	}
@@ -77,15 +82,21 @@ const CadastroEndereco = (props) => {
 			</div>
 			<div className="form-control">
 				<label>CEP</label>
-					<input className="input" type="text" name="cep" />
-					{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
+				<input className="input" type="text" name="cep" />
+				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 			</div>
 			<div className="form-control">
 				<label>UF</label>
 				<select name="uf">
 					{listaUF.map((item, index) => {
 						return (
-							<option key={item.id} value={item.id} onClick={() => {selectUF(item.sigla)}}>
+							<option
+								key={item.id}
+								value={item.id}
+								onClick={() => {
+									selectUF(item.sigla);
+								}}
+							>
 								{item.nome}
 							</option>
 						);
@@ -97,16 +108,12 @@ const CadastroEndereco = (props) => {
 				{/* <input className="input" type="text" name="cidade"/> */}
 				<select name="cidade">
 					{listaCidade.map((item) => {
-						return (
-							<option value={item.id}>
-								{item.nome}
-							</option>
-						);
+						return <option value={item.id}>{item.nome}</option>;
 					})}
 				</select>
 			</div>
 			<div>
-				<BotaoLocalizacao/>
+				<BotaoLocalizacao />
 			</div>
 			{/* <div className="form-control">
 			<label>País</label>

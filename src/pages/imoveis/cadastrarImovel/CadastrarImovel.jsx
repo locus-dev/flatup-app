@@ -20,7 +20,7 @@ const CadastrarImovel = () => {
 		piscina: true,
 		quantQuarto: 0,
 		quantSuite: 0,
-		statusOcupacao: "string",
+		statusOcupacao: "DESOCUPADO",
 	});
 	const [token, setToken] = useState({});
 
@@ -63,9 +63,9 @@ const CadastrarImovel = () => {
 							<input
 								className="input"
 								type="text"
-								name=""
+								name="areaM2"
 								onChange={(e) => {
-									payload.areaM2 = e.target.value;
+									payload.areaM2 = Number(e.target.value);
 								}}
 							/>
 						</div>
@@ -75,9 +75,9 @@ const CadastrarImovel = () => {
 							<input
 								className="input"
 								type="text"
-								name=""
+								name="quantQuarto"
 								onChange={(e) => {
-									payload.quantQuarto = e.target.value;
+									payload.quantQuarto = Number(e.target.value);
 								}}
 							/>
 						</div>
@@ -87,9 +87,9 @@ const CadastrarImovel = () => {
 							<input
 								className="input"
 								type="text"
-								name=""
+								name="quantSuite"
 								onChange={(e) => {
-									payload.quantSuite = e.target.value;
+									payload.quantSuite = Number(e.target.value);
 								}}
 							/>
 						</div>
@@ -101,7 +101,7 @@ const CadastrarImovel = () => {
 									className="input checkbox"
 									type="radio"
 									name="climatizado"
-									value="SIM"
+									value="CLIMATIZADO"
 									onChange={(e) => {
 										payload.climatizado = e.target.value;
 									}}
@@ -113,7 +113,7 @@ const CadastrarImovel = () => {
 									className="input checkbox"
 									type="radio"
 									name="climatizado"
-									value="NAO"
+									value="NAO_CLIMATIZADO"
 									onChange={(e) => {
 										payload.climatizado = e.target.value;
 									}}
@@ -128,10 +128,10 @@ const CadastrarImovel = () => {
 								<input
 									className="input checkbox"
 									type="radio"
-									name="area-lazer"
+									name="areaLazer"
 									value={true}
 									onChange={(e) => {
-										payload.areaLazer = e.target.value;
+										payload.areaLazer = (e.target.value === "true" ? true : false);
 									}}
 								/>
 								<span>Sim</span>
@@ -140,10 +140,10 @@ const CadastrarImovel = () => {
 								<input
 									className="input checkbox"
 									type="radio"
-									name="area-lazer"
+									name="areaLazer"
 									value={false}
 									onChange={(e) => {
-										payload.areaLazer = e.target.value;
+										payload.areaLazer = (e.target.value === "false" ? false : true);
 									}}
 								/>
 								<span>Não</span>
@@ -159,7 +159,7 @@ const CadastrarImovel = () => {
 									name="piscina"
 									value={true}
 									onChange={(e) => {
-										payload.piscina = e.target.value;
+										payload.piscina = (e.target.value === "true" ? true : false);
 									}}
 								/>
 								<span>Sim</span>
@@ -171,7 +171,11 @@ const CadastrarImovel = () => {
 									name="piscina"
 									value={false}
 									onChange={(e) => {
-										payload.piscina = e.target.value;
+
+										console.log((e.target.value === "false" ? false : true))
+										console.log(typeof(e.target.value))
+										console.log(e.target.value)
+										payload.piscina = (e.target.value === "false" ? false : true);
 									}}
 								/>
 								<span>Não</span>
@@ -214,6 +218,8 @@ const CadastrarImovel = () => {
 												token: contexto.token,
 											},
 										});
+									}).catch((error) => {
+										console.log(error);
 									})
 							}
 						>
