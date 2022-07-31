@@ -6,15 +6,16 @@ import MailList from "../../../components/mailList/MailList";
 import Navbar from "../../../components/navbar/Navbar";
 import SearchItem from "../../../components/searchItem/SearchItem";
 import { useLocation } from "react-router-dom";
-import { ContextoUsuario } from "../../../App";
+import FlatUpContext from "../../../components/context/FlatUpContext";
 
 const List = () => {
 	const location = useLocation();
 	location.state = location.state ? location.state : {};
 
-	const contexto = useContext(ContextoUsuario);
+	const [userData, setUserData] = useContext(FlatUpContext);
 
-	console.log(contexto)
+	console.log(userData);
+	
 	return (
 		<div>
 			<Navbar />

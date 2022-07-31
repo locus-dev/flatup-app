@@ -1,11 +1,8 @@
 import { useNavigate } from "react-router-dom";
-// import API from "../../services/API";
 import axios from "axios";
-import config from "../../config";
-
 import "./navbar.css";
 import { useContext } from "react";
-import { ContextoUsuario } from "../../App";
+import FlatUpContext from '../context/FlatUpContext';
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -22,7 +19,7 @@ const Navbar = () => {
 		navigate("/", { state: {} });
 	};
 
-	const contexto = useContext(ContextoUsuario);
+	const [userData, setUserData] = useContext(FlatUpContext);
 
 	return (
 		<div className="navbar">
@@ -43,17 +40,17 @@ const Navbar = () => {
 							className="icon"
 							onClick={() => {
 								axios
-									.get(config.URL + "/imovel/listar", {
+									.get(process.env.REACT_APP_API_URL + "/imovel/listar", {
 										headers: {
 											Authorization:
-												"Bearer " + contexto.token,
+												"Bearer " + userData.token,
 										},
 									})
 									.then((resposta) => {
 										navigate("/imoveis"
 										//, {
 											// state: {
-											// 	token: contexto.token,
+											// 	token: userData.token,
 											// 	dados: resposta,
 											// },
 										//}
@@ -61,7 +58,7 @@ const Navbar = () => {
 									})
 									.catch(
 										navigate("/imoveis", {
-											state: { token: contexto.token },
+											state: { token: userData.token },
 										})
 									);
 							}}
@@ -80,14 +77,14 @@ const Navbar = () => {
 					</div>
 
 					{/* {console.log(props.token)} */}
-					{contexto.token ? (
+					{userData.token ? (
 						<>
 							<img
 								id="icone-perfil"
 								src="./media/assets/perfil.png"
 								onClick={() =>
 									navigate("/perfil", {
-										state: { token: contexto.token },
+										state: { token: userData.token },
 									})
 								}
 							></img>

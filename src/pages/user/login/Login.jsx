@@ -10,9 +10,8 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
-import config from "../../../config";
 import "./login.css";
-import { ContextoUsuario } from "../../../App";
+import FlatUpContext from '../../../components/context/FlatUpContext';
 import { useContext } from "react";
 
 // App.SettarToken("fnfnfn")
@@ -47,7 +46,7 @@ const Login = () => {
 		});
 	}
 
-	const contexto = useContext(ContextoUsuario);
+	const [userData, setUserData] = useContext(FlatUpContext);
 
 	return (
 		<div>
@@ -148,12 +147,12 @@ const Login = () => {
 							className="form-button"
 							onClick={() => {
 								axios
-									.post(config.URL + "/auth", {
+									.post(process.env.REACT_APP_API_URL + `/auth`, {
 										email: email,
 										senha: senha,
 									})
 									.then((data) => {
-										contexto.setToken(data.data.token);
+										setUserData({userToken: data.data.token});
 										navigate("/");
 									})
 									.catch((error) => {

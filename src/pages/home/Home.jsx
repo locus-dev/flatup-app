@@ -7,14 +7,12 @@ import Featured from "../../components/featured/Featured";
 import "./home.css";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { ContextoUsuario } from "../../App";
+import FlatUpContext from '../../components/context/FlatUpContext';
 
 const Home = () => {
-	// const location = useLocation();
-	// location.state = location.state ? location.state : {};
 
-	const contexto = useContext(ContextoUsuario);
-	// console.log(contexto)
+	const [userData, setUserData] = useContext(FlatUpContext);
+	console.log(userData)
 
 	return (
 		<div>

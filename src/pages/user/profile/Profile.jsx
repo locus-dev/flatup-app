@@ -1,9 +1,8 @@
 import React from 'react'
 import { useContext } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ContextoUsuario } from '../../../App'
+import FlatUpContext from '../../../components/context/FlatUpContext';
 import Footer from '../../../components/footer/Footer'
-import Header from '../../../components/header/Header'
 import Navbar from '../../../components/navbar/Navbar'
 import "./profile.css"
 
@@ -11,7 +10,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const contexto = useContext(ContextoUsuario);
+  const [userData, setUserData] = useContext(FlatUpContext);
 
   return (
     <div className="classe">
@@ -28,7 +27,7 @@ const Profile = () => {
           <input type="text" className="input" name="cpf" value="453.654.584-98"/>
           <button onClick={() => navigate("/imoveis/cadastrar")}>Cadastrar Imóvel</button>
           <button onClick={() => {
-            contexto.setToken()
+            setUserData({})
             navigate("/")
             }}>Log out</button>
         </div>

@@ -2,8 +2,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ContextoUsuario } from "../../App";
-import config from "../../config";
+import FlatUpContext from '../context/FlatUpContext';
 import DATA from "../../DATAFILL";
 import "./featuredProperties.css";
 
@@ -11,14 +10,13 @@ const FeaturedProperties = () => {
 	const [dados, setDados] = useState({});
     const navigate = useNavigate();
 	
-	const contexto = useContext(ContextoUsuario);
+	const [userData, setUserData] = useContext(FlatUpContext);
 
 	useEffect(() => {
 		axios
-		.get(config.URL + "/imovel/listar", {headers: {
+		.get(process.env.REACT_APP_API_URL+`/imovel/listar`, {headers: {
 			Authorization:
-				"Bearer " +
-				contexto.token,
+				"Bearer " + userData.token,
 		}})
 		.then((data) => {
 			setDados(data.data)

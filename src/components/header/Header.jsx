@@ -6,13 +6,10 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
-// import API from "../../services/API";
 import axios from "axios";
-import config from "../../config.js";
-
 import "./header.css";
 import { useContext } from "react";
-import { ContextoUsuario } from "../../App.js";
+import FlatUpContext from '../context/FlatUpContext';
 
 const Header = ({ type }) => {
 	const [destination, setDestination] = useState("");
@@ -33,7 +30,7 @@ const Header = ({ type }) => {
 	});
 
 
-	const contexto = useContext(ContextoUsuario);
+	const [userData, setUserData] = useContext(FlatUpContext);
 
 	const navigate = useNavigate();
 
@@ -49,9 +46,9 @@ const Header = ({ type }) => {
 
 	const handleSearch = () => {
 		axios
-			.get(config.URL + "/imovel/listar", {
+			.get(process.env.REACT_APP_API_URL + "/imovel/listar", {
 				headers: {
-					Authorization: "Bearer " + contexto.token,
+					Authorization: "Bearer " + userData.userToken,
 				},
 				data: {
 					destino: destination,
