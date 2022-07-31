@@ -3,11 +3,11 @@ const Button = (props) => {
     return (
         <>
             <button
-                id="seguir"
+                id={props.idButton}
                 className={props.className}
                 type="button"
                 onClick={props.func}
-            ></button>
+            >{props.buttonName}</button>
         </>
     )
 }

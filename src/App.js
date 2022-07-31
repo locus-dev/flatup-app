@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CadastrarImovel from "./pages/flat/cadastrarImovel/CadastrarImovel";
 import Immobile from "./pages/flat/immobile/Immobile";
@@ -9,15 +9,20 @@ import Login from "./pages/user/login/Login";
 import Profile from "./pages/user/profile/Profile";
 import ConcluirCadastroPessoa from "./pages/user/profile/ConcluirCadastroPessoa";
 import Register from "./pages/user/register/Register";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import FlatUpContext from './components/context/FlatUpContext';
+import { useContext, useState } from "react";
 
-const ContextoUsuario = createContext(null);
+const App = () => {
 
-function App() {
-	const [token, setToken] = useState(null);
+	let context = useContext(FlatUpContext);
+
+	const [userData, setUserData] = useState(context);
+	
 
 	return (
 		<BrowserRouter>
-			<ContextoUsuario.Provider value={{token, setToken}}>
+			<FlatUpContext.Provider value={[userData, setUserData]}>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/imoveis" element={<List />} />
@@ -31,9 +36,9 @@ function App() {
 					<Route path="/perfil" element={<Profile />} />
 					<Route path="/perfil" element={<Profile />} />
 				</Routes>
-			</ContextoUsuario.Provider>
+			</FlatUpContext.Provider>
 		</BrowserRouter>
 	);
 }
 
-export { ContextoUsuario, App };
+export default App;
