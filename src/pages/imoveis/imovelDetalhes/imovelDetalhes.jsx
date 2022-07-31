@@ -4,6 +4,20 @@ import { CardBody, CardTitle, CardSubtitle, Button, CardText, Card } from "react
 
 const ImovelDetalhe = ({ }) => {
 
+    // TODO: Implementar com o PUBLIC_KEY
+    // const mercadopago = new MercadoPago('PUBLIC_KEY', {locale: 'pt-BR'});
+
+    // function checkout() {
+    //     mercadopago.checkout({
+    //         preference: {
+    //           id: 'YOUR_PREFERENCE_ID'
+    //         },
+    //         render: {
+    //           container: '#checkout-container',
+    //           label: 'Pay',
+    //         }
+    //       });
+    // }
 
     const navigate = useNavigate();
     const editarImovel = (e, id) => {
@@ -97,33 +111,15 @@ const ImovelDetalhe = ({ }) => {
                                 <span className="promocao-contador text-danger">42:10:52</span>
                             </div>
                         </CardText>
-                        <Button className="w-100 btn-azul-padrao">
+                        <Button className="w-100 btn-azul-padrao" onClick={() => {}}>
                             Reservar
                         </Button>
                     </CardBody>
                 </Card>
             </div>
+            {/* TODO: Remover comentário abaixo */}
+            {/* <div id="checkout-container"></div> */}
         </main>
-        // <tr >
-
-        //     <td className="text-left px-6 py-4 whitespace-nowrap">
-        //         <div className="text-sm text-gray-500">Fernando Marçon</div>
-        //     </td>
-        //     <td className="text-left px-6 py-4 whitespace-nowrap">
-        //         <div className="text-sm text-gray-500">Climatizacao de rua</div>
-        //     </td>
-
-        //     <td className="text-left px-6 py-4 whitespace-nowrap">
-        //         <div className="text-sm text-gray-500">45</div>
-        //     </td>
-
-        //     <td className="text-left px-6 py-4 whitespace-nowrap">
-        //         <div className="text-sm text-gray-500">Desocupado</div>
-        //     </td>
-
-
-
-        // </tr>
     )
 }
 

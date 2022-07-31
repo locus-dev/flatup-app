@@ -9,7 +9,7 @@ import ConcluirCadastroPessoa from "./pages/usuario/perfil/ConcluirCadastroPesso
 import Perfil from "./pages/usuario/perfil/Perfil";
 import RecuperarSenha from "./pages/usuario/recuperarSenha/RecuperarSenha";
 import Registro from "./pages/usuario/registro/Registro";
-import TelaImovel from "./pages/flat/telaImovel/telaImovel";
+import TelaImovel from "./pages/imoveis/telaImovel/telaImovel";
 
 const ContextoUsuario = createContext(null);
 
@@ -23,14 +23,14 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/imoveis" element={<ListarImoveis />} />
-					<Route path="/imoveis:id" element={<DetalhesImovel />} />
+					{/* <Route path="/imoveis/:id" element={<DetalhesImovel />} /> */}
+					<Route path="/imoveis/:id/" element={<TelaImovel />} />
 					<Route path="/imoveis/cadastrar" element={<CadastrarImovel />}/>
 					<Route path="/login" element={<Login />} />
 					<Route path="/registro" element={<Registro />} />
 					<Route path="/usuario/recuperar" element={<RecuperarSenha />} />
 					<Route path="/perfil" element={<Perfil />} />
 					<Route path="/concluir-cadastro" element={<ConcluirCadastroPessoa />} />
-					<Route path="/telaImovel" element={<TelaImovel />} />
 				</Routes>
 			</ContextoUsuario.Provider>
 		</BrowserRouter>
