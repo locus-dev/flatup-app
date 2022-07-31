@@ -9,6 +9,7 @@ import ConcluirCadastroPessoa from "./pages/usuario/perfil/ConcluirCadastroPesso
 import Perfil from "./pages/usuario/perfil/Perfil";
 import RecuperarSenha from "./pages/usuario/recuperarSenha/RecuperarSenha";
 import Registro from "./pages/usuario/registro/Registro";
+import TelaImovel from "./pages/flat/telaImovel/telaImovel";
 
 const ContextoUsuario = createContext(null);
 
@@ -29,6 +30,7 @@ function App() {
 					<Route path="/usuario/recuperar" element={<RecuperarSenha />} />
 					<Route path="/perfil" element={<Perfil />} />
 					<Route path="/concluir-cadastro" element={<ConcluirCadastroPessoa />} />
+					<Route path="/telaImovel" element={<TelaImovel />} />
 				</Routes>
 			</ContextoUsuario.Provider>
 		</BrowserRouter>

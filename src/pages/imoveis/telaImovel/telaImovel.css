@@ -1,0 +1,48 @@
+#carrosel{
+    width: 80%;
+
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tituloImovel{
+    margin-top: 85px;
+    margin-bottom: 5px;
+    font-size: 2.3rem;
+}
+
+#avaliacao{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+#estrelinha{
+    color: rgb(230, 203, 0);
+}
+
+#avaliacaoTexto{
+    color: #1d1d1d;
+    text-decoration: underline;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+#avaliacaoContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#curti svg{
+
+    margin-right: 10px;
+}
+
+.desaparece{
+    display: none;
+}

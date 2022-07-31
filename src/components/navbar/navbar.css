@@ -1,4 +1,4 @@
-.navbar{
+.navegacao{
     background: white;
     margin-top: -8px;
     height: 70px;
@@ -20,6 +20,7 @@
     align-items: center;    
     margin-top: 8px;
     justify-content: space-between;
+
 }
 
 .logo{
@@ -43,6 +44,7 @@
     border-radius: 50px;
     color: #fff;
     transition: all 400ms;
+    font-weight: 600;
 }
 
 #cadastroButton:hover{
@@ -58,13 +60,11 @@
     transition: all 400ms;
 }
 
-#loginButton:hover{
-    outline: 1px solid #0071c2;
-}
-
 .navItems{
     display: flex;
     align-items: center;
+
+    justify-content: center;
 }
 
 
@@ -75,6 +75,9 @@
     height: 40px;
     border-radius: 40px;
     padding: 10px;
+
+    display: flex;
+    align-items: center;
 }
 
 .search-box:hover > input{

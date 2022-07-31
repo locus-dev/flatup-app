@@ -25,7 +25,7 @@ const Navbar = () => {
 	const contexto = useContext(ContextoUsuario);
 
 	return (
-		<div className="navbar">
+		<div className="navegacao">
 			<div className="navContainer">
 				<span className="logo" onClick={handleHome}>
 					FlatApp
