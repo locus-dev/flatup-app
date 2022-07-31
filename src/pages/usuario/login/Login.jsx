@@ -171,7 +171,11 @@ const Login = () => {
 					</div>
 				</div>
 
-				<div className="other-side"></div>
+				<img
+					alt="Coqueiros"
+					src="./media/assets/image-login.jpg"
+					className="other-side"
+				/>
 			</main>
 		</div>
 	);

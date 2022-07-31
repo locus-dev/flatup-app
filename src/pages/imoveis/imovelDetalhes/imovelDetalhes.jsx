@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardBody, CardTitle, CardSubtitle, Button, CardText, Card } from "reactstrap";
 
-const ImovelDetalhe = ({ }) => {
+const ImovelDetalhe = (props) => {
 
     // TODO: Implementar com o PUBLIC_KEY
     // const mercadopago = new MercadoPago('PUBLIC_KEY', {locale: 'pt-BR'});

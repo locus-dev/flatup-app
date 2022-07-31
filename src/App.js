@@ -9,7 +9,7 @@ import ConcluirCadastroPessoa from "./pages/usuario/perfil/ConcluirCadastroPesso
 import Perfil from "./pages/usuario/perfil/Perfil";
 import RecuperarSenha from "./pages/usuario/recuperarSenha/RecuperarSenha";
 import Registro from "./pages/usuario/registro/Registro";
-import TelaImovel from "./pages/imoveis/telaImovel/telaImovel";
+import TelaImovel from "./pages/imoveis/telaImovel/TelaImovel";
 
 const ContextoUsuario = createContext(null);
 

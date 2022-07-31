@@ -35,7 +35,7 @@ const FeaturedProperties = () => {
 		<div className="fp">
 			{DATA.imoveis.map((item) => {
 				return (
-					<div key={item.id} className="fpItem" onClick={() => {navigate("/imoveis", item.id)}}>
+					<div key={item.id} className="fpItem" onClick={() => {navigate(`/imoveis/${item.id}`, {state:{id:item.id}})}}>
 						<img src={item.imagem} alt="" className="fpImg" />
 						<span className="fpName">{item.titulo_anuncio}</span>
 						<span className="fpCity">{item.descricao}</span>

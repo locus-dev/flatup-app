@@ -1,7 +1,7 @@
 import { faBackspace } from '@fortawesome/free-solid-svg-icons';
 import { Carousel } from 'react-carousel-minimal';
 
-const CarroselImagem = () =>{
+const CarroselImagem = (props) =>{
  const data = [
     {
       image: "https://a0.muscache.com/im/pictures/3e37a3ee-6471-4356-b7ca-6856ab59b104.jpg?im_w=1200",
