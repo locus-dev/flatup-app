@@ -4,65 +4,93 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 // import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
+import LoginService from '../../services/login/LoginService';
+
+import FlatUpContext from '../../../src/context/FlatUpContext';
+//import { ContextoUsuario } from '../../App'
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({
-    username: undefined,
-    password: undefined,
-  });
+    const [email, setEmail] = useState("");
+	const [senha, setSenha] = useState("");
 
-  const { loading, error, dispatch } = useContext(AuthContext);
+   
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
+   
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    dispatch({ type: "LOGIN_START" });
-    try {
-      const res = await axios.post("/auth/login", credentials);
-      if (res.data.isAdmin) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+    //const contexto = useContext(ContextoUsuario);
 
-        navigate("/");
-      } else {
-        dispatch({
-          type: "LOGIN_FAILURE",
-          payload: { message: "You are not allowed!" },
-        });
-      }
-    } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
-    }
-  };
+    const [userData, setUserData] = useContext(FlatUpContext);
 
-  return (
-    <div className="login">
-      <div className="lContainer">
-        <input
-          type="text"
-          placeholder="username"
-          id="username"
-          onChange={handleChange}
-          className="lInput"
-        />
-        <input
-          type="password"
-          placeholder="password"
-          id="password"
-          onChange={handleChange}
-          className="lInput"
-        />
-        <button disabled={loading} onClick={handleClick} className="lButton">
-          Login
-        </button>
-        {error && <span>{error.message}</span>}
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            {/* <Navbar /> */}
+            <main>
+                <div className="side-form">
+                    <div>
+                        {/* <form action={config.URL + '/auth'} method="POST"> */}
+                        <div className="form-control">
+                            <label className="lsOptionText" for="email">
+                                Email{" "}
+                            </label>
+                            <input
+                                type="email"
+                                min={0}
+                                value={email}
+                                name="email"
+                                className="input"
+                                placeholder="Email"
+                                id="email"
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="lsOptionText" for="senha">
+                                Senha
+                            </label>
+                            <input
+                                type="password"
+                                min={0}
+                                value={senha}
+                                name="senha"
+                                className="input"
+                                placeholder="Senha"
+                                id="senha"
+                                onChange={(e) => setSenha(e.target.value)}
+                            />
+                        </div>
+                       
+
+                        <button
+                            // type="submit"
+                            className="form-button"
+                            onClick={() => {
+								axios
+									.post(process.env.REACT_APP_API_URL + `/auth`, {
+										email: email,
+										senha: senha,
+									})
+									.then((data) => {
+										setUserData({userToken: data.data.token});
+										navigate("/");
+									})
+									.catch((error) => {
+										console.log(error);
+									});
+							}}
+                        >
+                            Entrar
+                        </button>
+                        {/* </form> */}
+                        
+                    </div>
+                </div>
+
+                <div className="other-side"></div>
+            </main>
+        </div>
+    );
 };
 
 export default Login;

@@ -1,0 +1,65 @@
+.list {
+  display: flex;
+  width: 100%;
+  .listContainer {
+    flex: 6;
+  }
+}
+
+.botaoAdd {
+  width: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgb(4, 128, 0);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.botaoAdd, .botaoGerarPDF{
+  margin: 3px;
+}
+
+.botaoGerarPDF{
+  width: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgb(0, 113, 128);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.table {
+
+    margin-top: 80px;
+    .cellWrapper {
+      display: flex;
+      align-items: center;
+  
+      .image {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 10px;
+        object-fit: cover;
+      }
+    }
+  
+    .status {
+      padding: 5px;
+      border-radius: 5px;
+  
+      &.Approved {
+        color: green;
+        background-color: rgba(0, 128, 0, 0.151);
+      }
+      &.Pending {
+        color: goldenrod;
+        background-color: rgba(189, 189, 3, 0.103);
+      }
+    }
+  }
+  

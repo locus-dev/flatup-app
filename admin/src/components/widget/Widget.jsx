@@ -4,74 +4,80 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import axios from 'axios'
+import {useState, useEffect ,useContext} from 'react'
+import FlatUpContext from '../../context/FlatUpContext'
+
+
 
 const Widget = ({ type }) => {
+
+
+  const [token, setToken] = useState({});
+
+  const [userData, setUserData] = useContext(FlatUpContext);
+
   let data;
 
-  //temporary
-  const amount = 100;
-  const diff = 20;
+
+  const[json , setJson] = useState([])
+
+  const usuarioQtde = json[0];
+  const imovelQtde = json[1];
+  const locacaoQtde = json[2];
+  const parceiroQtde = json[3];
+
+  console.log(json[0])
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(process.env.REACT_APP_API_URL + "/contratolocacao/quantidade", {
+              headers: {
+                'Authorization':
+                  `Bearer ${userData.userToken}`,
+              },
+              data: userData
+            });
+            setJson(response.data);
+            
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    fetchData();
+}, []);
 
   switch (type) {
     case "user":
       data = {
-        title: "USERS",
+        title: "Usuários",
         isMoney: false,
-        link: "See all users",
-        icon: (
-          <PersonOutlinedIcon
-            className="icon"
-            style={{
-              color: "crimson",
-              backgroundColor: "rgba(255, 0, 0, 0.2)",
-            }}
-          />
-        ),
+        value: usuarioQtde,
+        
       };
       break;
     case "order":
       data = {
-        title: "ORDERS",
+        title: "Imóveis",
         isMoney: false,
-        link: "View all orders",
-        icon: (
-          <ShoppingCartOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(218, 165, 32, 0.2)",
-              color: "goldenrod",
-            }}
-          />
-        ),
+        value: imovelQtde,
+        
       };
       break;
     case "earning":
       data = {
-        title: "EARNINGS",
-        isMoney: true,
-        link: "View net earnings",
-        icon: (
-          <MonetizationOnOutlinedIcon
-            className="icon"
-            style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
-          />
-        ),
+        title: "Locações",
+        isMoney: false,
+        value: locacaoQtde,
+        
       };
       break;
     case "balance":
       data = {
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
-          />
-        ),
+        title: "Parceiros",
+        isMoney: false,
+       
+        value: parceiroQtde,
       };
       break;
     default:
@@ -83,17 +89,17 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && "$"} {data.value}
         </span>
         <span className="link">{data.link}</span>
       </div>
-      <div className="right">
+     {/*  <div className="right">
         <div className="percentage positive">
           <KeyboardArrowUpIcon />
-          {diff} %
+          {diff} 
         </div>
         {data.icon}
-      </div>
+      </div> */}
     </div>
   );
 };
