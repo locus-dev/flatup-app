@@ -1,27 +1,27 @@
 import { useState } from "react";
+import Form from 'react-bootstrap/Form';
 
-const SelectComponent = (props) => {
-    
-    var options = [], optionValues = props.optionValues;
-    const [optionValue, setOptionValue] = useState();
-    setOptionValue(optionValues[0].value);
+const SelectComponent = () => {
 
-    optionValues.forEach(option => {
-        options.push(
-            <option value={option.value}>
-              {option.label}
-            </option>      
-        );
-    });
+  var options = [], optionValues = props.optionValues;
+  const [optionValue, setOptionValue] = useState();
+  setOptionValue(optionValues[0].value);
+
+  optionValues.forEach(option => {
+      options.push(
+          <option value={option.value}>
+            {option.label}
+          </option>      
+      );
+  });
 
   return (
-    <select id={ props.idSelect }
-            defaultValue={ optionValue }
-            onChange={ props.optionFunction }>
+    <Form.Select aria-label={ props.idSelect }
+        defaultValue={ optionValue }
+        onChange={ props.optionFunction }>
       {options}
-    </select>
+    </Form.Select>
   );
-
 }
 
 export default SelectComponent;

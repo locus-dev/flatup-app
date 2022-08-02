@@ -1,14 +1,13 @@
+import Form from 'react-bootstrap/Form';
 
 const TextComponent = (props) => {
     return (
-        <div className={props.divClassname}>
-            <label>
-                {props.label}
-            </label>
-            <p>
-                {props.content}
-            </p>
-        </div>
+        <>
+            <Form.Label htmlFor={props.inputId}>{props.inputName}</Form.Label>
+            <Form.Text id={props.inputDesc} muted>
+                {props.content }
+            </Form.Text>
+        </>
     )
 }
 

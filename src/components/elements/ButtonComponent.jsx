@@ -1,15 +1,16 @@
+import Button from 'react-bootstrap/Button';
 
-const Button = (props) => {
+const ButtonComponent = (props) => {
     return (
         <>
-            <button
+            <Button
                 id={props.idButton}
-                className={props.className}
+                variant={props.theme}
                 type="button"
                 onClick={props.func}
-            >{props.buttonName}</button>
+            >{props.buttonName}</Button>
         </>
     )
 }
 
-export default Button;
+export default ButtonComponent;

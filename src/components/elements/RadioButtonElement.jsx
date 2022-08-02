@@ -1,17 +1,15 @@
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const RadioButtonComponent = (props) => {
-    return (
-        <div className={props.divClassname}>
-            <label>
-                <input 
-                    type="radio" 
-                    className={props.className}
-                    value={props.radioValue}
-                    checked={props.radioValue === props.optionSelected}
-                    onChange={props.onChangeRadio}/>
-            </label>
-        </div>
-    )
+  return (
+    <>
+      <InputGroup>
+        <Form.Control aria-label={props.radioName} />
+        <InputGroup.Radio aria-label="Radio button" />
+      </InputGroup>
+    </>
+  );
 }
 
 export default RadioButtonComponent;
