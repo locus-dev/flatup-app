@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardBody, CardTitle, CardSubtitle, Button, CardText, Card } from "reactstrap";
+import Mapa from "../../../components/mapa/Mapa";
 
 const ImovelDetalhe = (props) => {
 
@@ -34,8 +35,8 @@ const ImovelDetalhe = (props) => {
                 <div className="localização-texto">
                     <h3>Endereço:</h3>
                     <h6>Jaboatão dos guararapes - rua 56</h6>
-
                     <hr />
+                    <Mapa lat={-35} long={-8}/>
 
                     <h4 className="mb-3">Comodidades</h4>
                     <div id="comodidades" className="d-flex flex-column justify-content-around">
