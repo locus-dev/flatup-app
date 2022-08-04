@@ -1,25 +1,25 @@
-import { createContext, useState } from "react";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
-import CadastrarImovel from "./pages/imoveis/cadastrarImovel/CadastrarImovel";
-import DetalhesImovel from "./pages/imoveis/detalhesImovel/DetalhesImovel";
-import ListarImoveis from "./pages/imoveis/listarImoveis/ListarImoveis";
-import Login from "./pages/usuario/login/Login";
-import ConcluirCadastroPessoa from "./pages/usuario/perfil/ConcluirCadastroPessoa";
-import Perfil from "./pages/usuario/perfil/Perfil";
-import RecuperarSenha from "./pages/usuario/recuperarSenha/RecuperarSenha";
-import Registro from "./pages/usuario/registro/Registro";
-import TelaImovel from "./pages/imoveis/telaImovel/TelaImovel";
+import Forgot from "./pages/user/forgot/Forgot";
+import Login from "./pages/user/login/Login";
+import Profile from "./pages/user/profile/Profile";
+import ConcluirCadastroPessoa from "./pages/user/profile/ConcluirCadastroPessoa";
+import Register from "./pages/user/register/Register";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import FlatUpContext from './components/context/FlatUpContext';
+import { useContext, useState } from "react";
 
-const ContextoUsuario = createContext(null);
+const App = () => {
 
-function App() {
-	const [token, setToken] = useState(null);
-	const [localizacao, setLocalizacao] = useState(null);
+	let context = useContext(FlatUpContext);
+
+	const [userData, setUserData] = useState(context);
+	
 
 	return (
 		<BrowserRouter>
-			<ContextoUsuario.Provider value={{token, setToken, localizacao, setLocalizacao}}>
+			<FlatUpContext.Provider value={[userData, setUserData]}>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/imoveis" element={<ListarImoveis />} />
@@ -32,10 +32,9 @@ function App() {
 					<Route path="/perfil" element={<Perfil />} />
 					<Route path="/concluir-cadastro" element={<ConcluirCadastroPessoa />} />
 				</Routes>
-			</ContextoUsuario.Provider>
+			</FlatUpContext.Provider>
 		</BrowserRouter>
 	);
 }
 
-export { ContextoUsuario, App };
-
+export default App;

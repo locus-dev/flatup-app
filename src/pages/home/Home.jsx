@@ -5,14 +5,13 @@ import MailList from "../../components/mailList/MailList";
 import Navbar from "../../components/navbar/Navbar";
 import "./home.css";
 import { useContext } from "react";
-import { ContextoUsuario } from "../../App";
-// import {getLocation} from "../../services/geolocalizacao";
-import Mapa from "../../components/mapa/Mapa";
+import FlatUpContext from '../../components/context/FlatUpContext';
 
 const Home = () => {
-	const contexto = useContext(ContextoUsuario);
-	
-	// var position = getLocation()
+
+	const [userData, setUserData] = useContext(FlatUpContext);
+	console.log(userData)
+
 	return (
 		<div>
 			<Navbar />

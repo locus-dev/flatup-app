@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 // import API from "../../services/API";
 import axios from "axios";
+<<<<<<< HEAD:src/components/cadastroEndereco/CadastroEndereco.jsx
 import uuid from "node-uuid";
 import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
+=======
+>>>>>>> development:src/components/endereco/CadastroEndereco.jsx
 
 const CadastroEndereco = (props) => {
 	const [listaUF, setListaUF] = useState([]);

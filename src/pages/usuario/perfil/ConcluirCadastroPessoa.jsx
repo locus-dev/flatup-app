@@ -1,13 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ContextoUsuario } from "../../../App";
+import FlatUpContext from "../../../components/context/FlatUpContext";
 import Footer from "../../../components/footer/Footer";
-import Header from "../../../components/header/Header";
 import Navbar from "../../../components/navbar/Navbar";
 import "./ConcluirCadastroPessoa.css";
-// import API from "../../../services/API";
 import axios from "axios";
-import config from "../../../config";
 
 const ConcluirCadastroPessoa = () => {
 	const [payload, setPayload] = useState({
@@ -23,7 +20,7 @@ const ConcluirCadastroPessoa = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const contexto = useContext(ContextoUsuario);
+	const [userData, setUserData] = useContext(FlatUpContext);
 
 	return (
 		<div className="classe">
@@ -92,9 +89,9 @@ const ConcluirCadastroPessoa = () => {
 				<button
 					onClick={() => {
 						axios
-							.post(config.URL + "/pessoa/salvar", {
+							.post(process.env.REACT_APP_API_URL + `/pessoa/salvar`, {
 								headers: {
-									Authorization: "Bearer " + contexto.token,
+									Authorization: "Bearer " + userData.userToken,
 								},
 								data: payload,
 							})

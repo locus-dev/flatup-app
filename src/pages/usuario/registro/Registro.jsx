@@ -1,18 +1,16 @@
 import "./registro.css";
 import React, { useContext } from "react";
-// import API from "../../../services/API";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 import { useState } from "react";
-import config from "../../../config";
-import { ContextoUsuario } from "../../../App";
+import FlatUpContext from '../../../components/context/FlatUpContext';
 
 const Register = () => {
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
 
-	const contexto = useContext(ContextoUsuario);
+	const [userData, setUserData] = useContext(FlatUpContext);
 	const navigate = useNavigate();
 
 	const state = {
@@ -130,7 +128,7 @@ const Register = () => {
 
                   // Cadastra o Usuário
 									axios
-										.post(config.URL + "/usuario/salvar", {
+										.post(process.env.REACT_APP_API_URL + `/usuario/salvar`, {
 											email: email,
 											senha: senha,
 										})
@@ -138,14 +136,14 @@ const Register = () => {
 
                       // Faz login
 											axios
-												.post(config.URL + "/auth", {
+												.post(process.env.REACT_APP_API_URL + `/auth`, {
 													email: email,
 													senha: senha,
 												})
 												.then((data) => {
-													contexto.setToken(
-														data.data.token
-													);
+													setUserData({
+														userToken: data.data.token,
+													});
 													navigate("/");
 												})
 												.catch((error) => {

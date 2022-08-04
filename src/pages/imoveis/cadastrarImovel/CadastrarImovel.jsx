@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
-import CadastroEndereco from "../../../components/cadastroEndereco/CadastroEndereco";
+import CadastroEndereco from "../../../components/endereco/CadastroEndereco";
 import Footer from "../../../components/footer/Footer";
 import Navbar from "../../../components/navbar/Navbar";
-import config from "../../../config";
 import "./CadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
-import { ContextoUsuario } from "../../../App";
 import Mapa from "../../../components/mapa/Mapa";
+import FlatUpContext from '../../../components/context/FlatUpContext';
 
 const CadastrarImovel = () => {
 	const [payload, setPayload] = useState({
@@ -27,7 +25,7 @@ const CadastrarImovel = () => {
 	// const location = useLocation();
 	const navigate = useNavigate();
 
-	const contexto = useContext(ContextoUsuario);
+	const [userData, setUserData] = useContext(FlatUpContext);
 
 
 	function rodarCarrossel(sentido) {}
@@ -204,18 +202,17 @@ const CadastrarImovel = () => {
 							id="enviar"
 							onClick={() =>
 								axios
-									.post(config.URL + "/imovel/salvar", {
+									.post(process.env.REACT_APP_API_URL + "/imovel/salvar", {
 										headers: {
 											Authorization:
-												"Bearer " +
-												contexto.token,
+												`Bearer ${userData.userToken}`,
 										},
 										data: payload,
 									})
 									.then((resposta) => {
 										navigate(`/imoveis/${resposta.id}`, {
 											state: {
-												token: contexto.token,
+												token: userData.userToken,
 											},
 										});
 									}).catch((error) => {
