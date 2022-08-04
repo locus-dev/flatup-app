@@ -77,14 +77,14 @@ const Navbar = () => {
 					</div>
 
 					{/* {console.log(props.token)} */}
-					{userData.token ? (
+					{userData.userToken ? (
 						<>
 							<img
 								id="icone-perfil"
 								src="./media/assets/perfil.png"
 								onClick={() =>
 									navigate("/perfil", {
-										state: { token: userData.token },
+										state: { token: userData.userToken },
 									})
 								}
 							></img>

@@ -2,6 +2,7 @@
     width: 100%;
     max-width: 1024px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
 }
@@ -11,6 +12,8 @@
     gap: 10px;
     display: flex;
     flex-direction: column;
+    width: 20rem;
+    height: 20rem;
 }
 
 .fpImg{
