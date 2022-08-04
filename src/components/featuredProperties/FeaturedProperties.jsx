@@ -16,13 +16,7 @@ const FeaturedProperties = () => {
 		axios
 		.get(process.env.REACT_APP_API_URL+`/imovel/listar`, {headers: {
 			Authorization:
-<<<<<<< HEAD
-				"Bearer " +
-				contexto.token,
-				"Access-Control-Allow-Origin":"*"
-=======
 				"Bearer " + userData.token,
->>>>>>> development
 		}})
 		.then((data) => {
 			setDados(data.data)

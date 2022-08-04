@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ContextoUsuario } from "../../App";
+import FlatUpContext from "../context/FlatUpContext";
 
 const BotaoLocalizacao = () => {
-	const contexto = useContext(ContextoUsuario);
+	const contexto = useContext(FlatUpContext);
 
     function getLocation() {
         if (navigator.geolocation) {

@@ -1,11 +1,14 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Forgot from "./pages/user/forgot/Forgot";
-import Login from "./pages/user/login/Login";
-import Profile from "./pages/user/profile/Profile";
-import ConcluirCadastroPessoa from "./pages/user/profile/ConcluirCadastroPessoa";
-import Register from "./pages/user/register/Register";
+import RecuperarSenha from "./pages/usuario/recuperarSenha/RecuperarSenha";
+import Login from "./pages/usuario/login/Login";
+import Perfil from "./pages/usuario/perfil/Perfil";
+import ConcluirCadastroPessoa from "./pages/usuario/perfil/ConcluirCadastroPessoa";
+import Registro from "./pages/usuario/registro/Registro";
+import ListarImoveis from "./pages/imoveis/listarImoveis/ListarImoveis";
+import CadastrarImovel from "./pages/imoveis/cadastrarImovel/CadastrarImovel";
+import TelaImovel from "./pages/imoveis/telaImovel/TelaImovel";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FlatUpContext from './components/context/FlatUpContext';
 import { useContext, useState } from "react";

@@ -9,9 +9,7 @@ import {
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
-import config from "../../../config";
 import "./telaImovel.css";
-import { ContextoUsuario } from "../../../App";
 import React, { useContext, useEffect } from "react";
 import CarroselImagem from "../../../components/carroselImagem/CarroselImagem";
 import ImovelDetalhe from "../imovelDetalhes/imovelDetalhes";

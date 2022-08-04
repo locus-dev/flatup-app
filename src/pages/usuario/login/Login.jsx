@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 import "./login.css";
-import FlatUpContext from '../../../components/context/FlatUpContext';
+import FlatUpContext from "../../../components/context/FlatUpContext";
 import { useContext } from "react";
 
 // App.SettarToken("fnfnfn")
@@ -36,13 +36,42 @@ const Login = () => {
 	const google = new GoogleAuthProvider();
 	const facebook = new FacebookAuthProvider();
 
+	function login() {
+		axios
+			.post(process.env.REACT_APP_API_URL + `/auth`, {
+				email: email,
+				senha: senha,
+			})
+			.then((data) => {
+				setUserData({
+					userToken: data.data.token,
+				});
+				navigate("/");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
 	function socialLogin(provedor) {
 		signInWithPopup(auth, provedor).then((result) => {
-			const credential = result;
+			const credential = GoogleAuthProvider.credentialFromResult(result);
 
 			const token = credential.accessToken;
 			const user = result.user;
-			navigate("/");
+			console.log(token, user);
+			axios
+				.post(process.env.REACT_APP_API_URL + "/auth", {
+					email: user,
+					senha: token,
+				})
+				.then((res) => {
+					console.log(res);
+					navigate("/");
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		});
 	}
 
@@ -145,20 +174,7 @@ const Login = () => {
 						<button
 							// type="submit"
 							className="form-button"
-							onClick={() => {
-								axios
-									.post(process.env.REACT_APP_API_URL + `/auth`, {
-										email: email,
-										senha: senha,
-									})
-									.then((data) => {
-										setUserData({userToken: data.data.token});
-										navigate("/");
-									})
-									.catch((error) => {
-										console.log(error);
-									});
-							}}
+							onClick={login}
 						>
 							Entrar
 						</button>
