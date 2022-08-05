@@ -37,6 +37,11 @@ main{
     align-items: center;
     justify-content: space-between;
 }
+#curti{
+    border: 0;
+    background: transparent;
+}
+
 
 #curti svg{
 
