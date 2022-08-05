@@ -59,6 +59,7 @@ const Header = ({ type }) => {
 			.then((resposta) => {
 				navigate("/imoveis", resposta);
 			}).catch((error) => {
+				navigate("/imoveis");
 				console.log(error);
 			});
 	};

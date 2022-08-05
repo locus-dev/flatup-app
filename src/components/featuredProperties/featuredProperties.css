@@ -45,3 +45,11 @@
 .fpRating>span{
     font-size: 14px;
 }
+
+.fpDesc {
+    width: 30ch;
+    /* height: 1ch; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

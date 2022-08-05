@@ -216,6 +216,7 @@ const CadastrarImovel = () => {
 											},
 										});
 									}).catch((error) => {
+										navigate('/imoveis')
 										console.log(error);
 									})
 							}

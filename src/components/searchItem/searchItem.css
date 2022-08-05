@@ -11,16 +11,23 @@
 }
 
 .siImg {
-    width: 200px;
-    height: 200px;
+    width: 800px;
+    height: 300px;
     object-fit: cover;
+    border-radius: 12px;
 }
 
 .siDesc {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    font-size: 14px;
     flex: 2;
+    width: 100ch;
+    /* height: 1ch; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .siTitle {

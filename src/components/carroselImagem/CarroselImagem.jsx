@@ -1,5 +1,6 @@
 import { faBackspace } from '@fortawesome/free-solid-svg-icons';
 import { Carousel } from 'react-carousel-minimal';
+import DATA from '../../DATAFILL';
 
 const CarroselImagem = (props) =>{
  const data = [
@@ -38,7 +39,7 @@ const CarroselImagem = (props) =>{
           margin: "20px auto"
         }}>
           <Carousel
-            data={data}
+            data={DATA.imoveis[props.props].imagens}
             time={3000}
             width="100vw"
             height="450px"

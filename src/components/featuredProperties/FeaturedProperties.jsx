@@ -40,12 +40,12 @@ const FeaturedProperties = () => {
 	listAll(listRef)
 	  .then((res) => {
 		res.prefixes.forEach((folderRef) => {
-			console.log(folderRef);
+			// console.log(folderRef);
 		  // All the prefixes under listRef.
 		  // You may call listAll() recursively on them.
 		});
 		res.items.forEach((itemRef) => {
-			console.log(itemRef);
+			// console.log(itemRef);
 		  // All the items under listRef.
 		});
 	  }).catch((error) => {
@@ -62,7 +62,8 @@ const FeaturedProperties = () => {
 					<div key={item.id} className="fpItem" onClick={() => {navigate(`/imoveis/${item.id}`, {state:{id:item.id}})}}>
 						<img src={item.imagem} alt="" className="fpImg" />
 						<span className="fpName">{item.titulo_anuncio}</span>
-						<span className="fpCity">{item.descricao}</span>
+						<span className="fpCity">{item.municipio}</span>
+						{/* <span className="fpDesc">{item.descricao}</span> */}
 						<span className="fpPrice">
 							R${item.valor_diaria}/noite
 						</span>

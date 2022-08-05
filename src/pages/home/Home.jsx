@@ -19,6 +19,8 @@ const Home = () => {
 			<div className="locatesContainer"></div>
 			<div className="homeContainer">
 				<FeaturedProperties />
+				<FeaturedProperties />
+				<FeaturedProperties />
 				<MailList />
 				<Footer />
 			</div>

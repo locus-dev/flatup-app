@@ -67,7 +67,7 @@ const TelaImovel = () => {
 			<Navbar />
 			<main>
 				<div id="carrosel">
-					<h2 id="tituloImovel">Mansão de nego ney</h2>
+					<h2 id="tituloImovel">{DATA.imoveis[location.state.id-1].titulo_anuncio}</h2>
 					<div id="avaliacaoContainer">
 						<a href="#" id="avaliacao">
 							<span id="estrelinha">
@@ -163,8 +163,8 @@ const TelaImovel = () => {
 					{console.log(`Id vindo por parâmetro: ${location.state.id}`)}
 					{console.log("Dados simulados:")}
 					{console.log(DATA.imoveis[location.state.id-1])}
-					<CarroselImagem props={location.state.id}/>
-					<ImovelDetalhe props={location.state.id}/>
+					<CarroselImagem props={location.state.id-1}/>
+					<ImovelDetalhe props={location.state.id-1}/>
 				</div>
 			</main>
 		</div>

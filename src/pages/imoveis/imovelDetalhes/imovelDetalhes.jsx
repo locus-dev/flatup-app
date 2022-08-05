@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CardBody, CardTitle, CardSubtitle, Button, CardText, Card } from "reactstrap";
 import Mapa from "../../../components/mapa/Mapa";
 import { Form } from 'react-bootstrap';
+import DATA from "../../../DATAFILL";
 
 const ImovelDetalhe = (props) => {
 
@@ -29,7 +30,8 @@ const ImovelDetalhe = (props) => {
     };
 
     function teste(){
-        document.getElementById("modal-container").style.top = 0    
+        // document.getElementById("card-reserva").style.display = "none"; 
+        document.getElementById("modal-container").style.top = 0; 
     }
 
     document.onkeydown = function(e) {
@@ -37,7 +39,7 @@ const ImovelDetalhe = (props) => {
             document.getElementById("modal-container").style.top = -1000 + "px"
         }
       }
-
+console.log(props)
 
     return (
 
@@ -45,7 +47,7 @@ const ImovelDetalhe = (props) => {
             <div className="w-100">
                 <div className="localização-texto">
                     <h3>Endereço:</h3>
-                    <h6>Jaboatão dos guararapes - rua 56</h6>
+                    <h6>{DATA.imoveis[props.props].endereco}</h6>
                     <hr />
                     <Mapa lat={-34.9} long={-8.1}/>
 
@@ -73,8 +75,9 @@ const ImovelDetalhe = (props) => {
                     </div>
                 </div>
             </div>
-
-            <div className="text-dark">
+        
+        <div className="flex-column">
+            <div className="text-dark" id="card-reserva">
                 <Card
                     color="light"
                     style={{
@@ -84,10 +87,10 @@ const ImovelDetalhe = (props) => {
                     <CardBody>
                         <CardTitle tag="h3">
                             <div className=" d-flex mb-2">
-                                <span className="promocao-texto">R$ 33.000,00</span>
+                                <span className="promocao-texto">R$ {DATA.imoveis[props.props].valor_diaria}/noite</span>
                                 <span className="promocao-porcentagem">-25% off</span>
                             </div>
-                            <span className="promocao-texto-novopreco">R$ 24.000,00 <span className="text-weight-light">/noite</span></span>
+                            <span className="promocao-texto-novopreco">R$ {DATA.imoveis[props.props].valor_diaria*25/100}/noite <span className="text-weight-light">/noite</span></span>
 
                         </CardTitle>
 
@@ -95,7 +98,7 @@ const ImovelDetalhe = (props) => {
                         <CardText>
                             <div className="d-flex flex-column mt-3">
                                 <span>A promoção acaba em:</span>
-                                <span className="promocao-contador text-danger">42:10:52</span>
+                                <span className="promocao-contador text-danger">42:10:09</span>
                             </div>
                         </CardText>
                         <Button className="w-100 btn-azul-padrao" onClick={teste}>
@@ -139,6 +142,7 @@ const ImovelDetalhe = (props) => {
                         </div>
                     </div>
             </div>
+        </div>
         </main>
     )
 }

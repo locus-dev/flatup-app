@@ -19,7 +19,6 @@ const List = () => {
 	return (
 		<div>
 			<Navbar />
-			<Header />
 			<div className="listContainer">
 				<SearchItem dados={location.state.dados}/>
 				<MailList />

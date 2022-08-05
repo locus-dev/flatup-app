@@ -1,6 +1,6 @@
 #aqui {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     
@@ -12,7 +12,8 @@
 }
 
 #aqui img {
-    margin-bottom: 5rem;
+    margin-bottom: 10rem;
+    margin-right: 20rem;
 }
 
 #aqui div, .classe {
@@ -30,4 +31,7 @@
 #aqui div input {
     margin: 2rem;
     text-align: center;
+}
+
+#dados-perfil {
 }

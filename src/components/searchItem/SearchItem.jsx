@@ -10,15 +10,16 @@ const SearchItem = (dados) => {
 			{DATA.imoveis.map((item) => {
 				return (
 					<div key={item.id}
-						className="featuredItem searchItem1"
+						className="searchItem siDistance"
 						onClick={() => {
-							navigate("/imoveis/" + item.id, { state: {} });
+							navigate("/imoveis/" + item.id, {state:{id:item.id}});
 						}}
 					>
-						<img src={item.imagem} alt="" className="featureImg" />
-						<div className="featuredTitles">
+						<img src={item.imagem} alt="" className="siImg" />
+						<div className="siTitle">
 							<h1>{item.titulo_anuncio}</h1>
-							<p>{item.descricao}</p>
+							<p>{item.municipio}</p>
+							<p class="siDesc">{item.descricao}</p>
 							<h3>R${item.valor_diaria}/diária</h3>
 						</div>
 					</div>
