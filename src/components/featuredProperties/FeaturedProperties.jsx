@@ -20,6 +20,7 @@ const FeaturedProperties = () => {
 		.get(process.env.REACT_APP_API_URL+`/imovel/listar`, {headers: {
 			Authorization:
 				"Bearer " + userData.token,
+				
 		}})
 		.then((data) => {
 			setDados(data.data)
