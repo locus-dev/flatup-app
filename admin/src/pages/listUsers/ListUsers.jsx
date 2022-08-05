@@ -35,23 +35,12 @@ const ListUsers = () => {
     console.log(usuarios)
 
 
-    const gerarPDF = () => {
-        const config = {
-            headers: { Authorization: `Bearer ${userData.userToken}`}
-        }
-
-        
-        const resposta = axios.get(process.env.REACT_APP_API_URL + `/usuario/pdf`, { headers: { 'Authorization': userData.userToken , 'Access-Control-Allow-Origin':
-        '*'} })
-        
-       
-    }
 
     useEffect(() => {
         const fetchData = async () => {
             setCarregando(true);
             try {
-                
+
                 const response = await axios.get(process.env.REACT_APP_API_URL + `/usuario/listar`, {
                     headers: {
                         'Authorization':
@@ -93,7 +82,7 @@ const ListUsers = () => {
                 <div className='container'>
 
                     <button
-                        
+
 
                         onClick={() => navigate("/users/new")}
                         className='botaoAdd '>
@@ -102,7 +91,14 @@ const ListUsers = () => {
 
                     <a
                         _target="_blank"
-                        onClick={gerarPDF}
+                        onClick={() => {
+                            axios.get(process.env.REACT_APP_API_URL+ `/usuario/pdf`, {
+                                headers: {
+                                    'Authorization': `Bearer ${userData.userToken}`,
+                                },
+                                data: userData
+                            })
+                        }}
                         //href='http://localhost:8081/usuario/pdf'
                         className='botaoGerarPDF '
                     >
@@ -110,31 +106,36 @@ const ListUsers = () => {
                     </a>
 
                 </div>
-                
+
                 <div className="newContainer">
-               
-                
-             
+
+
+
                     <TableContainer component={Paper} className="table">
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell className="tableCell">ID</TableCell>
+                                   
                                     <TableCell className="tableCell">E-mail</TableCell>
                                     <TableCell className="tableCell">Senha</TableCell>
+                                    <TableCell className="tableCell">Ações</TableCell>
 
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {usuarios.map((usuario) => (
-                                    <TableRow key={usuario.id}>
-                                        <TableCell className="tableCell">{usuario.idUsuario}</TableCell>
-                                        <TableCell className="tableCell">{usuario.email}</TableCell>
-                                        <TableCell className="tableCell">{usuario.senha}</TableCell>
-                                    </TableRow>
+                                    <User
+                                        usuario={usuario}
+                                        deleteUsuario={deleteUsuario}
+                                        key={usuario.id} >
+
+                                    </User>
                                 ))}
+                              
                             </TableBody>
+
                         </Table>
+                        
                     </TableContainer>
                 </div>
             </div>
