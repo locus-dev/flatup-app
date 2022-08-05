@@ -9,6 +9,18 @@ import Mapa from "../../../components/mapa/Mapa";
 import FlatUpContext from '../../../components/context/FlatUpContext';
 
 const CadastrarImovel = () => {
+
+	const[endereco, setEndereco] = useState({
+		logradouro: '',
+		bairro: '',
+		pontoReferencia: '',
+		cep: '',
+		idPessoaFK: '',
+		numero: '',
+		complemento: '',
+		uf:''
+	})
+
 	const [payload, setPayload] = useState({
 		areaLazer: true,
 		areaM2: 0,
@@ -21,6 +33,8 @@ const CadastrarImovel = () => {
 		statusOcupacao: "DESOCUPADO",
 	});
 	const [token, setToken] = useState({});
+
+
 
 	// const location = useLocation();
 	const navigate = useNavigate();
@@ -207,7 +221,25 @@ const CadastrarImovel = () => {
 											Authorization:
 												`Bearer ${userData.userToken}`,
 										},
-										data: payload,
+										data: {
+											areaLazer: payload.areaLazer,
+											areaM2: payload.areaM2,
+											climatizado: payload.climatizado,
+											idEnderecoFK: {
+												logradouro: endereco.logradouro,
+												bairro: endereco.bairro,
+												pontoReferencia: endereco.pontoReferencia,
+												cep: endereco.cep,
+												idPessoaFK: endereco.idPessoaFK,
+												numero: endereco.numero,
+												complemento: endereco.complemento,
+												uf: endereco.uf,
+											},
+											piscina: payload.piscina,
+											quantQuarto: payload.quantQuarto,
+											quantSuite: payload.quantSuite,
+											statusOcupacao: payload.statusOcupacao
+										}
 									})
 									.then((resposta) => {
 										navigate(`/imoveis/${resposta.id}`, {

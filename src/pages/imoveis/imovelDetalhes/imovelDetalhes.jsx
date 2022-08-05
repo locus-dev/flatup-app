@@ -90,7 +90,7 @@ console.log(props)
                                 <span className="promocao-texto">R$ {DATA.imoveis[props.props].valor_diaria}/noite</span>
                                 <span className="promocao-porcentagem">-25% off</span>
                             </div>
-                            <span className="promocao-texto-novopreco">R$ {DATA.imoveis[props.props].valor_diaria*25/100}/noite <span className="text-weight-light">/noite</span></span>
+                            <span className="promocao-texto-novopreco">R$ {DATA.imoveis[props.props].valor_diaria-DATA.imoveis[props.props].valor_diaria*25/100}/noite</span>
 
                         </CardTitle>
 
