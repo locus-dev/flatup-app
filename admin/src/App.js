@@ -19,6 +19,7 @@ import FlatUpContext from "./context/FlatUpContext";
 import NewUser from "./pages/newUser/NewUser";
 import ListUsers from "./pages/listUsers/ListUsers";
 
+import ListHotels from "./pages/listHotels/ListHotels";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -88,7 +89,7 @@ function App() {
                   index
                   element={
 
-                    <List columns={hotelColumns} />
+                    <ListHotels />
 
                   }
                 />

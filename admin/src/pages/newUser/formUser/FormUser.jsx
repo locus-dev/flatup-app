@@ -1,38 +1,25 @@
 import "../newUser.scss";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import FlatUpContext from '../../../../src/context/FlatUpContext';
 import axios from "axios";
+
 
 
 const FormUser = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
 
+    const location = useLocation();
+    location.state = location.state ? location.state : {};
+
     const [userData, setUserData] = useContext(FlatUpContext);
     const navigate = useNavigate();
 
-    const state = {
-        nome: "",
-    };
+ 
 
-    const handleChange = (event) => {
-        this.setState({ nome: event.target.value });
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        const user = {
-            nome: this.state.nome,
-        };
-
-        axios.post("", { user }).then((res) => {
-            console.log(res);
-            console.log(res.data);
-        });
-    };
+    
 
 
     return (
@@ -86,7 +73,7 @@ const FormUser = () => {
                                             email: email,
                                             senha: senha,
                                         })
-                                        .then(() => {
+                                        /* .then(() => {
 
                                             // Faz login
                                             axios
@@ -103,9 +90,9 @@ const FormUser = () => {
                                                 .catch((error) => {
                                                     console.log(error);
                                                 });
-                                        })
+                                        }) */
 
-
+                                        navigate("/users")
                                         .catch((erro) => {
                                             console.log(erro);
                                         });

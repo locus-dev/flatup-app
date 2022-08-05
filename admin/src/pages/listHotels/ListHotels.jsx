@@ -1,13 +1,11 @@
-import "./listUsers.scss";
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import FlatUpContext from "../../context/FlatUpContext"
 import Sidebar from '../../../src/components/sidebar/Sidebar'
 import Navbar from '../../../src/components/navbar/Navbar'
-import NewUser from '../newUser/NewUser'
+//import NewHotel from '../newUser/NewUser'
+
 import { useNavigate } from "react-router-dom";
-import User from '../listUsers/User'
-import Datatable from "../../components/datatable/Datatable";
 
 
 import Table from "@mui/material/Table";
@@ -19,49 +17,46 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 
-const ListUsers = () => {
+
+const ListHotels = () => {
 
     const location = useLocation();
-    location.state = location.state ? location.state : {};
+
+
+    const navigate = useNavigate();
 
     const [userData, setUserData] = useContext(FlatUpContext);
 
-    console.log(userData);
-    const navigate = useNavigate();
-
     const [carregando, setCarregando] = useState(true);
-    const [usuarios, setUsuarios] = useState([]);
-
-    console.log(usuarios)
-
+    const [imoveis, setImoveis] = useState([]);
 
     const gerarPDF = () => {
         const config = {
-            headers: { Authorization: `Bearer ${userData.userToken}`}
+            headers: { Authorization: `Bearer ${userData.userToken}` }
         }
 
-        
-        const resposta = axios.get(process.env.REACT_APP_API_URL + `/usuario/pdf`, { headers: { 'Authorization': userData.userToken , 'Access-Control-Allow-Origin':
-        '*'} })
-        
-       
+
+        const resposta = axios.get(process.env.REACT_APP_API_URL + `/imovel/pdf`, { headers: { 'Authorization': `Bearer ${userData.userToken}` } })
+
+
     }
+
 
     useEffect(() => {
         const fetchData = async () => {
             setCarregando(true);
             try {
-                
-                const response = await axios.get(process.env.REACT_APP_API_URL + `/usuario/listar`, {
+                const response = await axios.get(process.env.REACT_APP_API_URL + `/imovel/listar`, {
                     headers: {
                         'Authorization':
                             `Bearer ${userData.userToken}`,
+
                         'Access-Control-Allow-Origin':
                             '*'
                     },
                     data: userData
                 })
-                setUsuarios(response.data);
+                setImoveis(response.data);
 
             } catch (error) {
                 console.log(error);
@@ -71,21 +66,8 @@ const ListUsers = () => {
         fetchData();
     }, []);
 
-    const deleteUsuario = (e, id) => {
-        e.preventDefault();
-        (id).then((res) => {
-            if (usuarios) {
-                setUsuarios((prevElement) => {
-                    return prevElement.filter((usuario) => usuario.id !== id);
-                });
-            }
-        });
-    };
-
-
 
     return (
-
         <div className="list">
             <Sidebar />
             <div className="listContainer">
@@ -93,11 +75,11 @@ const ListUsers = () => {
                 <div className='container'>
 
                     <button
-                        
 
-                        onClick={() => navigate("/users/new")}
+
+                        onClick={() => navigate("/hotels/new")}
                         className='botaoAdd '>
-                        Adicionar Usuário
+                        Adicionar Imovel
                     </button>
 
                     <a
@@ -110,27 +92,40 @@ const ListUsers = () => {
                     </a>
 
                 </div>
-                
+
                 <div className="newContainer">
-               
-                
-             
+
+
+
                     <TableContainer component={Paper} className="table">
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell className="tableCell">ID</TableCell>
-                                    <TableCell className="tableCell">E-mail</TableCell>
-                                    <TableCell className="tableCell">Senha</TableCell>
+                                    <TableCell className="tableCell">Climatizado</TableCell>
+                                    <TableCell className="tableCell">Status Da Ocupação</TableCell>
+                                    <TableCell className="tableCell">Endereço</TableCell>
+                                    <TableCell className="tableCell">Qtde De Quartos</TableCell>
+                                    <TableCell className="tableCell">Área De Lazer</TableCell>
+                                    <TableCell className="tableCell">Área m²</TableCell>
+                                    <TableCell className="tableCell">Possui Piscina?</TableCell>
+                                    <TableCell className="tableCell">Qtde De Suítes</TableCell>
+
 
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {usuarios.map((usuario) => (
-                                    <TableRow key={usuario.id}>
-                                        <TableCell className="tableCell">{usuario.idUsuario}</TableCell>
-                                        <TableCell className="tableCell">{usuario.email}</TableCell>
-                                        <TableCell className="tableCell">{usuario.senha}</TableCell>
+                                {imoveis.map((imovel) => (
+                                    <TableRow key={imovel.id}>
+                                        <TableCell className="tableCell">{imovel.idImovel}</TableCell>
+                                        <TableCell className="tableCell">{imovel.climatizado}</TableCell>
+                                        <TableCell className="tableCell">{imovel.statusOcupacao}</TableCell>
+                                        <TableCell className="tableCell">{imovel.idEnderecoFK}</TableCell>
+                                        <TableCell className="tableCell">{imovel.quantQuarto}</TableCell>
+                                        <TableCell className="tableCell">{imovel.areaLazer}</TableCell>
+                                        <TableCell className="tableCell">{imovel.areaM2}</TableCell>
+                                        <TableCell className="tableCell">{imovel.piscina}</TableCell>
+                                        <TableCell className="tableCell">{imovel.quantSuite}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -139,11 +134,7 @@ const ListUsers = () => {
                 </div>
             </div>
         </div>
-
-
     )
 }
 
-
-
-export default ListUsers;
+export default ListHotels;

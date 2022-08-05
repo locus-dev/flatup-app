@@ -22,32 +22,17 @@
         flex: 1;
         text-align: center;
 
-        img {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
+       
       }
 
       .right {
         flex: 2;
         padding: 0px 20px;
-
         form {
           display: flex;
           flex-wrap: wrap;
           gap: 30px;
           justify-content: space-between;
-
-          .selectRooms{
-            width: 100%;
-
-            select{
-              width: 100%;
-              padding: 10px;
-            }
-          }
 
           .formInput {
             width: 40%;
@@ -70,18 +55,78 @@
             }
           }
 
-          button {
-            width: 150px;
-            padding: 10px;
-            border: none;
-            background-color: teal;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-          }
+         
         }
+        
       }
     }
   }
 }
+
+.botaoSalvar {
+  width: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgb(0, 128, 28);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.botaoCancelar {
+  width: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgb(128, 0, 0);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+
+body {
+  overflow-x: hidden;
+}
+
+
+#slide-2 {
+  display: none;
+}
+
+.form-body {
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: space-evenly;
+}
+
+.checkbox {
+  height: 20px;
+  width: 20px;
+}
+
+.form-carrossel {
+  justify-content: center;
+  height: 100%;
+}
+
+
+
+
+
+
+
+h2 {
+  font-size: 2.5rem;
+}
+
+#seguir {
+  margin-left: 75%;
+}
+
+#enviar:hover {
+  background-color: rgb(16, 187, 158);
+}
+
