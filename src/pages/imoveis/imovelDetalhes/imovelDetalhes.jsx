@@ -36,7 +36,7 @@ const ImovelDetalhe = (props) => {
                     <h3>Endereço:</h3>
                     <h6>Jaboatão dos guararapes - rua 56</h6>
                     <hr />
-                    <Mapa lat={-35} long={-8}/>
+                    <Mapa lat={-34.9} long={-8.1}/>
 
                     <h4 className="mb-3">Comodidades</h4>
                     <div id="comodidades" className="d-flex flex-column justify-content-around">

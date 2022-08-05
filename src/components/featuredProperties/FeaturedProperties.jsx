@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FlatUpContext from '../context/FlatUpContext';
 import DATA from "../../DATAFILL";
+import { getStorage, ref, listAll } from "firebase/storage";
+import app from '../../config'
 import "./featuredProperties.css";
 
 const FeaturedProperties = () => {
@@ -27,6 +29,31 @@ const FeaturedProperties = () => {
 	},[]);
 
 	console.log(dados)
+
+
+	const storage = getStorage(app, "gs://flatup-e23c8.appspot.com");
+
+	// Create a reference under which you want to list
+	const listRef = ref(storage, '/imovel-exemplo-1');
+	
+	// Find all the prefixes and items.
+	listAll(listRef)
+	  .then((res) => {
+		res.prefixes.forEach((folderRef) => {
+			console.log(folderRef);
+		  // All the prefixes under listRef.
+		  // You may call listAll() recursively on them.
+		});
+		res.items.forEach((itemRef) => {
+			console.log(itemRef);
+		  // All the items under listRef.
+		});
+	  }).catch((error) => {
+		// Uh-oh, an error occurred!
+	  });
+
+
+
 
     return (
 		<div className="fp">
