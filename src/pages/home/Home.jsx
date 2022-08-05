@@ -17,13 +17,12 @@ const Home = () => {
 			<Navbar />
 			<Header />
 			<div className="locatesContainer"></div>
-			<div className="homeContainer">
+			<div className="homeContainer container">
 				<FeaturedProperties />
-				<FeaturedProperties />
-				<FeaturedProperties />
-				<MailList />
-				<Footer />
+				
 			</div>
+			<br /><br />
+			<Footer />
 		</div>
 	);
 };
