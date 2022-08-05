@@ -2739,21 +2739,48 @@ textarea.form-control-lg {
     font-size: 1.7rem;
 }
 
-.possui-comodidade{
-    background-color: rgb(154, 255, 129);
-}
-
-.possui-comodidade svg{
-    fill: rgb(40, 155, 11);
-}
-
 .informações-flat{
-    width: 60px;
-    height: 60px;
+    border: 1px solid rgb(80, 80, 80);
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+#modal-container{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: -1000px;
+    right: 0;
+    background-color: rgba(58, 58, 58, 0.164);
+    z-index: 10000000;
     display: flex;
     align-items: center;
+    transition: all 400ms;
     justify-content: center;
-    border-radius: 50%;
+}
+
+#modal{
+    width: 600px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.548);
+    border-radius: 20px;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.data{
+    
+}
+
+.informações-flat h5{
+    color: rgb(88, 88, 88) !important;
+    margin-top: 5px !important;
+    margin-left: 10px !important;
+    padding-right: 5px !important;
 }
 
 .promocao-texto-novopreco{
