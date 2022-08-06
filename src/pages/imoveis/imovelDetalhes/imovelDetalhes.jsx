@@ -29,6 +29,10 @@ const ImovelDetalhe = (props) => {
         navigate(`/editarImovel/${id}`);
     };
 
+    const reservar = () => {
+		navigate("/imoveis", { state: {} });
+	};
+
     function teste(){
         // document.getElementById("card-reserva").style.display = "none"; 
         document.getElementById("modal-container").style.top = 0; 
@@ -46,13 +50,14 @@ console.log(props)
         <main className="d-flex justify-content-between my-5 align-items-start">
             <div className="w-100">
                 <div className="localização-texto">
-                    <h3>Endereço:</h3>
+                    <br></br>
+                    <h3>Localização:</h3>
                     <h6>{DATA.imoveis[props.props].endereco}</h6>
                     <hr />
-                    <Mapa lat={-34.9} long={-8.1}/>
+                    <br></br>
 
-                    <h4 className="mb-3">Comodidades</h4>
-                    <div id="comodidades" className="d-flex ">
+                    {/* <h4 className="mb-3">Comodidades</h4> */}
+                    {/* <div id="comodidades" className="d-flex ">
                         <div className="informações-flat">
                             <div className="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(128, 128, 128)" class="bi bi-fan" viewBox="0 0 16 16">
@@ -72,12 +77,16 @@ console.log(props)
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
+
+                <Mapa lat={-34.9} long={-8.1}/>
+
             </div>
-        
+
         <div className="flex-column">
             <div className="text-dark" id="card-reserva">
+            <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                 <Card
                     color="light"
                     style={{
@@ -112,7 +121,7 @@ console.log(props)
 
             <div id="modal-container">
                     <div id="modal">
-                        <h3 className="text-center mb-3">Reserve esse flat</h3>
+                        <h3 className="text-center mb-3">Reserve este flat</h3>
                         <div className="d-flex w-100 d-flex align-items-center">
                             <Form.Group className="data w-100">
                                     <Form.Label>Check-in</Form.Label>
@@ -136,7 +145,7 @@ console.log(props)
                         </div>
 
                         <div>
-                        <Button className="w-100 btn-azul-padrao mt-3">
+                        <Button className="w-100 btn-azul-padrao mt-3" onClick={reservar}> 
                             Fazer reserva
                         </Button>
                         </div>

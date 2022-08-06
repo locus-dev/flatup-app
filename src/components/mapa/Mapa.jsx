@@ -24,7 +24,7 @@ const Mapa = ({ lat, long }) => {
 				zoom: 11,
 			}),
 		});
-	}, []);
+	},);
 	return <div id="map" className="mapa"></div>;
 };
 

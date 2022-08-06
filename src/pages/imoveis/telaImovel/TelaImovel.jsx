@@ -69,7 +69,7 @@ const TelaImovel = () => {
 				<div id="carrosel">
 					<h2 id="tituloImovel">{DATA.imoveis[location.state.id-1].titulo_anuncio}</h2>
 					<div id="avaliacaoContainer">
-						<a href="#" id="avaliacao">
+						<a href="/imoveis" id="avaliacao">
 							<span id="estrelinha">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ const TelaImovel = () => {
 							<span id="avaliacaoTexto">avaliação (5)</span>{" "}
 						</a>
 
-						<a href="#" id="curti">
+						<a href="/imoveis" id="curti">
 							<span id="curtirVazio" onClick={curtir}>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"

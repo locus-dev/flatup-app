@@ -1,5 +1,5 @@
 import "./footer.css"
-import { CDBFooter, CDBFooterLink, CDBBtn, CDBIcon, CDBContainer } from 'cdbreact';
+import { CDBBox, CDBFooter, CDBBtn, CDBIcon } from 'cdbreact';
 
 const Footer = () => {
   return (
