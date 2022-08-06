@@ -19,7 +19,8 @@ const Home = () => {
 			<div className="locatesContainer"></div>
 			<div className="homeContainer container">
 				<FeaturedProperties />
-				
+				<FeaturedProperties />
+				<FeaturedProperties />
 			</div>
 			<br /><br />
 			<Footer />

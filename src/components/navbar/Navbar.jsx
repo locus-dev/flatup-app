@@ -24,9 +24,10 @@ const Navbar = () => {
 	return (
 		<div className="navegacao">
 			<div className="navContainer">
-				<span className="logo" onClick={handleHome}>
+				{/* <span className="logo" onClick={handleHome}>
 					FlatApp
-				</span>
+				</span> */}
+				<img className="logo" src="./media/assets/flatapp.png" alt="FlatApp" width={80} onClick={handleHome}/>
 				<div className="navItems">
 					<div className="search-box">
 						<input

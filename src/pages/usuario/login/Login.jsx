@@ -79,7 +79,7 @@ const Login = () => {
 
 	return (
 		<div>
-			<Navbar />
+			{/* <Navbar /> */}
 			<main>
 				<div className="side-form">
 					<div className="form-box">
