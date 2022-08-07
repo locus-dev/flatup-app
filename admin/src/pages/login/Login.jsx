@@ -11,24 +11,30 @@ import FlatUpContext from '../../../src/context/FlatUpContext';
 
 const Login = () => {
     const [email, setEmail] = useState("");
-	const [senha, setSenha] = useState("");
+    const [senha, setSenha] = useState("");
 
-   
+
 
     const navigate = useNavigate();
 
-   
+
 
     //const contexto = useContext(ContextoUsuario);
 
     const [userData, setUserData] = useContext(FlatUpContext);
 
     return (
-        <div>
+        
+        <div className="jumbotron jumbotron-fluid">
+            
             {/* <Navbar /> */}
+
             <main>
+
                 <div className="side-form">
+
                     <div>
+                        
                         {/* <form action={config.URL + '/auth'} method="POST"> */}
                         <div className="form-control">
                             <label className="lsOptionText" for="email">
@@ -60,34 +66,38 @@ const Login = () => {
                                 onChange={(e) => setSenha(e.target.value)}
                             />
                         </div>
-                       
+
 
                         <button
                             // type="submit"
                             className="form-button"
                             onClick={() => {
-								axios
-									.post(process.env.REACT_APP_API_URL + `/auth`, {
-										email: email,
-										senha: senha,
-									})
-									.then((data) => {
-										setUserData({userToken: data.data.token});
-										navigate("/");
-									})
-									.catch((error) => {
-										console.log(error);
-									});
-							}}
+                                axios
+                                    .post(process.env.REACT_APP_API_URL + `/auth`, {
+                                        email: email,
+                                        senha: senha,
+                                    })
+                                    .then((data) => {
+                                        setUserData({ userToken: data.data.token });
+                                        navigate("/home");
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
+                            }}
                         >
                             Entrar
                         </button>
                         {/* </form> */}
-                        
+
                     </div>
                 </div>
 
-                <div className="other-side"></div>
+                <img
+                    alt="Coqueiros"
+                    src="./media/assets/image-login.jpg"
+                    className="other-side"
+                />
             </main>
         </div>
     );
