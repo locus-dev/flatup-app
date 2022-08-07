@@ -39,12 +39,15 @@ const FormHotel = () => {
 
 	return (
 		<>
+			<div className="top">
+				<h1>Adicionar Hotel</h1>
+			</div>
 			<div className="bottom">
 				<div className="right">
 					<form className="form-carrossel">
 						<div className="formInput">
 							<div className="form-control">
-								<h2>Informações adicionais</h2>
+
 
 								<div className="form-control">
 									<label>Tamanho em m²</label>
@@ -184,12 +187,12 @@ const FormHotel = () => {
 											quantSuite: payload.quantSuite,
 											statusOcupacao: payload.statusOcupacao,
 										}.catch((e) => {
-											console.log('nao funfou'+ e)
+											console.log('nao funfou' + e)
 										})
 
 										)}
-										
-									
+
+
 
 								>
 									Enviar

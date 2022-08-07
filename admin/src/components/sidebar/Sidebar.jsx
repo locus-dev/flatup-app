@@ -14,13 +14,21 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { useLocation } from "react-router-dom";
+import FlatUpContext from "../../context/FlatUpContext"
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+
+  const location = useLocation();
+  location.state = location.state ? location.state : {};
+
+  const [userData, setUserData] = useContext(FlatUpContext);
+
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/home" style={{ textDecoration: "none" }}>
           <span className="logo">Flatup</span>
         </Link>
       </div>
@@ -28,7 +36,7 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">Home</p>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/home" style={{ textDecoration: "none" }}>
             <li>
               <DashboardIcon className="icon" />
               <span>Dashboard</span>
@@ -44,13 +52,13 @@ const Sidebar = () => {
           <Link to="/hotels" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Hotels</span>
+              <span>Imóveis</span>
             </li>
           </Link>
-          <Link to="/rooms" style={{ textDecoration: "none" }}>
+          <Link to="/partners" style={{ textDecoration: "none" }}>
             <li>
-              <CreditCardIcon className="icon" />
-              <span>Rooms</span>
+              <PersonOutlineIcon className="icon" />
+              <span>Parceiros</span>
             </li>
           </Link>
           <li>

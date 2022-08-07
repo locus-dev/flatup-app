@@ -20,12 +20,11 @@ import NewUser from "./pages/newUser/NewUser";
 import ListUsers from "./pages/listUsers/ListUsers";
 
 import ListHotels from "./pages/listHotels/ListHotels";
+import ListPartners from "./pages/listPartners/ListPartners";
+import NewPartner from "./pages/newPartner/NewPartner";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-
-
-
 
 
   let context = useContext(FlatUpContext);
@@ -48,9 +47,9 @@ function App() {
       <FlatUpContext.Provider value={[userData, setUserData]}>
           <Routes>
             <Route path="/" >
-              <Route  path="/login" element={<Login />} />
+              <Route  path="/" element={<Login />} />
               <Route
-                index
+                path="/home"
                 element={
 
                   <Home />
@@ -110,12 +109,12 @@ function App() {
                   }
                 />
               </Route>
-              <Route path="rooms">
+              <Route path="partners">
                 <Route
                   index
                   element={
 
-                    <List columns={roomColumns} />
+                    <ListPartners  />
 
                   }
                 />
@@ -131,7 +130,7 @@ function App() {
                   path="new"
                   element={
 
-                    <NewRoom />
+                    <NewPartner />
 
                   }
                 />
