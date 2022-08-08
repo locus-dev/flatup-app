@@ -1,15 +1,34 @@
-import React, { useEffect, useRef } from "react";
-import Map from "ol/Map";
-import View from "ol/View";
+import Feature from "ol/Feature";
 import TileLayer from "ol/layer/Tile";
-import XYZ from "ol/source/XYZ";
+import Map from "ol/Map";
 import { useGeographic } from "ol/proj";
+import XYZ from "ol/source/XYZ";
+import View from "ol/View";
+import React, { useEffect } from "react";
+import { Icon, Style } from "ol/style";
 import "./mapa.css";
 
 // Documentação: https://openlayers.org/en/latest/doc/
-const Mapa = ({ lat, long }) => {
+const Mapa = ({coord}) => {
 	useGeographic();
 	useEffect(() => {
+
+		// const pino = new Feature({
+		// 	geometry: geoloc,
+		// 	name: "Local",
+		// });
+
+		// const pinoStyle = new Style({
+		// 	image: new Icon({
+		// 		src: "./assets/img/pino.png",
+		// 		anchor: [0.5, 1],
+		// 		anchorXUnits: "fraction",
+		// 		anchorYUnits: "fraction",
+		// 		scale: 0.1,
+		// 	}),
+		// });
+		// pino.setStyle(pinoStyle);
+// console.log(coord)
 		new Map({
 			target: "map",
 			layers: [
@@ -20,8 +39,8 @@ const Mapa = ({ lat, long }) => {
 				}),
 			],
 			view: new View({
-				center: [lat, long],
-				zoom: 11,
+				center: coord,
+				zoom: 15,
 			}),
 		});
 	}, []);

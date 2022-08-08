@@ -39,7 +39,7 @@ const ImovelDetalhe = (props) => {
             document.getElementById("modal-container").style.top = -1000 + "px"
         }
       }
-console.log(props)
+// console.log(props)
 
     return (
 
@@ -49,10 +49,14 @@ console.log(props)
                     <h3>Endereço:</h3>
                     <h6>{DATA.imoveis[props.props].endereco}</h6>
                     <hr />
-                    <Mapa lat={-34.9} long={-8.1}/>
-
-                    <h4 className="mb-3">Comodidades</h4>
-                    <div id="comodidades" className="d-flex ">
+                    <Mapa coord={DATA.imoveis[props.props].geolocalizacao}/>
+{/* {console.log(DATA.imoveis[props.props].geolocalizacao)} */}
+                    <h4 className="mb-3" style={{ 
+                        zIndex: 10,
+                    }}>Comodidades</h4>
+                    <div style={{ 
+                        zIndex: 10,
+                    }} id="comodidades" className="d-flex ">
                         <div className="informações-flat">
                             <div className="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(128, 128, 128)" class="bi bi-fan" viewBox="0 0 16 16">

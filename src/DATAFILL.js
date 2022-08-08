@@ -8,7 +8,8 @@ const DATA = {
 				"Oferecendo vista da piscina, o Flat Porto de Galinhas, em Porto de Galinhas, oferece acomodações, bar e jardim. O Wi-Fi e o estacionamento privativo estão disponíveis gratuitamente no apart-hotel. As acomodações dispõem de ar-condicionado, cozinha totalmente equipada com área para refeições, TV de tela plana e banheiro privativo com chuveiro. Para sua comodidade, a propriedade pode fornecer toalhas e roupa de cama por um custo extra. No Flat Porto de Galinhas, você pode usufruir de uma sauna. A propriedade fica a 1,2 km da Praia de Muro Alto e a 1,5 km da Praia do Cupe. O aeroporto mais próximo é o Aeroporto Internacional do Recife/Guararapes - Gilberto Freyre, a 45 km do Flat Porto de Galinhas.",
 			valor_diaria: 1550,
 			avaliacao: 9.8,
-			endereco: "",
+			endereco: "Rua Carauna, 1248 - Porto de Galinhas, PE",
+			geolocalizacao: [-35.00331095765701,-8.506508432531763],
 			imagem: "https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel-exemplo-1%2F263387224.jpg?alt=media&token=e0072365-1c61-4998-9d85-964c7019d39f",
 			imagens: [
 				{
@@ -55,8 +56,8 @@ const DATA = {
 			valor_diaria: 845,
 			avaliacao: 9.8,
 			endereco:
-				"Acesso para praia de Muro Alto e Camboa, 1292, Apartamento 5203, Muro Alto, Jaboatão dos Guararapes, PE",
-
+				"Acesso para praia de Muro Alto e Camboa, 1292, Apartamento 5203 - Jaboatão dos Guararapes, PE",
+			geolocalizacao: [-34.98450725821831, -8.441022232884297],
 			imagem: "https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel-exemplo-2%2F177254993.jpg?alt=media&token=3f919f1b-f83d-4dad-815c-b75cf08bdaec",
 			imagens: [
 				{
@@ -108,7 +109,8 @@ const DATA = {
 				"Esta acomodação fica a 6 minutos a pé da praia. O Mar Hotel Conventions está localizado a 400 metros da Praia da Boa Viagem e possui 3 piscinas em meio a jardins paisagísticos. O Wi-Fi é gratuito. Os quartos do Mar Hotel têm TV LCD com canais a cabo, banheiro privativo e frigobar. Todos os quartos possuem ar-condicionado e cofre. O hotel oferece instalações de lazer, incluindo academia. O bar do lobby oferece um ambiente casual, ideal para desfrutar de aperitivos ou bebidas. O Restaurante Promenade, situado no lobby, serve pratos da culinária internacional. O Mar Hotel Conventions fica a 11 km do centro de Recife. A propriedade fica a 1,8 km do Recife Shopping Center. O Aeroporto Internacional Gilberto Freyre fica a 3,4 km do local. Esta é a parte de Recife de que os nossos hóspedes mais gostam, de acordo com avaliações independentes. ",
 			valor_diaria: 535,
 			avaliacao: 9.6,
-			endereco: "Avenida Boa Viagem, 5366, Recife, PE",
+			endereco: "Avenida Boa Viagem, 5366 - Recife, PE",
+			geolocalizacao: [-34.89914297965398, -8.12790349529351],
 			imagem: "https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel-exemplo-3%2F60002583.jpg?alt=media&token=fe79560f-01f4-4545-9d28-250947662cd4",
 			imagens: [
 				{
@@ -148,7 +150,8 @@ const DATA = {
 				"Localizado em Garanhuns, o Hotel Village oferece acomodações 2 estrelas com lounge compartilhado. Este hotel 2 estrelas oferece recepção 24 horas, serviço de quarto e Wi-Fi gratuito. Todos os quartos do hotel incluem roupa de cama e toalhas. Um café da manhã italiano é servido diariamente no Hotel Village.",
 			valor_diaria: 565,
 			avaliacao: 9.4,
-			endereco: "Rua Doutor José Marino, 235, Garanhuns, PE",
+			endereco: "Rua Doutor José Marino, 235 - Garanhuns, PE",
+			geolocalizacao: [-36.49343679351116, -8.885637040167772],
 			imagem: "https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel-exemplo-4%2F159642245.jpg?alt=media&token=20cfb273-3eb1-4b82-8b67-32b72e6af92b",
 			imagens: [
 				{
@@ -184,7 +187,8 @@ const DATA = {
 				"A Pousada Alameda oferece acomodações em Garanhuns. Esta propriedade dispõe de Wi-Fi e estacionamento privativo gratuitos.Os quartos da pousada estão equipados com TV. Os quartos da Pousada Alameda dispõem de banheiro privativo.Um buffet de café da manhã é servido todas as manhãs na acomodação.",
 			valor_diaria: 650,
 			avaliacao: 9.4,
-			endereco: "Estrada do Mundau, 129, Garanhuns, PE",
+			endereco: "Estrada do Mundau, 129 - Garanhuns, PE",
+			geolocalizacao: [-36.50313571704753, -8.917220506595607],
 			imagem: "https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel-exemplo-1%2F236868548.jpg?alt=media&token=f7ae38b9-e166-4edc-b2e9-95e261bdf0b4",
 			imagens: [
 				{
@@ -227,8 +231,7 @@ const DATA = {
 		{
 			id: 1,
 			nome: "João",
-			email: ""
-				
+			email: "",
 		},
 	],
 };
