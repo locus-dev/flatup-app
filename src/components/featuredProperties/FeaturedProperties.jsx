@@ -30,7 +30,7 @@ const FeaturedProperties = () => {
 		});
 	},[]);
 
-	console.log(dados)
+	// console.log(dados)
 
 
 	const storage = getStorage(app, "gs://flatup-e23c8.appspot.com");

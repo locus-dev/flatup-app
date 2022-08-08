@@ -7,6 +7,7 @@ const DATA = {
 			descricao:
 				"Oferecendo vista da piscina, o Flat Porto de Galinhas, em Porto de Galinhas, oferece acomodações, bar e jardim. O Wi-Fi e o estacionamento privativo estão disponíveis gratuitamente no apart-hotel. As acomodações dispõem de ar-condicionado, cozinha totalmente equipada com área para refeições, TV de tela plana e banheiro privativo com chuveiro. Para sua comodidade, a propriedade pode fornecer toalhas e roupa de cama por um custo extra. No Flat Porto de Galinhas, você pode usufruir de uma sauna. A propriedade fica a 1,2 km da Praia de Muro Alto e a 1,5 km da Praia do Cupe. O aeroporto mais próximo é o Aeroporto Internacional do Recife/Guararapes - Gilberto Freyre, a 45 km do Flat Porto de Galinhas.",
 			valor_diaria: 1550,
+			validadePromocao: 72,
 			avaliacao: 9.8,
 			endereco: "Rua Carauna, 1248 - Porto de Galinhas, PE",
 			geolocalizacao: [-35.00331095765701,-8.506508432531763],
@@ -54,6 +55,7 @@ const DATA = {
 			descricao:
 				"Esta acomodação fica a 2 minutos a pé da praia. Localizado a apenas 150 metros da Praia de Muro Alto, o Praia do Muro Alto oferece acomodações em Porto de Galinhas com acesso a uma piscina ao ar livre, jardim e recepção 24 horas. Esta propriedade à beira-mar oferece acesso a uma varanda, pingue-pongue, estacionamento privativo gratuito e WiFi gratuito. A casa de temporada dispõe de 6 quartos, 7 banheiros, roupa de cama, toalhas, TV de tela plana via satélite, área para refeições, cozinha totalmente equipada e varanda térrea com vista da piscina. Você pode usufruir de uma churrasqueira. Um serviço de aluguel de carros e instalações para esportes aquáticos estão disponíveis na Praia do Muro Alto, e você pode fazer trilhas a pé nos arredores. A propriedade fica a 9 km da Praia de Merepe e a 11 km do Projeto Hippocampus. O Aeroporto Internacional do Recife/Guararapes - Gilberto Freyre é o mais próximo, situado a 49 km do Praia do Muro Alto. Um serviço de transfer (aeroporto) está disponível por um custo adicional",
 			valor_diaria: 845,
+			validadePromocao: 26,
 			avaliacao: 9.8,
 			endereco:
 				"Acesso para praia de Muro Alto e Camboa, 1292, Apartamento 5203 - Jaboatão dos Guararapes, PE",
@@ -108,6 +110,7 @@ const DATA = {
 			descricao:
 				"Esta acomodação fica a 6 minutos a pé da praia. O Mar Hotel Conventions está localizado a 400 metros da Praia da Boa Viagem e possui 3 piscinas em meio a jardins paisagísticos. O Wi-Fi é gratuito. Os quartos do Mar Hotel têm TV LCD com canais a cabo, banheiro privativo e frigobar. Todos os quartos possuem ar-condicionado e cofre. O hotel oferece instalações de lazer, incluindo academia. O bar do lobby oferece um ambiente casual, ideal para desfrutar de aperitivos ou bebidas. O Restaurante Promenade, situado no lobby, serve pratos da culinária internacional. O Mar Hotel Conventions fica a 11 km do centro de Recife. A propriedade fica a 1,8 km do Recife Shopping Center. O Aeroporto Internacional Gilberto Freyre fica a 3,4 km do local. Esta é a parte de Recife de que os nossos hóspedes mais gostam, de acordo com avaliações independentes. ",
 			valor_diaria: 535,
+			validadePromocao: 12,
 			avaliacao: 9.6,
 			endereco: "Avenida Boa Viagem, 5366 - Recife, PE",
 			geolocalizacao: [-34.89914297965398, -8.12790349529351],
@@ -149,6 +152,7 @@ const DATA = {
 			descricao:
 				"Localizado em Garanhuns, o Hotel Village oferece acomodações 2 estrelas com lounge compartilhado. Este hotel 2 estrelas oferece recepção 24 horas, serviço de quarto e Wi-Fi gratuito. Todos os quartos do hotel incluem roupa de cama e toalhas. Um café da manhã italiano é servido diariamente no Hotel Village.",
 			valor_diaria: 565,
+			validadePromocao: 45,
 			avaliacao: 9.4,
 			endereco: "Rua Doutor José Marino, 235 - Garanhuns, PE",
 			geolocalizacao: [-36.49343679351116, -8.885637040167772],
@@ -186,6 +190,7 @@ const DATA = {
 			descricao:
 				"A Pousada Alameda oferece acomodações em Garanhuns. Esta propriedade dispõe de Wi-Fi e estacionamento privativo gratuitos.Os quartos da pousada estão equipados com TV. Os quartos da Pousada Alameda dispõem de banheiro privativo.Um buffet de café da manhã é servido todas as manhãs na acomodação.",
 			valor_diaria: 650,
+			validadePromocao: 36,
 			avaliacao: 9.4,
 			endereco: "Estrada do Mundau, 129 - Garanhuns, PE",
 			geolocalizacao: [-36.50313571704753, -8.917220506595607],

@@ -1,7 +1,13 @@
 import "./recuperarSenha.css";
 import Navbar from "../../../components/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
-const Forgot = () => {
+const Forgot = ({navigate}) => {
+
+  const recuperar = () => {
+		navigate("/", { state: {} });
+	};
+
   return (
     <div>
       <main>
@@ -9,12 +15,13 @@ const Forgot = () => {
       <Navbar />
         <div className="side-form">
           <div className="form-box">
-            <h3>Esqueceu Senha</h3>
+            
             <div className="form-control">
-              <label className="lsOptionText" for="email">Email </label>
-              <input type="email" min={0} className="input" placeholder="Email" id="email" />
+              <h3>Esqueceu Senha</h3><br></br>
+              <label className="lsOptionText" for="email"> {" "} <input type="email" min={0} placeholder="Email" id="email" /> </label>
+              <button type="submit" onClick={recuperar} className="form-button">Recuperar</button>
             </div>
-            <button type="submit" className="form-button">Recuperar</button>
+            
           </div>
         </div>
       </main>

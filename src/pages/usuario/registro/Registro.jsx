@@ -49,9 +49,9 @@ const Register = () => {
 						<h1>Registro</h1>
 						<p>Fazer Registro como:</p>
 						<div className="login-socialbox">
-							<button className="login-social" type="button">
+							<button className="login-social" type="button" >
 								<span>
-									<i className="fab fa-facebook-f"></i>
+		
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -72,7 +72,7 @@ const Register = () => {
 								id="facebook"
 							>
 								<span>
-									<i className="fab fa-google-plus-g"></i>
+								
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -93,33 +93,33 @@ const Register = () => {
 						<div>
 							<div className="form-control">
 								<label className="lsOptionText" for="email">
-									Email{" "}
-								</label>
-								<input
+									{" "}
+									<input
 									type="email"
 									onChange={(e) => setEmail(e.target.value)}
 									min={0}
 									value={email}
-									className="input"
 									placeholder="Email"
 									id="email"
-                  name="email"
+        							name="email"
 								/>
+								</label>
+
 							</div>
 							<div className="form-control">
 								<label className="lsOptionText" for="senha">
-									Senha{" "}
-								</label>
-								<input
+									{" "}
+									<input
 									type="password"
 									onChange={(e) => setSenha(e.target.value)}
 									min={0}
 									value={senha}
-									className="input"
 									placeholder="Senha"
 									id="senha"
-                  name="senha"
+                  					name="senha"
 								/>
+								</label>
+
 							</div>
 							<button
 								// type="submit"

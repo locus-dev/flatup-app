@@ -43,7 +43,7 @@ const Mapa = ({coord}) => {
 				zoom: 15,
 			}),
 		});
-	}, []);
+	},);
 	return <div id="map" className="mapa"></div>;
 };
 

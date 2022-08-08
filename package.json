@@ -25,6 +25,7 @@
     "react-bootstrap": "^2.4.0",
     "react-bootstrap-icons": "^1.8.4",
     "react-carousel-minimal": "^1.4.1",
+    "react-countdown": "^2.3.2",
     "react-date-range": "^1.4.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",

@@ -81,6 +81,7 @@ const Login = () => {
 		<div>
 			{/* <Navbar /> */}
 			<main>
+			{/* <Navbar /> */}
 				<div className="side-form">
 					<div className="form-box">
 						<h1>Login</h1>
@@ -95,7 +96,7 @@ const Login = () => {
 								}}
 							>
 								<span>
-									<i className="fab fa-facebook-f"></i>
+								
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -119,7 +120,7 @@ const Login = () => {
 								id="facebook"
 							>
 								<span>
-									<i className="fab fa-google-plus-g"></i>
+									
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -137,35 +138,35 @@ const Login = () => {
 
 						<h3 className="or">Ou</h3>
 						{/* <form action={config.URL + '/auth'} method="POST"> */}
-						<div className="form-control">
-							<label className="lsOptionText" for="email">
-								Email{" "}
-							</label>
-							<input
-								type="email"
-								min={0}
-								value={email}
-								name="email"
-								className="input"
-								placeholder="Email"
-								id="email"
-								onChange={(e) => setEmail(e.target.value)}
-							/>
-						</div>
-						<div className="form-control">
-							<label className="lsOptionText" for="senha">
-								Senha
-							</label>
-							<input
-								type="password"
-								min={0}
-								value={senha}
-								name="senha"
-								className="input"
-								placeholder="Senha"
-								id="senha"
-								onChange={(e) => setSenha(e.target.value)}
-							/>
+						<div className="deladinho">
+							<div className="form-control">
+								<label className="lsOptionText" for="email">
+									{" "}
+								</label>
+								<input
+									type="email"
+									min={0}
+									value={email}
+									name="email"
+									placeholder="Email"
+									id="email"
+									onChange={(e) => setEmail(e.target.value)}
+								/>
+							</div>
+							<div className="form-control">
+								<label className="lsOptionText" for="senha">
+									{" "}
+									<input 
+									type="password"
+									min={0}
+									value={senha}
+									name="senha"
+									placeholder="Senha"
+									id="senha"
+									onChange={(e) => setSenha(e.target.value)}
+								/>
+								</label>
+							</div>
 						</div>
 						<a href="/usuario/recuperar" id="forgot-senha">
 							Esqueci a senha

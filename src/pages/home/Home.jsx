@@ -10,7 +10,7 @@ import FlatUpContext from '../../components/context/FlatUpContext';
 const Home = () => {
 
 	const [userData, setUserData] = useContext(FlatUpContext);
-	console.log(userData)
+	// console.log(userData)
 
 	return (
 		<div>
