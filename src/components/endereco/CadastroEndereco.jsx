@@ -1,88 +1,182 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // import API from "../../services/API";
 import axios from "axios";
 import uuid from "node-uuid";
 import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
+import FlatUpContext from "../context/FlatUpContext";
 
 const CadastroEndereco = (props) => {
+	const [bairro, setBairro] = useState("");
+	const [cep, setCep] = useState("");
+	const [complemento, setComplemento] = useState("");
+	const [logradouro, setLogradouro] = useState("");
+	const [numero, setNumero] = useState("");
+	const [pessoa_id, setPessoa_id] = useState(Number);
+	const [ponto_referencia, setPonto_referencia] = useState("");
+	const [uf, setUf] = useState("");
+	const [cidade, setCidade] = useState("");
+	
+	const [userData, setUserData] = useContext(FlatUpContext);
+
+	function req() {
+		console.log(userData);
+		axios
+			.post(
+				`${process.env.REACT_APP_API_URL}/endereco/salvar`,
+				{
+					bairro: bairro,
+					cep: cep,
+					complemento: complemento,
+					logradouro: logradouro,
+					numero: numero,
+					pessoa_id: 1,
+					ponto_referencia: ponto_referencia,
+					uf: uf,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${userData.userToken}`,
+					},
+				}
+			)
+			.then((result) => {
+				console.log(result);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
+
+	// const model = {
+	// 	bairro: "Setor Continental",	
+	// 	cep: "74993-763",
+	// 	complemento: "casa de rua",
+	// 	logradouro: "Rua Maria Ribeiro Peixoto",
+	// 	numero: "146",
+	// 	pessoa_id: 1,
+	// 	ponto_referencia: "na esquina 1",
+	// 	uf: "PE",
+	// };
+
 	const [listaUF, setListaUF] = useState([]);
 	const [listaCidade, setListaCidade] = useState([]);
-	// const [UF, setUF] = useState([]);
+	// const [estado, setUF] = useState([]);
 
-	var UF = [];
-	var cidade = [];
+	var estado = [];
+	var municipio = [];
 
 	useEffect(() => {
 		axios
 			.get(
 				"https://servicodados.ibge.gov.br/api/v1/localidades/estados",
 				{ hearders: { "Access-Control-Allow-Origin": "*" } }
-			)
+			)	
 			.then((resposta) => {
 				setListaUF(resposta.data);
 				console.log(resposta.data);
-			})
+			})	
 			.catch((error) => {
 				console.log(error);
-			});
-	}, []);
+			});	
+	}, []);		
 
 	function buscarCep() {
 		// Implementar depois
-	}
+	}	
 
 	function selectUF(sigla) {
 		console.log(sigla);
 
 		listaUF.forEach((uf) => {
 			if (uf.sigla == sigla) {
-				UF = sigla;
-			}
-		});
-		selectCidade(UF);
-	}
+				estado = sigla;
+			}	
+		});	
+		selectCidade(estado);
+	}	
 
-	function selectCidade(UF) {
+	function selectCidade(estado) {
 		// Implementar depois
 		axios
 			.get(
-				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${UF}/municipios`,
+				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`,
 				{ hearders: { "Access-Control-Allow-Origin": "*" } }
-			)
+			)	
 			.then((resposta) => {
 				setListaCidade(resposta.data);
 				console.log(resposta);
-			})
+			})	
 			.catch((error) => {
 				console.log(error);
-			});
-	}
-
+			});	
+	}		
 	return (
 		<div className="form-body">
 			<div className="form-control">
 				<label>Logradouro</label>
-				<input className="input" type="text" name="logradouro" />
+				<input
+					className="input"
+					type="text"
+					name="logradouro"
+					onChange={(e) => {
+						setLogradouro(String(e.target.value));
+					}}
+				/>
 			</div>
 			<div className="form-control">
 				<label>Número</label>
-				<input className="input" type="text" name="numero" />
+				<input
+					className="input"
+					type="text"
+					name="numero"
+					onChange={(e) => {
+						setNumero(String(e.target.value));
+					}}
+				/>
 			</div>
 			<div className="form-control">
 				<label>Complemento</label>
-				<input className="input" type="text" name="complemento" />
+				<input
+					className="input"
+					type="text"
+					name="complemento"
+					onChange={(e) => {
+						setComplemento(String(e.target.value));
+					}}
+				/>
 			</div>
 			<div className="form-control">
 				<label>Bairro</label>
-				<input className="input" type="text" name="bairro" />
+				<input
+					className="input"
+					type="text"
+					name="bairro"
+					onChange={(e) => {
+						setBairro(String(e.target.value));
+					}}
+				/>
 			</div>
 			<div className="form-control">
 				<label>Ponto de Referência</label>
-				<input className="input" type="text" name="pt_referencia" />
+				<input
+					className="input"
+					type="text"
+					name="pt_referencia"
+					onChange={(e) => {
+						setPonto_referencia(String(e.target.value));
+					}}
+				/>
 			</div>
 			<div className="form-control">
 				<label>CEP</label>
-				<input className="input" type="text" name="cep" />
+				<input
+					className="input"
+					type="text"
+					name="cep"
+					onChange={(e) => {
+						setCep(String(e.target.value));
+					}}
+				/>
 				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 			</div>
 			<div className="form-control">
@@ -91,9 +185,10 @@ const CadastroEndereco = (props) => {
 					{listaUF.map((item, index) => {
 						return (
 							<option
-								key={item.id}
-								value={item.id}
-								onClick={() => {
+							key={item.id}
+							value={item.id}
+							onClick={() => {
+									setUf(String(item.sigla));
 									selectUF(item.sigla);
 								}}
 							>
@@ -108,13 +203,31 @@ const CadastroEndereco = (props) => {
 				{/* <input className="input" type="text" name="cidade"/> */}
 				<select name="cidade">
 					{listaCidade.map((item) => {
-						return <option value={item.id}>{item.nome}</option>;
+						return (
+							<option
+								value={item.id}
+								onChange={(e) => {
+									setCidade(String(e.target.value));
+								}}
+							>
+								{item.nome}
+							</option>
+						);
 					})}
 				</select>
 			</div>
 			<div>
 				<BotaoLocalizacao />
 			</div>
+			<button
+				type="button"
+				className="btn btn-primary"
+				onClick={() => {
+					req();
+				}}
+			>
+				Cadastrar Endereço
+			</button>
 			{/* <div className="form-control">
 			<label>País</label>
 			<input className="input" type="text" name="nacionalidade"/>

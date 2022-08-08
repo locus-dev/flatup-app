@@ -17,13 +17,13 @@ const Profile = () => {
 
   return (
     <div className="classe">
-      <Navbar/>
+      {/* <Navbar/> */}
+    {/* <PessoaPerfilExibir/> */}
       <div id="aqui">
         <div id="imagem-perfil">
           <img src='./media/assets/perfil.png' width="130" height="130"></img>
         </div>
         <div id="dados-perfil">
-          {/* <PessoaPerfilExibir/> */}
           <input type="text" className="input" name="nome" value="Joaquim Aguiar"/>
           <input type="text" className="input" name="telefone" value="(81) 91564-6452"/>
           <input type="text" className="input" name="data_nascimento" value="07/06/2000"/>
