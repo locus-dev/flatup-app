@@ -81,7 +81,7 @@ const Login = () => {
 		<div>
 			{/* <Navbar /> */}
 			<main>
-			<Navbar />
+			{/* <Navbar /> */}
 				<div className="side-form">
 					<div className="form-box">
 						<h1>Login</h1>
