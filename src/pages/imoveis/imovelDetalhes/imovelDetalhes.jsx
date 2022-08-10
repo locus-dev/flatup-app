@@ -79,7 +79,6 @@ const ImovelDetalhe = (props) => {
 						className="d-flex "
 					></div>
 
-					<Mapa lat={-34.9} long={-8.1} />
 				</div>
 
 				<div className="flex-column">
