@@ -175,16 +175,8 @@ const DATA = {
 				},
 			],
 		},
-		// {
-		//     id: 5,
-		//     titulo_anuncio: "Suape",
-		//     municipio: "Desfrute do melhor flat da orla de Suape-Pe",
-		//     valor_diaria: 450,
-		//     avaliacao: 8.9,
-		//     imagem: "./media/imoveis/flat05.jpg"
-		// },
 		{
-			id: 6,
+			id: 5,
 			titulo_anuncio: "Chalé acolhedor em Garanhuns",
 			municipio: "Garanhuns, PE",
 			descricao:
@@ -231,6 +223,14 @@ const DATA = {
 				},
 			],
 		},
+		// {
+		//     id: 6,
+		//     titulo_anuncio: "Suape",
+		//     municipio: "Desfrute do melhor flat da orla de Suape-Pe",
+		//     valor_diaria: 450,
+		//     avaliacao: 8.9,
+		//     imagem: "./media/imoveis/flat05.jpg"
+		// },
 	],
 	usuarios: [
 		{

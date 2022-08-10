@@ -14,6 +14,7 @@ import "./mapa.css";
 
 // Documentação: https://openlayers.org/en/latest/doc/
 const Mapa = ({ coord }) => {
+	useGeographic();
 	useEffect(() => {
 		const pino = new Feature({
 			// geometry: new Point([-35.00331095765701, -8.506508432531763]),
