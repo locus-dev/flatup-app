@@ -13,17 +13,84 @@ import FormAddress from "../../newAddress/formAddress/FormAddress";
 
 
 const FormHotel = () => {
-	const [payload, setPayload] = useState({
-		areaLazer: true,
-		areaM2: 0,
-		climatizado: "string",
-		idEnderecoFK: null,
-		idImovel: 0,
-		piscina: true,
-		quantQuarto: 0,
-		quantSuite: 0,
-		statusOcupacao: "string",
+
+	const [endereco, setEndereco] = useState({
+		logradouro: '',
+		bairro: '',
+		pontoReferencia: '',
+		cep: '',
+		numero: '',
+		complemento: '',
+		uf: '',
+		nacionalidade: ''
+	})
+
+	const [imovel, setImovel] = useState({
+		climatizado: "",
+		statusOcupacao: '',
+		idEnderecoFK: {
+			logradouro: '',
+			bairro: '',
+			pontoReferencia: '',
+			cep: '',
+			numero: '',
+			complemento: '',
+			uf: '',
+			nacionalidade: ''
+		},
+		quantQuarto: '',
+		areaLazer: '',
+		areaM2: '',
+		piscina: '',
+		quantSuite: ''
 	});
+	console.log(imovel)
+
+
+	const handleChange = (e) => {
+		const value = e.target.value;
+		console.log(value);
+		setImovel({ ...imovel, [e.target.name]: value });
+	};
+
+
+
+	const handleEnderecoChange = (e) => {
+		const value = e.target.value;
+		setEndereco({ ...endereco, [e.target.name]: value });
+	}
+
+
+	const salvarImovel = (e) => {
+		e.preventDefault();
+		const imovelMontado = {
+			climatizado: imovel.climatizado,
+			statusOcupacao: imovel.statusOcupacao,
+			idEnderecoFK: {
+				logradouro: endereco.logradouro,
+				bairro: endereco.bairro,
+				pontoReferencia: endereco.pontoReferencia,
+				cep: endereco.cep,
+				idPessoaFK: endereco.idPessoaFK,
+				numero: endereco.numero,
+				complemento: endereco.complemento,
+				uf: endereco.uf,
+				nacionalidade: endereco.nacionalidade
+			},
+			quantQuarto: imovel.quantQuarto,
+			areaLazer: imovel.areaLazer,
+			areaM2: imovel.areaM2,
+			piscina: imovel.piscina,
+			quantSuite: imovel.quantSuite
+		}
+		console.log(imovelMontado)
+		axios.post(process.env.REACT_APP_API_URL + `/imovel/salvar`, imovelMontado).then((response) => {
+
+			navigate("/hotels")
+		}).catch((error) => {
+			console.log(error);
+		});
+	}
 
 
 	// const location = useLocation();
@@ -44,167 +111,181 @@ const FormHotel = () => {
 			</div>
 			<div className="bottom">
 				<div className="right">
-					<form className="form-carrossel">
-						<div className="formInput">
-							<div className="form-control">
-
-
-								<div className="form-control">
-									<label>Tamanho em m²</label>
-									<input
-										className="input"
-										type="text"
-										name=""
-										onChange={(e) => {
-											payload.areaM2 = e.target.value;
-										}}
-									/>
-								</div>
-
-								<div className="form-control">
-									<label>Número de quartos</label>
-									<input
-										className="input"
-										type="text"
-										name=""
-										onChange={(e) => {
-											payload.quantQuarto = e.target.value;
-										}}
-									/>
-								</div>
-
-								<div className="form-control">
-									<label>Número de suites</label>
-									<input
-										className="input"
-										type="text"
-										name=""
-										onChange={(e) => {
-											payload.quantSuite = e.target.value;
-										}}
-									/>
-								</div>
-
-								<div className="form-control">
-									<label>Climatizado</label>
-									<div>
-										<input
-											className="input checkbox"
-											type="radio"
-											name="climatizado"
-											value="SIM"
-											onChange={(e) => {
-												payload.climatizado = e.target.value;
-											}}
-										/>
-										<span>Sim</span>
-									</div>
-									<div>
-										<input
-											className="input checkbox"
-											type="radio"
-											name="climatizado"
-											value="NAO"
-											onChange={(e) => {
-												payload.climatizado = e.target.value;
-											}}
-										/>
-										<span>Não</span>
-									</div>
-								</div>
-
-								<div className="form-control">
-									<label>Possui área de lazer?</label>
-									<div>
-										<input
-											className="input checkbox"
-											type="radio"
-											name="area-lazer"
-											value={true}
-											onChange={(e) => {
-												payload.areaLazer = e.target.value;
-											}}
-										/>
-										<span>Sim</span>
-									</div>
-									<div>
-										<input
-											className="input checkbox"
-											type="radio"
-											name="area-lazer"
-											value={false}
-											onChange={(e) => {
-												payload.areaLazer = e.target.value;
-											}}
-										/>
-										<span>Não</span>
-									</div>
-								</div>
-
-								<div className="form-control">
-									<label>Piscina</label>
-									<div>
-										<input
-											className="input checkbox"
-											type="radio"
-											name="piscina"
-											value={true}
-											onChange={(e) => {
-												payload.piscina = e.target.value;
-											}}
-										/>
-										<span>Sim</span>
-									</div>
-									<div>
-										<input
-											className="input checkbox"
-											type="radio"
-											name="piscina"
-											value={false}
-											onChange={(e) => {
-												payload.piscina = e.target.value;
-											}}
-										/>
-										<span>Não</span>
-									</div>
-								</div>
+					<form>
+						<div className='form-control'>
+							<div className='font-thin text-2xl tracking-wider'>
+								<h1>Adicionar Imovel climatizado </h1>
 							</div>
-							<FormAddress />
-							<div className="form-footer">
-
-								<button
-									className="botaoSalvar"
-									id="enviar"
-									onClick={() =>
-										axios.post(process.env.REACT_APP_API_URL + `/imovel/salvar`, {
-											areaLazer: payload.areaLazer,
-											areaM2: payload.areaM2,
-											climatizado: payload.climatizado,
-											idEnderecoFK: payload.idEnderecoFK,
-											idImovel: payload.idImovel,
-											piscina: payload.piscina,
-											quantQuarto: payload.quantQuarto,
-											quantSuite: payload.quantSuite,
-											statusOcupacao: payload.statusOcupacao,
-										}.catch((e) => {
-											console.log('nao funfou' + e)
-										})
-
-										)}
-
-
-
+							<div className='items-center justify-center h-20 w-full'>
+								<label className='block text-gray-600 text-sm font-normal'>Climatizado:</label>
+								<select
+									type="select"
+									className='h-10 w-96 border mt-2 px-2 py-2'
+									name='climatizado'
+									onChange={(e) => handleChange(e)}
 								>
-									Enviar
-								</button>
-								<button className="botaoCancelar" onClick={() => navigate("/hotels")}>Cancelar</button>
+									<option value="CLIMATIZADO">Climatizado</option>
+									<option value="NAO_CLIMATIZADO">Não Climatizado</option>
+								</select>
 							</div>
 						</div>
+						<div className='form-control'>
+							<label className='lsOptionText'>Status Da Ocupação:</label>
+							<select
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='statusOcupacao'
+								onChange={(e) => handleChange(e)}
+							>
+								<option value="OCUPADO">Ocupado</option>
+								<option value="DESOCUPADO">Não Ocupado</option>
+							</select>
+						</div>
+						<div className='form-control'>
+
+							<label className='lsOptionText'>Logradouro:</label>
+							<input
+								type="text"
+								className='input'
+								name='logradouro'
+								onChange={(e) => handleEnderecoChange(e)}
+							>
+							</input>
+						</div>
+						<div className='form-control'>
+							<label className='lsOptionText'>Bairro:</label>
+							<input
+								type="text"
+								className='input'
+								name='bairro'
+								onChange={(e) => handleEnderecoChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>Ponto de Referência:</label>
+							<input
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='pontoReferencia'
+								onChange={(e) => handleEnderecoChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>CEP:</label>
+							<input
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='cep'
+								onChange={(e) => handleEnderecoChange(e)}
+							>
+							</input>
+						</div>
+
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>Número:</label>
+							<input
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='numero'
+								onChange={(e) => handleEnderecoChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-22 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>Complemento:</label>
+							<input
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='complemento'
+								onChange={(e) => handleEnderecoChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>UF:</label>
+							<input
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='uf'
+								onChange={(e) => handleEnderecoChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>Nacionalidade:</label>
+							<input
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='nacionalidade'
+								onChange={(e) => handleEnderecoChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>Qtde de Quartos*:</label>
+							<input
+								type="number"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='quantQuarto'
+								onChange={(e) => handleChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>Area de Lazer*:</label>
+							<select
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='areaLazer'
+								onChange={(e) => handleChange(e)}
+							>
+								<option value="true">Sim</option>
+								<option value="false">Não</option>
+							</select>
+						</div>
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>Area M2*:</label>
+							<input
+								type="number"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='areaM2'
+								onChange={(e) => handleChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-20 w-full'>
+							<label className='block text-gray-600 text-sm font-normal'>Piscina:</label>
+							<select
+								type="text"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='piscina'
+								onChange={(e) => handleChange(e)}
+							>
+								<option value="true">Sim</option>
+								<option value="false">Não</option>
+							</select>
+						</div>
+						<div className='items-center justify-center h-14 w-full'>
+							<label className=''>Qtde suíte*:</label>
+							<input
+								type="number"
+								className='h-10 w-96 border mt-2 px-2 py-2'
+								name='quantSuite'
+								onChange={(e) => handleChange(e)}
+							>
+							</input>
+						</div>
+						<div className='items-center justify-center h-14 w-full my-5 space-x-2 pt-6'>
+							<button onClick={salvarImovel} className='rounded text-white font-semibold bg-green-400 hover:bg-green-600 py-2 px-2'>Salvar</button>
+							<button onClick={() => navigate("/hotels")} data-bs-dismiss="modal" className='rounded text-white font-semibold bg-red-400 hover:bg-red-600 py-2 px-2'>Cancelar</button>
+						</div>
+
 
 					</form>
-
 				</div>
-			</div >
+			</div>
 		</>
 	);
 }

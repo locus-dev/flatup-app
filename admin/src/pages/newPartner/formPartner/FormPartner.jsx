@@ -2,7 +2,7 @@ import "../newPartner.scss";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 
-import { useLocation , useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import FlatUpContext from "../../../context/FlatUpContext"
 
 
@@ -15,7 +15,7 @@ const FormPartner = () => {
     const [userData, setUserData] = useContext(FlatUpContext);
 
 
-    const[users, setUsers] = useState([])
+    const [users, setUsers] = useState([])
 
 
     useEffect(() => {
@@ -30,13 +30,14 @@ const FormPartner = () => {
 
     const handleUserChange = (e) => {
         const value = e.target.value;
-        setUser({...user, [e.target.name]: value});
+        setUser({ ...user, [e.target.name]: value });
     };
 
     const [partner, setPartner] = useState({
         descricao: '',
         nomeFantasia: '',
         cnpj: ''
+        
     })
 
 
@@ -44,7 +45,7 @@ const FormPartner = () => {
         setPartner((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
 
-    const handleClick = async (e) => {
+    const handleClick =  (e) => {
         e.preventDefault();
         const partnerMounted = {
             descricao: partner.descricao,
@@ -54,11 +55,11 @@ const FormPartner = () => {
                 idUsuario: user.idUsuario
             }
         }
-        try {
-            await axios.post('/parceiro/salvar', partnerMounted);
-        } catch (err) {
-            console.log(err);
-        }
+       
+        axios.post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, partnerMounted);
+        console.log(partnerMounted.idUsuarioFK.idUsuario + 'EITA OLHA O OBJETO MONTADO PO PARCEIRO')
+        navigate("/partners")
+       
     };
 
 
@@ -76,9 +77,9 @@ const FormPartner = () => {
                                     Descrição{" "}
                                 </label>
                                 <input
-                                    type="descricao"
+                                    type="text"
                                     onChange={(e) => handleChange(e)}
-                                    min={0}
+                                 
                                     value={partner.descricao}
                                     className="input"
                                     placeholder="descricao"
@@ -93,7 +94,7 @@ const FormPartner = () => {
                                 <input
                                     type="text"
                                     onChange={(e) => handleChange(e)}
-                                    min={0}
+                                   
                                     value={partner.nomeFantasia}
                                     className="input"
                                     placeholder="nomeFantasia"
@@ -108,7 +109,7 @@ const FormPartner = () => {
                                 <input
                                     type="number"
                                     onChange={(e) => handleChange(e)}
-                                    
+
                                     value={partner.cnpj}
                                     className="input"
                                     placeholder="cnpj"
@@ -131,13 +132,34 @@ const FormPartner = () => {
                             <button
                                 // type="submit"
                                 className="botaoSalvar"
-                                onClick={() => {
+                                onClick={handleClick}
+                                        /* .then(() => {
+
+                                            // Faz login
+                                            axios
+                                                .post(process.env.REACT_APP_API_URL + `/auth`, {
+                                                    email: email,
+                                                    senha: senha,
+                                                })
+                                                .then((data) => {
+                                                    setUserData({
+                                                        userToken: data.data.token,
+                                                    });
+                                                    navigate("/");
+                                                })
+                                                .catch((error) => {
+                                                    console.log(error);
+                                                });
+                                        }) */
+
+                                
+                                    //() => {
 
                                     // Cadastra o Parceiro
-                                    axios
-                                        .post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, 
-                                            { headers: { 'Authorization': `Bearer ${userData.userToken}` } 
-                                        })
+                                    //axios
+                                    //.post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, 
+                                    //{ headers: { 'Authorization': `Bearer ${userData.userToken}` } 
+                                    //})
                                     /* .then(() => {
 
                                         // Faz login
@@ -157,25 +179,25 @@ const FormPartner = () => {
                                             });
                                     }) */
 
-                                    navigate("/users")
-                                        .catch((erro) => {
+                                    
+                                       /*  .catch((erro) => {
                                             console.log(erro);
-                                        });
-                                }}
+                                        }); */
+                                
                             >
-                                Registrar
-                            </button>
+                            Registrar
+                        </button>
 
-                            <button className="botaoCancelar" onClick={() => navigate("/users")}>Cancelar</button>
-
-
-                        </div>
+                        <button className="botaoCancelar" onClick={() => navigate("/partners")}>Cancelar</button>
 
 
-
-                    </form>
                 </div>
-            </div>
+
+
+
+            </form>
+        </div>
+            </div >
         </>
     )
 }

@@ -84,8 +84,8 @@ const ListHotels = () => {
 
                     <a
                         _target="_blank"
-                        onClick={gerarPDF}
-                        //href='http://localhost:8081/usuario/pdf'
+                        
+                        href='http://localhost:8081/imovel/pdf'
                         className='botaoGerarPDF '
                     >
                         Gerar PDF
@@ -98,7 +98,7 @@ const ListHotels = () => {
 
 
                     <TableContainer component={Paper} className="table">
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <Table sx={{ minWidth: 350 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell className="tableCell">ID</TableCell>
@@ -120,7 +120,7 @@ const ListHotels = () => {
                                         <TableCell className="tableCell">{imovel.idImovel}</TableCell>
                                         <TableCell className="tableCell">{imovel.climatizado}</TableCell>
                                         <TableCell className="tableCell">{imovel.statusOcupacao}</TableCell>
-                                        <TableCell className="tableCell">{imovel.idEnderecoFK}</TableCell>
+                                        <TableCell className="tableCell">{imovel.idEnderecoFK.bairro}</TableCell>
                                         <TableCell className="tableCell">{imovel.quantQuarto}</TableCell>
                                         <TableCell className="tableCell">{imovel.areaLazer}</TableCell>
                                         <TableCell className="tableCell">{imovel.areaM2}</TableCell>

@@ -22,17 +22,17 @@ import axios from "axios";
 const ListUsers = () => {
 
     const location = useLocation();
-    location.state = location.state ? location.state : {};
+   
 
     const [userData, setUserData] = useContext(FlatUpContext);
 
-    console.log(userData);
+    console.log(userData.userToken + 'asdasda');
     const navigate = useNavigate();
 
     const [carregando, setCarregando] = useState(true);
     const [usuarios, setUsuarios] = useState([]);
 
-    console.log(usuarios)
+    
 
 
 
@@ -48,7 +48,7 @@ const ListUsers = () => {
                         'Access-Control-Allow-Origin':
                             '*'
                     },
-                    data: userData
+                    data: userData.userToken
                 })
                 setUsuarios(response.data);
 
@@ -60,6 +60,11 @@ const ListUsers = () => {
         fetchData();
     }, []);
 
+    const GERAROPDFPO = () => {
+        axios.get(process.env.REACT_APP_API_URL + '/usuario/pdf')
+        console.log('lascou')
+        return navigate("/users")
+    }
     
     
     const deleteUsuario = (e, id) => {
@@ -93,17 +98,8 @@ const ListUsers = () => {
 
                     <a
                         _target="_blank"
-                        onClick={() => { const d = axios.get('http://localhost:8081/usuario/pdf', {
-                            headers: {
-                                'Authorization':
-                                    `Bearer ${userData.userToken}`,
-                                'Access-Control-Allow-Origin':
-                                    '*'
-                            },
-                            data: userData
-                        }
-                        )}}
-                        //href='http://localhost:8081/usuario/pdf'
+                        
+                        href='http://localhost:8081/usuario/pdf'
                         className='botaoGerarPDF '
                     >
                         Gerar PDF
