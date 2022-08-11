@@ -1,4 +1,4 @@
-.new {
+.newUser {
   width: 100%;
   display: flex;
 
@@ -22,30 +22,54 @@
         flex: 1;
         text-align: center;
 
-       
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
       }
 
       .right {
         flex: 2;
         padding: 0px 20px;
+
         form {
           display: flex;
           flex-wrap: wrap;
           gap: 30px;
           justify-content: space-between;
 
-          
+          .formInput {
+            width: 40%;
+
+            label {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+
+              .icon {
+                cursor: pointer;
+              }
+            }
+
+            input {
+              width: 100%;
+              padding: 5px;
+              border: none;
+              border-bottom: 1px solid gray;
+            }
+          }
 
          
         }
-        
       }
     }
   }
 }
 
-.input{
-  width: 40%;
+.botaoSalvar, .botaoCancelar {
+  margin: 3px;
 }
 
 .botaoSalvar {
@@ -63,55 +87,9 @@
   width: 150px;
   padding: 10px;
   border-radius: 8px;
-  background-color: rgb(128, 0, 0);
+  background-color: rgb(128, 0, 49);
   color: white;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
 }
-
-
-body {
-  overflow-x: hidden;
-}
-
-
-#slide-2 {
-  display: none;
-}
-
-.form-body {
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  justify-content: space-evenly;
-}
-
-.checkbox {
-  height: 20px;
-  width: 20px;
-}
-
-.form-carrossel {
-  justify-content: center;
-  height: 100%;
-}
-
-
-
-
-
-
-
-h2 {
-  font-size: 2.5rem;
-}
-
-#seguir {
-  margin-left: 75%;
-}
-
-#enviar:hover {
-  background-color: rgb(16, 187, 158);
-}
-

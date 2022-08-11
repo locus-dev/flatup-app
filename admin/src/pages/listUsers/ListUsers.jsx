@@ -112,10 +112,11 @@ const ListUsers = () => {
 
 
                     <TableContainer component={Paper} className="table">
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <Table sx={{ minWidth: 450 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
 
+                                    <TableCell className="tableCell">ID</TableCell>
                                     <TableCell className="tableCell">E-mail</TableCell>
                                     <TableCell className="tableCell">Senha</TableCell>
                                     <TableCell className="tableCell">Ações</TableCell>

@@ -22,6 +22,7 @@ import ListUsers from "./pages/listUsers/ListUsers";
 import ListHotels from "./pages/listHotels/ListHotels";
 import ListPartners from "./pages/listPartners/ListPartners";
 import NewPartner from "./pages/newPartner/NewPartner";
+import UpdateUser from "./pages/updateUser/UpdateUser";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -29,7 +30,7 @@ function App() {
 
   let context = useContext(FlatUpContext);
 
-	const [userData, setUserData] = useState(context);
+  const [userData, setUserData] = useState(context);
 
   /* const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);
@@ -44,10 +45,10 @@ function App() {
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
-      <FlatUpContext.Provider value={[userData, setUserData]}>
+        <FlatUpContext.Provider value={[userData, setUserData]}>
           <Routes>
             <Route path="/" >
-              <Route  path="/" element={<Login />} />
+              <Route path="/" element={<Login />} />
               <Route
                 path="/home"
                 element={
@@ -61,7 +62,7 @@ function App() {
                   index
                   element={
 
-                    <ListUsers  />
+                    <ListUsers />
 
                   }
                 />
@@ -77,11 +78,19 @@ function App() {
                   path="new"
                   element={
 
-                    <NewUser  />
+                    <NewUser />
 
                   }
                 />
-                
+                <Route
+                  path="edit/:id"
+                  element={
+
+                    <UpdateUser />
+
+                  }
+                />
+
               </Route>
               <Route path="hotels">
                 <Route
@@ -114,7 +123,7 @@ function App() {
                   index
                   element={
 
-                    <ListPartners  />
+                    <ListPartners />
 
                   }
                 />
@@ -143,4 +152,4 @@ function App() {
   );
 }
 
-export default App ;
+export default App;

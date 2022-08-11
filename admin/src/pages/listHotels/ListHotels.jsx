@@ -16,6 +16,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
+import Hotel from "./Hotel";
 
 
 const ListHotels = () => {
@@ -30,7 +31,7 @@ const ListHotels = () => {
     const [carregando, setCarregando] = useState(true);
     const [imoveis, setImoveis] = useState([]);
 
-    const gerarPDF = () => {
+    /* const gerarPDF = () => {
         const config = {
             headers: { Authorization: `Bearer ${userData.userToken}` }
         }
@@ -39,7 +40,7 @@ const ListHotels = () => {
         const resposta = axios.get(process.env.REACT_APP_API_URL + `/imovel/pdf`, { headers: { 'Authorization': `Bearer ${userData.userToken}` } })
 
 
-    }
+    } */
 
 
     useEffect(() => {
@@ -66,6 +67,17 @@ const ListHotels = () => {
         fetchData();
     }, []);
 
+    const deleteImovel = (e, id) => {
+        e.preventDefault();
+        (id).then((res) => {
+            if (imoveis) {
+                setImoveis((prevElement) => {
+                    return prevElement.filter((imovel) => imovel.id !== id);
+                });
+            }
+        });
+    };
+
 
     return (
         <div className="list">
@@ -84,7 +96,7 @@ const ListHotels = () => {
 
                     <a
                         _target="_blank"
-                        
+
                         href='http://localhost:8081/imovel/pdf'
                         className='botaoGerarPDF '
                     >
@@ -93,7 +105,7 @@ const ListHotels = () => {
 
                 </div>
 
-                <div className="newContainer">
+                <div className="container">
 
 
 
@@ -110,23 +122,19 @@ const ListHotels = () => {
                                     <TableCell className="tableCell">Área m²</TableCell>
                                     <TableCell className="tableCell">Possui Piscina?</TableCell>
                                     <TableCell className="tableCell">Qtde De Suítes</TableCell>
+                                    <TableCell className="tableCell">Ações</TableCell>
 
 
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {imoveis.map((imovel) => (
-                                    <TableRow key={imovel.id}>
-                                        <TableCell className="tableCell">{imovel.idImovel}</TableCell>
-                                        <TableCell className="tableCell">{imovel.climatizado}</TableCell>
-                                        <TableCell className="tableCell">{imovel.statusOcupacao}</TableCell>
-                                        <TableCell className="tableCell">{imovel.idEnderecoFK.bairro}</TableCell>
-                                        <TableCell className="tableCell">{imovel.quantQuarto}</TableCell>
-                                        <TableCell className="tableCell">{imovel.areaLazer}</TableCell>
-                                        <TableCell className="tableCell">{imovel.areaM2}</TableCell>
-                                        <TableCell className="tableCell">{imovel.piscina}</TableCell>
-                                        <TableCell className="tableCell">{imovel.quantSuite}</TableCell>
-                                    </TableRow>
+                                    <Hotel
+                                        imovel={imovel}
+                                        deleteImovel={deleteImovel}
+                                        key={imovel.id} >
+
+                                    </Hotel>
                                 ))}
                             </TableBody>
                         </Table>
