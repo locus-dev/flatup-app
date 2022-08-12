@@ -136,7 +136,7 @@ const Register = () => {
 
                       // Faz login
 											axios
-												.post(process.env.REACT_APP_API_URL + `/auth`, {
+												.post(process.env.REACT_APP_API_URL + `/auth/login`, {
 													email: email,
 													senha: senha,
 												})
