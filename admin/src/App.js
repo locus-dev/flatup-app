@@ -23,6 +23,7 @@ import ListHotels from "./pages/listHotels/ListHotels";
 import ListPartners from "./pages/listPartners/ListPartners";
 import NewPartner from "./pages/newPartner/NewPartner";
 import UpdateUser from "./pages/updateUser/UpdateUser";
+import UpdateHotel from "./pages/updateHotel/UpdateHotel";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -98,6 +99,14 @@ function App() {
                   element={
 
                     <ListHotels />
+
+                  }
+                />
+                <Route
+                  path="edit/:id"
+                  element={
+
+                    <UpdateHotel />
 
                   }
                 />

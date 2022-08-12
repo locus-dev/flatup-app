@@ -10,7 +10,7 @@ const Hotel = ({ imovel, deleteImovel }) => {
     const editarImovel = (e, id) => {
         e.preventDefault();
         console.log(id);
-        navigate(`/imovel/editar/${id}`);
+        navigate(`/hotels/edit/${imovel.idImovel}`);
     };
 
     return (

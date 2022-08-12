@@ -11,7 +11,7 @@ const FormUser = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const [user, setUser] = useState({
+    const [usuario, setUsuario] = useState({
         id: id,
         email: '',
         senha: ''
@@ -19,14 +19,14 @@ const FormUser = () => {
     
     const handleChange = (e) => {
         const value = e.target.value;
-        setUser({ ...user, [e.target.name]: value });
+        setUsuario({ ...usuario, [e.target.name]: value });
     };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(process.env.REACT_APP_API_URL + `/usuario/encontrar/${user.id}`);
-                setUser(response.data);
+                const response = await axios.get(process.env.REACT_APP_API_URL + `/usuario/encontrar/${usuario.id}`);
+                setUsuario(response.data);
 
             } catch (error) {
                 console.log(error);
@@ -37,8 +37,8 @@ const FormUser = () => {
 
     const atualizarUser = (e) => {
         e.preventDefault();
-        console.log(user);
-        axios.put(process.env.REACT_APP_API_URL + `/usuario/editar/${id}` + user, {
+     
+        axios.put(process.env.REACT_APP_API_URL + '/usuario/editar/' + id, usuario, {
             headers: {
                 'Authorization':
                     `Bearer ${userData.userToken}`,
@@ -83,7 +83,7 @@ const FormUser = () => {
                                     type="email"
                                     onChange={(e) => handleChange(e)}
                                     min={0}
-                                    value={user.email}
+                                    value={usuario.email}
                                     className="input"
                                     placeholder="Email"
                                     id="email"
@@ -98,7 +98,7 @@ const FormUser = () => {
                                     type="password"
                                     onChange={(e) => handleChange(e)}
                                     min={0}
-                                    value={user.senha}
+                                    value={usuario.senha}
                                     className="input"
                                     placeholder="Senha"
                                     id="senha"

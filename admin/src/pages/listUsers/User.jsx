@@ -11,7 +11,7 @@ const User = ({ usuario, deleteUsuario }) => {
     const editarUsuario = (e, id) => {
         e.preventDefault();
         console.log(id);
-        navigate(`/users/edit/${id}`);
+        navigate(`/users/edit/${usuario.idUsuario}`);
     };
 
     return (

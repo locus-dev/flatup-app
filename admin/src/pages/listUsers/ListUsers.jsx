@@ -72,7 +72,7 @@ const ListUsers = () => {
         (id).then((res) => {
             if (usuarios) {
                 setUsuarios((prevElement) => {
-                    return prevElement.filter((usuario) => usuario.id !== id);
+                    return prevElement.filter((usuario) => usuario.idUsuario !== id);
                 });
             }
         });
