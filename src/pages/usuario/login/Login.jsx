@@ -79,9 +79,9 @@ const Login = () => {
 
 	return (
 		<div>
-			{/* <Navbar /> */}
+
 			<main>
-			{/* <Navbar /> */}
+			<Navbar />
 				<div className="side-form">
 					<div className="form-box">
 						<h1>Login</h1>
@@ -138,12 +138,13 @@ const Login = () => {
 
 						<h3 className="or">Ou</h3>
 						{/* <form action={config.URL + '/auth'} method="POST"> */}
-						<div className="deladinho">
-							<div className="form-control">
+						<div className="login-box d-flex flex-column">
+							<div>
 								<label className="lsOptionText" for="email">
-									{" "}
+									{" Email: "}
 								</label>
 								<input
+									className="input-padrao w-100"
 									type="email"
 									min={0}
 									value={email}
@@ -153,20 +154,20 @@ const Login = () => {
 									onChange={(e) => setEmail(e.target.value)}
 								/>
 							</div>
-							<div className="form-control">
+							<div>
 								<label className="lsOptionText" for="senha">
-									{" "}
-									<input 
+									{" Senha: "}
+								</label>
+								<input 
+									className="input-padrao w-100"
 									type="password"
 									min={0}
 									value={senha}
 									name="senha"
 									placeholder="Senha"
 									id="senha"
-									onChange={(e) => setSenha(e.target.value)}
-								/>
-								</label>
-							</div>
+									onChange={(e) => setSenha(e.target.value)}/>
+							</div>							
 						</div>
 						<a href="/usuario/recuperar" id="forgot-senha">
 							Esqueci a senha

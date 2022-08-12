@@ -11,6 +11,7 @@ import CadastrarImovel from "./pages/imoveis/cadastrarImovel/CadastrarImovel";
 import TelaImovel from "./pages/imoveis/telaImovel/TelaImovel";
 import FlatUpContext from './components/context/FlatUpContext';
 import { useContext, useState } from "react";
+import Pagamento from "./pages/imoveis/pagamento/Pagamento";
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
 					<Route path="/usuario/recuperar" element={<RecuperarSenha />} />
 					<Route path="/perfil" element={<Perfil />} />
 					<Route path="/concluir-cadastro" element={<ConcluirCadastroPessoa />} />
+					<Route path="/pagamento" element={<Pagamento />} />
 				</Routes>
 			</FlatUpContext.Provider>
 		</BrowserRouter>

@@ -81,8 +81,8 @@
 }
 
 .search-box:hover > input{
-    width: 200px;
-    padding: 0 10px;
+    width: 200px !important;
+    padding: 0 10px !important;
 }
 
 .search-box:hover > .icon{
@@ -93,11 +93,11 @@
     transform: rotate(360deg) scale(0.8);
 }
 
-input{
-    width: 0;
-    border: 0;
-    outline: 0;
-    padding: 0;
+input.search-box-input{
+    width: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    padding: 0 !important;
     background: none;
     font-size: 1.1rem;
     transition: 500ms ease;

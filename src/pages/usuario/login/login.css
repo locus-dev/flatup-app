@@ -44,16 +44,6 @@ main{
     margin-left: 100;
 }
 
-input{
-    border-radius: 5px;
-    height: 40px;
-    width: auto;
-    margin-top: 5px;
-    padding: 5px 10px;
-    font-size: 16px;
-    margin-left: 100;
-}
-
 .form-button{
     width: 100%;
     margin-top: 10px;
@@ -112,15 +102,9 @@ input{
 
 .or{
     text-align: center;
+    padding:15px 0 0 0;
 }
 
 .registre{
     text-align: center;
-}
-
-.tiziu{
-    border: 1px solid red;
-    width: 30px;
-    height: 30px;
-    margin: 0 auto;
 }
