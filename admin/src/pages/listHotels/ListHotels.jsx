@@ -84,15 +84,15 @@ const ListHotels = () => {
             <Sidebar />
             <div className="listContainer">
                 <Navbar />
-                <div className='container'>
+                <div className='botaoPDF'>
 
-                    <button
+                    {/* <button
 
 
                         onClick={() => navigate("/hotels/new")}
                         className='botaoAdd '>
                         Adicionar Imovel
-                    </button>
+                    </button> */}
 
                     <a
                         _target="_blank"

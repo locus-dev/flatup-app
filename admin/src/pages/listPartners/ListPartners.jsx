@@ -81,15 +81,15 @@ const ListPartners = () => {
             <Sidebar />
             <div className="listContainer">
                 <Navbar />
-                <div className='container'>
+                <div className='botaoPDF'>
 
-                    <button
+                    {/* <button
 
 
                         onClick={() => navigate("/partners/new")}
                         className='botaoAdd '>
                         Adicionar Parceiro
-                    </button>
+                    </button> */}
 
                     <a
                         _target="_blank"

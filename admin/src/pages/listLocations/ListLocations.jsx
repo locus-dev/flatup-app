@@ -1,25 +1,12 @@
-import "./listUsers.scss";
+import FormLocation from "./formLocation/FormLocation";
 import React, { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import FlatUpContext from "../../context/FlatUpContext"
-import Sidebar from '../../../src/components/sidebar/Sidebar'
-import Navbar from '../../../src/components/navbar/Navbar'
-import NewUser from '../newUser/NewUser'
-import { useNavigate } from "react-router-dom";
-import User from '../listUsers/User'
-import Datatable from "../../components/datatable/Datatable";
-
-
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import axios from "axios";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
 
-const ListUsers = () => {
+const ListLocations = () => {
 
     const location = useLocation();
    
@@ -99,7 +86,7 @@ const ListUsers = () => {
                     <a
                         _target="_blank"
                         
-                        href='http://ip172-18-0-41-cbr4nvi44gtg008h8lfg-8081.direct.labs.play-with-docker.com/usuario/pdf'
+                        href='http://ip172-18-0-41-cbr4nvi44gtg008h8lfg-8081.direct.labs.play-with-docker.com/locacao/pdf'
                         className='botaoGerarPDF '
                     >
                         Gerar PDF
@@ -111,7 +98,7 @@ const ListUsers = () => {
 
 
 
-                    <TableContainer component={Paper} className="table">
+                    {/* <TableContainer component={Paper} className="table">
                         <Table sx={{ minWidth: 450 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
@@ -137,7 +124,9 @@ const ListUsers = () => {
 
                         </Table>
 
-                    </TableContainer>
+                    </TableContainer> */}
+
+                    <FormLocation />
                 </div>
             </div>
         </div>
@@ -148,4 +137,4 @@ const ListUsers = () => {
 
 
 
-export default ListUsers;
+export default ListLocations;

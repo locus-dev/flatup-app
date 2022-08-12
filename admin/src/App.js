@@ -24,6 +24,7 @@ import ListPartners from "./pages/listPartners/ListPartners";
 import NewPartner from "./pages/newPartner/NewPartner";
 import UpdateUser from "./pages/updateUser/UpdateUser";
 import UpdateHotel from "./pages/updateHotel/UpdateHotel";
+import ListLocations from "./pages/listLocations/ListLocations";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -152,6 +153,18 @@ function App() {
 
                   }
                 />
+              </Route>
+              <Route path="locations">
+                <Route
+                  index
+                  element={
+
+                    <ListLocations />
+
+                  }
+                />
+                
+               
               </Route>
             </Route>
           </Routes>
