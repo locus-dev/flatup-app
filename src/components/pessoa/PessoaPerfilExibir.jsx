@@ -13,7 +13,7 @@ const PessoaPerfilExibir = (props) => {
     useEffect(() => {
             axios.get(`${process.env.REACT_APP_API_URL}/pessoa/encontrar/${1}`, {
                 headers: {
-                'Authorization': `Bearer ${userData[0].userToken}`,
+                'Authorization': `Bearer ${userData.userToken}`,
             }
         }).then((result) =>{
             console.log(result)
@@ -35,18 +35,18 @@ const PessoaPerfilExibir = (props) => {
         'cnpj':pessoa.cnpj,
         'data_nascimento':pessoa.data_nascimento,
         'telefone':pessoa.telefone,
-        'email': userData[0].userEmail
+        'email': userData.userEmail
        }
 
     return (
         <form>
-            <TextComponent label="Nome" content={data.nome} />
+            <TextComponent inputName="Nome" content={data.nome} />
             <br/>
-            <TextComponent label="Data de Nascimento" content={data.data_nascimento} />
+            <TextComponent inputName="Data de Nascimento" content={data.data_nascimento} />
             <br/>
-            <TextComponent label="Telefone" content={data.telefone} />
+            <TextComponent inputName="Telefone" content={data.telefone} />
             <br/>
-            <TextComponent label="Email" content={data.email} />
+            <TextComponent inputName="Email" content={data.email} />
             <br/>
             
             <Button buttonName="Alterar" func={alterarRedirect} />

@@ -84,8 +84,9 @@ const Navbar = () => {
 							<img
 								id="icone-perfil"
 								src="./media/assets/perfil.png"
+								alt="Perfil"
 								onClick={() =>
-									navigate("/perfil", {
+									navigate((userData.hasPersonalInfo ? "/perfil" : "/concluir-cadastro"), {
 										state: { token: userData.userToken },
 									})
 								}

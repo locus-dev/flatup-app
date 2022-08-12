@@ -43,9 +43,10 @@ const Login = () => {
 				senha: senha,
 			})
 			.then((data) => {
-				setUserData({
+				setUserData((prevState) => ({...prevState,
 					userToken: data.data.token,
-				});
+					userEmail: email,
+				}));
 				navigate("/");
 			})
 			.catch((error) => {
@@ -69,9 +70,10 @@ const Login = () => {
 				})
 				.then((data) => {
 					console.log(data);
-					setUserData({
+					setUserData((prevState) => ({ ...prevState,
 						userToken: data.data.token,
-					});
+						userEmail: user.email,
+					}));
 					navigate("/");
 				})
 				.catch((err) => {
