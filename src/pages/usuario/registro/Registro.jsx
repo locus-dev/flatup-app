@@ -43,7 +43,7 @@ const Register = () => {
 	return (
 		<div>
 			<main>
-				<Navbar />
+				{/* <Navbar /> */}
 				<div className="side-form">
 					<div className="form-box">
 						<h1>Registro</h1>
@@ -154,7 +154,7 @@ const Register = () => {
 
                       // Faz login
 											axios
-												.post(process.env.REACT_APP_API_URL + `/auth`, {
+												.post(process.env.REACT_APP_API_URL + `/auth/login`, {
 													email: email,
 													senha: senha,
 												})

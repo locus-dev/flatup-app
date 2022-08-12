@@ -38,7 +38,7 @@ const Login = () => {
 
 	function login() {
 		axios
-			.post(process.env.REACT_APP_API_URL + `/auth`, {
+			.post(process.env.REACT_APP_API_URL + `/auth/login`, {
 				email: email,
 				senha: senha,
 			})
@@ -59,14 +59,19 @@ const Login = () => {
 
 			const token = credential.accessToken;
 			const user = result.user;
-			console.log(token, user);
+			// console.log(token, user);
+			console.log(user.email);
+			console.log(user.uid);
 			axios
-				.post(process.env.REACT_APP_API_URL + "/auth", {
-					email: user,
-					senha: token,
+				.post(process.env.REACT_APP_API_URL + "/auth/oauth", {
+					email: user.email,
+					google_id: user.uid,
 				})
-				.then((res) => {
-					console.log(res);
+				.then((data) => {
+					console.log(data);
+					setUserData({
+						userToken: data.data.token,
+					});
 					navigate("/");
 				})
 				.catch((err) => {
@@ -81,7 +86,7 @@ const Login = () => {
 		<div>
 
 			<main>
-			<Navbar />
+			{/* <Navbar /> */}
 				<div className="side-form">
 					<div className="form-box">
 						<h1>Login</h1>
@@ -96,7 +101,6 @@ const Login = () => {
 								}}
 							>
 								<span>
-								
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -120,7 +124,6 @@ const Login = () => {
 								id="facebook"
 							>
 								<span>
-									
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
