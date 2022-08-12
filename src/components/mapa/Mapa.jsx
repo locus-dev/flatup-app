@@ -6,18 +6,31 @@ import XYZ from "ol/source/XYZ";
 import { Icon, Style } from "ol/style";
 import View from "ol/View";
 import React, { useEffect } from "react";
-
+import { Modify } from "ol/interaction";
 import Point from "ol/geom/Point";
 import { Vector as VectorLayer } from "ol/layer";
 import VectorSource from "ol/source/Vector";
+import Overlay from "ol/Overlay";
 import "./mapa.css";
+import DATA from "../../DATAFILL";
+import { useState } from "react";
+
+import Geolocation from "ol/Geolocation";
 
 // Documentação: https://openlayers.org/en/latest/doc/
-const Mapa = ({ coord }) => {
+// Se o modo de exibição for true, serão exibidos pinos de outros imóveis e não será possível mover o ponteiro, nem pegar a geolocalização.
+const Mapa = ({ coord, modoExibicao, usarGps }) => {
+	// Define o padrão de projeção para o mapa como Geográfico
 	useGeographic();
+
+	// Coordenadas do ponteiro caso ele seja movido
+	const [coordPino, setCoordPino] = useState([]);
+
+	// Atualiza o mapa a cada alteração, garantindo que a exibição não quebre
+	// Não mexa!
 	useEffect(() => {
+		// Cria o pino padrão ////////////////////////////////////////////////////////
 		const pino = new Feature({
-			// geometry: new Point([-35.00331095765701, -8.506508432531763]),
 			geometry: new Point(coord),
 			name: "Local",
 		});
@@ -25,7 +38,6 @@ const Mapa = ({ coord }) => {
 		const pinoStyle = new Style({
 			image: new Icon({
 				src: "../media/assets/pino.png",
-				// anchor: [-18.6,-59.4],
 				anchor: [186, 594],
 				anchorXUnits: "pixel",
 				anchorYUnits: "pixel",
@@ -33,7 +45,9 @@ const Mapa = ({ coord }) => {
 			}),
 		});
 		pino.setStyle(pinoStyle);
+		//////////////////////////////////////////////////////////////////////////////
 
+		// Cria uma camada para vetores (onde os pinos deveram ficar)
 		const vectorSource = new VectorSource({
 			features: [pino],
 		});
@@ -41,8 +55,15 @@ const Mapa = ({ coord }) => {
 		const vectorLayer = new VectorLayer({
 			source: vectorSource,
 		});
-		new Map({
-		target: "map",
+
+		// Configura e cria o mapa /////////////////////////////////////////////////
+		const view = new View({
+			center: coord,
+			zoom: modoExibicao ? 15 : 10,
+		});
+		const target = document.getElementById("map");
+		const map = new Map({
+			target: target,
 			layers: [
 				new TileLayer({
 					source: new XYZ({
@@ -51,14 +72,68 @@ const Mapa = ({ coord }) => {
 				}),
 				vectorLayer,
 			],
-			view: new View({
-				center: coord,
-				zoom: 15,
-			}),
+			view: view,
 		});
+		///////////////////////////////////////////////////////////////////////////
+
+		if (modoExibicao) {
+			// De acordo como modo de utilização do mapa, exibe pinos de outros imóveis ou não
+
+			DATA.imoveis.map((imovel) => {
+				if (imovel.geolocalizacao != coord) {
+					const feature = new Feature({
+						geometry: new Point(imovel.geolocalizacao),
+					});
+					feature.setStyle(
+						new Style({
+							image: new Icon({
+								src: "../media/assets/outro-pino.png",
+								anchor: [186, 594],
+								anchorXUnits: "pixel",
+								anchorYUnits: "pixel",
+								scale: 0.065,
+							}),
+						})
+					);
+					vectorSource.addFeature(feature);
+				}
+			});
+		} else {
+			const modify = new Modify({
+				hitDetection: vectorLayer,
+				source: vectorSource,
+			});
+			modify.on(["modifystart", "modifyend"], function (evt) {
+				target.style.cursor =
+					evt.type === "modifystart" ? "grabbing" : "pointer";
+				setCoordPino(pino.getGeometry().getCoordinates());
+			});
+			const overlaySource = modify.getOverlay().getSource();
+			overlaySource.on(["addfeature", "removefeature"], function (evt) {
+				target.style.cursor =
+					evt.type === "addfeature" ? "pointer" : "";
+			});
+
+			map.addInteraction(modify);
+
+			// Pega localização atual do usuário e move o ponteiro para ele
+			const geolocation = new Geolocation({
+				trackingOptions: {
+					enableHighAccuracy: true,
+				},
+				projection: view.getProjection(),
+			});
+			geolocation.setTracking(usarGps);
+			console.log(usarGps);
+			/////////////////////////////////////////////////////////////////
+		}
 	}, [coord]);
 
-	return <div id="map" className="mapa"></div>;
+	return (
+		<>
+			<div id="map" className="mapa"></div>
+		</>
+	);
 };
 
 export default Mapa;

@@ -1,5 +1,6 @@
 #map {
-    height: 300px;
+    height: 20rem;
     width: 100%;
     padding-right: 1rem;
+    overflow: hidden;
 }
