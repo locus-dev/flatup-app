@@ -2989,6 +2989,24 @@ textarea.form-control-lg {
     transform: scale(.85) translateY(-.5rem) translateX(.15rem)
 }
 
+.input-padrao{
+    height: 50px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+#facebook{
+    background-color: #4267b2;
+    color: white;
+}
+
+#google{
+    background-color: #db4437;
+    color: white;
+}
+
+
 .form-floating>.form-control-plaintext~label,
 .form-floating>.form-control:focus~label,
 .form-floating>.form-control:not(:placeholder-shown)~label,

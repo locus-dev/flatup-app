@@ -31,6 +31,7 @@ const Navbar = () => {
 				<div className="navItems">
 					<div className="search-box">
 						<input
+							className="search-box-input"
 							type="text"
 							name=""
 							placeholder="Para onde ir"
