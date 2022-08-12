@@ -99,7 +99,7 @@ const ListUsers = () => {
                     <a
                         _target="_blank"
                         
-                        href='http://localhost:8081/usuario/pdf'
+                        href='http://ip172-18-0-41-cbr4nvi44gtg008h8lfg-8081.direct.labs.play-with-docker.com/usuario/pdf'
                         className='botaoGerarPDF '
                     >
                         Gerar PDF
