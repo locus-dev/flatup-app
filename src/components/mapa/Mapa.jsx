@@ -24,7 +24,7 @@ const Mapa = ({ coord }) => {
 
 		const pinoStyle = new Style({
 			image: new Icon({
-				src: "https://assets.stickpng.com/images/5888920ebc2fc2ef3a1860a9.png",
+				src: "../media/assets/pino.png",
 				// anchor: [-18.6,-59.4],
 				anchor: [186, 594],
 				anchorXUnits: "pixel",
