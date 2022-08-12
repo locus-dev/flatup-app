@@ -8,6 +8,7 @@ import { getStorage, ref, listAll } from "firebase/storage";
 import app from '../../config'
 import "./featuredProperties.css";
 
+
 const FeaturedProperties = () => {
 	const [dados, setDados] = useState({});
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const FeaturedProperties = () => {
 		.get(process.env.REACT_APP_API_URL+`/imovel/listar`, {headers: {
 			Authorization:
 				"Bearer " + userData.token,
+				
 		}})
 		.then((data) => {
 			setDados(data.data)
@@ -28,7 +30,7 @@ const FeaturedProperties = () => {
 		});
 	},[]);
 
-	console.log(dados)
+	// console.log(dados)
 
 
 	const storage = getStorage(app, "gs://flatup-e23c8.appspot.com");
@@ -60,7 +62,7 @@ const FeaturedProperties = () => {
 			{DATA.imoveis.map((item) => {
 				return (
 					<div key={item.id} className="fpItem" onClick={() => {navigate(`/imoveis/${item.id}`, {state:{id:item.id}})}}>
-						<img src={item.imagem} alt="" className="fpImg" />
+						<div id="imagem" style={{backgroundImage: 'url(' + item.imagem + ')', backgroundSize:'cover', backgroundPosition: 'center'}}></div>
 						<span className="fpName">{item.titulo_anuncio}</span>
 						<span className="fpCity">{item.municipio}</span>
 						{/* <span className="fpDesc">{item.descricao}</span> */}

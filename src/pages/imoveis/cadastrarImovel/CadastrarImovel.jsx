@@ -5,34 +5,79 @@ import Footer from "../../../components/footer/Footer";
 import Navbar from "../../../components/navbar/Navbar";
 import "./CadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
-import Mapa from "../../../components/mapa/Mapa";
-import FlatUpContext from '../../../components/context/FlatUpContext';
+import FlatUpContext from "../../../components/context/FlatUpContext";
 
 const CadastrarImovel = () => {
+	const [token, setToken] = useState({});
+
 	const [payload, setPayload] = useState({
 		areaLazer: true,
 		areaM2: 0,
 		climatizado: "string",
-		idEnderecoFK: null,
+		idEnderecoFK: 1,
 		idImovel: null,
 		piscina: true,
 		quantQuarto: 0,
 		quantSuite: 0,
 		statusOcupacao: "DESOCUPADO",
 	});
-	const [token, setToken] = useState({});
 
-	// const location = useLocation();
+	const modelo = {
+		areaLazer: true,
+		areaM2: 240,
+		climatizado: "CLIMATIZADO",
+		idEnderecoFK: 1,
+		idImovel: 1,
+		piscina: true,
+		quantQuarto: 2,
+		quantSuite: 2,
+		statusOcupacao: "DESOCUPADO",
+	};
+
+	function postImovel() {
+		axios
+			.post(
+				process.env.REACT_APP_API_URL + "/imovel/salvar",
+				{
+					areaLazer: payload.areaLazer,
+					areaM2: payload.areaM2,
+					climatizado: payload.climatizado,
+					idEnderecoFK: 1,
+					piscina: payload.piscina,
+					quantQuarto: payload.quantQuarto,
+					quantSuite: payload.quantSuite,
+					statusOcupacao: payload.statusOcupacao,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${userData.userToken}`,
+					},
+				}
+			)
+			.then((resposta) => {
+				// navigate(`/imoveis/${resposta.id}`, {
+				navigate('/imoveis/1', {
+					state: {
+						token: userData.userToken,
+						id: 1,
+					},
+				});
+			})
+			.catch((error) => {
+				navigate("/imoveis");
+				console.log(error);
+			});
+	}
+
 	const navigate = useNavigate();
 
 	const [userData, setUserData] = useContext(FlatUpContext);
-
 
 	function rodarCarrossel(sentido) {}
 
 	return (
 		<div className="componente">
-			<Navbar/>
+			<Navbar />
 			<form className="form-carrossel">
 				<div className="" id="slide-1">
 					<h2>Endereço</h2>
@@ -75,7 +120,9 @@ const CadastrarImovel = () => {
 								type="text"
 								name="quantQuarto"
 								onChange={(e) => {
-									payload.quantQuarto = Number(e.target.value);
+									payload.quantQuarto = Number(
+										e.target.value
+									);
 								}}
 							/>
 						</div>
@@ -129,7 +176,10 @@ const CadastrarImovel = () => {
 									name="areaLazer"
 									value={true}
 									onChange={(e) => {
-										payload.areaLazer = (e.target.value === "true" ? true : false);
+										payload.areaLazer =
+											e.target.value === "true"
+												? true
+												: false;
 									}}
 								/>
 								<span>Sim</span>
@@ -141,7 +191,10 @@ const CadastrarImovel = () => {
 									name="areaLazer"
 									value={false}
 									onChange={(e) => {
-										payload.areaLazer = (e.target.value === "false" ? false : true);
+										payload.areaLazer =
+											e.target.value === "false"
+												? false
+												: true;
 									}}
 								/>
 								<span>Não</span>
@@ -157,7 +210,10 @@ const CadastrarImovel = () => {
 									name="piscina"
 									value={true}
 									onChange={(e) => {
-										payload.piscina = (e.target.value === "true" ? true : false);
+										payload.piscina =
+											e.target.value === "true"
+												? true
+												: false;
 									}}
 								/>
 								<span>Sim</span>
@@ -169,11 +225,17 @@ const CadastrarImovel = () => {
 									name="piscina"
 									value={false}
 									onChange={(e) => {
-
-										console.log((e.target.value === "false" ? false : true))
-										console.log(typeof(e.target.value))
-										console.log(e.target.value)
-										payload.piscina = (e.target.value === "false" ? false : true);
+										console.log(
+											e.target.value === "false"
+												? false
+												: true
+										);
+										console.log(typeof e.target.value);
+										console.log(e.target.value);
+										payload.piscina =
+											e.target.value === "false"
+												? false
+												: true;
 									}}
 								/>
 								<span>Não</span>
@@ -200,26 +262,7 @@ const CadastrarImovel = () => {
 							type="button"
 							className="button form-button"
 							id="enviar"
-							onClick={() =>
-								axios
-									.post(process.env.REACT_APP_API_URL + "/imovel/salvar", {
-										headers: {
-											Authorization:
-												`Bearer ${userData.userToken}`,
-										},
-										data: payload,
-									})
-									.then((resposta) => {
-										navigate(`/imoveis/${resposta.id}`, {
-											state: {
-												token: userData.userToken,
-											},
-										});
-									}).catch((error) => {
-										navigate('/imoveis')
-										console.log(error);
-									})
-							}
+							onClick={postImovel}
 						>
 							Enviar
 						</button>

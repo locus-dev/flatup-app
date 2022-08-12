@@ -38,9 +38,11 @@ const CarroselImagem = (props) =>{
         <div style={{
           margin: "20px auto"
         }}>
-          <Carousel
+          <Carousel  
+            slideBackgroundColor={"none"}
+            interval={60000}
             data={DATA.imoveis[props.props].imagens}
-            time={3000}
+            time={60000}
             width="100vw"
             height="450px"
             captionStyle={captionStyle}
@@ -48,11 +50,10 @@ const CarroselImagem = (props) =>{
             slideNumber={false}
             slideNumberStyle={slideNumberStyle}
             captionPosition="bottom"
-            automatic={true}
+            automatic={false}
             dots={true}
             pauseIconColor="white"
             pauseIconSize="40px"
-            slideBackgroundColor="darkgrey"
             slideImageFit="cover"
             thumbnails={true}
             thumbnailWidth="100px"

@@ -35,17 +35,23 @@ main{
 .form-control{
     display: flex;
     flex-direction:column;
+    margin-left: 100;
     margin: 0 0 20px 0;
     width: 100%;
 }
 
-.input{
+.lsOptionText{
+    margin-left: 100;
+}
+
+input{
     border-radius: 5px;
     height: 40px;
     width: auto;
     margin-top: 5px;
     padding: 5px 10px;
     font-size: 16px;
+    margin-left: 100;
 }
 
 .form-button{

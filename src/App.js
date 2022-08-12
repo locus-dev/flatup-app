@@ -9,7 +9,6 @@ import Registro from "./pages/usuario/registro/Registro";
 import ListarImoveis from "./pages/imoveis/listarImoveis/ListarImoveis";
 import CadastrarImovel from "./pages/imoveis/cadastrarImovel/CadastrarImovel";
 import TelaImovel from "./pages/imoveis/telaImovel/TelaImovel";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import FlatUpContext from './components/context/FlatUpContext';
 import { useContext, useState } from "react";
 

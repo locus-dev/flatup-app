@@ -10,20 +10,20 @@ import FlatUpContext from '../../components/context/FlatUpContext';
 const Home = () => {
 
 	const [userData, setUserData] = useContext(FlatUpContext);
-	console.log(userData)
+	// console.log(userData)
 
 	return (
 		<div>
 			<Navbar />
 			<Header />
 			<div className="locatesContainer"></div>
-			<div className="homeContainer">
+			<div className="homeContainer container">
 				<FeaturedProperties />
 				<FeaturedProperties />
 				<FeaturedProperties />
-				<MailList />
-				<Footer />
 			</div>
+			<br /><br />
+			<Footer />
 		</div>
 	);
 };

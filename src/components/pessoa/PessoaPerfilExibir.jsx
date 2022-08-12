@@ -3,6 +3,7 @@ import axios from "axios";
 import Button from '../elements/ButtonComponent';
 import TextComponent from '../elements/TextComponent';
 import FlatUpContext from '../context/FlatUpContext';
+import { Navigate } from "react-router-dom";
 
 const PessoaPerfilExibir = (props) => {
     
@@ -21,6 +22,7 @@ const PessoaPerfilExibir = (props) => {
         }).catch((err) =>{
                 console.log(err)
                 console.log("Erro ao encontrar pessoa")
+                Navigate('/concluir-cadastro')
         });
     }, []);
 
