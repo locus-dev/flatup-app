@@ -25,6 +25,9 @@ import NewPartner from "./pages/newPartner/NewPartner";
 import UpdateUser from "./pages/updateUser/UpdateUser";
 import UpdateHotel from "./pages/updateHotel/UpdateHotel";
 import ListLocations from "./pages/listLocations/ListLocations";
+import FormLocation from "./pages/listLocations/formLocation/FormLocation";
+import Locador from "./pages/listLocations/formLocation/components/Locador";
+import Module from "./pages/listLocations/module/Module";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -154,12 +157,30 @@ function App() {
                   }
                 />
               </Route>
-              <Route path="locations">
+              <Route  path="locations">
                 <Route
-                  index
+                  path="modules/listLocations"
                   element={
 
                     <ListLocations />
+
+                  }
+                />
+                <Route
+                  index
+                  path="modules"
+                  element={
+
+                    <Module />
+
+                  }
+                />
+                <Route
+                  path="modules/listLocations/locationDetails"
+                  render={(props) => <Locador {...props}/>}
+                  element={
+
+                    <FormLocation />
 
                   }
                 />

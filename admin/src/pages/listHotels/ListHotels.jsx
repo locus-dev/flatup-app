@@ -65,7 +65,7 @@ const ListHotels = () => {
             setCarregando(false);
         };
         fetchData();
-    }, []);
+    }, [imoveis.idImovel]);
 
     const deleteImovel = (e, id) => {
         e.preventDefault();
@@ -97,7 +97,7 @@ const ListHotels = () => {
                     <a
                         _target="_blank"
 
-                        href='http://ip172-18-0-41-cbr4nvi44gtg008h8lfg-8081.direct.labs.play-with-docker.com/imovel/pdf'
+                        href='http://localhost:8081/imovel/pdf'
                         className='botaoGerarPDF '
                     >
                         Gerar PDF
@@ -122,7 +122,7 @@ const ListHotels = () => {
                                     <TableCell className="tableCell">Área m²</TableCell>
                                     <TableCell className="tableCell">Possui Piscina?</TableCell>
                                     <TableCell className="tableCell">Qtde De Suítes</TableCell>
-                                    <TableCell className="tableCell">Ações</TableCell>
+                                   {/*  <TableCell className="tableCell">Ações</TableCell> */}
 
 
                                 </TableRow>

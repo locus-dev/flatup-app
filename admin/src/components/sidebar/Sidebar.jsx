@@ -61,7 +61,7 @@ const Sidebar = () => {
               <span>Parceiros</span>
             </li>
           </Link>
-          <Link to="/locations" style={{ textDecoration: "none" }}>
+          <Link to="/locations/modules" style={{ textDecoration: "none" }}>
             <li>
               <LocalShippingIcon className="icon" />
               <span>Locações</span>
@@ -73,10 +73,12 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Perfil</span>
           </li>
-          <li>
-            <ExitToAppIcon className="icon" />
-            <span>Logout</span>
-          </li>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
+            </li>
+          </Link>
         </ul>
       </div>
       <div className="bottom">

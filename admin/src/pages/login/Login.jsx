@@ -45,7 +45,7 @@ const Login = () => {
                                 min={0}
                                 value={email}
                                 name="email"
-                                className="input"
+                                className="campo"
                                 placeholder="Email"
                                 id="email"
                                 onChange={(e) => setEmail(e.target.value)}
@@ -60,7 +60,7 @@ const Login = () => {
                                 min={0}
                                 value={senha}
                                 name="senha"
-                                className="input"
+                                className="campo"
                                 placeholder="Senha"
                                 id="senha"
                                 onChange={(e) => setSenha(e.target.value)}
@@ -73,7 +73,7 @@ const Login = () => {
                             className="form-button"
                             onClick={() => {
                                 axios
-                                    .post(process.env.REACT_APP_API_URL + `/auth`, {
+                                    .post(process.env.REACT_APP_API_URL + `/auth/login`, {
                                         email: email,
                                         senha: senha,
                                     })

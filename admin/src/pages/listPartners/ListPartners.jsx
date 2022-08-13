@@ -123,7 +123,7 @@ const ListPartners = () => {
                                     <TableCell className="tableCell">Descrição</TableCell>
                                     <TableCell className="tableCell">Nome Fantasia</TableCell>
                                     <TableCell className="tableCell">CNPJ</TableCell>
-                                    <TableCell className="tableCell">Ações</TableCell>
+                                    {/* <TableCell className="tableCell">Ações</TableCell> */}
 
                                 </TableRow>
                             </TableHead>

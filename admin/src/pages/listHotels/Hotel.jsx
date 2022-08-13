@@ -7,11 +7,11 @@ import TableRow from "@mui/material/TableRow";
 const Hotel = ({ imovel, deleteImovel }) => {
     const navigate = useNavigate();
 
-    const editarImovel = (e, id) => {
+    /* const editarImovel = (e, id) => {
         e.preventDefault();
         console.log(id);
         navigate(`/hotels/edit/${imovel.idImovel}`);
-    };
+    }; */
 
     return (
         <>
@@ -25,7 +25,7 @@ const Hotel = ({ imovel, deleteImovel }) => {
                 <TableCell className="tableCell">{imovel.areaM2}</TableCell>
                 <TableCell className="tableCell">{imovel.piscina}</TableCell>
                 <TableCell className="tableCell">{imovel.quantSuite}</TableCell>
-                <TableCell className="tableCell">
+                {/* <TableCell className="tableCell">
                     <td className="text-right px-6 py-4 font-medium text-sm">
                         <button
                             onClick={(e) => editarImovel(e, imovel.id)}
@@ -40,7 +40,7 @@ const Hotel = ({ imovel, deleteImovel }) => {
 
                         </button>
                     </td>
-                </TableCell>
+                </TableCell> */}
             </TableRow>
 
         </>

@@ -58,12 +58,20 @@ const ListUsers = () => {
             setCarregando(false);
         };
         fetchData();
-    }, []);
+    }, [usuarios.idUsuario]);
 
-    const GERAROPDFPO = () => {
-        axios.get(process.env.REACT_APP_API_URL + '/usuario/pdf')
-        console.log('lascou')
-        return navigate("/users")
+    function GERAROPDFPO  ()   {
+        const response =  axios.get(process.env.REACT_APP_API_URL + '/usuario/pdf',  {
+            headers: {
+                'Authorization':
+                    `Bearer ${userData.userToken}`,
+                'Access-Control-Allow-Origin':
+                    '*'
+            },
+            data: userData.userToken
+        })
+        console.log('lascou' + response )
+        return navigate('/users');
     }
     
     
@@ -96,14 +104,14 @@ const ListUsers = () => {
                         Adicionar Usuário
                     </button> */}
 
-                    <a
+                    <button
                         _target="_blank"
-                        
-                        href='http://ip172-18-0-41-cbr4nvi44gtg008h8lfg-8081.direct.labs.play-with-docker.com/usuario/pdf'
+                        onClick={GERAROPDFPO}
+                        //href="{process.env.REACT_APP_API_URL + '/usuario/pdf'} "
                         className='botaoGerarPDF '
                     >
                         Gerar PDF
-                    </a>
+                    </button>
 
                 </div>
 
@@ -119,7 +127,7 @@ const ListUsers = () => {
                                     <TableCell className="tableCell">ID</TableCell>
                                     <TableCell className="tableCell">E-mail</TableCell>
                                     <TableCell className="tableCell">Senha</TableCell>
-                                    <TableCell className="tableCell">Ações</TableCell>
+                                    {/* <TableCell className="tableCell">Ações</TableCell> */}
 
                                 </TableRow>
                             </TableHead>

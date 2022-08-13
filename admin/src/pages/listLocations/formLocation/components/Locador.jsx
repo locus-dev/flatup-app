@@ -1,9 +1,19 @@
-
+import {useLocation} from 'react-router-dom';
 
 const Locador = () => {
 
+    
+    const location = useLocation();
+    console.log(location.state.usuarios.nome + 'Aqui é o lao')
 
-
+    const usuarios = {
+        id: location.state.usuarios.id,
+        nome: location.state.usuarios.nome,
+        email: location.state.usuarios.email,    
+        telefone: location.state.usuarios.telefone,
+        endereco: location.state.usuarios.endereco,
+        pais: location.state.usuarios.pais
+    }
     return (
 
         <>
@@ -14,24 +24,24 @@ const Locador = () => {
                     className="itemImg"
                 />
                 <div className="details">
-                    <h1 className="itemTitle">Jane Doesdfs</h1>
+                    <h1 className="itemTitle">{usuarios.nome}</h1>
                     <div className="detailItem">
                         <span className="itemKey">Email:</span>
-                        <span className="itemValue">janedoe@gmail.com</span>
+                        <span className="itemValue">{usuarios.email}</span>
                     </div>
                     <div className="detailItem">
                         <span className="itemKey">Phone:</span>
-                        <span className="itemValue">+1 2345 67 89</span>
+                        <span className="itemValue">{usuarios.telefone}</span>
                     </div>
                     <div className="detailItem">
-                        <span className="itemKey">Address:</span>
+                        <span className="itemKey">Endereço:</span>
                         <span className="itemValue">
-                            Elton St. 234 Garden Yd. NewYork
+                            {usuarios.endereco}
                         </span>
                     </div>
                     <div className="detailItem">
-                        <span className="itemKey">Country:</span>
-                        <span className="itemValue">USA</span>
+                        <span className="itemKey">País:</span>
+                        <span className="itemValue">{usuarios.pais}</span>
                     </div>
                 </div>
             </div>

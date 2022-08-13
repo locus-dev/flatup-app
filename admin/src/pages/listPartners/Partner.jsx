@@ -6,11 +6,11 @@ import TableRow from "@mui/material/TableRow";
 const Partner = ({ partner, deletePartner }) => {
     const navigate = useNavigate();
 
-    const editarPartner = (e, id) => {
+    /* const editarPartner = (e, id) => {
         e.preventDefault();
         console.log(id);
         navigate(`/editarUsuario/${id}`);
-    };
+    }; */
 
     return (
         <>
@@ -18,7 +18,7 @@ const Partner = ({ partner, deletePartner }) => {
                 <TableCell className="tableCell">{partner.descricao}</TableCell>
                 <TableCell className="tableCell">{partner.nomeFantasia}</TableCell>
                 <TableCell className="tableCell">{partner.cnpj}</TableCell>
-                <TableCell className="tableCell">
+                {/* <TableCell className="tableCell">
                     <td className="text-right px-6 py-4 font-medium text-sm">
                         <button
                             onClick={(e) => editarPartner(e, partner.id)}
@@ -33,7 +33,7 @@ const Partner = ({ partner, deletePartner }) => {
 
                         </button>
                     </td>
-                </TableCell>
+                </TableCell> */}
             </TableRow>
         </>
 

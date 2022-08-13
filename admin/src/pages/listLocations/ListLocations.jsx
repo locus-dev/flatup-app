@@ -5,6 +5,7 @@ import FlatUpContext from "../../context/FlatUpContext"
 import axios from "axios";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import TableUsers from './formLocation/components/table/TableUsers'
 
 const ListLocations = () => {
 
@@ -16,7 +17,7 @@ const ListLocations = () => {
     console.log(userData.userToken + 'asdasda');
     const navigate = useNavigate();
 
-    const [carregando, setCarregando] = useState(true);
+
     const [usuarios, setUsuarios] = useState([]);
 
     
@@ -25,7 +26,7 @@ const ListLocations = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setCarregando(true);
+            
             try {
 
                 const response = await axios.get(process.env.REACT_APP_API_URL + `/usuario/listar`, {
@@ -42,7 +43,7 @@ const ListLocations = () => {
             } catch (error) {
                 console.log(error);
             }
-            setCarregando(false);
+            
         };
         fetchData();
     }, []);
@@ -54,7 +55,7 @@ const ListLocations = () => {
     }
     
     
-    const deleteUsuario = (e, id) => {
+    /* const deleteUsuario = (e, id) => {
         e.preventDefault();
         (id).then((res) => {
             if (usuarios) {
@@ -64,7 +65,7 @@ const ListLocations = () => {
             }
         });
     };
-
+ */
 
 
     return (
@@ -98,35 +99,9 @@ const ListLocations = () => {
 
 
 
-                    {/* <TableContainer component={Paper} className="table">
-                        <Table sx={{ minWidth: 450 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
+                    <TableUsers />
 
-                                    <TableCell className="tableCell">ID</TableCell>
-                                    <TableCell className="tableCell">E-mail</TableCell>
-                                    <TableCell className="tableCell">Senha</TableCell>
-                                    <TableCell className="tableCell">Ações</TableCell>
-
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {usuarios.map((usuario) => (
-                                    <User
-                                        usuario={usuario}
-                                        deleteUsuario={deleteUsuario}
-                                        key={usuario.id} >
-
-                                    </User>
-                                ))}
-
-                            </TableBody>
-
-                        </Table>
-
-                    </TableContainer> */}
-
-                    <FormLocation />
+                   
                 </div>
             </div>
         </div>
