@@ -19,56 +19,61 @@ const Profile = () => {
 	return (
 		<div className="classe">
 			<Navbar />
-			<div id="aqui">
-				<ImagemComponent
-					source={"./media/assets/perfil.png"}
-					alt={userData.nome}
-					className="imagem-perfil"
-					fluid={true}
-				/>
-				{/* <div id="imagem-perfil">
-					<img
-						src="./media/assets/perfil.png"
-						width="130"
-						height="130"
-					></img>
-				</div> */}
-				<PessoaPerfilExibir className="info-perfil" />
-			</div>
-			<div className="botoes-perfil">
-				<ButtonComponent
-					buttonName="Conclua seu cadastro"
-					func={() => navigate("/concluir-cadastro")}
-					theme="secondary"
-				/>
+				<div className="imageSize">
+					<ImagemComponent
+						source={"./media/assets/perfil.png"}
+						alt={userData.nome}
+						className="imagem-perfil"
+						fluid={true}
+					/>
+					{/* <div id="imagem-perfil">
+						<img
+							src="./media/assets/perfil.png"
+							width="130"
+							height="130"
+						></img>
+					</div> */}
+					
+				</div>
 
-				<ButtonComponent
-					buttonName="Cadastrar Imóvel"
-					func={() => navigate("/imoveis/cadastrar")}
-					theme="success"
-				/>
+				<div className="formDimensao">
+					<PessoaPerfilExibir/>
+				</div>
 
-				<ButtonComponent
-					buttonName="Meus imóveis"
-					func={() => navigate("/perfil/host/imoveis/")}
-					theme="success"
-				/>
+				<div className="botoes-perfil">
+					<ButtonComponent className="buttonPosicao"
+						buttonName="Conclua seu cadastro"
+						func={() => navigate("/concluir-cadastro")}
+						theme="secondary"
+					/>
 
-				<ButtonComponent
-					buttonName="Minhas locações"
-					func={() => navigate("/perfil/locacoes/")}
-					theme="success"
-				/>
+					<ButtonComponent className="buttonPosicao"
+						buttonName="Cadastrar Imóvel"
+						func={() => navigate("/imoveis/cadastrar")}
+						theme="success"
+					/>
 
-				<ButtonComponent
-					buttonName="Logout"
-					func={() => {
-						setUserData({});
-						navigate("/");
-					}}
-					theme="danger"
-				/>
-			</div>
+					<ButtonComponent className="buttonPosicao"
+						buttonName="Meus imóveis"
+						func={() => navigate("/perfil/host/imoveis/")}
+						theme="success"
+					/>
+
+					<ButtonComponent className="buttonPosicao"
+						buttonName="Minhas locações"
+						func={() => navigate("/perfil/locacoes/")}
+						theme="success"
+					/>
+
+					<ButtonComponent className="buttonPosicao"
+						buttonName="Logout"
+						func={() => {
+							setUserData({});
+							navigate("/");
+						}}
+						theme="danger"
+					/>
+				</div>
 		</div>
 	);
 };
