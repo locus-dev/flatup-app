@@ -1,10 +1,18 @@
-import {useLocation} from 'react-router-dom';
+import React, {useContext} from 'react'
+import { useLocation, useNavigate } from "react-router-dom";
+import FlatUpContext from "../../../../context/FlatUpContext"
 
 const Locador = () => {
 
     
     const location = useLocation();
     console.log(location.state.usuarios.nome + 'Aqui é o lao')
+
+    location.state = location.state ? location.state : {};
+
+    const [userData, setUserData] = useContext(FlatUpContext);
+
+    console.log(userData.userToken + 'asdasda');
 
     const usuarios = {
         id: location.state.usuarios.id,

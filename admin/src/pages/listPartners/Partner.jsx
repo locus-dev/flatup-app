@@ -15,8 +15,9 @@ const Partner = ({ partner, deletePartner }) => {
     return (
         <>
             <TableRow key={partner.id}>
+                <TableCell className="tableCell">{partner.parceiro_id}</TableCell>
                 <TableCell className="tableCell">{partner.descricao}</TableCell>
-                <TableCell className="tableCell">{partner.nomeFantasia}</TableCell>
+                <TableCell className="tableCell">{partner.nome_fantasia}</TableCell>
                 <TableCell className="tableCell">{partner.cnpj}</TableCell>
                 {/* <TableCell className="tableCell">
                     <td className="text-right px-6 py-4 font-medium text-sm">

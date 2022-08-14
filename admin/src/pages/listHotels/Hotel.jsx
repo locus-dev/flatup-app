@@ -19,7 +19,7 @@ const Hotel = ({ imovel, deleteImovel }) => {
                 <TableCell className="tableCell">{imovel.idImovel}</TableCell>
                 <TableCell className="tableCell">{imovel.climatizado}</TableCell>
                 <TableCell className="tableCell">{imovel.statusOcupacao}</TableCell>
-                <TableCell className="tableCell">{imovel.idEnderecoFK.bairro}</TableCell>
+                <TableCell className="tableCell">{imovel.idEnderecoFK}</TableCell>
                 <TableCell className="tableCell">{imovel.quantQuarto}</TableCell>
                 <TableCell className="tableCell">{imovel.areaLazer}</TableCell>
                 <TableCell className="tableCell">{imovel.areaM2}</TableCell>

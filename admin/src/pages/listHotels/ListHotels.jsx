@@ -29,6 +29,12 @@ const ListHotels = () => {
     const [userData, setUserData] = useContext(FlatUpContext);
 
     const [carregando, setCarregando] = useState(true);
+
+
+
+    const[endereco, setEndereco] = useState([])
+
+
     const [imoveis, setImoveis] = useState([]);
 
     /* const gerarPDF = () => {
@@ -42,6 +48,29 @@ const ListHotels = () => {
 
     } */
 
+    const GERAROPDFPO = async  () =>   {
+        const response =  await axios.get(process.env.REACT_APP_API_URL + '/imovel/pdf',  {
+            headers: {
+                'Authorization':
+                    `Bearer ${userData.userToken}`,
+                'Access-Control-Allow-Origin':
+                    '*'
+            },
+            responseType: 'blob'
+            
+        })
+        /* const pdfContents = response.data
+        await writeFile('file.pdf', pdfContents); */
+        
+        .then((response) => {
+            window.open(URL.createObjectURL(response.data))
+            console.log(response)
+        }).catch((err) => {
+            console.log(err)
+        })
+        console.log('lascou' + response )
+       
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -65,7 +94,7 @@ const ListHotels = () => {
             setCarregando(false);
         };
         fetchData();
-    }, [imoveis.idImovel]);
+    }, [imoveis.id]);
 
     const deleteImovel = (e, id) => {
         e.preventDefault();
@@ -96,8 +125,8 @@ const ListHotels = () => {
 
                     <a
                         _target="_blank"
-
-                        href='http://localhost:8081/imovel/pdf'
+                        onClick={GERAROPDFPO}
+                        //href='http://localhost:8081/imovel/pdf'
                         className='botaoGerarPDF '
                     >
                         Gerar PDF

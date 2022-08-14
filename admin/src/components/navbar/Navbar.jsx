@@ -7,23 +7,41 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext , useState} from "react";
+import Login from "../../pages/login/Login";
+import FlatUpContext from '../../../src/context/FlatUpContext';
+import { color } from "@mui/system";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
+
+
+  const location = useLocation();
+  location.state = location.state ? location.state : {};
+
+  const [userData, setUserData] = useContext(FlatUpContext);
+
+  const[email, setEmail] = useState('')
+
+  const clicada = () => {
+    console.log(userData.userId + 'AQUI È O TOKEN')
+  }
+  
+
 
   return (
     <div className="navbar">
       <div className="wrapper">
         <div className="search">
-          <input type="text" placeholder="Search..." />
-          <SearchOutlinedIcon />
+          {/* <input type="text" placeholder="Search..." /> */}
+          {/* <SearchOutlinedIcon /> */}
         </div>
         <div className="items">
-          <div className="item">
+          {/* <div className="item">
             <LanguageOutlinedIcon className="icon" />
             English
-          </div>
+          </div> */}
           <div className="item">
             <DarkModeOutlinedIcon
               className="icon"
@@ -33,11 +51,7 @@ const Navbar = () => {
           
           
           <div className="item">
-            <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
-              className="avatar"
-            />
+            <p><strong onClick={clicada}>teste@gmail.com</strong></p>
           </div>
         </div>
       </div>

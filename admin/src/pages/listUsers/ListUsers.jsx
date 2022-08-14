@@ -60,20 +60,33 @@ const ListUsers = () => {
         fetchData();
     }, [usuarios.idUsuario]);
 
-    function GERAROPDFPO  ()   {
-        const response =  axios.get(process.env.REACT_APP_API_URL + '/usuario/pdf',  {
+    const GERAROPDFPO = async  () =>   {
+        const response =  await axios.get(process.env.REACT_APP_API_URL + '/usuario/pdf',  {
             headers: {
                 'Authorization':
                     `Bearer ${userData.userToken}`,
                 'Access-Control-Allow-Origin':
                     '*'
             },
-            data: userData.userToken
+            responseType: 'blob'
+            
+        })
+        /* const pdfContents = response.data
+        await writeFile('file.pdf', pdfContents); */
+        
+        .then((response) => {
+            window.open(URL.createObjectURL(response.data))
+            console.log(response)
+        }).catch((err) => {
+            console.log(err)
         })
         console.log('lascou' + response )
-        return navigate('/users');
+       
     }
     
+    const handlePDF = () => {
+        GERAROPDFPO();
+    }
     
     const deleteUsuario = (e, id) => {
         e.preventDefault();

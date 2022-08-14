@@ -28,6 +28,8 @@ import ListLocations from "./pages/listLocations/ListLocations";
 import FormLocation from "./pages/listLocations/formLocation/FormLocation";
 import Locador from "./pages/listLocations/formLocation/components/Locador";
 import Module from "./pages/listLocations/module/Module";
+import Location from "./pages/listLocations/Location";
+import LocationDetails from "./pages/listLocations/LocationDetails";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -36,6 +38,7 @@ function App() {
   let context = useContext(FlatUpContext);
 
   const [userData, setUserData] = useState(context);
+  
 
   /* const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);
@@ -159,14 +162,15 @@ function App() {
               </Route>
               <Route  path="locations">
                 <Route
-                  path="modules/listLocations"
+                  index
+                  path="modules"
                   element={
 
                     <ListLocations />
 
                   }
                 />
-                <Route
+                {/* <Route
                   index
                   path="modules"
                   element={
@@ -174,10 +178,29 @@ function App() {
                     <Module />
 
                   }
-                />
-                <Route
+                /> */}
+                {/* <Route
                   path="modules/listLocations/locationDetails"
                   render={(props) => <Locador {...props}/>}
+                  element={
+
+                    <FormLocation />
+
+                  }
+                /> */}
+                {<Route
+                  path=""
+                  //render={(props) => <Location {...props}/>}
+                  element={
+
+                    <Location />
+
+                  } 
+                />}
+                
+                <Route
+                  path="modules/listLocations/locationDetails"
+                  render={(props) => <LocationDetails {...props}/>}
                   element={
 
                     <FormLocation />

@@ -58,9 +58,31 @@ const ListPartners = () => {
             setCarregando(false);
         };
         fetchData();
-    }, []);
+    }, [partners.id]);
 
-    
+    const GERAROPDFPO = async  () =>   {
+        const response =  await axios.get(process.env.REACT_APP_API_URL + '/parceiro/pdf',  {
+            headers: {
+                'Authorization':
+                    `Bearer ${userData.userToken}`,
+                'Access-Control-Allow-Origin':
+                    '*'
+            },
+            responseType: 'blob'
+            
+        })
+        /* const pdfContents = response.data
+        await writeFile('file.pdf', pdfContents); */
+        
+        .then((response) => {
+            window.open(URL.createObjectURL(response.data))
+            console.log(response)
+        }).catch((err) => {
+            console.log(err)
+        })
+        console.log('lascou' + response )
+       
+    }
     
     const deletePartner = (e, id) => {
         e.preventDefault();
@@ -93,16 +115,7 @@ const ListPartners = () => {
 
                     <a
                         _target="_blank"
-                        onClick={() => { const d = axios.get('http://localhost:8081/parceiro/pdf', {
-                            headers: {
-                                'Authorization':
-                                    `Bearer ${userData.userToken}`,
-                                'Access-Control-Allow-Origin':
-                                    '*'
-                            },
-                            data: userData
-                        }
-                        )}}
+                        onClick={GERAROPDFPO}
                         //href='http://localhost:8081/usuario/pdf'
                         className='botaoGerarPDF '
                     >
@@ -120,6 +133,7 @@ const ListPartners = () => {
                             <TableHead>
                                 <TableRow>
 
+                                    <TableCell className="tableCell">ID</TableCell>
                                     <TableCell className="tableCell">Descrição</TableCell>
                                     <TableCell className="tableCell">Nome Fantasia</TableCell>
                                     <TableCell className="tableCell">CNPJ</TableCell>
