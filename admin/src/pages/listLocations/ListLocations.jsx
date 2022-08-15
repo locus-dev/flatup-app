@@ -134,7 +134,7 @@ const ListLocations = () => {
                                 <TableRow>
 
                                     <TableCell className="tableCell">ID</TableCell>
-                                    <TableCell className="tableCell">Nome Usuario</TableCell>
+                                    <TableCell className="tableCell">E-mail Usuario</TableCell>
                                     <TableCell className="tableCell">Imóvel</TableCell>
                                     <TableCell className="tableCell">Contrato Locacao</TableCell>
                                     <TableCell className="tableCell">Status Locacao</TableCell>

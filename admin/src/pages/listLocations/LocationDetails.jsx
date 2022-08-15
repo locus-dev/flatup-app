@@ -17,6 +17,7 @@ const LocationDetails = () => {
     const location = useLocation();
 
     const locacao = {
+        usuarioEmail: location.state.locacoes.usuarioEmail,
         locacao_id: location.state.locacoes.locacao_id,
         usuario_id: location.state.locacoes.usuario_id,
         imovel_id: location.state.locacoes.imovel_id,
@@ -62,8 +63,8 @@ const LocationDetails = () => {
                     <span className="itemKey">ID Locação: {locacao.locacao_id}</span>
                    
                     <div className="detailItem">
-                        <span className="itemKey">Nome do Usuário:</span>
-                        <span className="itemValue">{locacao.usuario_id}</span>
+                        <span className="itemKey">Email Usuário:</span>
+                        <span className="itemValue">{locacao.usuarioEmail}</span>
                     </div>
                     <div className="detailItem">
                         <span className="itemKey">Imóvel:</span>
