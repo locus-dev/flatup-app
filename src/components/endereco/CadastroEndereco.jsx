@@ -18,6 +18,7 @@ const CadastroEndereco = (props) => {
 	const [cidade, setCidade] = useState("");
 
 	const [usarGps, setUsarGps] = useState(null);
+	const [geolocalizacao, setGeolocalizacao] = useState([]);
 
 	const [userData, setUserData] = useContext(FlatUpContext);
 
@@ -55,6 +56,13 @@ const CadastroEndereco = (props) => {
 
 	var estado = [];
 	var municipio = [];
+
+	const definirCoordenadas = (xy) => {
+		setGeolocalizacao(xy)
+		console.log(geolocalizacao);
+	}
+
+
 
 	useEffect(() => {
 		axios
@@ -212,12 +220,13 @@ const CadastroEndereco = (props) => {
 				<label>Geolocalização</label>
 				{usarGps ? (
 					<Mapa
-						coord={[-34.92, -8.2]}
+						coord={geolocalizacao ? geolocalizacao : [-34.92, -8.2]}
 						modoExibicao={false}
 						usarGps={usarGps}
+						funcao={definirCoordenadas}
 					/>
-				) : (
-					<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
+					) : (
+						<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
 				)}
 				<div>
 					<input

@@ -36,11 +36,11 @@ const Profile = () => {
 				<PessoaPerfilExibir className="info-perfil" />
 			</div>
 			<div className="botoes-perfil">
-				<ButtonComponent
+				{/* <ButtonComponent
 					buttonName="Conclua seu cadastro"
 					func={() => navigate("/concluir-cadastro")}
 					theme="secondary"
-				/>
+				/> */}
 
 				<ButtonComponent
 					buttonName="Cadastrar Imóvel"

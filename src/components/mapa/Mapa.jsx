@@ -19,16 +19,19 @@ import Geolocation from "ol/Geolocation";
 
 // Documentação: https://openlayers.org/en/latest/doc/
 // Se o modo de exibição for true, serão exibidos pinos de outros imóveis e não será possível mover o ponteiro, nem pegar a geolocalização.
-const Mapa = ({ coord, modoExibicao, usarGps }) => {
+const Mapa = ({ coord, modoExibicao, usarGps, funcao }) => {
 	// Define o padrão de projeção para o mapa como Geográfico
 	useGeographic();
 
 	// Coordenadas do ponteiro caso ele seja movido
-	const [coordPino, setCoordPino] = useState([]);
+	const [coordPino, setCoordPino] = useState(null);
 
 	// Atualiza o mapa a cada alteração, garantindo que a exibição não quebre
 	// Não mexa!
 	useEffect(() => {
+		if (coordPino) {
+			return undefined;
+		}
 		// Cria o pino padrão ////////////////////////////////////////////////////////
 		const pino = new Feature({
 			geometry: new Point(coord),
@@ -111,9 +114,10 @@ const Mapa = ({ coord, modoExibicao, usarGps }) => {
 			const overlaySource = modify.getOverlay().getSource();
 			overlaySource.on(["addfeature", "removefeature"], function (evt) {
 				target.style.cursor =
-					evt.type === "addfeature" ? "pointer" : "";
+				evt.type === "addfeature" ? "pointer" : "";
+				setCoordPino(pino.getGeometry().getCoordinates());
 			});
-
+			
 			map.addInteraction(modify);
 
 			// Pega localização atual do usuário e move o ponteiro para ele
@@ -124,7 +128,13 @@ const Mapa = ({ coord, modoExibicao, usarGps }) => {
 				projection: view.getProjection(),
 			});
 			geolocation.setTracking(usarGps);
-			console.log(usarGps);
+			geolocation.on("change:position", function () {
+				console.log(geolocation.position_);
+			});
+			// geolocation.on("change:position", function () {
+			// 	funcao(geolocation.position_);
+			// 	setCoordPino(geolocation.position_);
+			// });
 			/////////////////////////////////////////////////////////////////
 		}
 	}, [coord]);
