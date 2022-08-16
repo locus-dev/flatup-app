@@ -59,9 +59,9 @@ const ImovelDetalhe = (props) => {
 			<div className="w-100">
 				<div className="localização-texto">
 					<h3>Endereço:</h3>
-					<h6>{DATA.imoveis[props.props].endereco}</h6>
+					<h6>{props.endereco}</h6>
 					<hr />
-					<Mapa coord={DATA.imoveis[props.props].geolocalizacao} modoExibicao={true} />
+					<Mapa coord={props.geolocalizacao} modoExibicao={true} />
 					{/* {console.log(DATA.imoveis[props.props].geolocalizacao)} */}
 					<h4
 						className="mb-3"
@@ -102,8 +102,7 @@ const ImovelDetalhe = (props) => {
 										<span className="promocao-texto">
 											R${" "}
 											{
-												DATA.imoveis[props.props]
-													.valor_diaria
+												props.valor_diaria
 											}
 											/noite
 										</span>
@@ -113,10 +112,9 @@ const ImovelDetalhe = (props) => {
 									</div>
 									<span className="promocao-texto-novopreco">
 										R${" "}
-										{DATA.imoveis[props.props]
+										{props
 											.valor_diaria -
-											(DATA.imoveis[props.props]
-												.valor_diaria *
+											(props.valor_diaria *
 												25) /
 												100}
 										/noite
@@ -132,8 +130,7 @@ const ImovelDetalhe = (props) => {
 										></span>
 										<TimerComponent
 											duracao={
-												DATA.imoveis[props.props]
-													.validadePromocao
+												props.validadePromocao
 											}
 											idSeletor={"promocao-contador"}
 										/>
