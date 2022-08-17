@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import CadastroEndereco from "../../../components/endereco/CadastroEndereco";
 import Footer from "../../../components/footer/Footer";
 import Navbar from "../../../components/navbar/Navbar";
-import "./CadastrarImovel.css";
+import "./cadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
 import FlatUpContext from "../../../components/context/FlatUpContext";
 
@@ -76,10 +76,12 @@ const CadastrarImovel = () => {
 	function rodarCarrossel(sentido) {}
 
 	return (
-		<div className="componente">
-			<Navbar />
+
+	<main>
+		<Navbar />
+		<div className="container">
 			<form className="form-carrossel">
-				<div className="" id="slide-1">
+				<div className="form-group" id="slide-1">
 					<h2>Endereço</h2>
 					{/* TODO => Fazer os inputs dentro do componente "CadastroEndereco" passarem seus values para a const payload que será um objeto JSON */}
 					<CadastroEndereco props={payload} />
@@ -92,19 +94,15 @@ const CadastrarImovel = () => {
 								"none";
 							document.getElementById("slide-2").style.display =
 								"flex";
-						}}
-					>
-						Seguir
-					</button>
+						}}>Seguir</button>
 				</div>
 
-				<div className="" id="slide-2">
+				<div className="container" id="slide-2">
 					<h2>Informações adicionais</h2>
-					<div className="form-body">
-						<div className="form-control">
-							<label>Tamanho em m²</label>
+						<div className="form-group">
+							<label className="exampleInputEmail1">Tamanho em m²</label>
 							<input
-								className="input"
+								className="form-control"
 								type="text"
 								name="areaM2"
 								onChange={(e) => {
@@ -113,10 +111,10 @@ const CadastrarImovel = () => {
 							/>
 						</div>
 
-						<div className="form-control">
-							<label>Número de quartos</label>
+						<div className="form-group">
+							<label className="exampleInputEmail1">Número de quartos</label>
 							<input
-								className="input"
+								className="form-control"
 								type="text"
 								name="quantQuarto"
 								onChange={(e) => {
@@ -127,10 +125,10 @@ const CadastrarImovel = () => {
 							/>
 						</div>
 
-						<div className="form-control">
-							<label>Número de suites</label>
+						<div className="form-group">
+							<label className="exampleInputEmail1">Número de suites</label>
 							<input
-								className="input"
+								className="form-control"
 								type="text"
 								name="quantSuite"
 								onChange={(e) => {
@@ -139,11 +137,11 @@ const CadastrarImovel = () => {
 							/>
 						</div>
 
-						<div className="form-control">
-							<label>Climatizado</label>
+						<div className="form-group">
+							<label className="exampleInputEmail1">Climatizado</label>
 							<div>
 								<input
-									className="input checkbox"
+									className="form-control"
 									type="radio"
 									name="climatizado"
 									value="CLIMATIZADO"
@@ -151,11 +149,11 @@ const CadastrarImovel = () => {
 										payload.climatizado = e.target.value;
 									}}
 								/>
-								<span>Sim</span>
+								<span className="exampleInputEmail1">Sim</span>
 							</div>
-							<div>
+							<div className="form-group">
 								<input
-									className="input checkbox"
+									className="form-control"
 									type="radio"
 									name="climatizado"
 									value="NAO_CLIMATIZADO"
@@ -163,14 +161,15 @@ const CadastrarImovel = () => {
 										payload.climatizado = e.target.value;
 									}}
 								/>
-								<span>Não</span>
+								<span className="exampleInputEmail1">Não</span>
 							</div>
 						</div>
 
-						<div className="form-control">
-							<label>Possui área de lazer?</label>
+						<div className="form-group">
+							<label className="exampleInputEmail1">Possui área de lazer?</label>
 							<div>
 								<input
+									// className="form-control"
 									className="input checkbox"
 									type="radio"
 									name="areaLazer"
@@ -182,10 +181,11 @@ const CadastrarImovel = () => {
 												: false;
 									}}
 								/>
-								<span>Sim</span>
+								<span className="exampleInputEmail1">Sim</span>
 							</div>
-							<div>
+							<div className="form-group">
 								<input
+									// className="form-control"
 									className="input checkbox"
 									type="radio"
 									name="areaLazer"
@@ -197,14 +197,15 @@ const CadastrarImovel = () => {
 												: true;
 									}}
 								/>
-								<span>Não</span>
+								<span className="exampleInputEmail1">Não</span>
 							</div>
 						</div>
 
-						<div className="form-control">
-							<label>Piscina</label>
+						<div className="form-group">
+							<label className="exampleInputEmail1">Piscina</label>
 							<div>
 								<input
+									// className="form-control"
 									className="input checkbox"
 									type="radio"
 									name="piscina"
@@ -216,10 +217,11 @@ const CadastrarImovel = () => {
 												: false;
 									}}
 								/>
-								<span>Sim</span>
+								<span className="exampleInputEmail1">Sim</span>
 							</div>
-							<div>
+							<div className="form-group">
 								<input
+									// className="form-control"
 									className="input checkbox"
 									type="radio"
 									name="piscina"
@@ -238,10 +240,10 @@ const CadastrarImovel = () => {
 												: true;
 									}}
 								/>
-								<span>Não</span>
+								<span className="exampleInputEmail1">Não</span>
 							</div>
 						</div>
-					</div>
+
 
 					<div className="form-footer">
 						<button
@@ -271,6 +273,7 @@ const CadastrarImovel = () => {
 			</form>
 			<Footer />
 		</div>
+	</main>
 	);
 };
 

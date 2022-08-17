@@ -10,7 +10,9 @@ body {
 #slide-2 {
     display: flex;
 }
-
+.exampleInputEmail1{
+    color: black;
+}
 .form-control,
 #slide-1,
 #slide-2 {
@@ -22,18 +24,16 @@ body {
     margin: 2rem;
 }
 
-.input {
-    border: 1.25px solid rgb(209, 209, 209);
+input{
+    border: 1px solid gray;
     border-radius: 5px;
-    background-color: rgba(207, 207, 207, 0.938);
-    height: 25px;
+    height: 40px;
     margin-top: 5px;
     padding: 5px 10px;
     font-size: 16px;
-    width: 200px;
-    /* color: aliceblue; */
+    justify-content: center;
+    align-items: center;
 }
-
 #slide-1,
 #slide-2 {
     transition: all 400ms;
@@ -86,21 +86,22 @@ body {
     margin-top: 1rem;
     padding: 4rem;
     /* background-color: #0071c2; */
-    background: rgb(42, 35, 91);
-    background: linear-gradient(28deg, rgba(42, 35, 91, 1) 12%, rgba(0, 113, 194, 1) 100%);
+    /* background: rgb(42, 35, 91);
+    background: linear-gradient(28deg, rgba(42, 35, 91, 1) 12%, rgba(0, 113, 194, 1) 100%); */
 }
 
 h2 {
     font-size: 2.5rem;
+    color: black;
 }
 
 #seguir {
     margin-left: 75%;
 }
 
-#enviar:hover {
+/* #enviar:hover {
     background-color: rgb(16, 187, 158);
-}
+} */
 
 .componente {
     display: flex;

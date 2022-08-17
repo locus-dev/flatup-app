@@ -5,6 +5,7 @@ import uuid from "node-uuid";
 import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 import FlatUpContext from "../context/FlatUpContext";
 import Mapa from "../mapa/Mapa";
+import "./cadastroEndereco.css";
 
 const CadastroEndereco = (props) => {
 	const [bairro, setBairro] = useState("");
@@ -102,11 +103,11 @@ const CadastroEndereco = (props) => {
 			});
 	}
 	return (
-		<div className="form-body">
-			<div className="form-control">
-				<label>Logradouro</label>
+		<div className="container">
+			<div className="form-group">
+				<label className="exampleInputEmail1">Logradouro</label>
 				<input
-					className="input"
+					className="form-control"
 					type="text"
 					name="logradouro"
 					onChange={(e) => {
@@ -114,10 +115,10 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-control">
-				<label>Número</label>
+			<div className="form-group">
+				<label className="exampleInputEmail1">Número</label>
 				<input
-					className="input"
+					className="form-control"
 					type="text"
 					name="numero"
 					onChange={(e) => {
@@ -125,10 +126,10 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-control">
-				<label>Complemento</label>
+			<div className="form-group">
+				<label className="exampleInputEmail1">Complemento</label>
 				<input
-					className="input"
+					className="form-control"
 					type="text"
 					name="complemento"
 					onChange={(e) => {
@@ -136,10 +137,10 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-control">
-				<label>Bairro</label>
+			<div className="form-group">
+				<label className="exampleInputEmail1">Bairro</label>
 				<input
-					className="input"
+					className="form-control"
 					type="text"
 					name="bairro"
 					onChange={(e) => {
@@ -147,10 +148,10 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-control">
-				<label>Ponto de Referência</label>
+			<div className="form-group">
+				<label className="exampleInputEmail1">Ponto de Referência</label>
 				<input
-					className="input"
+					className="form-control"
 					type="text"
 					name="pt_referencia"
 					onChange={(e) => {
@@ -158,10 +159,10 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-control">
-				<label>CEP</label>
+			<div className="form-group">
+				<label className="exampleInputEmail1">CEP</label>
 				<input
-					className="input"
+					className="form-control"
 					type="text"
 					name="cep"
 					onChange={(e) => {
@@ -170,9 +171,9 @@ const CadastroEndereco = (props) => {
 				/>
 				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 			</div>
-			<div className="form-control">
-				<label>UF</label>
-				<select name="uf">
+			<div className="form-group">
+				<label className="exampleInputEmail1">UF</label>
+				<select className="form-control" name="uf">
 					{listaUF.map((item, index) => {
 						return (
 							<option
@@ -189,10 +190,10 @@ const CadastroEndereco = (props) => {
 					})}
 				</select>
 			</div>
-			<div className="form-control">
-				<label>Cidade</label>
+			<div className="form-group">
+				<label className="exampleInputEmail1">Cidade</label>
 				{/* <input className="input" type="text" name="cidade"/> */}
-				<select name="cidade">
+				<select className="form-control" name="cidade">
 					{listaCidade.map((item) => {
 						return (
 							<option
@@ -207,9 +208,9 @@ const CadastroEndereco = (props) => {
 					})}
 				</select>
 			</div>
-
-			<div className="form-control">
-				<label>Geolocalização</label>
+			
+			<div className="form-group">
+				<label className="exampleInputEmail1">Geolocalização</label>
 				{usarGps ? (
 					<Mapa
 						coord={[-34.92, -8.2]}
@@ -219,29 +220,24 @@ const CadastroEndereco = (props) => {
 				) : (
 					<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
 				)}
-				<div>
+				{/* <div>
 					<input
 						name="coord"
 						type="checkbox"
+						className="form-check-input"
 						onChange={() => {
 							setUsarGps(true);
 						}}
 					/>
-					<span>Usar GPS</span>
-				</div>
+					{" "}<span className="exampleInputEmail1">Usar GPS</span>
+				</div> */}
 			</div>
-			<div>
+			{/* <div>
 				<BotaoLocalizacao />
-			</div>
-			<button
-				type="button"
-				className="btn btn-primary"
-				onClick={() => {
-					req();
-				}}
-			>
-				Cadastrar Endereço
-			</button>
+			</div> */}
+			<br></br>
+			<button type="button" className="btn btn-primary" onClick={() => {req();}}> Cadastrar Endereço</button>
+
 			{/* <div className="form-control">
 			<label>País</label>
 			<input className="input" type="text" name="nacionalidade"/>
