@@ -1,52 +1,35 @@
-#aqui {
+.imageSize{
+    width: 10%;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-
-    width: 30%;
-
 }
-
-#aqui img {
-    margin-bottom: 10rem;
-    margin-right: 20rem;
+.formDimensao{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2%;
 }
-
-#aqui div, .classe {
+.classe {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-#aqui div {
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 120%;
-}
-
-#aqui div input {
-    margin: 2rem;
-    text-align: center;
-}
-
-#dados-perfil {
-}
-
+    margin-top: 7%;
+} 
 .botoes-perfil {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 0.2rem;
+    margin-top: 1%;
 }
-
 .botoes-perfil button {
-    margin: 2rem;
+    margin: 0.2rem;
 }
-
 .info-perfil {
     display: flex;
     flex-direction: column;

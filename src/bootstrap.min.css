@@ -2989,6 +2989,20 @@ textarea.form-control-lg {
     transform: scale(.85) translateY(-.5rem) translateX(.15rem)
 }
 
+.lugar{
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    margin-right: 20px;
+    height: 350px;
+    border-radius: 20px;
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
 .input-padrao{
     height: 50px;
     width: 100%;

@@ -5,6 +5,7 @@ import uuid from "node-uuid";
 import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 import FlatUpContext from "../context/FlatUpContext";
 import Mapa from "../mapa/Mapa";
+import "./cadastroEndereco.css";
 
 const CadastroEndereco = (props) => {
 	const [bairro, setBairro] = useState("");
@@ -110,9 +111,9 @@ const CadastroEndereco = (props) => {
 			});
 	}
 	return (
-		<div className="form-body">
-			<div className="form-control">
-				<label>Logradouro</label>
+		<div className="container" id="">
+			<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">Logradouro</label>
 				<input
 					className="input"
 					type="text"
@@ -122,30 +123,33 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-control">
-				<label>Número</label>
-				<input
-					className="input"
-					type="text"
-					name="numero"
-					onChange={(e) => {
-						setNumero(String(e.target.value));
-					}}
-				/>
+
+			<div className="d-flex">
+				<div className="d-flex flex-column w-50  mb-3">
+					<label className="exampleInputEmail1">Número</label>
+					<input
+						className="input"
+						type="text"
+						name="numero"
+						onChange={(e) => {
+							setNumero(String(e.target.value));
+						}}
+					/>
+				</div>
+				<div className=" d-flex flex-column w-50 mb-3">
+					<label className="exampleInputEmail1">Complemento</label>
+					<input
+						className="input"
+						type="text"
+						name="complemento"
+						onChange={(e) => {
+							setComplemento(String(e.target.value));
+						}}
+					/>
+				</div>
 			</div>
-			<div className="form-control">
-				<label>Complemento</label>
-				<input
-					className="input"
-					type="text"
-					name="complemento"
-					onChange={(e) => {
-						setComplemento(String(e.target.value));
-					}}
-				/>
-			</div>
-			<div className="form-control">
-				<label>Bairro</label>
+			<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">Bairro</label>
 				<input
 					className="input"
 					type="text"
@@ -155,8 +159,8 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-control">
-				<label>Ponto de Referência</label>
+			<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">Ponto de Referência</label>
 				<input
 					className="input"
 					type="text"
@@ -166,8 +170,8 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-control">
-				<label>CEP</label>
+			<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">CEP</label>
 				<input
 					className="input"
 					type="text"
@@ -178,47 +182,51 @@ const CadastroEndereco = (props) => {
 				/>
 				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 			</div>
-			<div className="form-control">
-				<label>UF</label>
-				<select name="uf">
-					{listaUF.map((item, index) => {
-						return (
-							<option
-								key={item.id}
-								value={item.id}
-								onClick={() => {
-									setUf(String(item.sigla));
-									selectUF(item.sigla);
-								}}
-							>
-								{item.nome}
-							</option>
-						);
-					})}
-				</select>
+			<div className="d-flex mb-3">
+				<div className=" d-flex flex-column w-50">
+					<label className="exampleInputEmail1">UF</label>
+					<select className="input select" name="uf">
+					<option selected>Selecione seu estado</option>
+						{listaUF.map((item, index) => {
+							return (
+								<option
+									key={item.id}
+									value={item.id}
+									onClick={() => {
+										setUf(String(item.sigla));
+										selectUF(item.sigla);
+									}}
+								>
+									{item.nome}
+								</option>
+							);
+						})}
+					</select>
+				</div>
+				<div className="  d-flex flex-column w-50">
+					<label className="exampleInputEmail1">Cidade</label>
+					{/* <input className="input" type="text" name="cidade"/> */}
+					<select className="input select" name="cidade">
+					<option selected>Selecione sua cidade</option>
+						{listaCidade.map((item) => {
+							return (
+								<option
+									value={item.id}
+									onChange={(e) => {
+										setCidade(String(e.target.value));
+									}}
+								>
+									{item.nome}
+								</option>
+							);
+						})}
+					</select>
+				</div>
 			</div>
-			<div className="form-control">
-				<label>Cidade</label>
-				{/* <input className="input" type="text" name="cidade"/> */}
-				<select name="cidade">
-					{listaCidade.map((item) => {
-						return (
-							<option
-								value={item.id}
-								onChange={(e) => {
-									setCidade(String(e.target.value));
-								}}
-							>
-								{item.nome}
-							</option>
-						);
-					})}
-				</select>
-			</div>
-
-			<div className="form-control">
-				<label>Geolocalização</label>
-				{usarGps ? (
+			
+			<div className="d-flex flex-column">
+				<label className="exampleInputEmail1">Geolocalização</label>
+				<div>{usarGps ? (
 					<Mapa
 						coord={geolocalizacao ? geolocalizacao : [-34.92, -8.2]}
 						modoExibicao={false}
@@ -227,31 +235,26 @@ const CadastroEndereco = (props) => {
 					/>
 					) : (
 						<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
-				)}
+				)}</div>
 				<div>
 					<input
 						name="coord"
 						type="checkbox"
+						className="form-check-input"
 						onChange={() => {
 							setUsarGps(true);
 						}}
 					/>
-					<span>Usar GPS</span>
+					{" "}<span className="exampleInputEmail1">Usar GPS</span>
 				</div>
 			</div>
-			<div>
+			{/* <div>
 				<BotaoLocalizacao />
-			</div>
-			<button
-				type="button"
-				className="btn btn-primary"
-				onClick={() => {
-					req();
-				}}
-			>
-				Cadastrar Endereço
-			</button>
-			{/* <div className="form-control">
+			</div> */}
+			<br></br>
+			<button type="button" className="btn btn-primary" onClick={() => {req();}}> Cadastrar Endereço</button>
+
+			{/* <div className="input">
 			<label>País</label>
 			<input className="input" type="text" name="nacionalidade"/>
 		</div> */}

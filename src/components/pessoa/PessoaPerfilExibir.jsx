@@ -4,6 +4,7 @@ import Button from '../elements/ButtonComponent';
 import TextComponent from '../elements/TextComponent';
 import FlatUpContext from '../context/FlatUpContext';
 import { Navigate } from "react-router-dom";
+//import "./pessoaPerfilExibir.css";
 
 const PessoaPerfilExibir = (props) => {
     
@@ -40,15 +41,22 @@ const PessoaPerfilExibir = (props) => {
 
     return (
         <form>
-            <TextComponent inputName="Nome" content={data.nome} />
+            <TextComponent inputName="Nome"/>
             <br/>
-            <TextComponent inputName="Data de Nascimento" content={data.data_nascimento} />
+            <input content={data.nome} type="text"></input>
             <br/>
-            <TextComponent inputName="Telefone" content={data.telefone} />
+            <TextComponent inputName="Data de Nascimento"  />
             <br/>
-            <TextComponent inputName="Email" content={data.email} />
+            <input content={data.data_nascimento} type="date"></input>
             <br/>
-            
+            <TextComponent inputName="Telefone"  />
+            <br/>
+            <input content={data.telefone} type="text"></input>
+            <br/>
+            <TextComponent inputName="Email"  />
+            <br/>
+            <input content={data.email} type="email"></input>
+            <br/>
             <Button buttonName="Alterar" func={alterarRedirect} />
          </form>
     )

@@ -16,6 +16,29 @@ const Home = () => {
 		<div>
 			<Navbar />
 			<Header />
+			<div id="explorar" className="container mt-4">
+				<h1>Conheça lugares</h1>
+				<div className="d-flex justify-content-between">
+					<div className="lugar">
+						<h4>Recife</h4>
+					</div>
+
+					<div className="lugar">
+						<h4>Porto de Galinhas</h4>
+					</div>
+
+					<div className="lugar">
+						<h4>Garanhus</h4>
+					</div>
+
+					<div className="lugar">
+						<h4>Boa Viagem</h4>
+					</div>
+					<div className="lugar">
+						<h4>Jaboatão</h4>
+					</div>
+				</div>
+			</div>
 			<div className="locatesContainer"></div>
 			<div className="homeContainer container">
 				<FeaturedProperties />
