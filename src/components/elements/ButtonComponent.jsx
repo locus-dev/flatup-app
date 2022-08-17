@@ -1,8 +1,9 @@
 import Button from 'react-bootstrap/Button';
 
 const ButtonComponent = (props) => {
+    console.log(props)
     return (
-        <>
+        <><br/>
             <Button
                 id={props.idButton}
                 variant={props.theme}

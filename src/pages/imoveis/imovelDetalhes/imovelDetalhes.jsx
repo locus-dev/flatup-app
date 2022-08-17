@@ -61,7 +61,7 @@ const ImovelDetalhe = (props) => {
 					<h3>Endereço:</h3>
 					<h6>{DATA.imoveis[props.props].endereco}</h6>
 					<hr />
-					<Mapa coord={DATA.imoveis[props.props].geolocalizacao} />
+					<Mapa coord={DATA.imoveis[props.props].geolocalizacao} modoExibicao={true} />
 					{/* {console.log(DATA.imoveis[props.props].geolocalizacao)} */}
 					<h4
 						className="mb-3"

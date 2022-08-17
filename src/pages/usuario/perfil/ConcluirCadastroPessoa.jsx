@@ -15,7 +15,7 @@ const ConcluirCadastroPessoa = () => {
 		nome: "",
 		pessoa_id: Number,
 		telefone: "",
-		usuario_id: Number,
+		usuario_id: 1,
 	});
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -32,7 +32,12 @@ const ConcluirCadastroPessoa = () => {
 						className="input"
 						type="text"
 						value={payload.nome.value}
-						onChange={(e) => ({ ...payload, nome: e.target.value })}
+						onChange={(e) =>
+							setPayload((prevState) => ({
+								...prevState,
+								nome: e.target.value,
+							}))
+						}
 						name="nome"
 					/>
 				</div>
@@ -42,10 +47,12 @@ const ConcluirCadastroPessoa = () => {
 						className="input"
 						type="text"
 						value={payload.telefone.value}
-						onChange={(e) => ({
-							...payload,
-							telefone: e.target.value,
-						})}
+						onChange={(e) =>
+							setPayload((prevState) => ({
+								...prevState,
+								telefone: e.target.value,
+							}))
+						}
 						name="telefone"
 					/>
 				</div>
@@ -55,7 +62,12 @@ const ConcluirCadastroPessoa = () => {
 						className="input"
 						type="text"
 						value={payload.cpf.value}
-						onChange={(e) => ({ ...payload, cpf: e.target.value })}
+						onChange={(e) =>
+							setPayload((prevState) => ({
+								...prevState,
+								cpf: e.target.value,
+							}))
+						}
 						name="cpf"
 					/>
 				</div>
@@ -66,7 +78,10 @@ const ConcluirCadastroPessoa = () => {
 						type="text"
 						value={payload.cnpj.value}
 						onChange={(e) =>
-							setPayload({ ...payload, cnpj: e.target.value })
+							setPayload((prevState) => ({
+								...prevState,
+								cnpj: e.target.value,
+							}))
 						}
 						name="cnpj"
 					/>
@@ -77,10 +92,10 @@ const ConcluirCadastroPessoa = () => {
 						className="input"
 						value={payload.data_nascimento.value}
 						onChange={(e) =>
-							setPayload({
-								...payload,
+							setPayload((prevState) => ({
+								...prevState,
 								data_nascimento: e.target.value,
-							})
+							}))
 						}
 						type="date"
 						name="data_nascimento"
@@ -89,15 +104,23 @@ const ConcluirCadastroPessoa = () => {
 				<button
 					onClick={() => {
 						axios
-							.post(process.env.REACT_APP_API_URL + `/pessoa/salvar`, {
-								headers: {
-									Authorization: "Bearer " + userData.userToken,
-								},
-								data: payload,
+							.post(
+								process.env.REACT_APP_API_URL +
+									`/pessoa/salvar`,
+								payload,
+								{
+									headers: {
+										Authorization:
+											"Bearer " + userData.userToken,
+									},
+								}
+							)
+							.then((resposta) => {
+								userData.hasPersonalInfo = true;
+								userData.userPersonalInfo = resposta.data;
+								navigate("/perfil");
 							})
-							.then(() => {
-								navigate("/perfil")
-							}).catch((error) => {
+							.catch((error) => {
 								console.log(error);
 							});
 					}}

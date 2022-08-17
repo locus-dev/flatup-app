@@ -4,6 +4,7 @@ import axios from "axios";
 import uuid from "node-uuid";
 import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 import FlatUpContext from "../context/FlatUpContext";
+import Mapa from "../mapa/Mapa";
 
 const CadastroEndereco = (props) => {
 	const [bairro, setBairro] = useState("");
@@ -15,7 +16,9 @@ const CadastroEndereco = (props) => {
 	const [ponto_referencia, setPonto_referencia] = useState("");
 	const [uf, setUf] = useState("");
 	const [cidade, setCidade] = useState("");
-	
+
+	const [usarGps, setUsarGps] = useState(null);
+
 	const [userData, setUserData] = useContext(FlatUpContext);
 
 	function req() {
@@ -47,20 +50,8 @@ const CadastroEndereco = (props) => {
 			});
 	}
 
-	// const model = {
-	// 	bairro: "Setor Continental",	
-	// 	cep: "74993-763",
-	// 	complemento: "casa de rua",
-	// 	logradouro: "Rua Maria Ribeiro Peixoto",
-	// 	numero: "146",
-	// 	pessoa_id: 1,
-	// 	ponto_referencia: "na esquina 1",
-	// 	uf: "PE",
-	// };
-
 	const [listaUF, setListaUF] = useState([]);
 	const [listaCidade, setListaCidade] = useState([]);
-	// const [estado, setUF] = useState([]);
 
 	var estado = [];
 	var municipio = [];
@@ -70,19 +61,19 @@ const CadastroEndereco = (props) => {
 			.get(
 				"https://servicodados.ibge.gov.br/api/v1/localidades/estados",
 				{ hearders: { "Access-Control-Allow-Origin": "*" } }
-			)	
+			)
 			.then((resposta) => {
 				setListaUF(resposta.data);
 				console.log(resposta.data);
-			})	
+			})
 			.catch((error) => {
 				console.log(error);
-			});	
-	}, []);		
+			});
+	}, []);
 
 	function buscarCep() {
 		// Implementar depois
-	}	
+	}
 
 	function selectUF(sigla) {
 		console.log(sigla);
@@ -90,10 +81,10 @@ const CadastroEndereco = (props) => {
 		listaUF.forEach((uf) => {
 			if (uf.sigla == sigla) {
 				estado = sigla;
-			}	
-		});	
+			}
+		});
 		selectCidade(estado);
-	}	
+	}
 
 	function selectCidade(estado) {
 		// Implementar depois
@@ -101,15 +92,15 @@ const CadastroEndereco = (props) => {
 			.get(
 				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`,
 				{ hearders: { "Access-Control-Allow-Origin": "*" } }
-			)	
+			)
 			.then((resposta) => {
 				setListaCidade(resposta.data);
 				console.log(resposta);
-			})	
+			})
 			.catch((error) => {
 				console.log(error);
-			});	
-	}		
+			});
+	}
 	return (
 		<div className="form-body">
 			<div className="form-control">
@@ -185,9 +176,9 @@ const CadastroEndereco = (props) => {
 					{listaUF.map((item, index) => {
 						return (
 							<option
-							key={item.id}
-							value={item.id}
-							onClick={() => {
+								key={item.id}
+								value={item.id}
+								onClick={() => {
 									setUf(String(item.sigla));
 									selectUF(item.sigla);
 								}}
@@ -215,6 +206,29 @@ const CadastroEndereco = (props) => {
 						);
 					})}
 				</select>
+			</div>
+
+			<div className="form-control">
+				<label>Geolocalização</label>
+				{usarGps ? (
+					<Mapa
+						coord={[-34.92, -8.2]}
+						modoExibicao={false}
+						usarGps={usarGps}
+					/>
+				) : (
+					<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
+				)}
+				<div>
+					<input
+						name="coord"
+						type="checkbox"
+						onChange={() => {
+							setUsarGps(true);
+						}}
+					/>
+					<span>Usar GPS</span>
+				</div>
 			</div>
 			<div>
 				<BotaoLocalizacao />

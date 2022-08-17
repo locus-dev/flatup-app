@@ -4,6 +4,7 @@ import Button from '../elements/ButtonComponent';
 import TextComponent from '../elements/TextComponent';
 import FlatUpContext from '../context/FlatUpContext';
 import { Navigate } from "react-router-dom";
+//import "./pessoaPerfilExibir.css";
 
 const PessoaPerfilExibir = (props) => {
     
@@ -13,7 +14,7 @@ const PessoaPerfilExibir = (props) => {
     useEffect(() => {
             axios.get(`${process.env.REACT_APP_API_URL}/pessoa/encontrar/${1}`, {
                 headers: {
-                'Authorization': `Bearer ${userData[0].userToken}`,
+                'Authorization': `Bearer ${userData.userToken}`,
             }
         }).then((result) =>{
             console.log(result)
@@ -35,20 +36,27 @@ const PessoaPerfilExibir = (props) => {
         'cnpj':pessoa.cnpj,
         'data_nascimento':pessoa.data_nascimento,
         'telefone':pessoa.telefone,
-        'email': userData[0].userEmail
+        'email': userData.userEmail
        }
 
     return (
         <form>
-            <TextComponent label="Nome" content={data.nome} />
+            <TextComponent inputName="Nome"/>
             <br/>
-            <TextComponent label="Data de Nascimento" content={data.data_nascimento} />
+            <input content={data.nome} type="text"></input>
             <br/>
-            <TextComponent label="Telefone" content={data.telefone} />
+            <TextComponent inputName="Data de Nascimento"  />
             <br/>
-            <TextComponent label="Email" content={data.email} />
+            <input content={data.data_nascimento} type="date"></input>
             <br/>
-            
+            <TextComponent inputName="Telefone"  />
+            <br/>
+            <input content={data.telefone} type="text"></input>
+            <br/>
+            <TextComponent inputName="Email"  />
+            <br/>
+            <input content={data.email} type="email"></input>
+            <br/>
             <Button buttonName="Alterar" func={alterarRedirect} />
          </form>
     )

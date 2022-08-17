@@ -9,6 +9,8 @@ import Registro from "./pages/usuario/registro/Registro";
 import ListarImoveis from "./pages/imoveis/listarImoveis/ListarImoveis";
 import CadastrarImovel from "./pages/imoveis/cadastrarImovel/CadastrarImovel";
 import TelaImovel from "./pages/imoveis/telaImovel/TelaImovel";
+import MinhasLocacoes from "./pages/usuario/perfil/locacoes/MinhasLocacoes";
+import MeusImoveis from "./pages/usuario/perfil/host/MeusImoveis";
 import FlatUpContext from './components/context/FlatUpContext';
 import { useContext, useState } from "react";
 import Pagamento from "./pages/imoveis/pagamento/Pagamento";
@@ -26,14 +28,15 @@ const App = () => {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/imoveis" element={<ListarImoveis />} />
-					{/* <Route path="/imoveis/:id" element={<DetalhesImovel />} /> */}
 					<Route path="/imoveis/:id/" element={<TelaImovel />} />
 					<Route path="/imoveis/cadastrar" element={<CadastrarImovel />}/>
 					<Route path="/login" element={<Login />} />
 					<Route path="/registro" element={<Registro />} />
 					<Route path="/usuario/recuperar" element={<RecuperarSenha />} />
-					<Route path="/perfil" element={<Perfil />} />
 					<Route path="/concluir-cadastro" element={<ConcluirCadastroPessoa />} />
+					<Route path="/perfil" element={<Perfil />} />
+					<Route path="/perfil/locacoes" element={<MinhasLocacoes />} />
+					<Route path="/perfil/host/imoveis" element={<MeusImoveis />} />
 					<Route path="/pagamento" element={<Pagamento />} />
 				</Routes>
 			</FlatUpContext.Provider>
