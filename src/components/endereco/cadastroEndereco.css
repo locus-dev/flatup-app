@@ -13,6 +13,16 @@ main{
     width: 50%;
     height: 100vh;
 }
+.select{
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: 40px;
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+}
 
 .side-form{
     width: 50%;
@@ -52,14 +62,13 @@ h3{
 }
 .exampleInputEmail1{
     color: black;
-    padding-left: 4%;
     font-size: 16px;
 }
 
 input{
     border: 1px solid gray;
-    border-radius: 5px;
-    height: 40px;
+    border-radius: 10px;
+    height: 50px;
     margin-top: 5px;
     padding: 5px 10px;
     font-size: 16px;

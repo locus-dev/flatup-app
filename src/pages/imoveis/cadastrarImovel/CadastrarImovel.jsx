@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import CadastroEndereco from "../../../components/endereco/CadastroEndereco";
 import Footer from "../../../components/footer/Footer";
 import Navbar from "../../../components/navbar/Navbar";
-import "./cadastrarImovel.css";
+import "./CadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
 import FlatUpContext from "../../../components/context/FlatUpContext";
 
@@ -20,19 +20,10 @@ const CadastrarImovel = () => {
 		quantQuarto: 0,
 		quantSuite: 0,
 		statusOcupacao: "DESOCUPADO",
+		tituloAnuncio: "",
+		descricao: ""
 	});
 
-	const modelo = {
-		areaLazer: true,
-		areaM2: 240,
-		climatizado: "CLIMATIZADO",
-		idEnderecoFK: 1,
-		idImovel: 1,
-		piscina: true,
-		quantQuarto: 2,
-		quantSuite: 2,
-		statusOcupacao: "DESOCUPADO",
-	};
 
 	function postImovel() {
 		axios
@@ -81,7 +72,7 @@ const CadastrarImovel = () => {
 		<Navbar />
 		<div className="container">
 			<form className="form-carrossel">
-				<div className="form-group" id="slide-1">
+				<div className="" id="slide-1">
 					<h2>Endereço</h2>
 					{/* TODO => Fazer os inputs dentro do componente "CadastroEndereco" passarem seus values para a const payload que será um objeto JSON */}
 					<CadastroEndereco props={payload} />
@@ -99,6 +90,30 @@ const CadastrarImovel = () => {
 
 				<div className="container" id="slide-2">
 					<h2>Informações adicionais</h2>
+					<div className="form-group">
+							<label className="exampleInputEmail1">Título do Anúncio</label>
+							<input
+								className="form-control"
+								type="text"
+								name="tituloAnuncio"
+								onChange={(e) => {
+									payload.tituloAnuncio = String(e.target.value);
+								}}
+							/>
+						</div>
+
+						<div className="form-group">
+							<label className="exampleInputEmail1">Descrição do Anúncio</label>
+							<input
+								className="form-control"
+								type="text"
+								name="descricao"
+								onChange={(e) => {
+									payload.descricao = String(e.target.value);
+								}}
+							/>
+						</div>
+
 						<div className="form-group">
 							<label className="exampleInputEmail1">Tamanho em m²</label>
 							<input

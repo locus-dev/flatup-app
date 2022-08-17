@@ -103,11 +103,11 @@ const CadastroEndereco = (props) => {
 			});
 	}
 	return (
-		<div className="container">
-			<div className="form-group">
+		<div className="container" id="">
+			<div className=" d-flex flex-column mb-3">
 				<label className="exampleInputEmail1">Logradouro</label>
 				<input
-					className="form-control"
+					className="input"
 					type="text"
 					name="logradouro"
 					onChange={(e) => {
@@ -115,32 +115,35 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-group">
-				<label className="exampleInputEmail1">Número</label>
-				<input
-					className="form-control"
-					type="text"
-					name="numero"
-					onChange={(e) => {
-						setNumero(String(e.target.value));
-					}}
-				/>
+
+			<div className="d-flex">
+				<div className="d-flex flex-column w-50  mb-3">
+					<label className="exampleInputEmail1">Número</label>
+					<input
+						className="input"
+						type="text"
+						name="numero"
+						onChange={(e) => {
+							setNumero(String(e.target.value));
+						}}
+					/>
+				</div>
+				<div className=" d-flex flex-column w-50 mb-3">
+					<label className="exampleInputEmail1">Complemento</label>
+					<input
+						className="input"
+						type="text"
+						name="complemento"
+						onChange={(e) => {
+							setComplemento(String(e.target.value));
+						}}
+					/>
+				</div>
 			</div>
-			<div className="form-group">
-				<label className="exampleInputEmail1">Complemento</label>
-				<input
-					className="form-control"
-					type="text"
-					name="complemento"
-					onChange={(e) => {
-						setComplemento(String(e.target.value));
-					}}
-				/>
-			</div>
-			<div className="form-group">
+			<div className=" d-flex flex-column mb-3">
 				<label className="exampleInputEmail1">Bairro</label>
 				<input
-					className="form-control"
+					className="input"
 					type="text"
 					name="bairro"
 					onChange={(e) => {
@@ -148,10 +151,10 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-group">
+			<div className=" d-flex flex-column mb-3">
 				<label className="exampleInputEmail1">Ponto de Referência</label>
 				<input
-					className="form-control"
+					className="input"
 					type="text"
 					name="pt_referencia"
 					onChange={(e) => {
@@ -159,10 +162,10 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className="form-group">
+			<div className=" d-flex flex-column mb-3">
 				<label className="exampleInputEmail1">CEP</label>
 				<input
-					className="form-control"
+					className="input"
 					type="text"
 					name="cep"
 					onChange={(e) => {
@@ -171,47 +174,51 @@ const CadastroEndereco = (props) => {
 				/>
 				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 			</div>
-			<div className="form-group">
-				<label className="exampleInputEmail1">UF</label>
-				<select className="form-control" name="uf">
-					{listaUF.map((item, index) => {
-						return (
-							<option
-								key={item.id}
-								value={item.id}
-								onClick={() => {
-									setUf(String(item.sigla));
-									selectUF(item.sigla);
-								}}
-							>
-								{item.nome}
-							</option>
-						);
-					})}
-				</select>
-			</div>
-			<div className="form-group">
-				<label className="exampleInputEmail1">Cidade</label>
-				{/* <input className="input" type="text" name="cidade"/> */}
-				<select className="form-control" name="cidade">
-					{listaCidade.map((item) => {
-						return (
-							<option
-								value={item.id}
-								onChange={(e) => {
-									setCidade(String(e.target.value));
-								}}
-							>
-								{item.nome}
-							</option>
-						);
-					})}
-				</select>
+			<div className="d-flex mb-3">
+				<div className=" d-flex flex-column w-50">
+					<label className="exampleInputEmail1">UF</label>
+					<select className="input select" name="uf">
+					<option selected>Selecione seu estado</option>
+						{listaUF.map((item, index) => {
+							return (
+								<option
+									key={item.id}
+									value={item.id}
+									onClick={() => {
+										setUf(String(item.sigla));
+										selectUF(item.sigla);
+									}}
+								>
+									{item.nome}
+								</option>
+							);
+						})}
+					</select>
+				</div>
+				<div className="  d-flex flex-column w-50">
+					<label className="exampleInputEmail1">Cidade</label>
+					{/* <input className="input" type="text" name="cidade"/> */}
+					<select className="input select" name="cidade">
+					<option selected>Selecione sua cidade</option>
+						{listaCidade.map((item) => {
+							return (
+								<option
+									value={item.id}
+									onChange={(e) => {
+										setCidade(String(e.target.value));
+									}}
+								>
+									{item.nome}
+								</option>
+							);
+						})}
+					</select>
+				</div>
 			</div>
 			
-			<div className="form-group">
+			<div className="d-flex flex-column">
 				<label className="exampleInputEmail1">Geolocalização</label>
-				{usarGps ? (
+				<div>{usarGps ? (
 					<Mapa
 						coord={[-34.92, -8.2]}
 						modoExibicao={false}
@@ -219,8 +226,8 @@ const CadastroEndereco = (props) => {
 					/>
 				) : (
 					<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
-				)}
-				{/* <div>
+				)}</div>
+				<div>
 					<input
 						name="coord"
 						type="checkbox"
@@ -230,7 +237,7 @@ const CadastroEndereco = (props) => {
 						}}
 					/>
 					{" "}<span className="exampleInputEmail1">Usar GPS</span>
-				</div> */}
+				</div>
 			</div>
 			{/* <div>
 				<BotaoLocalizacao />
@@ -238,7 +245,7 @@ const CadastroEndereco = (props) => {
 			<br></br>
 			<button type="button" className="btn btn-primary" onClick={() => {req();}}> Cadastrar Endereço</button>
 
-			{/* <div className="form-control">
+			{/* <div className="input">
 			<label>País</label>
 			<input className="input" type="text" name="nacionalidade"/>
 		</div> */}
