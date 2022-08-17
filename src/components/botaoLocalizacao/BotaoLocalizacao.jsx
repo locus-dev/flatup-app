@@ -23,8 +23,10 @@ const BotaoLocalizacao = () => {
     
     return (
         <>
-            <button type="button" onClick={getLocation}>Use minha localização</button>
+            <button type="button" className="btn btn-primary" onClick={getLocation}>Use minha localização</button>
+            <br></br><br/>
         </>
+        
     )
 }
 
