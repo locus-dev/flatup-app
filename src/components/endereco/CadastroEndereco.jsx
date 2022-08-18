@@ -118,8 +118,8 @@ const CadastroEndereco = (props) => {
 				/>
 			</div>
 
-			<div className="d-flex">
-				<div className="d-flex flex-column w-50  mb-3">
+			<div className="d-flex justify-content-between">
+				<div className="d-flex flex-column mb-3" style={{ width: '45%',}}>
 					<label className="exampleInputEmail1">Número</label>
 					<input
 						className="input"
@@ -136,7 +136,7 @@ const CadastroEndereco = (props) => {
 					<label className="exampleInputEmail1">Complemento</label>
 					<input
 						className="input"
-						placeholder="Ex: B"
+						placeholder="Ex: Casa"
 						maxLength="100"
 						type="text"
 						name="complemento"
@@ -145,6 +145,21 @@ const CadastroEndereco = (props) => {
 						}}
 					/>
 				</div>
+				
+			</div>
+			<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">CEP</label>
+				<input
+					className="input"
+					placeholder="Ex: 13165-000"
+					maxLength="11"
+					type="text"
+					name="cep"
+					onChange={(e) => {
+						setCep(String(e.target.value));
+					}}
+				/>
+				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 			</div>
 			<div className=" d-flex flex-column mb-3">
 				<label className="exampleInputEmail1">Bairro</label>
@@ -172,22 +187,9 @@ const CadastroEndereco = (props) => {
 					}}
 				/>
 			</div>
-			<div className=" d-flex flex-column mb-3">
-				<label className="exampleInputEmail1">CEP</label>
-				<input
-					className="input"
-					placeholder="Ex: 13165-000"
-					maxLength="11"
-					type="text"
-					name="cep"
-					onChange={(e) => {
-						setCep(String(e.target.value));
-					}}
-				/>
-				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
-			</div>
-			<div className="d-flex mb-3">
-				<div className=" d-flex flex-column w-50">
+			
+			<div className="d-flex mb-3 justify-content-between">
+				<div className=" d-flex flex-column mr-3" style={{ width: '45%',}}>
 					<label className="exampleInputEmail1">UF</label>
 					<select className="input select" name="uf">
 					<option selected>Selecione seu estado</option>
@@ -229,7 +231,7 @@ const CadastroEndereco = (props) => {
 			</div>
 			
 			<div className="d-flex flex-column">
-				<label className="exampleInputEmail1">Geolocalização</label>
+				<label className="exampleInputEmail1 mb-3">Marque sua localização no mapa</label>
 				<div>{usarGps ? (
 					<Mapa
 						coord={[-34.92, -8.2]}
@@ -255,7 +257,7 @@ const CadastroEndereco = (props) => {
 				<BotaoLocalizacao />
 			</div> */}
 			<br></br>
-			<button type="button" className="btn btn-primary" onClick={() => {req();}}> Cadastrar Endereço</button>
+			<button type="button" className="btn btn-primary w-100" onClick={() => {req();}}> Cadastrar Endereço</button>
 
 			{/* <div className="input">
 			<label>País</label>

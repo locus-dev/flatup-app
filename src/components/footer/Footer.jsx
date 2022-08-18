@@ -8,6 +8,7 @@ const Footer = () => {
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "center",
+					padding: 20,
 				}}
 			>
 				<a href="/" className="d-flex align-items-center p-0 text-dark">
