@@ -6,8 +6,14 @@ import Navbar from "../../../components/navbar/Navbar";
 import "./CadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
 import FlatUpContext from "../../../components/context/FlatUpContext";
+import ImageUploading from "react-images-uploading";
+import ButtonComponent from "../../../components/elements/ButtonComponent"
 
 const CadastrarImovel = () => {
+
+	const [images, setImages] = useState([]);
+	const maxNumber = 69;
+
 	const [token, setToken] = useState({});
 
 	const [payload, setPayload] = useState({
@@ -90,7 +96,7 @@ const CadastrarImovel = () => {
 
 					<div className="container" id="slide-2">
 						<h2>Informações adicionais</h2>
-						<div className=" d-flex flex-column mb-3 w-100">
+						<div className="form-group">
 							<label className="exampleInputEmail1">Título do Anúncio</label>
 							<input
 								className=""
@@ -276,38 +282,86 @@ const CadastrarImovel = () => {
 									<label htmlFor="piscina_nao" className="exampleInputEmail1">Não</label>
 								</div>
 							</div>
+									))}
 						</div>
+						<ImageUploading
+							multiple
+							value={images}
+							onChange={(imageList, addUpdateIndex) => {
+								// data for submit
+								console.log(imageList, addUpdateIndex);
+								setImages(imageList);
+							}}
+							maxNumber={maxNumber}
+							dataURLKey="data_url"
+							acceptType={["jpg"]}
+						>
+							{({
+								imageList,
+								onImageUpload,
+								onImageRemoveAll,
+								onImageUpdate,
+								onImageRemove,
+								isDragging,
+								dragProps
+							}) => (
+								// write your building UI
+								<div className="upload__image-wrapper">
+									<ButtonComponent
+										style={isDragging ? { color: "red" } : null}
+										func={onImageUpload}
+										{...dragProps}
+										buttonName="Selecionar Imagens"
+									/>
+									&nbsp;
+									<ButtonComponent
+										func={onImageRemoveAll}
+										buttonName="Remover imagens"
+									/>
+									{imageList.map((image, index) => (
+										<div key={index} className="image-item">
+											<img src={image.data_url} alt="" width="100" />
+											<div className="image-item__btn-wrapper">
+												<ButtonComponent func={() => onImageUpdate(index)}
+													buttonName="Atualizar imagens"
+												/>
+												<ButtonComponent func={() => onImageRemove(index)} buttonName="Remover" />
+											</div>
+										</div>
+									))}
+								</div>
+							)}
+						</ImageUploading>
 
-
-						<div className="form-footer">
-							<button
-								className="button form-button"
-								type="button"
-								onClick={function () {
-									document.getElementById(
-										"slide-2"
-									).style.display = "none";
-									document.getElementById(
-										"slide-1"
-									).style.display = "flex";
-								}}
-							>
-								Voltar
-							</button>
-							<button
-								type="button"
-								className="button form-button"
-								id="enviar"
-								onClick={postImovel}
-							>
-								Enviar
-							</button>
+							<div className="form-footer">
+								<button
+									className="button form-button"
+									type="button"
+									onClick={function () {
+										document.getElementById(
+											"slide-2"
+										).style.display = "none";
+										document.getElementById(
+											"slide-1"
+										).style.display = "flex";
+									}}
+								>
+									Voltar
+								</button>
+								<button
+									type="button"
+									className="button form-button"
+									id="enviar"
+									onClick={postImovel}
+								>
+									Enviar
+								</button>
+							</div>
 						</div>
-					</div>
-				</form>
-				<Footer />
-			</div>
-		</main>
+					</form>
+					<Footer />
+				</div>
+			</main>
 	);
 };
 
