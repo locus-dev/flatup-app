@@ -27,7 +27,7 @@ const Navbar = () => {
 				{/* <span className="logo" onClick={handleHome}>
 					FlatApp
 				</span> */}
-				<img className="logo" src="./media/assets/flatapp.png" alt="FlatApp" width={80} onClick={handleHome}/>
+				<img className="logo" src="../media/assets/flatapp.png" alt="FlatApp" width={80} onClick={handleHome}/>
 				<div className="navItems">
 					<div className="search-box">
 						<input

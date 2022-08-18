@@ -153,8 +153,9 @@ const Login = () => {
 									type="email"
 									min={0}
 									value={email}
+									maxLength="50"
 									name="email"
-									placeholder="Email"
+									placeholder="Ex: William@gmail.com"
 									id="email"
 									onChange={(e) => setEmail(e.target.value)}
 								/>
@@ -168,8 +169,9 @@ const Login = () => {
 									type="password"
 									min={0}
 									value={senha}
+									maxLength="22"
 									name="senha"
-									placeholder="Senha"
+									placeholder="Ex: jGy330@4lnns"
 									id="senha"
 									onChange={(e) => setSenha(e.target.value)}/>
 							</div>							

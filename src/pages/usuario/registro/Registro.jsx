@@ -100,7 +100,8 @@ const Register = () => {
 									onChange={(e) => setEmail(e.target.value)}
 									min={0}
 									value={email}
-									placeholder="Email"
+									maxLength="50"
+									placeholder="Ex: Pedro@gmail.com"
 									id="email"
         							name="email"
 								/>
@@ -116,14 +117,15 @@ const Register = () => {
 									onChange={(e) => setSenha(e.target.value)}
 									min={0}
 									value={senha}
-									placeholder="Senha"
+									maxLength="22"
+									placeholder="Ex: Hb794hll@#FF"
 									id="senha"
                   					name="senha"
 								/>
 								</label>
 
 							</div>
-							<div>
+							{/* <div>
 								<label className="lsOptionText" for="senha">
 									{" Confirmar senha: "}
 									<input
@@ -138,7 +140,7 @@ const Register = () => {
 								/>
 								</label>
 
-							</div>
+							</div> */}
 							<button
 								// type="submit"
 								className="form-button"

@@ -26,11 +26,14 @@ const ConcluirCadastroPessoa = () => {
 		<div className="classe">
 			<Navbar />
 			<div id="form-cadastro-pessoa">
+				<h1>Concluir Cadastro</h1>
 				<div className="form-control">
 					<label>Nome</label>
 					<input
 						className="input"
+						placeholder="Ex: Pedro Henrique"
 						type="text"
+						maxLength="100"
 						value={payload.nome.value}
 						onChange={(e) =>
 							setPayload((prevState) => ({
@@ -45,7 +48,9 @@ const ConcluirCadastroPessoa = () => {
 					<label>Telefone</label>
 					<input
 						className="input"
+						placeholder="Ex: (81) 9 8574-9309"
 						type="text"
+						maxLength="20"
 						value={payload.telefone.value}
 						onChange={(e) =>
 							setPayload((prevState) => ({
@@ -60,7 +65,9 @@ const ConcluirCadastroPessoa = () => {
 					<label>CPF</label>
 					<input
 						className="input"
+						placeholder="Ex: 999.999.999-99"
 						type="text"
+						maxLength="20"
 						value={payload.cpf.value}
 						onChange={(e) =>
 							setPayload((prevState) => ({
@@ -75,6 +82,8 @@ const ConcluirCadastroPessoa = () => {
 					<label>CNPJ</label>
 					<input
 						className="input"
+						placeholder="Ex: XX. XXX. XXX/0001-XX"
+						maxLength="25"
 						type="text"
 						value={payload.cnpj.value}
 						onChange={(e) =>

@@ -6,8 +6,14 @@ import Navbar from "../../../components/navbar/Navbar";
 import "./CadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
 import FlatUpContext from "../../../components/context/FlatUpContext";
+import ImageUploading from "react-images-uploading";
+import ButtonComponent from "../../../components/elements/ButtonComponent"
 
 const CadastrarImovel = () => {
+
+	const [images, setImages] = useState([]);
+	const maxNumber = 69;
+
 	const [token, setToken] = useState({});
 
 	const [payload, setPayload] = useState({
@@ -66,36 +72,38 @@ const CadastrarImovel = () => {
 
 	const [userData, setUserData] = useContext(FlatUpContext);
 
-	function rodarCarrossel(sentido) {}
+	function rodarCarrossel(sentido) { }
 
 	return (
 
-	<main>
-		<Navbar />
-		<div className="container">
-			<form className="form-carrossel">
-				<div className="" id="slide-1">
-					<h2>Endereço</h2>
-					{/* TODO => Fazer os inputs dentro do componente "CadastroEndereco" passarem seus values para a const payload que será um objeto JSON */}
-					<CadastroEndereco props={payload} />
-					<button
-						id="seguir"
-						className="button form-button"
-						type="button"
-						onClick={function () {
-							document.getElementById("slide-1").style.display =
-								"none";
-							document.getElementById("slide-2").style.display =
-								"flex";
-						}}>Seguir</button>
-				</div>
+		<main>
+			<Navbar />
+			<div className="container">
+				<form className="form-carrossel">
+					<div className="" id="slide-1">
+						<h2>Endereço</h2>
+						{/* TODO => Fazer os inputs dentro do componente "CadastroEndereco" passarem seus values para a const payload que será um objeto JSON */}
+						<CadastroEndereco props={payload} />
+						<button
+							id="seguir"
+							className="button form-button"
+							type="button"
+							onClick={function () {
+								document.getElementById("slide-1").style.display =
+									"none";
+								document.getElementById("slide-2").style.display =
+									"flex";
+							}}>Seguir</button>
+					</div>
 
-				<div className="container" id="slide-2">
-					<h2>Informações adicionais</h2>
-					<div className="form-group">
+					<div className="container" id="slide-2">
+						<h2>Informações adicionais</h2>
+						<div className="form-group">
 							<label className="exampleInputEmail1">Título do Anúncio</label>
 							<input
-								className="form-control"
+								className=""
+								placeholder="Ex: ..."
+								maxLength="100"
 								type="text"
 								name="tituloAnuncio"
 								onChange={(e) => {
@@ -104,193 +112,258 @@ const CadastrarImovel = () => {
 							/>
 						</div>
 
-						<div className="form-group">
+						<div className=" d-flex flex-column mb-3 w-100">
 							<label className="exampleInputEmail1">Descrição do Anúncio</label>
-							<input
-								className="form-control"
-								type="text"
-								name="descricao"
+							<textarea name="descricao" id="" cols="30" rows="10"
+								style={{ resize: 'none' }}
+								className="input rounded p-2"
+								placeholder="Ex: ..."
 								onChange={(e) => {
 									payload.descricao = String(e.target.value);
-								}}
-							/>
+								}}></textarea>
 						</div>
 
-						<div className="form-group">
-							<label className="exampleInputEmail1">Tamanho em m²</label>
-							<input
-								className="form-control"
-								type="text"
-								name="areaM2"
-								onChange={(e) => {
-									payload.areaM2 = Number(e.target.value);
-								}}
-							/>
-						</div>
-
-						<div className="form-group">
-							<label className="exampleInputEmail1">Número de quartos</label>
-							<input
-								className="form-control"
-								type="text"
-								name="quantQuarto"
-								onChange={(e) => {
-									payload.quantQuarto = Number(
-										e.target.value
-									);
-								}}
-							/>
-						</div>
-
-						<div className="form-group">
-							<label className="exampleInputEmail1">Número de suites</label>
-							<input
-								className="form-control"
-								type="text"
-								name="quantSuite"
-								onChange={(e) => {
-									payload.quantSuite = Number(e.target.value);
-								}}
-							/>
-						</div>
-
-						<div className="form-group">
-							<label className="exampleInputEmail1">Climatizado</label>
-							<div>
+						<div className="d-flex justify-content-between w-100">
+							<div className=" d-flex flex-column mb-3" style={{ width: "33%" }}>
+								<label className="exampleInputEmail1">Tamanho em m²</label>
 								<input
-									className="form-control"
-									type="radio"
-									name="climatizado"
-									value="CLIMATIZADO"
+									className="input"
+									placeholder="Ex: 40"
+									maxLength="4"
+									type="text"
+									name="areaM2"
 									onChange={(e) => {
-										payload.climatizado = e.target.value;
+										payload.areaM2 = Number(e.target.value);
 									}}
 								/>
-								<span className="exampleInputEmail1">Sim</span>
 							</div>
-							<div className="form-group">
-								<input
-									className="form-control"
-									type="radio"
-									name="climatizado"
-									value="NAO_CLIMATIZADO"
-									onChange={(e) => {
-										payload.climatizado = e.target.value;
-									}}
-								/>
-								<span className="exampleInputEmail1">Não</span>
-							</div>
-						</div>
 
-						<div className="form-group">
-							<label className="exampleInputEmail1">Possui área de lazer?</label>
-							<div>
+							<div className=" d-flex flex-column mb-3" style={{ width: "30%" }}>
+								<label className="exampleInputEmail1">Número de quartos</label>
 								<input
-									// className="form-control"
-									className="input checkbox"
-									type="radio"
-									name="areaLazer"
-									value={true}
+									className=""
+									placeholder="Ex: 3"
+									maxLength="2"
+									type="text"
+									name="quantQuarto"
 									onChange={(e) => {
-										payload.areaLazer =
-											e.target.value === "true"
-												? true
-												: false;
-									}}
-								/>
-								<span className="exampleInputEmail1">Sim</span>
-							</div>
-							<div className="form-group">
-								<input
-									// className="form-control"
-									className="input checkbox"
-									type="radio"
-									name="areaLazer"
-									value={false}
-									onChange={(e) => {
-										payload.areaLazer =
-											e.target.value === "false"
-												? false
-												: true;
-									}}
-								/>
-								<span className="exampleInputEmail1">Não</span>
-							</div>
-						</div>
-
-						<div className="form-group">
-							<label className="exampleInputEmail1">Piscina</label>
-							<div>
-								<input
-									// className="form-control"
-									className="input checkbox"
-									type="radio"
-									name="piscina"
-									value={true}
-									onChange={(e) => {
-										payload.piscina =
-											e.target.value === "true"
-												? true
-												: false;
-									}}
-								/>
-								<span className="exampleInputEmail1">Sim</span>
-							</div>
-							<div className="form-group">
-								<input
-									// className="form-control"
-									className="input checkbox"
-									type="radio"
-									name="piscina"
-									value={false}
-									onChange={(e) => {
-										console.log(
-											e.target.value === "false"
-												? false
-												: true
+										payload.quantQuarto = Number(
+											e.target.value
 										);
-										console.log(typeof e.target.value);
-										console.log(e.target.value);
-										payload.piscina =
-											e.target.value === "false"
-												? false
-												: true;
 									}}
 								/>
-								<span className="exampleInputEmail1">Não</span>
+							</div>
+
+							<div className=" d-flex flex-column mb-3" style={{ width: "33%" }}>
+								<label className="exampleInputEmail1">Número de suites</label>
+								<input
+									className=""
+									placeholder="Ex: 1"
+									maxLength="2"
+									type="text"
+									name="quantSuite"
+									onChange={(e) => {
+										payload.quantSuite = Number(e.target.value);
+									}}
+								/>
 							</div>
 						</div>
 
+						<h3 className="text-dark mt-3">comodidades</h3>
+						<div className="py-3 w-100 mb-4 d-flex justify-content-between">
 
-					<div className="form-footer">
-						<button
-							className="button form-button"
-							type="button"
-							onClick={function () {
-								document.getElementById(
-									"slide-2"
-								).style.display = "none";
-								document.getElementById(
-									"slide-1"
-								).style.display = "flex";
+							<div className=" d-flex flex-column border 	  p-4 comodidade" style={{width: "30%", height: "150px"}}>
+								<h3 className="exampleInputEmail1">Climatizado</h3>
+								<div className=" d-flex mb-2 align-items-center">
+									<input
+										className="input checkbox"
+										type="radio"
+										name="climatizado"
+										id="climatizado"
+										value="CLIMATIZADO"
+										onChange={(e) => {
+											payload.climatizado = e.target.value;
+										}}
+									/>
+									<label htmlFor="climatizado" className="exampleInputEmail1">Sim</label>
+								</div>
+								<div className=" d-flex mb-3 align-items-center">
+									<input
+										className="input checkbox"
+										type="radio"
+										id="nao_climatizado"
+										name="climatizado"
+										value="NAO_CLIMATIZADO"
+										onChange={(e) => {
+											payload.climatizado = e.target.value;
+										}}
+									/>
+									<label htmlFor="nao_climatizado" className="exampleInputEmail1">Não</label>
+								</div>
+							</div>
+
+							<div className=" d-flex flex-column mb-3 border 	  p-4 comodidade" style={{width: "30%", height: "150px"}}>
+								<h3 className="exampleInputEmail1">Possui área de lazer?</h3>
+								<div className=" d-flex mb-2 align-items-center">
+									<input
+										// className=""
+										className="input checkbox"
+										type="radio"
+										name="areaLazer"
+										id="arealazer"
+										value={true}
+										onChange={(e) => {
+											payload.areaLazer =
+												e.target.value === "true"
+													? true
+													: false;
+										}}
+									/>
+									<label htmlFor="arealazer" className="exampleInputEmail1">Sim</label>
+								</div>
+								<div className=" d-flex mb-2 align-items-center">
+									<input
+										// className=""
+										className="input checkbox"
+										type="radio"
+										name="areaLazer"
+										id="arealazer_nao"
+										value={false}
+										onChange={(e) => {
+											payload.areaLazer =
+												e.target.value === "false"
+													? false
+													: true;
+										}}
+									/>
+									<label htmlFor="arealazer_nao" className="exampleInputEmail1">Não</label>
+								</div>
+							</div>
+
+							<div className=" d-flex flex-column mb-3 border 	  p-4 comodidade" style={{width: "30%", height: "150px"}}>
+								<h3 className="exampleInputEmail1">Piscina</h3>
+								<div className=" d-flex mb-2 align-items-center">
+									<input
+										// className=""
+										className="input checkbox"
+										type="radio"
+										name="piscina"
+										id="piscina"
+										value={true}
+										onChange={(e) => {
+											payload.piscina =
+												e.target.value === "true"
+													? true
+													: false;
+										}}
+									/>
+									<label htmlFor="piscina" className="exampleInputEmail1">Sim</label>
+								</div>
+								<div className=" d-flex mb-2 align-items-center">
+									<input
+										// className=""
+										className="input checkbox"
+										type="radio"
+										name="piscina"
+										id="piscina_nao"
+										value={false}
+										onChange={(e) => {
+											console.log(
+												e.target.value === "false"
+													? false
+													: true
+											);
+											console.log(typeof e.target.value);
+											console.log(e.target.value);
+											payload.piscina =
+												e.target.value === "false"
+													? false
+													: true;
+										}}
+									/>
+									<label htmlFor="piscina_nao" className="exampleInputEmail1">Não</label>
+								</div>
+							</div>
+									))}
+						</div>
+						<ImageUploading
+							multiple
+							value={images}
+							onChange={(imageList, addUpdateIndex) => {
+								// data for submit
+								console.log(imageList, addUpdateIndex);
+								setImages(imageList);
 							}}
+							maxNumber={maxNumber}
+							dataURLKey="data_url"
+							acceptType={["jpg"]}
 						>
-							Voltar
-						</button>
-						<button
-							type="button"
-							className="button form-button"
-							id="enviar"
-							onClick={postImovel}
-						>
-							Enviar
-						</button>
-					</div>
+							{({
+								imageList,
+								onImageUpload,
+								onImageRemoveAll,
+								onImageUpdate,
+								onImageRemove,
+								isDragging,
+								dragProps
+							}) => (
+								// write your building UI
+								<div className="upload__image-wrapper">
+									<ButtonComponent
+										style={isDragging ? { color: "red" } : null}
+										func={onImageUpload}
+										{...dragProps}
+										buttonName="Selecionar Imagens"
+									/>
+									&nbsp;
+									<ButtonComponent
+										func={onImageRemoveAll}
+										buttonName="Remover imagens"
+									/>
+									{imageList.map((image, index) => (
+										<div key={index} className="image-item">
+											<img src={image.data_url} alt="" width="100" />
+											<div className="image-item__btn-wrapper">
+												<ButtonComponent func={() => onImageUpdate(index)}
+													buttonName="Atualizar imagens"
+												/>
+												<ButtonComponent func={() => onImageRemove(index)} buttonName="Remover" />
+											</div>
+										</div>
+									))}
+								</div>
+							)}
+						</ImageUploading>
+
+							<div className="form-footer">
+								<button
+									className="button form-button"
+									type="button"
+									onClick={function () {
+										document.getElementById(
+											"slide-2"
+										).style.display = "none";
+										document.getElementById(
+											"slide-1"
+										).style.display = "flex";
+									}}
+								>
+									Voltar
+								</button>
+								<button
+									type="button"
+									className="button form-button"
+									id="enviar"
+									onClick={postImovel}
+								>
+									Enviar
+								</button>
+							</div>
+						</div>
+					</form>
+					<Footer />
 				</div>
-			</form>
-			<Footer />
-		</div>
-	</main>
+			</main>
 	);
 };
 
