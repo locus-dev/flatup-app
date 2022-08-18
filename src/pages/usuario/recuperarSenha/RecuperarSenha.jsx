@@ -32,7 +32,7 @@ const Forgot = ({navigate}) => {
 				<div className="side-form">
 					<div className="form-box">
 						<h1>Recuperar Senha</h1>
-
+						<p>Recupere sua Senha:</p>
 						{/* <form action={config.URL + '/auth'} method="POST"> */}
 						<div className="login-box d-flex flex-column">
 							<div>
@@ -44,13 +44,14 @@ const Forgot = ({navigate}) => {
 									type="email"
 									min={0}
 									value={email}
+									maxLength="50"
 									name="email"
-									placeholder="Email"
+									placeholder="Ex: Wendel@hotmail.com"
 									id="email"
 									onChange={(e) => setEmail(e.target.value)}
 								/>
 							</div>
-							<div>
+							{/* <div>
 								<label className="lsOptionText" for="senha">
 									{" Senha: "}
 								</label>
@@ -63,7 +64,7 @@ const Forgot = ({navigate}) => {
 									placeholder="Senha"
 									id="senha"
 									onChange={(e) => setSenha(e.target.value)}/>
-							</div>							
+							</div>							 */}
 						</div>
 
 						<button

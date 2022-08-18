@@ -94,6 +94,8 @@ const CadastrarImovel = () => {
 							<label className="exampleInputEmail1">Título do Anúncio</label>
 							<input
 								className="form-control"
+								placeholder="Ex: ..."
+								maxLength="100"
 								type="text"
 								name="tituloAnuncio"
 								onChange={(e) => {
@@ -106,6 +108,8 @@ const CadastrarImovel = () => {
 							<label className="exampleInputEmail1">Descrição do Anúncio</label>
 							<input
 								className="form-control"
+								placeholder="Ex: ..."
+								maxLength="100"
 								type="text"
 								name="descricao"
 								onChange={(e) => {
@@ -118,6 +122,8 @@ const CadastrarImovel = () => {
 							<label className="exampleInputEmail1">Tamanho em m²</label>
 							<input
 								className="form-control"
+								placeholder="Ex: 40"
+								maxLength="4"
 								type="text"
 								name="areaM2"
 								onChange={(e) => {
@@ -130,6 +136,8 @@ const CadastrarImovel = () => {
 							<label className="exampleInputEmail1">Número de quartos</label>
 							<input
 								className="form-control"
+								placeholder="Ex: 3"
+								maxLength="2"
 								type="text"
 								name="quantQuarto"
 								onChange={(e) => {
@@ -144,6 +152,8 @@ const CadastrarImovel = () => {
 							<label className="exampleInputEmail1">Número de suites</label>
 							<input
 								className="form-control"
+								placeholder="Ex: 1"
+								maxLength="2"
 								type="text"
 								name="quantSuite"
 								onChange={(e) => {
@@ -156,7 +166,7 @@ const CadastrarImovel = () => {
 							<label className="exampleInputEmail1">Climatizado</label>
 							<div>
 								<input
-									className="form-control"
+									className="input checkbox"
 									type="radio"
 									name="climatizado"
 									value="CLIMATIZADO"
@@ -168,7 +178,7 @@ const CadastrarImovel = () => {
 							</div>
 							<div className="form-group">
 								<input
-									className="form-control"
+									className="input checkbox"
 									type="radio"
 									name="climatizado"
 									value="NAO_CLIMATIZADO"

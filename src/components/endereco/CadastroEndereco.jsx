@@ -108,6 +108,8 @@ const CadastroEndereco = (props) => {
 				<label className="exampleInputEmail1">Logradouro</label>
 				<input
 					className="input"
+					placeholder="Ex: Rua Colibri "
+					maxLength="100"
 					type="text"
 					name="logradouro"
 					onChange={(e) => {
@@ -121,6 +123,8 @@ const CadastroEndereco = (props) => {
 					<label className="exampleInputEmail1">Número</label>
 					<input
 						className="input"
+						placeholder="Ex: 127"
+						maxLength="9"
 						type="text"
 						name="numero"
 						onChange={(e) => {
@@ -132,6 +136,8 @@ const CadastroEndereco = (props) => {
 					<label className="exampleInputEmail1">Complemento</label>
 					<input
 						className="input"
+						placeholder="Ex: B"
+						maxLength="100"
 						type="text"
 						name="complemento"
 						onChange={(e) => {
@@ -144,6 +150,8 @@ const CadastroEndereco = (props) => {
 				<label className="exampleInputEmail1">Bairro</label>
 				<input
 					className="input"
+					placeholder="Ex: Sucupira"
+					maxLength="100"
 					type="text"
 					name="bairro"
 					onChange={(e) => {
@@ -155,6 +163,8 @@ const CadastroEndereco = (props) => {
 				<label className="exampleInputEmail1">Ponto de Referência</label>
 				<input
 					className="input"
+					placeholder="Ex: Casa de Pedro"
+					maxLength="100"
 					type="text"
 					name="pt_referencia"
 					onChange={(e) => {
@@ -166,6 +176,8 @@ const CadastroEndereco = (props) => {
 				<label className="exampleInputEmail1">CEP</label>
 				<input
 					className="input"
+					placeholder="Ex: 13165-000"
+					maxLength="11"
 					type="text"
 					name="cep"
 					onChange={(e) => {
