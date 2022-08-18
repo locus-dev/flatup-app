@@ -23,12 +23,12 @@ const ConcluirCadastroPessoa = () => {
 	const [userData, setUserData] = useContext(FlatUpContext);
 
 	return (
-		<div className="classe">
+		<div>
 			<Navbar />
-			<div id="form-cadastro-pessoa">
+			<div id="form-cadastro-pessoa" className="container">
 				<h1>Concluir Cadastro</h1>
-				<div className="form-control">
-					<label>Nome</label>
+				<div className="d-flex flex-column mb-3">
+					<label className="exampleInputEmail1">Nome</label>
 					<input
 						className="input"
 						placeholder="Ex: Pedro Henrique"
@@ -44,8 +44,8 @@ const ConcluirCadastroPessoa = () => {
 						name="nome"
 					/>
 				</div>
-				<div className="form-control">
-					<label>Telefone</label>
+				<div className="d-flex flex-column mb-3">
+					<label className="exampleInputEmail1">Telefone</label>
 					<input
 						className="input"
 						placeholder="Ex: (81) 9 8574-9309"
@@ -61,8 +61,8 @@ const ConcluirCadastroPessoa = () => {
 						name="telefone"
 					/>
 				</div>
-				<div className="form-control">
-					<label>CPF</label>
+				<div className="d-flex flex-column mb-3">
+					<label className="exampleInputEmail1">CPF</label>
 					<input
 						className="input"
 						placeholder="Ex: 999.999.999-99"
@@ -78,8 +78,8 @@ const ConcluirCadastroPessoa = () => {
 						name="cpf"
 					/>
 				</div>
-				<div className="form-control">
-					<label>CNPJ</label>
+				<div className="d-flex flex-column mb-3">
+					<label className="exampleInputEmail1">CNPJ</label>
 					<input
 						className="input"
 						placeholder="Ex: XX. XXX. XXX/0001-XX"
@@ -95,8 +95,8 @@ const ConcluirCadastroPessoa = () => {
 						name="cnpj"
 					/>
 				</div>
-				<div className="form-control">
-					<label>Data de Nascimento</label>
+				<div className="d-flex flex-column mb-3">
+					<label className="exampleInputEmail1">Data de Nascimento</label>
 					<input
 						className="input"
 						value={payload.data_nascimento.value}
@@ -111,6 +111,8 @@ const ConcluirCadastroPessoa = () => {
 					/>
 				</div>
 				<button
+					type="button"
+					className="btn btn-primary"
 					onClick={() => {
 						axios
 							.post(
