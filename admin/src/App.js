@@ -30,6 +30,7 @@ import Locador from "./pages/listLocations/formLocation/components/Locador";
 import Module from "./pages/listLocations/module/Module";
 import Location from "./pages/listLocations/Location";
 import LocationDetails from "./pages/listLocations/LocationDetails";
+import Table from '../src/components/table/Table'
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -204,6 +205,15 @@ function App() {
                   element={
 
                     <FormLocation />
+
+                  }
+                />
+                <Route
+                  path="modules/listLocations/locationDetails/table"
+                  render={(props) => <Table {...props}/>}
+                  element={
+
+                    <Table />
 
                   }
                 />

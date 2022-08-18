@@ -76,7 +76,7 @@ const ListPartners = () => {
         
         .then((response) => {
             window.open(URL.createObjectURL(response.data))
-            console.log(response)
+            console.log(response.data)
         }).catch((err) => {
             console.log(err)
         })
