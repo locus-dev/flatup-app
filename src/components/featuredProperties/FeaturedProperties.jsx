@@ -15,7 +15,7 @@ const FeaturedProperties = () => {
 	const [userData, setUserData] = useContext(FlatUpContext);
 
 	useEffect(() => {
-		axios.get(process.env.REACT_APP_API_URL + `/imovel/listar`, {
+		axios.get(process.env.REACT_APP_API_URL + `/imovel/listar/descricao`, {
 				headers: {
 					Authorization: "Bearer " + userData.token,
 				},
@@ -56,12 +56,12 @@ const FeaturedProperties = () => {
 											backgroundPosition: "center",
 										}}
 									></div>
-									{/* <span className="fpName">{item.titulo_anuncio}</span> */}
-									{/* <span className="fpName">Imóvel</span>
-									<span className="fpCity">Moreno</span> */}
-									{/* <span className="fpPrice">
+									<span className="fpName">{item.titulo_anuncio}</span>
+									<span className="fpName">Imóvel</span>
+									<span className="fpCity">Moreno</span>
+									<span className="fpPrice">
 										R${item.valor_diaria}/noite
-									</span> */}
+									</span>
 									{/* <span className="fpPrice">R$500/noite</span> */}
 									{/* <div className="fpRating">
 										<button>{item.avaliacao}</button>

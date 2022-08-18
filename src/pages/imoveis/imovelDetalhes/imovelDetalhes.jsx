@@ -14,7 +14,7 @@ import DATA from "../../../DATAFILL";
 import TimerComponent from "../../../components/elements/TimerComponent";
 // import Countdown from "react-countdown";
 
-const ImovelDetalhe = (props) => {
+const ImovelDetalhe = ({props}) => {
 	// TODO: Implementar com o PUBLIC_KEY
 	// const mercadopago = new MercadoPago('PUBLIC_KEY', {locale: 'pt-BR'});
 

@@ -29,7 +29,7 @@ const TelaImovel = () => {
 	}
 
 	useEffect(() => {
-		axios.get(process.env.REACT_APP_API_URL + `/imovel/encontrar/${location.state.id}`, {header: {
+		axios.get(process.env.REACT_APP_API_URL + `/imovel/listar/detalhes/${location.state.id}`, {header: {
 			authorization: "Bearer " + userData.userToken,
 		}}).then((data) => {
 			console.log(data.data);

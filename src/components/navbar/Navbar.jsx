@@ -86,10 +86,11 @@ const Navbar = () => {
 								src="./media/assets/perfil.png"
 								alt="Perfil"
 								onClick={() =>
-									navigate((userData.hasPersonalInfo ? "/perfil" : "/concluir-cadastro"), {
+									// navigate((userData.hasPersonalInfo ? "/perfil" : "/concluir-cadastro"), {
+									navigate("/perfil", {
 										state: { token: userData.userToken },
 									})
-								}
+								} 
 							></img>
 						</>
 					) : (

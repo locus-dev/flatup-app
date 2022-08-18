@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 // import API from "../../services/API";
 import axios from "axios";
-import uuid from "node-uuid";
-import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 import FlatUpContext from "../context/FlatUpContext";
 import Mapa from "../mapa/Mapa";
 import "./cadastroEndereco.css";
@@ -37,6 +35,7 @@ const CadastroEndereco = (props) => {
 					pessoa_id: 1,
 					ponto_referencia: ponto_referencia,
 					uf: uf,
+					cidade: cidade,
 				},
 				{
 					headers: {
@@ -211,8 +210,8 @@ const CadastroEndereco = (props) => {
 						{listaCidade.map((item) => {
 							return (
 								<option
-									value={item.id}
-									onChange={(e) => {
+									value={item.nome}
+									onClick={(e) => {
 										setCidade(String(e.target.value));
 									}}
 								>

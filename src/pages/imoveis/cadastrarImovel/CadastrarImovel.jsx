@@ -38,6 +38,8 @@ const CadastrarImovel = () => {
 					quantQuarto: payload.quantQuarto,
 					quantSuite: payload.quantSuite,
 					statusOcupacao: payload.statusOcupacao,
+					tituloAnuncio: payload.tituloAnuncio,
+					descricao: payload.descricao
 				},
 				{
 					headers: {

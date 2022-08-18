@@ -2,7 +2,7 @@ import { faBackspace } from '@fortawesome/free-solid-svg-icons';
 import { Carousel } from 'react-carousel-minimal';
 import DATA from '../../DATAFILL';
 
-const CarroselImagem = (props) =>{
+const CarroselImagem = ({props}) =>{
 
   const captionStyle = {
     fontSize: '2em',
