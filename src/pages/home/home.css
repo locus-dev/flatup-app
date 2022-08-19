@@ -63,3 +63,29 @@
     width: 1024px;
     font-size: 20px;
 }
+
+
+#recife {
+    background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fmuro-alto.jpg?alt=media&token=c1f3a3a4-f525-4d52-b282-321b156c9f83") no-repeat center center; 
+    background-size: cover;
+}
+
+#porto {
+    background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fporto-galinhas.jpg?alt=media&token=01336272-35b4-490c-9709-9afa6e91c96f") no-repeat center center;
+    background-size: cover;
+}
+
+#garanhuns {
+    background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fgaranhuns.webp?alt=media&token=e555fc55-fa5a-4ccf-b0d5-ccc0818852d3") no-repeat center center;
+    background-size: cover;
+}
+
+#maragogi {
+    background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fmaragogi.jpg?alt=media&token=d0e9656a-54d7-4ec8-950c-27d3fde4bf69") no-repeat center center;
+    background-size: cover;
+}
+
+#jericoacoara {
+    background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fjericoacoara.webp?alt=media&token=03922f0f-5602-41cc-bea5-72cc2a7e1377") no-repeat center center;
+    background-size: cover;
+}

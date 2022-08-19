@@ -14,7 +14,7 @@ import DATA from "../../../DATAFILL";
 import TimerComponent from "../../../components/elements/TimerComponent";
 // import Countdown from "react-countdown";
 
-const ImovelDetalhe = (props) => {
+const ImovelDetalhe = ({props}) => {
 	// TODO: Implementar com o PUBLIC_KEY
 	// const mercadopago = new MercadoPago('PUBLIC_KEY', {locale: 'pt-BR'});
 
@@ -103,8 +103,7 @@ const ImovelDetalhe = (props) => {
 										<span className="promocao-texto">
 											R${" "}
 											{
-												DATA.imoveis[props.props]
-													.valor_diaria
+												props.valor_diaria
 											}
 											/noite
 										</span>
@@ -114,10 +113,9 @@ const ImovelDetalhe = (props) => {
 									</div>
 									<span className="promocao-texto-novopreco">
 										R${" "}
-										{DATA.imoveis[props.props]
+										{props
 											.valor_diaria -
-											(DATA.imoveis[props.props]
-												.valor_diaria *
+											(props.valor_diaria *
 												25) /
 											100}
 										/noite
@@ -133,8 +131,7 @@ const ImovelDetalhe = (props) => {
 										></span>
 										<TimerComponent
 											duracao={
-												DATA.imoveis[props.props]
-													.validadePromocao
+												props.validadePromocao
 											}
 											idSeletor={"promocao-contador"}
 										/>

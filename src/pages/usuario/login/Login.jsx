@@ -16,6 +16,8 @@ import { useContext } from "react";
 
 // App.SettarToken("fnfnfn")
 const Login = () => {
+	const [userData, setUserData] = useContext(FlatUpContext);
+	
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
 
@@ -46,6 +48,7 @@ const Login = () => {
 				setUserData((prevState) => ({...prevState,
 					userToken: data.data.token,
 					userEmail: email,
+					userId: data.data.idUsuario,
 				}));
 				navigate("/");
 			})
@@ -73,6 +76,7 @@ const Login = () => {
 					setUserData((prevState) => ({ ...prevState,
 						userToken: data.data.token,
 						userEmail: user.email,
+						userId: data.data.idUsuario,
 					}));
 					navigate("/");
 				})
@@ -82,7 +86,6 @@ const Login = () => {
 		});
 	}
 
-	const [userData, setUserData] = useContext(FlatUpContext);
 
 	return (
 		<div>

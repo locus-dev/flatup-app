@@ -7,20 +7,20 @@ import "./ConcluirCadastroPessoa.css";
 import axios from "axios";
 
 const ConcluirCadastroPessoa = () => {
+	const [userData, setUserData] = useContext(FlatUpContext);
+
 	const [payload, setPayload] = useState({
 		cnpj: "",
 		cpf: "",
 		data_nascimento: "",
 		data_nascimento: "2022-07-19T16:13:19.378Z",
 		nome: "",
-		pessoa_id: Number,
+		pessoa_id: userData.userPessoaId,
 		telefone: "",
-		usuario_id: 1,
+		usuario_id: userData.userId,
 	});
 	const navigate = useNavigate();
 	const location = useLocation();
-
-	const [userData, setUserData] = useContext(FlatUpContext);
 
 	return (
 		<div>
@@ -113,6 +113,7 @@ const ConcluirCadastroPessoa = () => {
 				</div>
 				<button
 				className="btn btn-azul-padrao w-75 mt-4"
+				type="button"
 					onClick={() => {
 						axios
 							.post(
@@ -127,8 +128,13 @@ const ConcluirCadastroPessoa = () => {
 								}
 							)
 							.then((resposta) => {
-								userData.hasPersonalInfo = true;
-								userData.userPersonalInfo = resposta.data;
+								setUserData((prevState) => ({
+									...prevState,
+									userEmail: resposta.data.email,
+									userPessoaId: resposta.data.pessoa_id,
+									hasPersonalInfo: true,
+									userPersonalInfo: resposta.data,
+								}));
 								navigate("/perfil");
 							})
 							.catch((error) => {
@@ -138,6 +144,11 @@ const ConcluirCadastroPessoa = () => {
 				>
 					Enviar
 				</button>
+				<button
+				type="button"
+				onClick={() => {
+					navigate("/perfil");}}
+				>Perfil</button>
 			</div>
 			<Footer />
 		</div>

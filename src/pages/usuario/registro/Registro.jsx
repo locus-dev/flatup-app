@@ -9,6 +9,7 @@ import FlatUpContext from '../../../components/context/FlatUpContext';
 const Register = () => {
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
+	const [senhaConfirmacao, setSenhaConfirmacao] = useState("");
 
 	const [userData, setUserData] = useContext(FlatUpContext);
 	const navigate = useNavigate();
@@ -125,22 +126,23 @@ const Register = () => {
 								</label>
 
 							</div>
-							{/* <div>
+							<div>
 								<label className="lsOptionText" for="senha">
 									{" Confirmar senha: "}
 									<input
 									className="input-padrao"
 									type="password"
-									onChange={(e) => setSenha(e.target.value)}
+									onChange={(e) => setSenhaConfirmacao(e.target.value)}
 									min={0}
-									value={senha}
+									value={senhaConfirmacao}
 									placeholder="Confirme sua senha"
 									id="senha"
                   					name="senha"
+									style={senha !== senhaConfirmacao ? {borderColor: "red", backgroundColor: "rgba(200,100,100, 0.4)"} : {}}
 								/>
 								</label>
 
-							</div> */}
+							</div>
 							<button
 								// type="submit"
 								className="form-button"
@@ -161,9 +163,11 @@ const Register = () => {
 													senha: senha,
 												})
 												.then((data) => {
-													setUserData({
+													setUserData((prevState) => ({ ...prevState,
 														userToken: data.data.token,
-													});
+														userEmail: data.data.email,
+														userId: data.data.idUsuario,
+													}));
 													navigate("/");
 												})
 												.catch((error) => {
