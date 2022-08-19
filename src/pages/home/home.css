@@ -68,24 +68,40 @@
 #recife {
     background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fmuro-alto.jpg?alt=media&token=c1f3a3a4-f525-4d52-b282-321b156c9f83") no-repeat center center; 
     background-size: cover;
+    color: aliceblue;
 }
 
 #porto {
     background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fporto-galinhas.jpg?alt=media&token=01336272-35b4-490c-9709-9afa6e91c96f") no-repeat center center;
     background-size: cover;
+    color: aliceblue;
 }
 
 #garanhuns {
     background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fgaranhuns.webp?alt=media&token=e555fc55-fa5a-4ccf-b0d5-ccc0818852d3") no-repeat center center;
     background-size: cover;
+    color: aliceblue;
 }
 
 #maragogi {
     background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fmaragogi.jpg?alt=media&token=d0e9656a-54d7-4ec8-950c-27d3fde4bf69") no-repeat center center;
     background-size: cover;
-}
+    color: aliceblue;
 
-#jericoacoara {
     background: url("https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2Fjericoacoara.webp?alt=media&token=03922f0f-5602-41cc-bea5-72cc2a7e1377") no-repeat center center;
     background-size: cover;
+
+    color: aliceblue;
+}
+
+
+.lugar h4 {
+    max-width: 100%;
+    /* background-color: rgba(3, 3, 3, 0.384); */
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.486);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+    border-radius: 2px;
 }
