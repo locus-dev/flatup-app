@@ -144,11 +144,6 @@ const ConcluirCadastroPessoa = () => {
 				>
 					Enviar
 				</button>
-				<button
-				type="button"
-				onClick={() => {
-					navigate("/perfil");}}
-				>Perfil</button>
 			</div>
 			<Footer />
 		</div>

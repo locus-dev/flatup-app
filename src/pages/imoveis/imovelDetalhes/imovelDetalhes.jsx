@@ -60,16 +60,16 @@ const ImovelDetalhe = ({props}) => {
 				<div className="localização-texto mt-5 w-75">
 					<div className="mb-5">
 						<h4>Descrição:</h4>
-						<p>Descriçãooo</p>
+						<p>{DATA.imoveis[props].descricao}</p>
 					</div>
-					<h4
+					{/* <h4
 						className="mb-3"
 						style={{
 							zIndex: 10,
 						}}
 					>
 						Comodidades:
-					</h4>
+					</h4> */}
 					<div
 						style={{
 							zIndex: 10,
@@ -79,8 +79,8 @@ const ImovelDetalhe = ({props}) => {
 					></div>
 					<hr />
 					<h4 className="py-2 d-flex align-items-start">Endereço:</h4>
-					<h6>{DATA.imoveis[props.props].endereco}</h6>
-					<Mapa coord={DATA.imoveis[props.props].geolocalizacao} modoExibicao={true} />
+					<h6>{DATA.imoveis[props].endereco}</h6>
+					<Mapa coord={DATA.imoveis[props].geolocalizacao} modoExibicao={true} />
 					{/* {console.log(DATA.imoveis[props.props].geolocalizacao)} */}
 					<hr />
 
@@ -103,7 +103,7 @@ const ImovelDetalhe = ({props}) => {
 										<span className="promocao-texto">
 											R${" "}
 											{
-												props.valor_diaria
+												DATA.imoveis[props].valor_diaria
 											}
 											/noite
 										</span>
@@ -113,9 +113,8 @@ const ImovelDetalhe = ({props}) => {
 									</div>
 									<span className="promocao-texto-novopreco">
 										R${" "}
-										{props
-											.valor_diaria -
-											(props.valor_diaria *
+										{DATA.imoveis[props].valor_diaria -
+											(DATA.imoveis[props].valor_diaria *
 												25) /
 											100}
 										/noite
@@ -131,7 +130,7 @@ const ImovelDetalhe = ({props}) => {
 										></span>
 										<TimerComponent
 											duracao={
-												props.validadePromocao
+												DATA.imoveis[props].validadePromocao
 											}
 											idSeletor={"promocao-contador"}
 										/>

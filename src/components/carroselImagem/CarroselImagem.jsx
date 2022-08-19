@@ -1,8 +1,11 @@
 import { faBackspace } from '@fortawesome/free-solid-svg-icons';
 import { Carousel } from 'react-carousel-minimal';
+import { useLocation } from 'react-router-dom';
 import DATA from '../../DATAFILL';
 
 const CarroselImagem = ({props}) =>{
+
+  const location = useLocation()
 
   const captionStyle = {
     fontSize: '2em',
@@ -21,7 +24,7 @@ const CarroselImagem = ({props}) =>{
           <Carousel  
             slideBackgroundColor={"none"}
             interval={8000}
-            data={props.dados.imagens}
+            data={DATA.imoveis[location.state.id-1].imagens}
             time={8000}
             width="100vw"
             height="450px"

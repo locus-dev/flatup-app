@@ -18,7 +18,7 @@ const Home = () => {
 		<div>
 			<Navbar />
 			<Header />
-			<div id="explorar" className="container mt-4">
+			<div id="explorar" className="container mt-4" style={{marginBotom: '7rem'}}>
 				<h1>Conheça lugares</h1>
 				<div className="d-flex justify-content-between">
 					<div id="recife" className="lugar" onClick={()=>{navigate("/imoveis")}}>

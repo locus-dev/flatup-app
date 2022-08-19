@@ -85,9 +85,9 @@ const TelaImovel = () => {
 					<h2 id="tituloImovel">{DATA.imoveis[location.state.id-1].titulo_anuncio}</h2>
 					{console.log(`Id vindo por parâmetro: ${location.state.id}`)}
 					{console.log("Dados simulados:")}
-					{console.log(DATA.imoveis[location.state.id-1])} */}
-					<CarroselImagem props={dados}/>
-					<ImovelDetalhe props={dados}/>
+					{console.log(DATA.imoveis[location.state.id-1])}
+					<CarroselImagem props={location.state.id-1}/>
+					<ImovelDetalhe props={location.state.id-1}/>
 				</div>
 			</main>
 		</div>

@@ -59,32 +59,38 @@ const CadastrarImovel = () => {
 					...prevState,
 					idImovel: resposta.data.idImovel,
 				}));
-				images
-					.map((image) => {
-						axios.post(
-							process.env.REACT_APP_API_URL +
-								"/fotosimovel/salvar",
-							{
-								foto: new FileReader().readAsDataURL(image.getAsFile()),
-								foto_id: null,
-								imovel_id: resposta.data.idImovel,
-							},
+				// images
+				// 	.map((image) => {
+				// 		axios.post(
+				// 			process.env.REACT_APP_API_URL +
+				// 				"/fotosimovel/salvar",
+				// 			{
+				// 				foto: new FileReader().readAsDataURL(image.getAsFile()),
+				// 				foto_id: null,
+				// 				imovel_id: resposta.data.idImovel,
+				// 			},
 
-							{
-								headers: {
-									Authorization: `Bearer ${userData.userToken}`,
-								},
-							}
-						);
-					})
-					.then(() => {
-						navigate(`/imoveis/${payload.idImovel}`, {
-							state: {
-								token: userData.userToken,
-								id: 1,
-							},
-						});
-					});
+				// 			{
+				// 				headers: {
+				// 					Authorization: `Bearer ${userData.userToken}`,
+				// 				},
+				// 			}
+				// 		);
+				// 	})
+				// 	.then(() => {
+				// 		navigate(`/imoveis/${payload.idImovel}`, {
+				// 			state: {
+				// 				token: userData.userToken,
+				// 				id: 1,
+				// 			},
+				// 		});
+				// 	});
+				navigate(`/home`, {
+					state: {
+						token: userData.userToken,
+						id: 1,
+					},
+				});
 			})
 			.catch((error) => {
 				// navigate("/imoveis");
@@ -378,7 +384,10 @@ const CadastrarImovel = () => {
 								</div>
 							</div>
 						</div>
+						<div >
+							
 						<ImageUploading
+						className="d-flex border w-100"
 							multiple
 							value={images}
 							onChange={(imageList, addUpdateIndex) => {
@@ -419,17 +428,18 @@ const CadastrarImovel = () => {
 											<img
 												src={image.data_url}
 												alt=""
-												width="100"
+												width="500"
 											/>
 											<div className="image-item__btn-wrapper">
 												{/* <ButtonComponent func={() => onImageUpdate(index)}
 													buttonName="Atualizar imagens"
 												/> */}
 												<ButtonComponent
+												theme="danger"
 													func={() =>
 														onImageRemove(index)
 													}
-													buttonName="Remover"
+													buttonName="X"
 												/>
 											</div>
 										</div>
@@ -437,6 +447,8 @@ const CadastrarImovel = () => {
 								</div>
 							)}
 						</ImageUploading>
+
+						</div>
 
 						<div className="form-footer">
 							<button
