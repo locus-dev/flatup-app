@@ -202,6 +202,7 @@ function App() {
                 <Route
                   path="modules/listLocations/locationDetails"
                   render={(props) => <LocationDetails {...props}/>}
+                  
                   element={
 
                     <FormLocation />
@@ -209,7 +210,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="modules/listLocations/locationDetails/table"
+                  path="modules/listLocations/locationDetails"
                   render={(props) => <Table {...props}/>}
                   element={
 

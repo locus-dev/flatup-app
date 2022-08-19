@@ -14,6 +14,13 @@ import FormAddress from "../../newAddress/formAddress/FormAddress";
 
 const FormHotel = () => {
 
+	const location = useLocation();
+    location.state = location.state ? location.state : {};
+
+    const [userData, setUserData] = useContext(FlatUpContext);
+    const navigate = useNavigate();
+	console.log(userData.userToken)
+
 	const [endereco, setEndereco] = useState({
 		logradouro: '',
 		bairro: '',
@@ -84,7 +91,15 @@ const FormHotel = () => {
 			quantSuite: imovel.quantSuite
 		}
 		console.log(imovelMontado)
-		axios.post(process.env.REACT_APP_API_URL + `/imovel/salvar`, imovelMontado).then((response) => {
+		axios.post(process.env.REACT_APP_API_URL + `/imovel/salvar`, imovelMontado, {
+			headers: {
+                'Authorization':
+                    `Bearer ${userData.userToken}`,
+                'Access-Control-Allow-Origin':
+                    '*'
+            },
+			data: userData
+		}).then((response) => {
 
 			navigate("/hotels")
 		}).catch((error) => {
@@ -94,12 +109,7 @@ const FormHotel = () => {
 
 
 	// const location = useLocation();
-	const navigate = useNavigate();
-
-	const location = useLocation();
-	location.state = location.state ? location.state : {};
-
-	const [userData, setUserData] = useContext(FlatUpContext);
+	
 
 
 	function rodarCarrossel(sentido) { }

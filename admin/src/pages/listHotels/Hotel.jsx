@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -6,7 +6,9 @@ import TableRow from "@mui/material/TableRow";
 
 const Hotel = ({ imovel, deleteImovel }) => {
     const navigate = useNavigate();
+    
 
+  
     /* const editarImovel = (e, id) => {
         e.preventDefault();
         console.log(id);

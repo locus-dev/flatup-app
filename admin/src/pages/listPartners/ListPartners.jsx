@@ -33,7 +33,10 @@ const ListPartners = () => {
     const [carregando, setCarregando] = useState(true);
     const [partners, setPartners] = useState([]);
 
+    const [partnersPerPage, setPartnersPerPage] = useState(5)
+    const [currentPage, setCurrentPage] = useState(0)
 
+    const pages = Math.ceil(partners.length / partnersPerPage)
 
 
     useEffect(() => {
@@ -104,7 +107,7 @@ const ListPartners = () => {
             <div className="listContainer">
                 <Navbar />
                 <div className='botaoPDF'>
-
+                  
                     {/* <button
 
 

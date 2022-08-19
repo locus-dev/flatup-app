@@ -1,14 +1,14 @@
 import "./table.scss";
 import Table from "@mui/material/Table";
-import {useContext} from 'react';
+import { useContext } from 'react';
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useLocation } from 'react-router-dom';
-import { useState, useEffect} from "react";
+import { useLocation, useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
 import axios from "axios";
 import FlatUpContext from "../../context/FlatUpContext"
 
@@ -18,41 +18,73 @@ const List = () => {
 
   
 
-  const[contratoLocacao, setContratoLocacao] = useState([])
- 
-
   const location = useLocation();
+  location.state = location.state ? location.state : {};
 
-  const locacao = {
-    contrato_locacao_id: location.state.locacoes.contrato_locacao_id,
-    idLocacao: location.state.locacoes.idLocacao,
-    checkIn: location.state.locacoes.checkIn,
-    checkOut: location.state.locacoes.checkOut,
-    diasLocacao: location.state.locacoes.diasLocacao,
-    valorLocacao: location.state.locacoes.valorLocacao,
-    quantPessoa: location.state.locacoes.quantPessoa,
-    
+
+  const asd = {
+    id: location.state.locacoes.contrato_locacao_id
   }
-
-  //console.log(locacao.contrato_locacao_id + 'AQUI È A PARADINHAss')
-
-  console.log(locacao.valorLocacao + 'HUYE')
 
   
 
-  const rows = [
-    {
-      id: 1143155,
-      product: "Acer Nitro 5",
-      img: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-      customer: "John Smith",
-      date: "1 March",
-      amount: 785,
-      method: "Cash on Delivery",
-      status: "Approved",
-    }
+  
+  
 
-  ];
+
+  const [contratoLocacao, setContratoLocacao] = useState({
+    idLocacao: '',
+    checkIn: '',
+    checkOut: '',
+    diasLocacao: '',
+    valorLocacao: '',
+    quantPessoa: ''
+  })
+
+  const contrato = {
+    idLocacao: contratoLocacao.idLocacao,
+    checkIn: contratoLocacao.checkIn,
+    checkOut: contratoLocacao.checkOut,
+    diasLocacao: contratoLocacao.diasLocacao,
+    valorLocacao: contratoLocacao.valorLocacao,
+    quantPessoa: contratoLocacao.quantPessoa
+  }
+
+  console.log(contrato)
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+
+        const response = await axios.get(process.env.REACT_APP_API_URL + `/contratolocacao/encontrar/${asd.id}`, {
+          headers: {
+            'Authorization':
+              `Bearer ${userData.userToken}`,
+            'Access-Control-Allow-Origin':
+              '*'
+          },
+          data: userData.userToken
+        })
+        setContratoLocacao(response.data);
+        
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  //console.log(locacao.contrato_locacao_id + 'AQUI È A PARADINHAss')
+
+
+
+
+
+
+
+
   return (
     <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -69,25 +101,18 @@ const List = () => {
         </TableHead>
         <TableBody>
           
-            <TableRow>
-              <TableCell className="tableCell">{locacao.idLocacao}</TableCell>
-              {/* <TableCell className="tableCell">
-                <div className="cellWrapper">
-                  <img src={row.img} alt="" className="image" />
-                  {row.product}
-                </div>
-              </TableCell> */}
-              <TableCell className="tableCell">{locacao.checkIn}</TableCell>
-              <TableCell className="tableCell">{locacao.checkOut}</TableCell>
-              <TableCell className="tableCell">{locacao.diasLocacao}</TableCell>
-              <TableCell className="tableCell">{locacao.valorLocacao}</TableCell>
-              <TableCell className="tableCell">{locacao.quantPessoa}</TableCell>
-             {/*  <TableCell className="tableCell">{contrato.valorLocacao}</TableCell>
-              <TableCell className="tableCell">
-                <span className={`status ${row.status}`}>{row.status}</span>
-              </TableCell> */}
+            <TableRow >
+              <TableCell className="tableCell">{contratoLocacao.checkIn}</TableCell>
+              <TableCell className="tableCell">{contrato.checkOut}</TableCell>
+              <TableCell className="tableCell">{contrato.diasLocacao}</TableCell>
+              <TableCell className="tableCell">{contrato.valorLocacao}</TableCell>
+              <TableCell className="tableCell">{contrato.quantPessoa}</TableCell>
+              <TableCell className="tableCell">{contrato.valorLocacao}</TableCell>
+              
             </TableRow>
-        
+          
+
+
         </TableBody>
       </Table>
     </TableContainer>

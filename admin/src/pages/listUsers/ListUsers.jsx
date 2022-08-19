@@ -22,7 +22,7 @@ import axios from "axios";
 const ListUsers = () => {
 
     const location = useLocation();
-   
+
 
     const [userData, setUserData] = useContext(FlatUpContext);
 
@@ -32,7 +32,12 @@ const ListUsers = () => {
     const [carregando, setCarregando] = useState(true);
     const [usuarios, setUsuarios] = useState([]);
 
-    
+    const [usersPerPage, setUsersPerPage] = useState(5)
+    const [currentPage, setCurrentPage] = useState(0)
+
+    const pages = Math.ceil(usuarios.length / usersPerPage)
+
+
 
 
 
@@ -60,8 +65,8 @@ const ListUsers = () => {
         fetchData();
     }, [usuarios.idUsuario]);
 
-    const GERAROPDFPO = async  () =>   {
-        const response =  await axios.get(process.env.REACT_APP_API_URL + '/usuario/pdf',  {
+    const GERAROPDFPO = async () => {
+        const response = await axios.get(process.env.REACT_APP_API_URL + '/usuario/pdf', {
             headers: {
                 'Authorization':
                     `Bearer ${userData.userToken}`,
@@ -69,25 +74,25 @@ const ListUsers = () => {
                     '*'
             },
             responseType: 'blob'
-            
+
         })
-        /* const pdfContents = response.data
-        await writeFile('file.pdf', pdfContents); */
-        
-        .then((response) => {
-            window.open(URL.createObjectURL(response.data))
-            console.log(response)
-        }).catch((err) => {
-            console.log(err)
-        })
-        console.log('lascou' + response )
-       
+            /* const pdfContents = response.data
+            await writeFile('file.pdf', pdfContents); */
+
+            .then((response) => {
+                window.open(URL.createObjectURL(response.data))
+                console.log(response)
+            }).catch((err) => {
+                console.log(err)
+            })
+        console.log('lascou' + response)
+
     }
-    
+
     const handlePDF = () => {
         GERAROPDFPO();
     }
-    
+
     const deleteUsuario = (e, id) => {
         e.preventDefault();
         (id).then((res) => {
@@ -107,9 +112,10 @@ const ListUsers = () => {
             <Sidebar />
             <div className="listContainer">
                 <Navbar />
+
                 <div className='botaoPDF'>
 
-                   {/*  <button
+                    {/*  <button
 
 
                         onClick={() => navigate("/users/new")}
@@ -123,6 +129,7 @@ const ListUsers = () => {
                         //href="{process.env.REACT_APP_API_URL + '/usuario/pdf'} "
                         className='botaoGerarPDF '
                     >
+
                         Gerar PDF
                     </button>
 
@@ -144,6 +151,7 @@ const ListUsers = () => {
 
                                 </TableRow>
                             </TableHead>
+                            
                             <TableBody>
                                 {usuarios.map((usuario) => (
                                     <User
@@ -157,10 +165,12 @@ const ListUsers = () => {
                             </TableBody>
 
                         </Table>
+                       
 
                     </TableContainer>
                 </div>
             </div>
+
         </div>
 
 

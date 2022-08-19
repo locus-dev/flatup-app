@@ -36,6 +36,7 @@ const ListHotels = () => {
 
 
     const [imoveis, setImoveis] = useState([]);
+    
 
     /* const gerarPDF = () => {
         const config = {
@@ -94,7 +95,7 @@ const ListHotels = () => {
             setCarregando(false);
         };
         fetchData();
-    }, [imoveis.id]);
+    }, [imoveis.idImovel]);
 
     const deleteImovel = (e, id) => {
         e.preventDefault();

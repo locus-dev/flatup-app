@@ -30,14 +30,7 @@ const Location = ({ locacao }) => {
         senha: ''
     })
 
-    const[contratoLocacao, setContratoLocacao] = useState({
-        idLocacao: '',
-        checkIn: '',
-        checkOut: '',
-        diasLocacao: '',
-        valorLocacao: '',
-        quantPessoa: ''
-    })
+  
 
 
     const locacoes = {
@@ -48,44 +41,16 @@ const Location = ({ locacao }) => {
         contrato_locacao_id: locacao.contrato_locacao_id,
         status_locacao: locacao.status_locacao,
 
-        idLocacao: contratoLocacao.idLocacao,
-        checkIn: contratoLocacao.checkIn,
-        checkOut: contratoLocacao.checkOut,
-        diasLocacao: contratoLocacao.diasLocacao,
-        valorLocacao: contratoLocacao.valorLocacao,
-        quantPessoa: contratoLocacao.quantPessoa
         
     }
 
 
 
     const componentDetails = () => {
-        if(locacoes != null)
-            navigate('listLocations/locationDetails', {state: {locacoes}})
-    } 
+        navigate("listLocations/locationDetails", {state: {locacoes}})
+    }
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
     
-            const response = await  axios.get(process.env.REACT_APP_API_URL + `/contratolocacao/encontrar/${locacoes.contrato_locacao_id}`, {
-              headers: {
-                'Authorization':
-                  `Bearer ${userData.userToken}`,
-                'Access-Control-Allow-Origin':
-                  '*'
-              },
-              data: userData.userToken
-            })
-            setContratoLocacao(response.data);
-            
-          } catch (error) {
-            console.log(error);
-          }
-        };
-        fetchData();
-      }, []);
     
     
     

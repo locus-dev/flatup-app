@@ -3,13 +3,14 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import FlatUpContext from "../../context/FlatUpContext"
+import List from "../../components/table/Table";
 
 const LocationDetails = () => {
 
     const navigate = useNavigate();
 
-    //location.state = location.state ? location.state : {};
-    //console.log(location.state.usuarios.nome + 'Aqui é o lao')
+    
+   
     const [userData, setUserData] = useContext(FlatUpContext);
 
     const { id } = useParams();
@@ -26,24 +27,12 @@ const LocationDetails = () => {
 
     }
 
-    const contratoDeRua = {
-        idLocacao: location.state.locacoes.idLocacao,
-        checkIn: location.state.locacoes.checkIn,
-        checkOut: location.state.locacoes.checkOut,
-        diasLocacao: location.state.locacoes.diasLocacao,
-        valorLocacao: location.state.locacoes.valorLocacao,
-        quantPessoa: location.state.locacoes.quantPessoa,
-    }
-
-
-    
-
 
     useEffect(() => {
         const fetchData = async () => {
             try {
 
-                const response = await axios.get(process.env.REACT_APP_API_URL + `/locacao/encontrar/${id}`, {
+                const response = await axios.get(process.env.REACT_APP_API_URL + `/locacao/encontrar/${location.state.locacoes.locacao_id}`, {
                     headers: {
                         'Authorization':
                             `Bearer ${userData.userToken}`,
@@ -62,39 +51,32 @@ const LocationDetails = () => {
     }, []);
 
 
-    const [contratoLocacao, SetContratoLocacao] = useState()
+    const GERAROPDFPO = async () => {
+        const response = await axios.get(process.env.REACT_APP_API_URL + '/contratoLocacao/pdf', {
+            headers: {
+                'Authorization':
+                    `Bearer ${userData.userToken}`,
+                'Access-Control-Allow-Origin':
+                    '*'
+            },
+            data: userData.userToken,
+            responseType: 'blob'
 
+        })
+            /* const pdfContents = response.data
+            await writeFile('file.pdf', pdfContents); */
 
+            .then((response) => {
+                window.open(URL.createObjectURL(response.data))
+                console.log(response)
+            }).catch((err) => {
+                console.log(err)
+            })
+        console.log('lascou' + response)
 
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-
-                const response = await axios.get(process.env.REACT_APP_API_URL + `/contratolocacao/encontrar/${locacao.contrato_locacao_id}`, {
-                    headers: {
-                        'Authorization':
-                            `Bearer ${userData.userToken}`,
-                        'Access-Control-Allow-Origin':
-                            '*'
-                    },
-                    data: userData.userToken
-                })
-                SetContratoLocacao(response.data);
-
-                
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, []);
-
-
+    }
 
     return (
-
         <>
             <div className="item">
 
@@ -114,6 +96,8 @@ const LocationDetails = () => {
                         <span className="itemValue">
                             {locacao.contrato_locacao_id}
                         </span>
+                       
+                        <button onClick={GERAROPDFPO}>Gerar PDF do Contrato Locação</button>
                     </div>
                     <div className="detailItem">
                         <span className="itemKey">Status Locação:</span>
@@ -121,6 +105,8 @@ const LocationDetails = () => {
                     </div>
                 </div>
             </div>
+           
+           
         </>
     )
 }

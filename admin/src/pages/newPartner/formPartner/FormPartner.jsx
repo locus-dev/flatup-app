@@ -56,7 +56,15 @@ const FormPartner = () => {
             }
         }
        
-        axios.post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, partnerMounted);
+        axios.post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, partnerMounted, {
+            headers: {
+                'Authorization':
+                    `Bearer ${userData.userToken}`,
+                'Access-Control-Allow-Origin':
+                    '*'
+            },
+            data: userData
+        });
         console.log(partnerMounted.idUsuarioFK.idUsuario + 'EITA OLHA O OBJETO MONTADO PO PARCEIRO')
         navigate("/partners")
        
