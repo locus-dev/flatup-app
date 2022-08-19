@@ -5,6 +5,59 @@
     align-items: center;
     flex-wrap: wrap;
 }
+.lugar{
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    margin-right: 20px;
+    height: 250px;
+    border-radius: 20px;
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.lugar-texto{
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: white;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, transparent, var(--azul-padrao));
+}
+
+.lugar-texto h5{
+    padding-bottom: 10px;
+}
+
+#recife{
+    background: url("https://upload.wikimedia.org/wikipedia/commons/b/b9/Recife_-_In%C3%ADcio_da_Avenida_Boa_Viagem.jpg") center;
+    background-size: cover;
+}
+
+#porto-de-galinha{
+    background: url("https://viagemeturismo.abril.com.br/wp-content/uploads/2016/12/foto-abre-pgalinhas01.jpg?quality=70&strip=info&w=1024&resize=1200,800") center;
+    background-size: cover;
+}
+
+#garanhus{
+    background: url("https://viagemeturismo.abril.com.br/wp-content/uploads/2016/10/garanhuns3.jpeg?quality=70&strip=info&w=817&w=636") center;
+    background-size: cover;
+}
+
+#boa-viagem{
+    background: url("https://ibis.accor.com/editorial/imagerie/article/praia-de-boa-viagem-6db9_660x440.jpg") center #0071c2;
+    background-size: cover;
+}
+
+#jaboatao{
+    background: url("https://media-cdn.tripadvisor.com/media/photo-s/01/0e/1b/7c/view-from-our-room.jpg") center #0071c2;
+    background-size: cover;
+}
 
 .homeTitle{
     width: 1024px;

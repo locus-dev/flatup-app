@@ -96,7 +96,7 @@ const CadastrarImovel = () => {
 
 					<div className="container" id="slide-2">
 						<h2>Informações adicionais</h2>
-						<div className="form-group">
+						<div className="d-flex flex-column w-100 mb-3">
 							<label className="exampleInputEmail1">Título do Anúncio</label>
 							<input
 								className=""
@@ -282,7 +282,6 @@ const CadastrarImovel = () => {
 									<label htmlFor="piscina_nao" className="exampleInputEmail1">Não</label>
 								</div>
 							</div>
-									))}
 						</div>
 						<ImageUploading
 							multiple

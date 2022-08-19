@@ -23,11 +23,12 @@ const ConcluirCadastroPessoa = () => {
 	const [userData, setUserData] = useContext(FlatUpContext);
 
 	return (
-		<div className="classe">
+		<div>
 			<Navbar />
-			<div id="form-cadastro-pessoa">
-				<h1>Concluir Cadastro</h1>
-				<div className="form-control">
+			
+			<div className="container d-flex flex-column justify-content-center my-5 align-items-center" style={{height: "100vh"}}>
+			<h1>Concluir Cadastro</h1>
+				<div className="d-flex flex-column mb-3 w-75">
 					<label>Nome</label>
 					<input
 						className="input"
@@ -44,7 +45,7 @@ const ConcluirCadastroPessoa = () => {
 						name="nome"
 					/>
 				</div>
-				<div className="form-control">
+				<div className="d-flex flex-column mb-3 w-75">
 					<label>Telefone</label>
 					<input
 						className="input"
@@ -61,7 +62,7 @@ const ConcluirCadastroPessoa = () => {
 						name="telefone"
 					/>
 				</div>
-				<div className="form-control">
+				<div className="d-flex flex-column mb-3 w-75">
 					<label>CPF</label>
 					<input
 						className="input"
@@ -78,7 +79,7 @@ const ConcluirCadastroPessoa = () => {
 						name="cpf"
 					/>
 				</div>
-				<div className="form-control">
+				<div className="d-flex flex-column mb-3 w-75">
 					<label>CNPJ</label>
 					<input
 						className="input"
@@ -95,7 +96,7 @@ const ConcluirCadastroPessoa = () => {
 						name="cnpj"
 					/>
 				</div>
-				<div className="form-control">
+				<div className="d-flex flex-column mb-3 w-75">
 					<label>Data de Nascimento</label>
 					<input
 						className="input"
@@ -111,6 +112,7 @@ const ConcluirCadastroPessoa = () => {
 					/>
 				</div>
 				<button
+				className="btn btn-azul-padrao w-75 mt-4"
 					onClick={() => {
 						axios
 							.post(

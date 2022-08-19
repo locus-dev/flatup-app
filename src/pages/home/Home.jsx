@@ -19,23 +19,33 @@ const Home = () => {
 			<div id="explorar" className="container mt-4">
 				<h1>Conheça lugares</h1>
 				<div className="d-flex justify-content-between">
-					<div className="lugar">
-						<h4>Recife</h4>
+					<div className="lugar" id="recife">
+						<div className="lugar-texto">
+							<h5>Recife</h5>
+						</div>
 					</div>
 
-					<div className="lugar">
-						<h4>Porto de Galinhas</h4>
+					<div className="lugar" id="porto-de-galinha">
+						<div className="lugar-texto">
+							<h5>Porto de Galinhas</h5>
+						</div>
 					</div>
 
-					<div className="lugar">
-						<h4>Garanhus</h4>
+					<div className="lugar" id="garanhus">
+						<div className="lugar-texto">
+							<h5>Garanhus</h5>
+						</div>
 					</div>
 
-					<div className="lugar">
-						<h4>Boa Viagem</h4>
+					<div className="lugar" id="boa-viagem">
+						<div className="lugar-texto">
+							<h5>Boa Viagem</h5>
+						</div>
 					</div>
-					<div className="lugar">
-						<h4>Jaboatão</h4>
+					<div className="lugar" id="jaboatao">
+						<div className="lugar-texto">
+							<h5>Jaboatão</h5>
+						</div>
 					</div>
 				</div>
 			</div>

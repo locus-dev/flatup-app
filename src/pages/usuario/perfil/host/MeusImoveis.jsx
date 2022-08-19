@@ -6,11 +6,10 @@ const MeusImoveis = () => {
 	return (
     <>
         <Navbar />
-        <div style={{marginTop: "8rem"}}>
-            <h2>Meus Imóveis</h2>
+        <div className="container d-flex flex-column align-items-center justify-content-center" style={{height: "100vh"}}>
+            <h2 className="mb-4">Meus Imóveis</h2>
             <FeaturedProperties />
         </div>
-        <Footer />
     </>
     )
 };

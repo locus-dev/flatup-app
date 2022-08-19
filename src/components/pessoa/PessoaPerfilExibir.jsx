@@ -40,24 +40,24 @@ const PessoaPerfilExibir = (props) => {
        }
 
     return (
-        <form>
+        <form className=" w-75 container">
             <TextComponent inputName="Nome"/>
             <br/>
-            <input content={data.nome} type="text"></input>
+            <input className="w-100 mb-3" content={data.nome} type="text"></input>
             <br/>
             <TextComponent inputName="Data de Nascimento"  />
             <br/>
-            <input content={data.data_nascimento} type="date"></input>
+            <input  className="w-100 mb-3" content={data.data_nascimento} type="date"></input>
             <br/>
             <TextComponent inputName="Telefone"  />
             <br/>
-            <input content={data.telefone} type="text"></input>
+            <input  className="w-100 mb-3" content={data.telefone} type="text"></input>
             <br/>
             <TextComponent inputName="Email"  />
             <br/>
-            <input content={data.email} type="email"></input>
+            <input className="w-100 mb-2" content={data.email} type="email"></input>
             <br/>
-            <Button buttonName="Alterar" func={alterarRedirect} />
+            <Button buttonName="Editar perfil" className="btn btn-azul-padrao" func={alterarRedirect} />
          </form>
     )
 }

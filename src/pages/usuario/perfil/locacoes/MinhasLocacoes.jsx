@@ -6,11 +6,10 @@ const MinhasLocacoes = () => {
 	return (
     <>
         <Navbar />
-        <div style={{marginTop: "8rem"}}>
-            <h2>Imóveis que eu já aluguei</h2>
+        <div className="container d-flex flex-column align-items-center justify-content-center" style={{height: "100vh"}}>
+            <h2 className="mb-4">Histórico de imóveis</h2>
             <FeaturedProperties />
         </div>
-        <Footer />
     </>
     )
 };

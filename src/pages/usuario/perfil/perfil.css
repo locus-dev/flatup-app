@@ -1,9 +1,7 @@
 .imageSize{
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    height: 100px;
+    width: 100px;
+    margin-bottom: 10px;
 }
 .formDimensao{
     display: flex;
@@ -12,28 +10,23 @@
     align-items: center;
     margin-top: 2%;
 }
-.classe {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 7%;
-} 
-.botoes-perfil {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.2rem;
-    margin-top: 1%;
-}
-.botoes-perfil button {
-    margin: 0.2rem;
-}
 .info-perfil {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 2rem;    
+}
+
+.botao-lado{
+    border: 0;
+    border-bottom: 1px solid rgb(207, 207, 207);
+    padding: 15px 10px;
+    background-color: white;
+    transition: all 400ms;
+}
+
+.botao-lado:hover{
+    background-color: var(--azul-padrao);
+    color: white;
 }

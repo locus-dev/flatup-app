@@ -5,6 +5,7 @@ const ButtonComponent = (props) => {
     return (
         <><br/>
             <Button
+                // className='btn btn-azul-padrao'
                 id={props.idButton}
                 variant={props.theme}
                 type="button"
