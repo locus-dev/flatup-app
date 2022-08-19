@@ -14,7 +14,7 @@ import DATA from "../../../DATAFILL";
 import TimerComponent from "../../../components/elements/TimerComponent";
 // import Countdown from "react-countdown";
 
-const ImovelDetalhe = (props) => {
+const ImovelDetalhe = ({props}) => {
 	// TODO: Implementar com o PUBLIC_KEY
 	// const mercadopago = new MercadoPago('PUBLIC_KEY', {locale: 'pt-BR'});
 
@@ -56,21 +56,20 @@ const ImovelDetalhe = (props) => {
 
 	return (
 		<main className="d-flex justify-content-between my-5 align-items-start">
-			<div className="w-100">
-				<div className="localização-texto">
-					<h3>Endereço:</h3>
-					<h6>{DATA.imoveis[props.props].endereco}</h6>
-					<hr />
-					<Mapa coord={DATA.imoveis[props.props].geolocalizacao} modoExibicao={true} />
-					{/* {console.log(DATA.imoveis[props.props].geolocalizacao)} */}
-					<h4
+			<div className="w-100 d-flex">
+				<div className="localização-texto mt-5 w-75">
+					<div className="mb-5">
+						<h4>Descrição:</h4>
+						<p>{DATA.imoveis[props].descricao}</p>
+					</div>
+					{/* <h4
 						className="mb-3"
 						style={{
 							zIndex: 10,
 						}}
 					>
-						Comodidades
-					</h4>
+						Comodidades:
+					</h4> */}
 					<div
 						style={{
 							zIndex: 10,
@@ -78,18 +77,20 @@ const ImovelDetalhe = (props) => {
 						id="comodidades"
 						className="d-flex "
 					></div>
+					<hr />
+					<h4 className="py-2 d-flex align-items-start">Endereço:</h4>
+					<h6>{DATA.imoveis[props].endereco}</h6>
+					<Mapa coord={DATA.imoveis[props].geolocalizacao} modoExibicao={true} />
+					{/* {console.log(DATA.imoveis[props.props].geolocalizacao)} */}
+					<hr />
+
+
+
 
 				</div>
 
 				<div className="flex-column">
 					<div className="text-dark" id="card-reserva">
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
-						<br></br>
 						<Card
 							color="light"
 							style={{
@@ -98,12 +99,11 @@ const ImovelDetalhe = (props) => {
 						>
 							<CardBody>
 								<CardTitle tag="h3">
-									<div className=" d-flex mb-2">
+									<div className=" d-flex">
 										<span className="promocao-texto">
 											R${" "}
 											{
-												DATA.imoveis[props.props]
-													.valor_diaria
+												DATA.imoveis[props].valor_diaria
 											}
 											/noite
 										</span>
@@ -113,12 +113,10 @@ const ImovelDetalhe = (props) => {
 									</div>
 									<span className="promocao-texto-novopreco">
 										R${" "}
-										{DATA.imoveis[props.props]
-											.valor_diaria -
-											(DATA.imoveis[props.props]
-												.valor_diaria *
+										{DATA.imoveis[props].valor_diaria -
+											(DATA.imoveis[props].valor_diaria *
 												25) /
-												100}
+											100}
 										/noite
 									</span>
 								</CardTitle>
@@ -132,8 +130,7 @@ const ImovelDetalhe = (props) => {
 										></span>
 										<TimerComponent
 											duracao={
-												DATA.imoveis[props.props]
-													.validadePromocao
+												DATA.imoveis[props].validadePromocao
 											}
 											idSeletor={"promocao-contador"}
 										/>

@@ -21,7 +21,6 @@ const List = () => {
 			<Navbar />
 			<div className="listContainer">
 				<SearchItem dados={location.state.dados}/>
-				<MailList />
 				<Footer />
 			</div>
 		</div>

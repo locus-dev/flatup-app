@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import FlatUpContext from "../context/FlatUpContext";
+import { useState } from "react";
 
-const BotaoLocalizacao = () => {
-	const contexto = useContext(FlatUpContext);
+const BotaoLocalizacao = ({funcao}) => {
+	const [localizacao, setLocalizacao] = useState([]);
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -17,14 +16,14 @@ const BotaoLocalizacao = () => {
     }
     
     function returnPosition(position) {
-        contexto.setLocalizacao(position.coords)
-        console.log(contexto.localizacao)
+        setLocalizacao(position.coords)
+        console.log(localizacao)
+        funcao(localizacao)
     }
     
     return (
         <>
-            <button type="button" className="btn btn-primary" onClick={getLocation}>Use minha localização</button>
-            <br></br><br/>
+            <input type="checkbox" className="btn btn-primary" onClick={getLocation}/>
         </>
         
     )

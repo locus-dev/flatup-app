@@ -2713,7 +2713,7 @@ textarea.form-control-lg {
     color: #fff !important;
     transition: all 400ms !important;
     font-weight: 600 !important;
-    font-size: 20px !important;
+    font-size: 1rem !important;
 }
 
 .btn-azul-padrao:hover{
@@ -2989,19 +2989,7 @@ textarea.form-control-lg {
     transform: scale(.85) translateY(-.5rem) translateX(.15rem)
 }
 
-.lugar{
-    width: 100%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    margin-right: 20px;
-    height: 350px;
-    border-radius: 20px;
-    margin-top: 15px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 20px;
-}
+
 
 .input-padrao{
     height: 50px;

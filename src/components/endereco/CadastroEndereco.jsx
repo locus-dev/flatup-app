@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 // import API from "../../services/API";
 import axios from "axios";
-import uuid from "node-uuid";
-import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 import FlatUpContext from "../context/FlatUpContext";
 import Mapa from "../mapa/Mapa";
 import "./cadastroEndereco.css";
+import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 
 const CadastroEndereco = (props) => {
 	const [bairro, setBairro] = useState("");
@@ -19,20 +18,24 @@ const CadastroEndereco = (props) => {
 	const [cidade, setCidade] = useState("");
 
 	const [usarGps, setUsarGps] = useState(null);
+	const [geolocalizacao, setGeolocalizacao] = useState([]);
 
 	const [userData, setUserData] = useContext(FlatUpContext);
 
 	function req() {
 		console.log(userData);
+		// TODO: Ajustar passagem do id de pessoa
 		axios
 			.post(
 				`${process.env.REACT_APP_API_URL}/endereco/salvar`,
 				{
 					bairro: bairro,
 					cep: cep,
+					cidade: cidade,
 					complemento: complemento,
 					logradouro: logradouro,
 					numero: numero,
+					endereco_id: 1,
 					pessoa_id: 1,
 					ponto_referencia: ponto_referencia,
 					uf: uf,
@@ -44,7 +47,26 @@ const CadastroEndereco = (props) => {
 				}
 			)
 			.then((result) => {
-				console.log(result);
+				setUserData((prevState) => ({
+					...prevState,
+					userEnderecoId: result.data.endereco_id,
+				}));
+				axios
+					.post(
+						`${process.env.REACT_APP_API_URL}/localizacao/salvar`,
+						{
+							// TODO: deixar id do imóvel dinâmico, pra isso vai ser necessario passa props pro componente pai
+							imovel_id: 1,
+							latitude: geolocalizacao[0],
+							longitude: geolocalizacao[1],
+						}
+					)
+					.then((result) => {
+						console.log(result);
+					})
+					.catch((error) => {
+						console.log(error);
+					});
 			})
 			.catch((err) => {
 				console.log(err);
@@ -56,6 +78,11 @@ const CadastroEndereco = (props) => {
 
 	var estado = [];
 	var municipio = [];
+
+	const definirCoordenadas = (coordenadas) => {
+		setGeolocalizacao([coordenadas.latitude, coordenadas.longitude]);
+		console.log(geolocalizacao);
+	};
 
 	useEffect(() => {
 		axios
@@ -118,8 +145,11 @@ const CadastroEndereco = (props) => {
 				/>
 			</div>
 
-			<div className="d-flex">
-				<div className="d-flex flex-column w-50  mb-3">
+			<div className="d-flex justify-content-between">
+				<div
+					className="d-flex flex-column mb-3"
+					style={{ width: "45%" }}
+				>
 					<label className="exampleInputEmail1">Número</label>
 					<input
 						className="input"
@@ -136,7 +166,7 @@ const CadastroEndereco = (props) => {
 					<label className="exampleInputEmail1">Complemento</label>
 					<input
 						className="input"
-						placeholder="Ex: B"
+						placeholder="Ex: Casa"
 						maxLength="100"
 						type="text"
 						name="complemento"
@@ -145,32 +175,6 @@ const CadastroEndereco = (props) => {
 						}}
 					/>
 				</div>
-			</div>
-			<div className=" d-flex flex-column mb-3">
-				<label className="exampleInputEmail1">Bairro</label>
-				<input
-					className="input"
-					placeholder="Ex: Sucupira"
-					maxLength="100"
-					type="text"
-					name="bairro"
-					onChange={(e) => {
-						setBairro(String(e.target.value));
-					}}
-				/>
-			</div>
-			<div className=" d-flex flex-column mb-3">
-				<label className="exampleInputEmail1">Ponto de Referência</label>
-				<input
-					className="input"
-					placeholder="Ex: Casa de Pedro"
-					maxLength="100"
-					type="text"
-					name="pt_referencia"
-					onChange={(e) => {
-						setPonto_referencia(String(e.target.value));
-					}}
-				/>
 			</div>
 			<div className=" d-flex flex-column mb-3">
 				<label className="exampleInputEmail1">CEP</label>
@@ -186,11 +190,43 @@ const CadastroEndereco = (props) => {
 				/>
 				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 			</div>
-			<div className="d-flex mb-3">
-				<div className=" d-flex flex-column w-50">
+			<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">Bairro</label>
+				<input
+					className="input"
+					placeholder="Ex: Sucupira"
+					maxLength="100"
+					type="text"
+					name="bairro"
+					onChange={(e) => {
+						setBairro(String(e.target.value));
+					}}
+				/>
+			</div>
+			<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">
+					Ponto de Referência
+				</label>
+				<input
+					className="input"
+					placeholder="Ex: Casa de Pedro"
+					maxLength="100"
+					type="text"
+					name="pt_referencia"
+					onChange={(e) => {
+						setPonto_referencia(String(e.target.value));
+					}}
+				/>
+			</div>
+
+			<div className="d-flex mb-3 justify-content-between">
+				<div
+					className=" d-flex flex-column mr-3"
+					style={{ width: "45%" }}
+				>
 					<label className="exampleInputEmail1">UF</label>
 					<select className="input select" name="uf">
-					<option selected>Selecione seu estado</option>
+						<option selected>Selecione seu estado</option>
 						{listaUF.map((item, index) => {
 							return (
 								<option
@@ -211,12 +247,12 @@ const CadastroEndereco = (props) => {
 					<label className="exampleInputEmail1">Cidade</label>
 					{/* <input className="input" type="text" name="cidade"/> */}
 					<select className="input select" name="cidade">
-					<option selected>Selecione sua cidade</option>
+						<option selected>Selecione sua cidade</option>
 						{listaCidade.map((item) => {
 							return (
 								<option
-									value={item.id}
-									onChange={(e) => {
+									value={item.nome}
+									onClick={(e) => {
 										setCidade(String(e.target.value));
 									}}
 								>
@@ -227,35 +263,52 @@ const CadastroEndereco = (props) => {
 					</select>
 				</div>
 			</div>
-			
+
 			<div className="d-flex flex-column">
-				<label className="exampleInputEmail1">Geolocalização</label>
-				<div>{usarGps ? (
-					<Mapa
-						coord={[-34.92, -8.2]}
-						modoExibicao={false}
-						usarGps={usarGps}
-					/>
-				) : (
-					<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
-				)}</div>
+				<label className="exampleInputEmail1 mb-3">
+					Marque sua localização no mapa
+				</label>
 				<div>
-					<input
+					{usarGps ? (
+						<Mapa
+							coord={
+								geolocalizacao ? geolocalizacao : [-34.92, -8.2]
+							}
+							modoExibicao={false}
+							usarGps={usarGps}
+							funcao={definirCoordenadas}
+						/>
+					) : (
+						<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
+					)}
+				</div>
+				<div>
+					{/* <input
 						name="coord"
 						type="checkbox"
 						className="form-check-input"
 						onChange={() => {
 							setUsarGps(true);
 						}}
-					/>
-					{" "}<span className="exampleInputEmail1">Usar GPS</span>
+					/>{" "} */}
+					<BotaoLocalizacao funcao={definirCoordenadas}/>
+					<span className="exampleInputEmail1">Usar GPS</span>
 				</div>
 			</div>
 			{/* <div>
 				<BotaoLocalizacao />
 			</div> */}
 			<br></br>
-			<button type="button" className="btn btn-primary" onClick={() => {req();}}> Cadastrar Endereço</button>
+			<button
+				type="button"
+				className="btn btn-primary w-100"
+				onClick={() => {
+					req();
+				}}
+			>
+				{" "}
+				Cadastrar Endereço
+			</button>
 
 			{/* <div className="input">
 			<label>País</label>
