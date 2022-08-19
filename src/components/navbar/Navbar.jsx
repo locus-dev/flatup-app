@@ -86,11 +86,21 @@ const Navbar = () => {
 								src="./media/assets/perfil.png"
 								alt="Perfil"
 								onClick={() =>
-									// navigate((userData.hasPersonalInfo ? "/perfil" : "/concluir-cadastro"), {
-									navigate("/perfil", {
+								// 	axios.get(process.env.REACT_APP_API_URL + `/pessoa/encontrar/por/usuario/${userData.userPessoaId}`, {
+								// 		headers: {
+								// 			Authorization:
+								// 				"Bearer " + userData.token,
+								// 		},
+								// 	}).then((resposta) => {
+								// 	navigate((resposta.data ? "/perfil" : "/concluir-cadastro"), {
+								// 	// navigate("/perfil", {
+								// 		state: { token: userData.userToken },
+								// 	})})
+								navigate((userData.hasPersonalInfo ? "/perfil" : "/concluir-cadastro"), {
+									// navigate("/perfil", {
 										state: { token: userData.userToken },
 									})
-								} 
+							}
 							></img>
 						</>
 					) : (

@@ -14,6 +14,7 @@ import Overlay from "ol/Overlay";
 import "./mapa.css";
 import DATA from "../../DATAFILL";
 import { useState } from "react";
+import {transform} from "ol/proj";
 
 import Geolocation from "ol/Geolocation";
 
@@ -119,21 +120,25 @@ const Mapa = ({ coord, modoExibicao, usarGps, funcao }) => {
 			});
 			
 			map.addInteraction(modify);
+			console.log(coordPino);
 
-			// Pega localização atual do usuário e move o ponteiro para ele
-			const geolocation = new Geolocation({
-				trackingOptions: {
-					enableHighAccuracy: true,
-				},
-				projection: view.getProjection(),
+			map.on('click', function(evt){
+				coord = transform(evt.coordinate, evt.map.getView().getProjection(), 'EPSG:4326');
+				setCoordPino(coord);
+				console.log(coord);
 			});
-			geolocation.setTracking(usarGps);
-			geolocation.on("change:position", function () {
-				console.log(geolocation.position_);
-			});
+
+			// // Pega localização atual do usuário e move o ponteiro para ele
+			// const geolocation = new Geolocation({
+			// 	trackingOptions: {
+			// 		enableHighAccuracy: true,
+			// 	},
+			// 	projection: view.getProjection(),
+			// });
+			// geolocation.setTracking(usarGps);
 			// geolocation.on("change:position", function () {
 			// 	funcao(geolocation.position_);
-			// 	setCoordPino(geolocation.position_);
+			// 	console.log(geolocation.position_);
 			// });
 			/////////////////////////////////////////////////////////////////
 		}

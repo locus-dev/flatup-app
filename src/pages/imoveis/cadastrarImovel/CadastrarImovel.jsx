@@ -7,31 +7,32 @@ import "./CadastrarImovel.css";
 import { useNavigate } from "react-router-dom";
 import FlatUpContext from "../../../components/context/FlatUpContext";
 import ImageUploading from "react-images-uploading";
-import ButtonComponent from "../../../components/elements/ButtonComponent"
+import ButtonComponent from "../../../components/elements/ButtonComponent";
 
 const CadastrarImovel = () => {
-
+	const [userData, setUserData] = useContext(FlatUpContext);
 	const [images, setImages] = useState([]);
-	const maxNumber = 69;
 
-	const [token, setToken] = useState({});
-
+	console.log(userData.userEnderecoId);
 	const [payload, setPayload] = useState({
 		areaLazer: true,
 		areaM2: 0,
 		climatizado: "string",
-		idEnderecoFK: 1,
+		idEnderecoFK: userData.userEnderecoId,
 		idImovel: null,
 		piscina: true,
 		quantQuarto: 0,
 		quantSuite: 0,
 		statusOcupacao: "DESOCUPADO",
 		tituloAnuncio: "",
-		descricao: ""
+		descricao: "",
 	});
 
+	const navigate = useNavigate();
+	const maxNumber = 30;
 
 	function postImovel() {
+		// TODO: ajustar passagem do id de endereco
 		axios
 			.post(
 				process.env.REACT_APP_API_URL + "/imovel/salvar",
@@ -39,13 +40,13 @@ const CadastrarImovel = () => {
 					areaLazer: payload.areaLazer,
 					areaM2: payload.areaM2,
 					climatizado: payload.climatizado,
-					idEnderecoFK: 1,
+					idEnderecoFK: userData.userEnderecoId,
 					piscina: payload.piscina,
 					quantQuarto: payload.quantQuarto,
 					quantSuite: payload.quantSuite,
 					statusOcupacao: payload.statusOcupacao,
 					tituloAnuncio: payload.tituloAnuncio,
-					descricao: payload.descricao
+					descricao: payload.descricao,
 				},
 				{
 					headers: {
@@ -54,28 +55,44 @@ const CadastrarImovel = () => {
 				}
 			)
 			.then((resposta) => {
-				// navigate(`/imoveis/${resposta.id}`, {
-				navigate('/imoveis/1', {
-					state: {
-						token: userData.userToken,
-						id: 1,
-					},
-				});
+				setPayload((prevState) => ({
+					...prevState,
+					idImovel: resposta.data.idImovel,
+				}));
+				images
+					.map((image) => {
+						axios.post(
+							process.env.REACT_APP_API_URL +
+								"/fotosimovel/salvar",
+							{
+								foto: new FileReader().readAsDataURL(image.getAsFile()),
+								foto_id: null,
+								imovel_id: resposta.data.idImovel,
+							},
+
+							{
+								headers: {
+									Authorization: `Bearer ${userData.userToken}`,
+								},
+							}
+						);
+					})
+					.then(() => {
+						navigate(`/imoveis/${payload.idImovel}`, {
+							state: {
+								token: userData.userToken,
+								id: 1,
+							},
+						});
+					});
 			})
 			.catch((error) => {
-				navigate("/imoveis");
+				// navigate("/imoveis");
 				console.log(error);
 			});
 	}
 
-	const navigate = useNavigate();
-
-	const [userData, setUserData] = useContext(FlatUpContext);
-
-	function rodarCarrossel(sentido) { }
-
 	return (
-
 		<main>
 			<Navbar />
 			<div className="container">
@@ -89,17 +106,24 @@ const CadastrarImovel = () => {
 							className="button form-button"
 							type="button"
 							onClick={function () {
-								document.getElementById("slide-1").style.display =
-									"none";
-								document.getElementById("slide-2").style.display =
-									"flex";
-							}}>Seguir</button>
+								document.getElementById(
+									"slide-1"
+								).style.display = "none";
+								document.getElementById(
+									"slide-2"
+								).style.display = "flex";
+							}}
+						>
+							Seguir
+						</button>
 					</div>
 
 					<div className="container" id="slide-2">
 						<h2>Informações adicionais</h2>
 						<div className="form-group">
-							<label className="exampleInputEmail1">Título do Anúncio</label>
+							<label className="exampleInputEmail1">
+								Título do Anúncio
+							</label>
 							<input
 								className=""
 								placeholder="Ex: ..."
@@ -107,25 +131,39 @@ const CadastrarImovel = () => {
 								type="text"
 								name="tituloAnuncio"
 								onChange={(e) => {
-									payload.tituloAnuncio = String(e.target.value);
+									payload.tituloAnuncio = String(
+										e.target.value
+									);
 								}}
 							/>
 						</div>
 
 						<div className=" d-flex flex-column mb-3 w-100">
-							<label className="exampleInputEmail1">Descrição do Anúncio</label>
-							<textarea name="descricao" id="" cols="30" rows="10"
-								style={{ resize: 'none' }}
+							<label className="exampleInputEmail1">
+								Descrição do Anúncio
+							</label>
+							<textarea
+								name="descricao"
+								id=""
+								cols="30"
+								rows="10"
+								style={{ resize: "none" }}
 								className="input rounded p-2"
 								placeholder="Ex: ..."
 								onChange={(e) => {
 									payload.descricao = String(e.target.value);
-								}}></textarea>
+								}}
+							></textarea>
 						</div>
 
 						<div className="d-flex justify-content-between w-100">
-							<div className=" d-flex flex-column mb-3" style={{ width: "33%" }}>
-								<label className="exampleInputEmail1">Tamanho em m²</label>
+							<div
+								className=" d-flex flex-column mb-3"
+								style={{ width: "33%" }}
+							>
+								<label className="exampleInputEmail1">
+									Tamanho em m²
+								</label>
 								<input
 									className="input"
 									placeholder="Ex: 40"
@@ -138,8 +176,13 @@ const CadastrarImovel = () => {
 								/>
 							</div>
 
-							<div className=" d-flex flex-column mb-3" style={{ width: "30%" }}>
-								<label className="exampleInputEmail1">Número de quartos</label>
+							<div
+								className=" d-flex flex-column mb-3"
+								style={{ width: "30%" }}
+							>
+								<label className="exampleInputEmail1">
+									Número de quartos
+								</label>
 								<input
 									className=""
 									placeholder="Ex: 3"
@@ -154,8 +197,13 @@ const CadastrarImovel = () => {
 								/>
 							</div>
 
-							<div className=" d-flex flex-column mb-3" style={{ width: "33%" }}>
-								<label className="exampleInputEmail1">Número de suites</label>
+							<div
+								className=" d-flex flex-column mb-3"
+								style={{ width: "33%" }}
+							>
+								<label className="exampleInputEmail1">
+									Número de suites
+								</label>
 								<input
 									className=""
 									placeholder="Ex: 1"
@@ -163,7 +211,9 @@ const CadastrarImovel = () => {
 									type="text"
 									name="quantSuite"
 									onChange={(e) => {
-										payload.quantSuite = Number(e.target.value);
+										payload.quantSuite = Number(
+											e.target.value
+										);
 									}}
 								/>
 							</div>
@@ -171,9 +221,13 @@ const CadastrarImovel = () => {
 
 						<h3 className="text-dark mt-3">comodidades</h3>
 						<div className="py-3 w-100 mb-4 d-flex justify-content-between">
-
-							<div className=" d-flex flex-column border 	  p-4 comodidade" style={{width: "30%", height: "150px"}}>
-								<h3 className="exampleInputEmail1">Climatizado</h3>
+							<div
+								className=" d-flex flex-column border 	  p-4 comodidade"
+								style={{ width: "30%", height: "150px" }}
+							>
+								<h3 className="exampleInputEmail1">
+									Climatizado
+								</h3>
 								<div className=" d-flex mb-2 align-items-center">
 									<input
 										className="input checkbox"
@@ -182,10 +236,16 @@ const CadastrarImovel = () => {
 										id="climatizado"
 										value="CLIMATIZADO"
 										onChange={(e) => {
-											payload.climatizado = e.target.value;
+											payload.climatizado =
+												e.target.value;
 										}}
 									/>
-									<label htmlFor="climatizado" className="exampleInputEmail1">Sim</label>
+									<label
+										htmlFor="climatizado"
+										className="exampleInputEmail1"
+									>
+										Sim
+									</label>
 								</div>
 								<div className=" d-flex mb-3 align-items-center">
 									<input
@@ -195,15 +255,26 @@ const CadastrarImovel = () => {
 										name="climatizado"
 										value="NAO_CLIMATIZADO"
 										onChange={(e) => {
-											payload.climatizado = e.target.value;
+											payload.climatizado =
+												e.target.value;
 										}}
 									/>
-									<label htmlFor="nao_climatizado" className="exampleInputEmail1">Não</label>
+									<label
+										htmlFor="nao_climatizado"
+										className="exampleInputEmail1"
+									>
+										Não
+									</label>
 								</div>
 							</div>
 
-							<div className=" d-flex flex-column mb-3 border 	  p-4 comodidade" style={{width: "30%", height: "150px"}}>
-								<h3 className="exampleInputEmail1">Possui área de lazer?</h3>
+							<div
+								className=" d-flex flex-column mb-3 border 	  p-4 comodidade"
+								style={{ width: "30%", height: "150px" }}
+							>
+								<h3 className="exampleInputEmail1">
+									Possui área de lazer?
+								</h3>
 								<div className=" d-flex mb-2 align-items-center">
 									<input
 										// className=""
@@ -219,7 +290,12 @@ const CadastrarImovel = () => {
 													: false;
 										}}
 									/>
-									<label htmlFor="arealazer" className="exampleInputEmail1">Sim</label>
+									<label
+										htmlFor="arealazer"
+										className="exampleInputEmail1"
+									>
+										Sim
+									</label>
 								</div>
 								<div className=" d-flex mb-2 align-items-center">
 									<input
@@ -236,11 +312,19 @@ const CadastrarImovel = () => {
 													: true;
 										}}
 									/>
-									<label htmlFor="arealazer_nao" className="exampleInputEmail1">Não</label>
+									<label
+										htmlFor="arealazer_nao"
+										className="exampleInputEmail1"
+									>
+										Não
+									</label>
 								</div>
 							</div>
 
-							<div className=" d-flex flex-column mb-3 border 	  p-4 comodidade" style={{width: "30%", height: "150px"}}>
+							<div
+								className=" d-flex flex-column mb-3 border 	  p-4 comodidade"
+								style={{ width: "30%", height: "150px" }}
+							>
 								<h3 className="exampleInputEmail1">Piscina</h3>
 								<div className=" d-flex mb-2 align-items-center">
 									<input
@@ -257,7 +341,12 @@ const CadastrarImovel = () => {
 													: false;
 										}}
 									/>
-									<label htmlFor="piscina" className="exampleInputEmail1">Sim</label>
+									<label
+										htmlFor="piscina"
+										className="exampleInputEmail1"
+									>
+										Sim
+									</label>
 								</div>
 								<div className=" d-flex mb-2 align-items-center">
 									<input
@@ -281,10 +370,14 @@ const CadastrarImovel = () => {
 													: true;
 										}}
 									/>
-									<label htmlFor="piscina_nao" className="exampleInputEmail1">Não</label>
+									<label
+										htmlFor="piscina_nao"
+										className="exampleInputEmail1"
+									>
+										Não
+									</label>
 								</div>
 							</div>
-									))}
 						</div>
 						<ImageUploading
 							multiple
@@ -305,29 +398,40 @@ const CadastrarImovel = () => {
 								onImageUpdate,
 								onImageRemove,
 								isDragging,
-								dragProps
+								dragProps,
 							}) => (
 								// write your building UI
 								<div className="upload__image-wrapper">
 									<ButtonComponent
-										style={isDragging ? { color: "red" } : null}
+										style={
+											isDragging ? { color: "red" } : null
+										}
 										func={onImageUpload}
 										{...dragProps}
 										buttonName="Selecionar Imagens"
 									/>
-									&nbsp;
+									{/* &nbsp;
 									<ButtonComponent
 										func={onImageRemoveAll}
 										buttonName="Remover imagens"
-									/>
+									/> */}
 									{imageList.map((image, index) => (
 										<div key={index} className="image-item">
-											<img src={image.data_url} alt="" width="100" />
+											<img
+												src={image.data_url}
+												alt=""
+												width="100"
+											/>
 											<div className="image-item__btn-wrapper">
-												<ButtonComponent func={() => onImageUpdate(index)}
+												{/* <ButtonComponent func={() => onImageUpdate(index)}
 													buttonName="Atualizar imagens"
+												/> */}
+												<ButtonComponent
+													func={() =>
+														onImageRemove(index)
+													}
+													buttonName="Remover"
 												/>
-												<ButtonComponent func={() => onImageRemove(index)} buttonName="Remover" />
 											</div>
 										</div>
 									))}
@@ -335,35 +439,37 @@ const CadastrarImovel = () => {
 							)}
 						</ImageUploading>
 
-							<div className="form-footer">
-								<button
-									className="button form-button"
-									type="button"
-									onClick={function () {
-										document.getElementById(
-											"slide-2"
-										).style.display = "none";
-										document.getElementById(
-											"slide-1"
-										).style.display = "flex";
-									}}
-								>
-									Voltar
-								</button>
-								<button
-									type="button"
-									className="button form-button"
-									id="enviar"
-									onClick={postImovel}
-								>
-									Enviar
-								</button>
-							</div>
+						<div className="form-footer">
+							<button
+								className="button form-button"
+								type="button"
+								onClick={function () {
+									document.getElementById(
+										"slide-2"
+									).style.display = "none";
+									document.getElementById(
+										"slide-1"
+									).style.display = "flex";
+								}}
+							>
+								Voltar
+							</button>
+							<button
+								type="button"
+								className="button form-button"
+								id="enviar"
+								onClick={() => {
+									postImovel();
+								}}
+							>
+								Enviar
+							</button>
 						</div>
-					</form>
-					<Footer />
-				</div>
-			</main>
+					</div>
+				</form>
+				<Footer />
+			</div>
+		</main>
 	);
 };
 
