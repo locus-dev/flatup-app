@@ -19,10 +19,34 @@ const CadastroEndereco = (props) => {
 
 	const [usarGps, setUsarGps] = useState(null);
 	const [geolocalizacao, setGeolocalizacao] = useState([]);
-
+	const [userEnderecoId, setUserEnderecoId] = useState(Number);
 	const [userData, setUserData] = useContext(FlatUpContext);
 
-	function req() {
+	function salvarLocalizacao () {
+		axios
+		.post(
+			`${process.env.REACT_APP_API_URL}/localizacao/salvar`,
+			{
+				// TODO: deixar id do imóvel dinâmico, pra isso vai ser necessario passa props pro componente pai
+				imovel_id: userEnderecoId,
+				latitude: geolocalizacao[0],
+				longitude: geolocalizacao[1],
+			},
+			{
+				headers: {
+					Authorization: `Bearer ${userData.userToken}`,
+				}
+			}
+		)
+		.then((result) => {
+			console.log(result);
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+	}
+
+	function salvarEndereco() {
 		console.log(userData);
 		// TODO: Ajustar passagem do id de pessoa
 		axios
@@ -47,31 +71,13 @@ const CadastroEndereco = (props) => {
 				}
 			)
 			.then((result) => {
-				setUserData((prevState) => ({
-					...prevState,
-					userEnderecoId: result.data.endereco_id,
-				}));
-				axios
-					.post(
-						`${process.env.REACT_APP_API_URL}/localizacao/salvar`,
-						{
-							// TODO: deixar id do imóvel dinâmico, pra isso vai ser necessario passa props pro componente pai
-							imovel_id: 1,
-							latitude: geolocalizacao[0],
-							longitude: geolocalizacao[1],
-						}
-					)
-					.then((result) => {
-						console.log(result);
-					})
-					.catch((error) => {
-						console.log(error);
-					});
-			})
-			.catch((err) => {
+				setUserEnderecoId(result.data.endereco_id)
+				salvarLocalizacao()
+			}).catch((err) => {
 				console.log(err);
 			});
 	}
+
 
 	const [listaUF, setListaUF] = useState([]);
 	const [listaCidade, setListaCidade] = useState([]);
@@ -80,8 +86,8 @@ const CadastroEndereco = (props) => {
 	var municipio = [];
 
 	const definirCoordenadas = (coordenadas) => {
+		console.log(coordenadas);
 		setGeolocalizacao([coordenadas.latitude, coordenadas.longitude]);
-		console.log(geolocalizacao);
 	};
 
 	useEffect(() => {
@@ -303,7 +309,7 @@ const CadastroEndereco = (props) => {
 				type="button"
 				className="btn btn-primary w-100"
 				onClick={() => {
-					req();
+					salvarEndereco();
 				}}
 			>
 				{" "}
