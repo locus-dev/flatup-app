@@ -1,0 +1,63 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 65%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin: auto;
+    text-align: right;
+    font-family: arial;
+  }
+  .price {
+    color: black;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .tipoPrice{
+    color: black;
+    font-size: 18px;
+    margin-left: 10px;    
+    text-align: left;
+  }
+  .imovelImg .imovelNome{
+    text-align: left;
+    display: inline-block;
+  }
+  .informacao {
+    color: black;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  .precos{
+    display: inline-block;
+  }
+  .grid-container{
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'menu main main main right right'
+      'menu footer footer footer footer footer';
+  }
+  .imovelImg {
+    width: 20%;
+    grid-area: menu;
+  }
+
+  .imovelNome{
+    grid-area: main;
+  }
+
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }

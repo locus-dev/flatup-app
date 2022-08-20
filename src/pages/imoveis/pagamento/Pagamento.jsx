@@ -6,14 +6,17 @@ import React from "react";
 import { Button } from "reactstrap";
 import DATA from "../../../DATAFILL";
 import app from '../../../config'
+import "./pagamento.css"
 
 const Pagamento = () => {
-
 
 	return (
 		<div>
 			<Navbar />
-			<h2>aaaaaa</h2>
+			<div className="container">
+				<h1 className="exampleInputEmail1">Pagamento</h1>
+			</div>
+			
 		</div>
 	);
 };

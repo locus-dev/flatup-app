@@ -5,7 +5,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import "./telaImovel.css";
 import React from "react";
 import CarroselImagem from "../../../components/carroselImagem/CarroselImagem";
-import ImovelDetalhe from "../imovelDetalhes/imovelDetalhes";
+import ImovelDetalhe from "../imovelDetalhes/ImovelDetalhes";
 import { Button } from "reactstrap";
 import DATA from "../../../DATAFILL";
 import app from '../../../config'

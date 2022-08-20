@@ -14,6 +14,7 @@ import MeusImoveis from "./pages/usuario/perfil/host/MeusImoveis";
 import FlatUpContext from './components/context/FlatUpContext';
 import { useContext, useState } from "react";
 import Pagamento from "./pages/imoveis/pagamento/Pagamento";
+import DetalhesImovel from "./pages/imoveis/detalhesImovel/DetalhesImovel"
 
 const App = () => {
 
@@ -38,6 +39,7 @@ const App = () => {
 					<Route path="/perfil/locacoes" element={<MinhasLocacoes />} />
 					<Route path="/perfil/host/imoveis" element={<MeusImoveis />} />
 					<Route path="/pagamento" element={<Pagamento />} />
+					<Route path="/detalhesImovel" element={<DetalhesImovel />} />
 				</Routes>
 			</FlatUpContext.Provider>
 		</BrowserRouter>
