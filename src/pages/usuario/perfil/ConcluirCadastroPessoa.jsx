@@ -135,6 +135,8 @@ const ConcluirCadastroPessoa = () => {
 									hasPersonalInfo: true,
 									userPersonalInfo: resposta.data,
 								}));
+							})
+							.then(()=> {
 								navigate("/perfil");
 							})
 							.catch((error) => {
