@@ -7,11 +7,13 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext , useState} from "react";
+import { useContext, useState, useEffect  } from "react";
 import Login from "../../pages/login/Login";
 import FlatUpContext from '../../../src/context/FlatUpContext';
 import { color } from "@mui/system";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from 'axios'
+
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -22,12 +24,38 @@ const Navbar = () => {
 
   const [userData, setUserData] = useContext(FlatUpContext);
 
-  const[email, setEmail] = useState('')
+  const[usuarioLogado, setUsuarioLogado] = useState({})
+  //console.log(usuarioLogado)
 
-  const clicada = () => {
-    console.log(userData.userId + 'AQUI È O TOKEN')
-  }
   
+
+  /* const clicada = () => {
+    setEmail(userData.userId)
+  } */
+
+  //console.log(userData.userId)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(process.env.REACT_APP_API_URL + `/usuario/encontrar/${userData.userId}`, {
+          headers: {
+            'Authorization':
+              `Bearer ${userData.userToken}`,
+              'Access-Control-Allow-Origin':
+                '*'
+          },
+          data: userData.userToken
+        });
+        setUsuarioLogado(response.data);
+        console.log(response.data)
+        
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
 
   return (
@@ -48,10 +76,10 @@ const Navbar = () => {
               onClick={() => dispatch({ type: "TOGGLE" })}
             />
           </div>
-          
-          
+
+
           <div className="item">
-            <p><strong onClick={clicada}>teste@gmail.com</strong></p>
+            <p><strong >{usuarioLogado.email}</strong></p>
           </div>
         </div>
       </div>

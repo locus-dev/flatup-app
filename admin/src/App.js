@@ -39,7 +39,7 @@ function App() {
   let context = useContext(FlatUpContext);
 
   const [userData, setUserData] = useState(context);
-  
+  console.log(userData + 'asd')
 
   /* const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);

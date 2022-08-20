@@ -30,7 +30,7 @@ const ListLocations = () => {
     const [locacoes, setLocacoes] = useState([]);
    
 
-    console.log(locacoes)
+    //console.log(locacoes)
 
 
 

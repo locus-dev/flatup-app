@@ -11,10 +11,17 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import FlatUpContext from "../../context/FlatUpContext"
+import dateFormat from 'dateformat';
+import { 
+  parseISO, 
+  format, 
+  formatRelative, 
+  formatDistance,
+} from 'date-fns';
 
 const List = () => {
 
-  const [userData, setUserData] = useContext(FlatUpContext);
+  
 
   
 
@@ -22,35 +29,23 @@ const List = () => {
   location.state = location.state ? location.state : {};
 
 
+  const [userData, setUserData] = useContext(FlatUpContext);
+
   const asd = {
     id: location.state.locacoes.contrato_locacao_id
   }
 
-  
+  const [carregando, setCarregando] = useState(true)
 
-  
-  
+  const [contratoLocacao, setContratoLocacao] = useState({})
 
 
-  const [contratoLocacao, setContratoLocacao] = useState({
-    idLocacao: '',
-    checkIn: '',
-    checkOut: '',
-    diasLocacao: '',
-    valorLocacao: '',
-    quantPessoa: ''
-  })
+ 
+ const checkinFormatado = dateFormat(contratoLocacao.check_in, "dS dddd, mmmm, yyyy")
 
-  const contrato = {
-    idLocacao: contratoLocacao.idLocacao,
-    checkIn: contratoLocacao.checkIn,
-    checkOut: contratoLocacao.checkOut,
-    diasLocacao: contratoLocacao.diasLocacao,
-    valorLocacao: contratoLocacao.valorLocacao,
-    quantPessoa: contratoLocacao.quantPessoa
-  }
 
-  console.log(contrato)
+
+  console.log(checkinFormatado )
 
 
 
@@ -67,6 +62,7 @@ const List = () => {
           },
           data: userData.userToken
         })
+        
         setContratoLocacao(response.data);
         
       } catch (error) {
@@ -76,11 +72,7 @@ const List = () => {
     fetchData();
   }, []);
 
-  //console.log(locacao.contrato_locacao_id + 'AQUI È A PARADINHAss')
-
-
-
-
+ 
 
 
 
@@ -102,17 +94,14 @@ const List = () => {
         <TableBody>
           
             <TableRow >
-              <TableCell className="tableCell">{contratoLocacao.checkIn}</TableCell>
-              <TableCell className="tableCell">{contrato.checkOut}</TableCell>
-              <TableCell className="tableCell">{contrato.diasLocacao}</TableCell>
-              <TableCell className="tableCell">{contrato.valorLocacao}</TableCell>
-              <TableCell className="tableCell">{contrato.quantPessoa}</TableCell>
-              <TableCell className="tableCell">{contrato.valorLocacao}</TableCell>
+              <TableCell className="tableCell">{contratoLocacao.check_in}</TableCell> 
+             <TableCell className="tableCell">{contratoLocacao.check_out}</TableCell>
+              <TableCell className="tableCell">{contratoLocacao.dias_locacao} dia(s)</TableCell>
+              <TableCell className="tableCell">R$ {contratoLocacao.valor_locacao}</TableCell>
+              <TableCell className="tableCell">{contratoLocacao.quant_pessoa}</TableCell>
+              <TableCell className="tableCell">{contratoLocacao.valorLocacao}</TableCell> 
               
             </TableRow>
-          
-
-
         </TableBody>
       </Table>
     </TableContainer>

@@ -1,4 +1,4 @@
-
+import './location.scss'
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
@@ -52,7 +52,7 @@ const LocationDetails = () => {
 
 
     const GERAROPDFPO = async () => {
-        const response = await axios.get(process.env.REACT_APP_API_URL + '/contratoLocacao/pdf', {
+        const response = await axios.get(process.env.REACT_APP_API_URL + `/contratolocacao/pdf/${locacao.contrato_locacao_id}`, {
             headers: {
                 'Authorization':
                     `Bearer ${userData.userToken}`,
@@ -68,7 +68,7 @@ const LocationDetails = () => {
 
             .then((response) => {
                 window.open(URL.createObjectURL(response.data))
-                console.log(response)
+                //console.log(response.data)
             }).catch((err) => {
                 console.log(err)
             })
@@ -97,7 +97,7 @@ const LocationDetails = () => {
                             {locacao.contrato_locacao_id}
                         </span>
                        
-                        <button onClick={GERAROPDFPO}>Gerar PDF do Contrato Locação</button>
+                        <button className="botaoPDFdeContrato" onClick={GERAROPDFPO}>Gerar PDF do Contrato Locação</button>
                     </div>
                     <div className="detailItem">
                         <span className="itemKey">Status Locação:</span>

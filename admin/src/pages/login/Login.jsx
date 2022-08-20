@@ -78,7 +78,8 @@ const Login = () => {
                                         senha: senha,
                                     })
                                     .then((data) => {
-                                        setUserData({ userToken: data.data.token });
+                                        setUserData({ userToken: data.data.token , userId: data.data.idUsuario});
+                                        console.log(userData.userId)
                                         navigate("/home");
                                     })
                                     .catch((error) => {

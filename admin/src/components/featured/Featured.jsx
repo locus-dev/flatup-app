@@ -17,7 +17,7 @@ const Featured = () => {
 
 
   const[valorTotal, setValorTotal] = useState('')
-  console.log(valorTotal)
+ // console.log(valorTotal)
 
   useEffect(() => {
     const fetchData = async () => {

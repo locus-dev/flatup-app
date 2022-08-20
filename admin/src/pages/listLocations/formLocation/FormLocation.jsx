@@ -34,8 +34,8 @@ const FormLocation = () => {
           </div>
           
         </div>
-        <div className="botaoVoltar">
-        <button className="botaoVoltar" onClick={redirectList}>Voltar</button>
+        <div className="top">
+        <button className="botaoVoltarLocacao" onClick={redirectList}>Voltar</button>
         </div>
         {/* <div className="bottom">
           <h1 className="title">Last Transactions</h1>
