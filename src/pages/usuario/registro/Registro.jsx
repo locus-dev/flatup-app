@@ -168,7 +168,7 @@ const Register = () => {
 														userEmail: data.data.email,
 														userId: data.data.idUsuario,
 													}));
-													navigate("/");
+													navigate("/concluir-cadastro");
 												})
 												.catch((error) => {
 													console.log(error);
