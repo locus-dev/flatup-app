@@ -6,6 +6,7 @@ const FlatUpContext = React.createContext([{
     userPessoaId: 0,
     userEnderecoId: 0,
     userEmail: '',
+    municipio: '',
     hasPersonalInfo: false,
     userPersonalInfo: {},
     },() => {}]);

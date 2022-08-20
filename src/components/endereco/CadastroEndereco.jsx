@@ -76,6 +76,7 @@ const CadastroEndereco = (props) => {
 				setUserData((prevState) => ({
 					...prevState,
 					userEnderecoId: result.data.endereco_id,
+					municipio: result.data.cidade,
 				}));
 				// salvarLocalizacao()
 			}).catch((err) => {
