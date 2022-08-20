@@ -59,8 +59,8 @@ const CadastroEndereco = (props) => {
 					complemento: complemento,
 					logradouro: logradouro,
 					numero: numero,
-					endereco_id: 1,
-					pessoa_id: 1,
+					endereco_id: null,
+					pessoa_id: userData.userPessoaId,
 					ponto_referencia: ponto_referencia,
 					uf: uf,
 				},
@@ -71,8 +71,11 @@ const CadastroEndereco = (props) => {
 				}
 			)
 			.then((result) => {
-				setUserEnderecoId(result.data.endereco_id)
-				salvarLocalizacao()
+				setUserData((prevState) => ({
+					...prevState,
+					userEnderecoId: result.data.endereco_id,
+				}));
+				// salvarLocalizacao()
 			}).catch((err) => {
 				console.log(err);
 			});

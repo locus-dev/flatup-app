@@ -32,6 +32,7 @@ const CadastrarImovel = () => {
 	const maxNumber = 30;
 
 	function postImovel() {
+		console.log(userData.userEnderecoId)
 		// TODO: ajustar passagem do id de endereco
 		axios
 			.post(
@@ -85,7 +86,7 @@ const CadastrarImovel = () => {
 				// 			},
 				// 		});
 				// 	});
-				navigate(`/home`, {
+				navigate(`/`, {
 					state: {
 						token: userData.userToken,
 						id: 1,
