@@ -4,7 +4,6 @@ import Button from '../elements/ButtonComponent';
 import TextComponent from '../elements/TextComponent';
 import FlatUpContext from '../context/FlatUpContext';
 import { Navigate } from "react-router-dom";
-//import "./pessoaPerfilExibir.css";
 
 const PessoaPerfilExibir = (props) => {
     

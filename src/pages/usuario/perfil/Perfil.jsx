@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FlatUpContext from "../../../components/context/FlatUpContext";
 import Footer from "../../../components/footer/Footer";
 import Navbar from "../../../components/navbar/Navbar";
-import InputComponent from "../../../components/elements/InputComponent";
 import ButtonComponent from "../../../components/elements/ButtonComponent";
 import "./perfil.css";
 import PessoaPerfilExibir from "../../../components/pessoa/PessoaPerfilExibir";
@@ -28,19 +27,9 @@ const Profile = () => {
 							className="imagem-perfil"
 							fluid={true}
 						/>
-						{/* <div id="imagem-perfil">
-						<img
-							src="./media/assets/perfil.png"
-							width="130"
-							height="130"
-						></img>
-					</div> */}
-
 					</div>
 
 					<div className="d-flex flex-column w-100 my-4">
-						
-						<button className="botao-lado" style={{borderTop:"1px solid rgb(207, 207, 207)"}} onClick={() => navigate("/concluir-cadastro")}>Conclua seu cadastro</button>
 
 						<button className="botao-lado" 	onClick={() => navigate("/imoveis/cadastrar")}>Cadastrar Imóvel</button>
 

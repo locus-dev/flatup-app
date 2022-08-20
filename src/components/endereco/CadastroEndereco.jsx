@@ -22,6 +22,8 @@ const CadastroEndereco = (props) => {
 	const [userEnderecoId, setUserEnderecoId] = useState(Number);
 	const [userData, setUserData] = useContext(FlatUpContext);
 
+	console.log(userData);
+	
 	function salvarLocalizacao () {
 		axios
 		.post(
