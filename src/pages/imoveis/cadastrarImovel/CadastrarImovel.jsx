@@ -23,16 +23,18 @@ const CadastrarImovel = () => {
 	const [payload, setPayload] = useState({
 		areaLazer: true,
 		areaM2: 0,
-		climatizado: "string",
+		climatizado: "",
+		descricao: "",
 		idEnderecoFK: userData.userEnderecoId,
-		idImovel: null,
+		// idImovel: null,
+		municipio: "",
 		piscina: true,
 		quantQuarto: 0,
 		quantSuite: 0,
-		statusOcupacao: "DESOCUPADO",
+		statusOcupacao: "OCUPADO",
 		tituloAnuncio: "",
-		descricao: "",
-		municipio: userData.municipio,
+		validadePromocao: Date,
+		valorDiaria: 0,
 	});
 
 	const navigate = useNavigate();
@@ -48,16 +50,17 @@ const CadastrarImovel = () => {
 					areaLazer: payload.areaLazer,
 					areaM2: payload.areaM2,
 					climatizado: payload.climatizado,
+					descricao: payload.descricao,
 					idEnderecoFK: userData.userEnderecoId,
+					municipio: userData.municipio,
 					piscina: payload.piscina,
 					quantQuarto: payload.quantQuarto,
 					quantSuite: payload.quantSuite,
 					statusOcupacao: payload.statusOcupacao,
 					tituloAnuncio: payload.tituloAnuncio,
-					descricao: payload.descricao,
 					validadePromocao: validadePromocao,
 					valorDiaria: valorDiaria,
-					municipio: userData.municipio,
+					
 				},
 				{
 					headers: {
@@ -396,13 +399,13 @@ const CadastrarImovel = () => {
 							</div>
 						</div>
 						<div>
-      <label>Valor da Diária</label>
+      <label className="exampleInputEmail1">Valor da Diária</label>
       <input type="text" placeholder="Valor" 
 	  onChange={(e)=> {
 		setValorDiaria(Number(e.target.value))
 	  }}/>
       
-      <label>Quer aluguem antes do dia</label>
+      <label className="exampleInputEmail1">Quer aluguem antes do dia</label>
       <input type="date" placeholder="" onChange={(e)=> {
 		setValidadePromocao(e.target.value)
 	  }}/>

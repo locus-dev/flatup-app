@@ -72,7 +72,7 @@ const Navbar = () => {
 						<>
 							<img
 								id="icone-perfil"
-								src="./media/assets/perfil.png"
+								src="../media/assets/perfil.png"
 								alt="Perfil"
 								onClick={() =>
 									navigate("/perfil", {

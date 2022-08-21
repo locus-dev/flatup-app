@@ -10,6 +10,7 @@ const MeusImoveis = () => {
             <h2 className="mb-4">Meus Imóveis</h2>
             <FeaturedProperties />
         </div>
+        <Footer/>
     </>
     )
 };

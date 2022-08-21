@@ -2,6 +2,7 @@ import Footer from "../../../../components/footer/Footer";
 import Navbar from "../../../../components/navbar/Navbar";
 import FeaturedProperties from "../../../../components/featuredProperties/FeaturedProperties";
 
+
 const MinhasLocacoes = () => {
 	return (
     <>
@@ -10,6 +11,7 @@ const MinhasLocacoes = () => {
             <h2 className="mb-4">Histórico de imóveis</h2>
             <FeaturedProperties />
         </div>
+        <Footer/>
     </>
     )
 };

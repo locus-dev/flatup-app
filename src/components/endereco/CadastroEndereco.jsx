@@ -9,12 +9,13 @@ import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 const CadastroEndereco = ({funcao}) => {
 	const [bairro, setBairro] = useState("");
 	const [cep, setCep] = useState("");
+	const [cidade, setCidade] = useState("");
 	const [complemento, setComplemento] = useState("");
 	const [logradouro, setLogradouro] = useState("");
 	const [numero, setNumero] = useState("");
 	const [ponto_referencia, setPonto_referencia] = useState("");
 	const [uf, setUf] = useState("");
-	const [cidade, setCidade] = useState("");
+
 	const [usarGps, setUsarGps] = useState(null);
 	const [geolocalizacao, setGeolocalizacao] = useState([]);
 	const [userData, setUserData] = useContext(FlatUpContext);
@@ -176,7 +177,7 @@ const CadastroEndereco = ({funcao}) => {
 						type="text"
 						name="numero"
 						onChange={(e) => {
-							setNumero(String(e.target.value));
+							setNumero(e.target.value);
 						}}
 					/>
 				</div>
@@ -238,7 +239,7 @@ const CadastroEndereco = ({funcao}) => {
 			</div>
 
 			<div className="d-flex mb-3 justify-content-between">
-				<div
+				{/* <div
 					className=" d-flex flex-column mr-3"
 					style={{ width: "45%" }}
 				>
@@ -260,11 +261,28 @@ const CadastroEndereco = ({funcao}) => {
 							);
 						})}
 					</select>
+				</div> */}
+
+				<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">
+					Estado
+				</label>
+				<input
+					className="input"
+					placeholder="Ex: Acre"
+					maxLength="100"
+					type="text"
+					name="uf"
+					onChange={(e) => {
+						setUf(String(e.target.value));
+					}}
+				/>
 				</div>
-				<div className="  d-flex flex-column w-50">
-					<label className="exampleInputEmail1">Cidade</label>
+
+				{/* <div className="  d-flex flex-column w-50">
+					<label className="exampleInputEmail1">Cidade</label> */}
 					{/* <input className="input" type="text" name="cidade"/> */}
-					<select className="input select" name="cidade">
+					{/* <select className="input select" name="cidade">
 						<option selected>Selecione sua cidade</option>
 						{listaCidade.map((item) => {
 							return (
@@ -279,7 +297,24 @@ const CadastroEndereco = ({funcao}) => {
 							);
 						})}
 					</select>
-				</div>
+				</div> */}
+
+				<div className=" d-flex flex-column mb-3">
+				<label className="exampleInputEmail1">
+					Cidade
+				</label>
+				<input
+					className="input"
+					placeholder="Ex: Passira"
+					maxLength="100"
+					type="text"
+					name="cidade"
+					onChange={(e) => {
+						setCidade(String(e.target.value));
+					}}
+				/>
+			</div>
+			
 			</div>
 
 			<div className="d-flex flex-column">

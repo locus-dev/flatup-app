@@ -13,7 +13,7 @@ const ConcluirCadastroPessoa = () => {
 		cnpj: "",
 		cpf: "",
 		data_nascimento: "",
-		data_nascimento: "2022-07-19T16:13:19.378Z",
+		data_nascimento: Date,
 		nome: "",
 		pessoa_id: userData.userPessoaId,
 		telefone: "",

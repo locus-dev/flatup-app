@@ -14,7 +14,7 @@ const Footer = () => {
 				<a href="/" className="d-flex align-items-center p-0 text-dark">
 					<img
 						alt="logo"
-						src="./media/assets/flatapp.png"
+						src="../media/assets/flatapp.png"
 						width="80px"
 					/>
 				</a>

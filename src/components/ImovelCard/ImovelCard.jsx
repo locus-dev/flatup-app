@@ -1,4 +1,13 @@
 import "./imovelCard.css";
+import { ref, getStorage, listAll, getBlob } from "firebase/storage";
+import { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { Button } from "reactstrap";
+import DATA from "../../DATAFILL";
+import app from '../../config'
+import axios from "axios";
+import FlatUpContext from "../../components/context/FlatUpContext";
 
 const ImovelCard = (props) => {
       return (

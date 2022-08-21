@@ -105,7 +105,7 @@ const DATA = {
 		},
 		{
 			id: 3,
-			titulo_anuncio: "MarHotel Boa Viagem",
+			titulo_anuncio: "Mar  Hotel Boa Viagem",
 			municipio: "Recife, PE",
 			descricao:
 				"Esta acomodação fica a 6 minutos a pé da praia. O Mar Hotel Conventions está localizado a 400 metros da Praia da Boa Viagem e possui 3 piscinas em meio a jardins paisagísticos. O Wi-Fi é gratuito. Os quartos do Mar Hotel têm TV LCD com canais a cabo, banheiro privativo e frigobar. Todos os quartos possuem ar-condicionado e cofre. O hotel oferece instalações de lazer, incluindo academia. O bar do lobby oferece um ambiente casual, ideal para desfrutar de aperitivos ou bebidas. O Restaurante Promenade, situado no lobby, serve pratos da culinária internacional. O Mar Hotel Conventions fica a 11 km do centro de Recife. A propriedade fica a 1,8 km do Recife Shopping Center. O Aeroporto Internacional Gilberto Freyre fica a 3,4 km do local. Esta é a parte de Recife de que os nossos hóspedes mais gostam, de acordo com avaliações independentes. ",
