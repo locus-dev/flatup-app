@@ -1,0 +1,22 @@
+.card {
+    /* box-shadow: 0px 0px 10px rgba(143, 143, 143, 0.37); */
+
+    margin: auto;
+  }
+
+
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: var(--azul-padrao);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
