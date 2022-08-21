@@ -38,6 +38,23 @@ const Login = () => {
 	const google = new GoogleAuthProvider();
 	const facebook = new FacebookAuthProvider();
 
+	function isNewUser(idUsuario, token) {
+		console.log(idUsuario, token)
+		axios
+			.get(process.env.REACT_APP_API_URL+`/pessoa/possui-user/${idUsuario}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+			.then((data) => {
+				navigate("/");
+			}).catch((err) => {
+				console.log(`Erro na requisição: ${err}`)
+				navigate("/concluir-cadastro");
+			});
+	} 
+
+
 	function login() {
 		axios
 			.post(process.env.REACT_APP_API_URL + `/auth/login`, {
@@ -50,7 +67,7 @@ const Login = () => {
 					userEmail: email,
 					userId: data.data.idUsuario,
 				}));
-				navigate("/");
+				isNewUser(data.data.idUsuario, data.data.token)
 			})
 			.catch((error) => {
 				console.log(error);
@@ -78,7 +95,7 @@ const Login = () => {
 						userEmail: user.email,
 						userId: data.data.idUsuario,
 					}));
-					navigate("/");
+					isNewUser(data.data.idUsuario, data.data.token)
 				})
 				.catch((err) => {
 					console.log(err);

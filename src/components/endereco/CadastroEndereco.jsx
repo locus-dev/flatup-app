@@ -22,46 +22,85 @@ const CadastroEndereco = ({funcao}) => {
 	const [userEnderecoId, setUserEnderecoId] = useState(Number);
 	const [userData, setUserData] = useContext(FlatUpContext);
 
-	console.log(userData);
+	console.log(JSON.stringify(userData));
 	
-	function salvarLocalizacao () {
-		funcao([geolocalizacao[0], geolocalizacao[1]]);
-	}
-
-	function salvarEndereco() {
-		console.log(userData);
-		// TODO: Ajustar passagem do id de pessoa
+	function salvarLocalizacao(enderecoId) {
 		axios
 			.post(
-				`${process.env.REACT_APP_API_URL}/endereco/salvar`,
+				`${process.env.REACT_APP_API_URL}/localizacao/salvar`,
 				{
-					bairro: bairro,
-					cep: cep,
-					cidade: cidade,
-					complemento: complemento,
-					logradouro: logradouro,
-					numero: numero,
-					endereco_id: null,
-					pessoa_id: userData.userPessoaId,
-					ponto_referencia: ponto_referencia,
-					uf: uf,
+					latitude: geolocalizacao[0],
+					longitude: geolocalizacao[1],
+					idEnderecoFK: enderecoId,
 				},
 				{
 					headers: {
 						Authorization: `Bearer ${userData.userToken}`,
-					},
+					}
 				}
 			)
 			.then((result) => {
-				setUserData((prevState) => ({
-					...prevState,
-					userEnderecoId: result.data.endereco_id,
-					municipio: result.data.cidade,
-				}));
-				// salvarLocalizacao()
-			}).catch((err) => {
-				console.log(err);
+				console.log(result);
+			})
+			.catch((error) => {
+				console.log(error);
 			});
+	}
+
+	function retornaPessoa() {
+		axios
+			.get(process.env.REACT_APP_API_URL+`/pessoa/possui-user/${userData.userId}`, {
+				headers: {
+					Authorization: `Bearer ${userData.userToken}`,
+				},
+			})
+			.then((data)=>{
+				console.log(`Pessoa encontrada: ${data.data.pessoa_id}`)
+				setPessoa_id(data.data.pessoa_id)
+			})
+			.then(() => {
+				salvarEndereco();
+			})
+			.catch((err) => {
+				console.log(`Erro ao consultar: ${err}`)
+			});
+	}
+
+	function salvarEndereco() {
+		retornaPessoa()
+		console.log(JSON.stringify(userData));
+		console.log(`Pessoa id: ${pessoa_id}`);
+		// TODO: Ajustar passagem do id de pessoa
+		// axios
+		// 	.post(
+		// 		`${process.env.REACT_APP_API_URL}/endereco/salvar`,
+		// 		{
+		// 			bairro: bairro,
+		// 			cep: cep,
+		// 			cidade: cidade,
+		// 			complemento: complemento,
+		// 			logradouro: logradouro,
+		// 			numero: numero,
+		// 			pessoa_id: pessoa_id,
+		// 			ponto_referencia: ponto_referencia,
+		// 			uf: uf,
+		// 		},
+		// 		{
+		// 			headers: {
+		// 				Authorization: `Bearer ${userData.userToken}`,
+		// 			},
+		// 		}
+		// 	)
+		// 	.then((result) => {
+		// 		setUserData((prevState) => ({
+		// 			...prevState,
+		// 			userEnderecoId: result.data.endereco_id,
+		// 			municipio: result.data.cidade,
+		// 		}));
+		// 		salvarLocalizacao(result.data.endereco_id)
+		// 	}).catch((err) => {
+		// 		console.log(err);
+		// 	});
 	}
 
 
