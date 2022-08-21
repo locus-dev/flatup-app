@@ -12,14 +12,11 @@ const CadastroEndereco = ({funcao}) => {
 	const [complemento, setComplemento] = useState("");
 	const [logradouro, setLogradouro] = useState("");
 	const [numero, setNumero] = useState("");
-	const [pessoa_id, setPessoa_id] = useState(Number);
 	const [ponto_referencia, setPonto_referencia] = useState("");
 	const [uf, setUf] = useState("");
 	const [cidade, setCidade] = useState("");
-
 	const [usarGps, setUsarGps] = useState(null);
 	const [geolocalizacao, setGeolocalizacao] = useState([]);
-	const [userEnderecoId, setUserEnderecoId] = useState(Number);
 	const [userData, setUserData] = useContext(FlatUpContext);
 	
 	function salvarLocalizacao(enderecoId) {
@@ -27,9 +24,9 @@ const CadastroEndereco = ({funcao}) => {
 			.post(
 				`${process.env.REACT_APP_API_URL}/localizacao/salvar`,
 				{
-					latitude: geolocalizacao[0],
-					longitude: geolocalizacao[1],
-					endereco_id: enderecoId,
+					'latitude': geolocalizacao[0],
+					'longitude': geolocalizacao[1],
+					'endereco_id': enderecoId,
 				},
 				{
 					headers: {
@@ -51,15 +48,15 @@ const CadastroEndereco = ({funcao}) => {
 			.post(
 				`${process.env.REACT_APP_API_URL}/endereco/salvar`,
 				{
-					bairro: bairro,
-					cep: cep,
-					cidade: cidade,
-					complemento: complemento,
-					logradouro: logradouro,
-					numero: numero,
-					pessoa_id: pessoaId,
-					ponto_referencia: ponto_referencia,
-					uf: uf,
+					'bairro': bairro,
+					'cep': cep,
+					'cidade': cidade,
+					'complemento': complemento,
+					'logradouro': logradouro,
+					'numero': numero,
+					'pessoa_id': pessoaId,
+					'ponto_referencia': ponto_referencia,
+					'uf': uf,
 				},
 				{
 					headers: {
@@ -87,8 +84,6 @@ const CadastroEndereco = ({funcao}) => {
 				},
 			})
 			.then((data)=>{
-				console.log(`Pessoa encontrada: ${data.data.pessoa_id}`)
-				console.log(`Localizacao: ${geolocalizacao}`);
 				registroEndereco(data.data.pessoa_id)
 			})
 			.catch((err) => {
@@ -124,7 +119,7 @@ const CadastroEndereco = ({funcao}) => {
 	}, []);
 
 	function buscarCep() {
-		// Implementar depois
+		// Implementar depois e depois nunca chegou...
 	}
 
 	function selectUF(sigla) {
@@ -139,7 +134,6 @@ const CadastroEndereco = ({funcao}) => {
 	}
 
 	function selectCidade(estado) {
-		// Implementar depois
 		axios
 			.get(
 				`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`,
@@ -307,38 +301,21 @@ const CadastroEndereco = ({funcao}) => {
 					)}
 				</div>
 				<div>
-					{/* <input
-						name="coord"
-						type="checkbox"
-						className="form-check-input"
-						onChange={() => {
-							setUsarGps(true);
-						}}
-					/>{" "} */}
 					<BotaoLocalizacao funcao={definirCoordenadas}/>
 					<span className="exampleInputEmail1">Usar GPS</span>
 				</div>
 			</div>
-			{/* <div>
-				<BotaoLocalizacao />
-			</div> */}
 			<br></br>
 			<button
 				type="button"
 				className="btn btn-primary w-100"
 				onClick={() => {
 					salvarEndereco();
-					salvarLocalizacao();
 				}}
 			>
 				{" "}
 				Cadastrar Endereço
 			</button>
-
-			{/* <div className="input">
-			<label>País</label>
-			<input className="input" type="text" name="nacionalidade"/>
-		</div> */}
 		</div>
 	);
 };

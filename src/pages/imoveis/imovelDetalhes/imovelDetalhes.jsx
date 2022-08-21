@@ -80,6 +80,7 @@ const ImovelDetalhe = ({props}) => {
 					<hr />
 					<h4 className="py-2 d-flex align-items-start">Endereço:</h4>
 					<h6>{DATA.imoveis[props].endereco}</h6>
+					{/* substituir por localização em endereco */}
 					<Mapa coord={DATA.imoveis[props].geolocalizacao} modoExibicao={true} />
 					{/* {console.log(DATA.imoveis[props.props].geolocalizacao)} */}
 					<hr />

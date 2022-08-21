@@ -22,7 +22,7 @@ const FeaturedProperties = () => {
 			})
 			.then((data) => {
 				data.data.map((item) => {
-					console.log(item);
+					console.log(`Imovel: ${JSON.stringify(item)}`);
 				});
 				setDados(data.data);
 			})

@@ -1,6 +1,6 @@
 import "./imovelCard.css";
 
-const ImovelCard = () => {
+const ImovelCard = (props) => {
       return (
             <div className="d-flex align-items-center justify-content-center" style={{width: '100vw', height: "100vh"}}>
                   <div className="container">
@@ -14,9 +14,9 @@ const ImovelCard = () => {
                                                 {/* adiciona a foto do imovel como background */}
                                           </div>
                                           <div className="p-3 d-flex flex-column align-items-start">
-                                                <h5>Titulo do imovel aqui</h5>
-                                                <h6>cidade</h6>
-                                                <h6>R$ valor /noite</h6>
+                                                <h5>{props.titulo}</h5>
+                                                <h6>{props.cidade}</h6>
+                                                <h6>R$ {props.valor} /noite</h6>
                                           </div>
                                     </div>
                               </div>
@@ -33,7 +33,7 @@ const ImovelCard = () => {
                               <hr />
                               <div className="py-3 mb-2 d-flex justify-content-between p-3">
                                     <h3>Total (BRL) </h3>
-                                    <h3>R$ 0,00</h3>
+                                    <h3>R$ {props.preco}</h3>
                               </div>
 
                               <button>Finalizar Reserva</button>
