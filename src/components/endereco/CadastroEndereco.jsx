@@ -29,7 +29,7 @@ const CadastroEndereco = ({funcao}) => {
 				{
 					latitude: geolocalizacao[0],
 					longitude: geolocalizacao[1],
-					idEnderecoFK: enderecoId,
+					endereco_id: enderecoId,
 				},
 				{
 					headers: {
