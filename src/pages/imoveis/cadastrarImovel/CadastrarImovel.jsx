@@ -8,10 +8,16 @@ import { useNavigate } from "react-router-dom";
 import FlatUpContext from "../../../components/context/FlatUpContext";
 import ImageUploading from "react-images-uploading";
 import ButtonComponent from "../../../components/elements/ButtonComponent";
+import CadastroContratoLocacao from "../../../components/cadastroContratoLocacao/CadastroContratoLocacao";
 
 const CadastrarImovel = () => {
 	const [userData, setUserData] = useContext(FlatUpContext);
 	const [images, setImages] = useState([]);
+
+	const [validadePromocao, setValidadePromocao] = useState("");
+	const [valorDiaria, setValorDiaria] = useState("");
+
+
 
 	console.log(userData.userEnderecoId);
 	const [payload, setPayload] = useState({
@@ -26,12 +32,14 @@ const CadastrarImovel = () => {
 		statusOcupacao: "DESOCUPADO",
 		tituloAnuncio: "",
 		descricao: "",
+		municipio: userData.municipio,
 	});
 
 	const navigate = useNavigate();
 	const maxNumber = 30;
 
 	function postImovel() {
+		console.log(userData.municipio);
 		// TODO: ajustar passagem do id de endereco
 		axios
 			.post(
@@ -47,6 +55,9 @@ const CadastrarImovel = () => {
 					statusOcupacao: payload.statusOcupacao,
 					tituloAnuncio: payload.tituloAnuncio,
 					descricao: payload.descricao,
+					validadePromocao: validadePromocao,
+					valorDiaria: valorDiaria,
+					municipio: userData.municipio,
 				},
 				{
 					headers: {
@@ -85,7 +96,7 @@ const CadastrarImovel = () => {
 				// 			},
 				// 		});
 				// 	});
-				navigate(`/home`, {
+				navigate(`/`, {
 					state: {
 						token: userData.userToken,
 						id: 1,
@@ -384,6 +395,18 @@ const CadastrarImovel = () => {
 								</div>
 							</div>
 						</div>
+						<div>
+      <label>Valor da Diária</label>
+      <input type="text" placeholder="Valor" 
+	  onChange={(e)=> {
+		setValorDiaria(Number(e.target.value))
+	  }}/>
+      
+      <label>Quer aluguem antes do dia</label>
+      <input type="date" placeholder="" onChange={(e)=> {
+		setValidadePromocao(e.target.value)
+	  }}/>
+    </div>
 						<div >
 							
 						<ImageUploading

@@ -20,13 +20,11 @@ const Navbar = () => {
 	};
 
 	const [userData, setUserData] = useContext(FlatUpContext);
+	const showUserProfileButton = userData.userId > 0;
 
 	return (
 		<div className="navegacao">
 			<div className="navContainer">
-				{/* <span className="logo" onClick={handleHome}>
-					FlatApp
-				</span> */}
 				<img className="logo" src="../media/assets/flatapp.png" alt="FlatApp" width={80} onClick={handleHome}/>
 				<div className="navItems">
 					<div className="search-box">
@@ -49,14 +47,7 @@ const Navbar = () => {
 										},
 									})
 									.then((resposta) => {
-										navigate("/imoveis"
-										//, {
-											// state: {
-											// 	token: userData.token,
-											// 	dados: resposta,
-											// },
-										//}
-										);
+										navigate("/imoveis");
 									})
 									.catch(
 										navigate("/imoveis", {
@@ -77,30 +68,17 @@ const Navbar = () => {
 							</svg>
 						</div>
 					</div>
-
-					{/* {console.log(props.token)} */}
-					{userData.userToken ? (
+					{showUserProfileButton ? (
 						<>
 							<img
 								id="icone-perfil"
 								src="./media/assets/perfil.png"
 								alt="Perfil"
 								onClick={() =>
-								// 	axios.get(process.env.REACT_APP_API_URL + `/pessoa/encontrar/por/usuario/${userData.userPessoaId}`, {
-								// 		headers: {
-								// 			Authorization:
-								// 				"Bearer " + userData.token,
-								// 		},
-								// 	}).then((resposta) => {
-								// 	navigate((resposta.data ? "/perfil" : "/concluir-cadastro"), {
-								// 	// navigate("/perfil", {
-								// 		state: { token: userData.userToken },
-								// 	})})
-								navigate((userData.hasPersonalInfo ? "/perfil" : "/concluir-cadastro"), {
-									// navigate("/perfil", {
-										state: { token: userData.userToken },
-									})
-							}
+									navigate("/perfil", {
+											state: { token: userData.userToken },
+										})
+								}
 							></img>
 						</>
 					) : (
