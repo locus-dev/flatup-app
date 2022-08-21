@@ -1,38 +1,47 @@
 import "./imovelCard.css";
 
 const ImovelCard = () => {
-	return (
-		<div className="container">
-            <br></br><br></br><br></br>
-            <div className="card">
+      return (
+            <div className="d-flex align-items-center justify-content-center" style={{width: '100vw', height: "100vh"}}>
+                  <div className="container">
+                        <div className="card">
+                              <div className="text-center py-3 d-flex justify-content-center align-items-center  ">
+                                    <h2 className="text-azul-padrao mt-3">Confirme sua reserva</h2>
+                              </div>
+                              <div className="p-3">
+                                    <div className="d-flex mt-2 align-items-center border" style={{ borderRadius: "10px" }}>
+                                          <div className="bg-primary" style={{ backgroundImage: '(url())', borderRadius: "10px", backgroundSize: "cover", width: "200px", height: "120px" }}>
+                                                {/* adiciona a foto do imovel como background */}
+                                          </div>
+                                          <div className="p-3 d-flex flex-column align-items-start">
+                                                <h5>Titulo do imovel aqui</h5>
+                                                <h6>cidade</h6>
+                                                <h6>R$ valor /noite</h6>
+                                          </div>
+                                    </div>
+                              </div>
+                              <hr />
+                              <div className="px-3">
+                                    <h4 style={{ textAlign: "left" }}>Informações do preço</h4>
+                                    <div className="precos">
+                                          <div className="d-flex mt-3 justify-content-between">
+                                                <h5>Desconto</h5>
+                                                <h5 className="text-danger">-25%</h5>
+                                          </div>
+                                    </div>
+                              </div>
+                              <hr />
+                              <div className="py-3 mb-2 d-flex justify-content-between p-3">
+                                    <h3>Total (BRL) </h3>
+                                    <h3>R$ 0,00</h3>
+                              </div>
 
-            <img className="imovelImg" src="../media/assets/flatapp.png" alt="FlatApp"/>
-            <h4 className="imovelNome">Titulo do imovel aqui</h4>
-            <p className="informacao">Informações gerais do Imovel, suas caracteristicas basicas...</p>
+                              <button>Finalizar Reserva</button>
+                        </div>
 
-            <p>-------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p className="informacao">Sua reserva conta com a proteção do FlatCover</p>
-            <p>-------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-            <h3>Imformações do preço</h3>
-            <div className="precos">
-            <p className="tipoPrice">Taza de Limpeza</p>
-            <p className="price">R$ $00.00</p>
-            <p className="tipoPrice">Taxa de Serviço</p>
-            <p className="price">R$ 00.00</p>
-            <p className="tipoPrice">Impostos</p>
-            <p className="price">R$ 00.00</p>
+                  </div>
             </div>
-            <p>-------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p className="tipoPrice">Total (BRL) </p>
-            <p className="price">R$ 00.00</p>
-            <p>-------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-            <p className="informacao">Plano de parcelamento <a href="#">Selecionar</a></p>
-
-            <p><button>Finalizar Rezerva</button></p>
-            </div>
-			
-		</div>
-	);
+      );
 };
 
 export default ImovelCard;
