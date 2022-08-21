@@ -17,7 +17,7 @@ const CadastrarImovel = () => {
 	const [validadePromocao, setValidadePromocao] = useState("");
 	const [valorDiaria, setValorDiaria] = useState("");
 
-
+	const [localizacao, setLocalizacao] = useState({});
 
 	console.log(userData.userEnderecoId);
 	const [payload, setPayload] = useState({
@@ -70,6 +70,29 @@ const CadastrarImovel = () => {
 					...prevState,
 					idImovel: resposta.data.idImovel,
 				}));
+				axios
+				.post(
+					`${process.env.REACT_APP_API_URL}/localizacao/salvar`,
+					{
+						// TODO: deixar id do imóvel dinâmico, pra isso vai ser necessario passa props pro componente pai
+						imovel_id: resposta.data.idImovel,
+						latitude: localizacao[0],
+						longitude: localizacao[1],
+						idLocalizacao: userData.userEnderecoId,
+						idParceiroFK: userData.userId,
+					},
+					{
+						headers: {
+							Authorization: `Bearer ${userData.userToken}`,
+						}
+					}
+				)
+				.then((result) => {
+					console.log(result);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 				// images
 				// 	.map((image) => {
 				// 		axios.post(
@@ -117,7 +140,7 @@ const CadastrarImovel = () => {
 					<div className="" id="slide-1">
 						<h2>Endereço</h2>
 						{/* TODO => Fazer os inputs dentro do componente "CadastroEndereco" passarem seus values para a const payload que será um objeto JSON */}
-						<CadastroEndereco props={payload} />
+						<CadastroEndereco funcao={setLocalizacao} />
 						<button
 							id="seguir"
 							className="button form-button"

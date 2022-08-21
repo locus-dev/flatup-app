@@ -6,7 +6,7 @@ import Mapa from "../mapa/Mapa";
 import "./cadastroEndereco.css";
 import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
 
-const CadastroEndereco = (props) => {
+const CadastroEndereco = ({funcao}) => {
 	const [bairro, setBairro] = useState("");
 	const [cep, setCep] = useState("");
 	const [complemento, setComplemento] = useState("");
@@ -25,27 +25,7 @@ const CadastroEndereco = (props) => {
 	console.log(userData);
 	
 	function salvarLocalizacao () {
-		axios
-		.post(
-			`${process.env.REACT_APP_API_URL}/localizacao/salvar`,
-			{
-				// TODO: deixar id do imóvel dinâmico, pra isso vai ser necessario passa props pro componente pai
-				imovel_id: userEnderecoId,
-				latitude: geolocalizacao[0],
-				longitude: geolocalizacao[1],
-			},
-			{
-				headers: {
-					Authorization: `Bearer ${userData.userToken}`,
-				}
-			}
-		)
-		.then((result) => {
-			console.log(result);
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+		funcao([geolocalizacao[0], geolocalizacao[1]]);
 	}
 
 	function salvarEndereco() {
@@ -316,6 +296,7 @@ const CadastroEndereco = (props) => {
 				className="btn btn-primary w-100"
 				onClick={() => {
 					salvarEndereco();
+					salvarLocalizacao();
 				}}
 			>
 				{" "}
