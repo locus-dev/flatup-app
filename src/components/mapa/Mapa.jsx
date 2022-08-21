@@ -65,7 +65,9 @@ const Mapa = ({ coord, modoExibicao, usarGps, funcao }) => {
 			center: coord,
 			zoom: modoExibicao ? 15 : 10,
 		});
+
 		const target = document.getElementById("map");
+		
 		const map = new Map({
 			target: target,
 			layers: [
@@ -125,7 +127,8 @@ const Mapa = ({ coord, modoExibicao, usarGps, funcao }) => {
 			map.on('click', function(evt){
 				coord = transform(evt.coordinate, evt.map.getView().getProjection(), 'EPSG:4326');
 				setCoordPino(coord);
-				console.log(coord);
+				console.log(`new coord: ${coord}`);
+				funcao(coord)
 			});
 
 			// // Pega localização atual do usuário e move o ponteiro para ele
@@ -138,7 +141,7 @@ const Mapa = ({ coord, modoExibicao, usarGps, funcao }) => {
 			// geolocation.setTracking(usarGps);
 			// geolocation.on("change:position", function () {
 			// 	funcao(geolocation.position_);
-			// 	console.log(geolocation.position_);
+			// 	console.log(`the geolocation: ${geolocation.position_}`);
 			// });
 			/////////////////////////////////////////////////////////////////
 		}

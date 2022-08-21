@@ -21,8 +21,6 @@ const CadastroEndereco = ({funcao}) => {
 	const [geolocalizacao, setGeolocalizacao] = useState([]);
 	const [userEnderecoId, setUserEnderecoId] = useState(Number);
 	const [userData, setUserData] = useContext(FlatUpContext);
-
-	console.log(JSON.stringify(userData));
 	
 	function salvarLocalizacao(enderecoId) {
 		axios
@@ -47,7 +45,41 @@ const CadastroEndereco = ({funcao}) => {
 			});
 	}
 
-	function retornaPessoa() {
+	function registroEndereco(pessoaId) {
+		console.log(`PessoaId: ${pessoaId}`)
+		axios
+			.post(
+				`${process.env.REACT_APP_API_URL}/endereco/salvar`,
+				{
+					bairro: bairro,
+					cep: cep,
+					cidade: cidade,
+					complemento: complemento,
+					logradouro: logradouro,
+					numero: numero,
+					pessoa_id: pessoaId,
+					ponto_referencia: ponto_referencia,
+					uf: uf,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${userData.userToken}`,
+					},
+				}
+			)
+			.then((result) => {
+				setUserData((prevState) => ({
+					...prevState,
+					userEnderecoId: result.data.endereco_id,
+					municipio: result.data.cidade,
+				}));
+				salvarLocalizacao(result.data.endereco_id)
+			}).catch((err) => {
+				console.log(err);
+			});
+	}
+
+	function salvarEndereco() {
 		axios
 			.get(process.env.REACT_APP_API_URL+`/pessoa/possui-user/${userData.userId}`, {
 				headers: {
@@ -56,51 +88,12 @@ const CadastroEndereco = ({funcao}) => {
 			})
 			.then((data)=>{
 				console.log(`Pessoa encontrada: ${data.data.pessoa_id}`)
-				setPessoa_id(data.data.pessoa_id)
-			})
-			.then(() => {
-				salvarEndereco();
+				console.log(`Localizacao: ${geolocalizacao}`);
+				registroEndereco(data.data.pessoa_id)
 			})
 			.catch((err) => {
 				console.log(`Erro ao consultar: ${err}`)
 			});
-	}
-
-	function salvarEndereco() {
-		retornaPessoa()
-		console.log(JSON.stringify(userData));
-		console.log(`Pessoa id: ${pessoa_id}`);
-		// TODO: Ajustar passagem do id de pessoa
-		// axios
-		// 	.post(
-		// 		`${process.env.REACT_APP_API_URL}/endereco/salvar`,
-		// 		{
-		// 			bairro: bairro,
-		// 			cep: cep,
-		// 			cidade: cidade,
-		// 			complemento: complemento,
-		// 			logradouro: logradouro,
-		// 			numero: numero,
-		// 			pessoa_id: pessoa_id,
-		// 			ponto_referencia: ponto_referencia,
-		// 			uf: uf,
-		// 		},
-		// 		{
-		// 			headers: {
-		// 				Authorization: `Bearer ${userData.userToken}`,
-		// 			},
-		// 		}
-		// 	)
-		// 	.then((result) => {
-		// 		setUserData((prevState) => ({
-		// 			...prevState,
-		// 			userEnderecoId: result.data.endereco_id,
-		// 			municipio: result.data.cidade,
-		// 		}));
-		// 		salvarLocalizacao(result.data.endereco_id)
-		// 	}).catch((err) => {
-		// 		console.log(err);
-		// 	});
 	}
 
 
@@ -111,8 +104,8 @@ const CadastroEndereco = ({funcao}) => {
 	var municipio = [];
 
 	const definirCoordenadas = (coordenadas) => {
-		console.log(coordenadas);
-		setGeolocalizacao([coordenadas.latitude, coordenadas.longitude]);
+		console.log(`coordenadas: ${coordenadas}`);
+		setGeolocalizacao(coordenadas);
 	};
 
 	useEffect(() => {
@@ -310,7 +303,7 @@ const CadastroEndereco = ({funcao}) => {
 							funcao={definirCoordenadas}
 						/>
 					) : (
-						<Mapa coord={[-34.92, -8.2]} modoExibicao={false} />
+						<Mapa coord={[-34.92, -8.2]} modoExibicao={false} funcao={definirCoordenadas} />
 					)}
 				</div>
 				<div>
