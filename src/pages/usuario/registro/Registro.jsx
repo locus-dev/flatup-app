@@ -1,58 +1,67 @@
-import "./registro.css";
-import React, { useContext } from "react";
-import axios from "axios";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../../components/navbar/Navbar";
-import { useState } from "react";
-import FlatUpContext from '../../../components/context/FlatUpContext';
+import FlatUpContext from "../../../components/context/FlatUpContext";
+import axios from "axios";
+import "./registro.css";
 
 const Register = () => {
+	const [userData, setUserData] = useContext(FlatUpContext);
+
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
 	const [senhaConfirmacao, setSenhaConfirmacao] = useState("");
 
-	const [userData, setUserData] = useContext(FlatUpContext);
 	const navigate = useNavigate();
 
-	const state = {
-		nome: "",
-	};
+	function login() {
+		axios
+			.post(process.env.REACT_APP_API_URL + `/auth/login`, {
+				email: email,
+				senha: senha,
+			})
+			.then((data) => {
+				setUserData((prevState) => ({
+					...prevState,
+					userToken: data.data.token,
+					userEmail: data.data.email,
+					userId: data.data.idUsuario,
+				}));
+				navigate("/concluir-cadastro");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
 
-	const handleChange = (event) => {
-		this.setState({ nome: event.target.value });
-	};
+	function registrar() {
+		axios
+			.post(process.env.REACT_APP_API_URL + `/usuario/salvar`, {
+				email: email,
+				senha: senha,
+			})
+			.then(() => {
+				login();
+			})
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-
-		const user = {
-			nome: this.state.nome,
-		};
-
-		axios.post("", { user }).then((res) => {
-			console.log(res);
-			console.log(res.data);
-		});
-	};
-
-	// const navigate = useNavigate();
-
-	// const register =() =>{
-	//     navigate("/register", {state: {}})
-	// }
+			.catch((erro) => {
+				console.log(erro);
+			});
+	}
 
 	return (
 		<div>
 			<main>
-				{/* <Navbar /> */}
 				<div className="side-form">
 					<div className="form-box">
 						<h1>Registro</h1>
 						<p>Fazer registro com:</p>
 						<div className="login-socialbox">
-							<button className="login-social" type="button" id="google">
+							<button
+								className="login-social"
+								type="button"
+								id="google"
+							>
 								<span>
-		
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -73,7 +82,6 @@ const Register = () => {
 								id="facebook"
 							>
 								<span>
-								
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -96,95 +104,77 @@ const Register = () => {
 								<label className="lsOptionText" for="email">
 									{" Email: "}
 									<input
-									type="email"
-									className="input-padrao"
-									onChange={(e) => setEmail(e.target.value)}
-									min={0}
-									value={email}
-									maxLength="50"
-									placeholder="Ex: Pedro@gmail.com"
-									id="email"
-        							name="email"
-								/>
+										type="email"
+										className="input-padrao"
+										onChange={(e) =>
+											setEmail(e.target.value)
+										}
+										min={0}
+										value={email}
+										maxLength="50"
+										placeholder="Ex: Pedro@gmail.com"
+										id="email"
+										name="email"
+									/>
 								</label>
-
 							</div>
 							<div>
 								<label className="lsOptionText" for="senha">
 									{" Senha: "}
 									<input
-									className="input-padrao"
-									type="password"
-									onChange={(e) => setSenha(e.target.value)}
-									min={0}
-									value={senha}
-									maxLength="22"
-									placeholder="Ex: Hb794hll@#FF"
-									id="senha"
-                  					name="senha"
-								/>
+										className="input-padrao"
+										type="password"
+										onChange={(e) =>
+											setSenha(e.target.value)
+										}
+										min={0}
+										value={senha}
+										maxLength="22"
+										placeholder="Ex: Hb794hll@#FF"
+										id="senha"
+										name="senha"
+									/>
 								</label>
-
 							</div>
 							<div>
 								<label className="lsOptionText" for="senha">
 									{" Confirmar senha: "}
 									<input
-									className="input-padrao"
-									type="password"
-									onChange={(e) => setSenhaConfirmacao(e.target.value)}
-									min={0}
-									value={senhaConfirmacao}
-									placeholder="Confirme sua senha"
-									id="senha"
-                  					name="senha"
-									style={senha !== senhaConfirmacao ? {borderColor: "red", backgroundColor: "rgba(200,100,100, 0.4)"} : {}}
-								/>
+										className="input-padrao"
+										type="password"
+										onChange={(e) =>
+											setSenhaConfirmacao(e.target.value)
+										}
+										min={0}
+										value={senhaConfirmacao}
+										placeholder="Confirme sua senha"
+										id="senha"
+										name="senha"
+										style={
+											senha !== senhaConfirmacao
+												? {
+														borderColor: "red",
+														backgroundColor:
+															"rgba(200,100,100, 0.4)",
+												  }
+												: {}
+										}
+									/>
 								</label>
-
 							</div>
-							<button
-								// type="submit"
-								className="form-button"
-								onClick={() => {
-
-                  // Cadastra o Usuário
-									axios
-										.post(process.env.REACT_APP_API_URL + `/usuario/salvar`, {
-											email: email,
-											senha: senha,
-										})
-										.then(() => {
-
-                      // Faz login
-											axios
-												.post(process.env.REACT_APP_API_URL + `/auth/login`, {
-													email: email,
-													senha: senha,
-												})
-												.then((data) => {
-													setUserData((prevState) => ({ ...prevState,
-														userToken: data.data.token,
-														userEmail: data.data.email,
-														userId: data.data.idUsuario,
-													}));
-													navigate("/concluir-cadastro");
-												})
-												.catch((error) => {
-													console.log(error);
-												});
-										})
-
-                    
-										.catch((erro) => {
-											console.log(erro);
-										});
-								}}
-							>
+							<button className="form-button" onClick={registrar}>
 								Registrar
 							</button>
 							<p className="registre">
-								Já tem conta? <a href="/login">Logar-se</a>
+								Já tem conta?{" "}
+								<a
+								className="link-primary"
+									onClick={() => {
+										navigate("/login");
+									}}
+								>
+									Logar-se
+								</a>
 							</p>
 						</div>
 					</div>

@@ -1,4 +1,6 @@
-// import API from "../../../services/API";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import FlatUpContext from "../../../components/context/FlatUpContext";
 import axios from "axios";
 import { initializeApp } from "firebase/app";
 import {
@@ -7,19 +9,15 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 } from "firebase/auth";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Navbar from "../../../components/navbar/Navbar";
 import "./login.css";
-import FlatUpContext from "../../../components/context/FlatUpContext";
-import { useContext } from "react";
 
-// App.SettarToken("fnfnfn")
 const Login = () => {
 	const [userData, setUserData] = useContext(FlatUpContext);
-	
+
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
+
+	const navigate = useNavigate();
 
 	const firebaseConfig = {
 		apiKey: "AIzaSyAdfLPSnZEzmyvvQpJB_2z2yij8I9ZL0u8",
@@ -30,8 +28,6 @@ const Login = () => {
 		appId: "1:293462764439:web:984942318223cbe2ac32d2",
 	};
 
-	const navigate = useNavigate();
-
 	const app = initializeApp(firebaseConfig);
 	const auth = getAuth(app);
 
@@ -39,21 +35,25 @@ const Login = () => {
 	const facebook = new FacebookAuthProvider();
 
 	function isNewUser(idUsuario, token) {
-		console.log(idUsuario, token)
+		console.log(idUsuario, token);
 		axios
-			.get(process.env.REACT_APP_API_URL+`/pessoa/possui-user/${idUsuario}`, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			})
+			.get(
+				process.env.REACT_APP_API_URL +
+					`/pessoa/possui-user/${idUsuario}`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			)
 			.then((data) => {
 				navigate("/");
-			}).catch((err) => {
-				console.log(`Erro na requisição: ${err}`)
+			})
+			.catch((err) => {
+				console.log(`Erro na requisição: ${err}`);
 				navigate("/concluir-cadastro");
 			});
-	} 
-
+	}
 
 	function login() {
 		axios
@@ -62,12 +62,13 @@ const Login = () => {
 				senha: senha,
 			})
 			.then((data) => {
-				setUserData((prevState) => ({...prevState,
+				setUserData((prevState) => ({
+					...prevState,
 					userToken: data.data.token,
 					userEmail: email,
 					userId: data.data.idUsuario,
 				}));
-				isNewUser(data.data.idUsuario, data.data.token)
+				isNewUser(data.data.idUsuario, data.data.token);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -77,10 +78,8 @@ const Login = () => {
 	function socialLogin(provedor) {
 		signInWithPopup(auth, provedor).then((result) => {
 			const credential = GoogleAuthProvider.credentialFromResult(result);
-
 			const token = credential.accessToken;
 			const user = result.user;
-			// console.log(token, user);
 			console.log(user.email);
 			console.log(user.uid);
 			axios
@@ -90,12 +89,13 @@ const Login = () => {
 				})
 				.then((data) => {
 					console.log(data);
-					setUserData((prevState) => ({ ...prevState,
+					setUserData((prevState) => ({
+						...prevState,
 						userToken: data.data.token,
 						userEmail: user.email,
 						userId: data.data.idUsuario,
 					}));
-					isNewUser(data.data.idUsuario, data.data.token)
+					isNewUser(data.data.idUsuario, data.data.token);
 				})
 				.catch((err) => {
 					console.log(err);
@@ -103,12 +103,9 @@ const Login = () => {
 		});
 	}
 
-
 	return (
 		<div>
-
 			<main>
-			{/* <Navbar /> */}
 				<div className="side-form">
 					<div className="form-box">
 						<h1>Login</h1>
@@ -162,7 +159,6 @@ const Login = () => {
 						</div>
 
 						<h3 className="or">Ou</h3>
-						{/* <form action={config.URL + '/auth'} method="POST"> */}
 						<div className="login-box d-flex flex-column">
 							<div>
 								<label className="lsOptionText" for="email">
@@ -184,7 +180,7 @@ const Login = () => {
 								<label className="lsOptionText" for="senha">
 									{" Senha: "}
 								</label>
-								<input 
+								<input
 									className="input-padrao w-100"
 									type="password"
 									min={0}
@@ -193,24 +189,33 @@ const Login = () => {
 									name="senha"
 									placeholder="Ex: jGy330@4lnns"
 									id="senha"
-									onChange={(e) => setSenha(e.target.value)}/>
-							</div>							
+									onChange={(e) => setSenha(e.target.value)}
+								/>
+							</div>
 						</div>
-						<a href="/usuario/recuperar" id="forgot-senha">
+						<a
+							className="link-primary"
+							onClick={() => {
+								navigate("/usuario/recuperar");
+							}}
+							id="forgot-senha"
+						>
 							Esqueci a senha
 						</a>
 
-						<button
-							// type="submit"
-							className="form-button"
-							onClick={login}
-						>
+						<button className="form-button" onClick={login}>
 							Entrar
 						</button>
-						{/* </form> */}
 						<p className="registre">
 							Ainda não tem conta?{" "}
-							<a href="/registro">Registre-se</a>
+							<a
+								className="link-primary"
+								onClick={() => {
+									navigate("/registro");
+								}}
+							>
+								Registre-se
+							</a>
 						</p>
 					</div>
 				</div>
