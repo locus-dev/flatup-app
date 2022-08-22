@@ -97,48 +97,4 @@ const FeaturedProperties = () => {
 	// 		// Uh-oh, an error occurred!
 	// 	});
 
-// 	return (
-// 		<div className="fp">
-// 			{/* {dados.map((item) => {
-// 				return (
-// 					<div key={item.id} className="fpItem" onClick={() => { navigate(`/imoveis/${item.id}`, { state: { id: item.id } }) }}>
-// 						<div id="imagem" style={{ backgroundImage: 'url(' + item.imagem + ')', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
-// 						<span className="fpName">{item.titulo_anuncio}</span>
-// 						<span className="fpCity">{item.municipio}</span>
-// 						{/* <span className="fpDesc">{item.descricao}</span> 
-// 						<span className="fpPrice">
-// 							R${item.valor_diaria}/noite
-// 						</span>
-// 						<div className="fpRating">
-// 							<button>{item.avaliacao}</button>
-// 							<span>
-// 								{item.avaliacao > 8 ? "Excelente" : "Bom"}
-// 							</span>
-// 						</div>
-// 					</div>
-// 				);
-// 			})} */}
-// 			 {DATA.imoveis.map((item) => {
-// 				return (
-// 					<div key={item.id} className="fpItem" onClick={() => { navigate(`/imoveis/${item.id}`, { state: { id: item.id } }) }}>
-// 						<div id="imagem" style={{ backgroundImage: 'url(' + item.imagem + ')', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
-// 						<span className="fpName">{item.titulo_anuncio}</span>
-// 						<span className="fpCity">{item.municipio}</span>
-// 						{/* <span className="fpDesc">{item.descricao}</span> */}
-// 						<span className="fpPrice">
-// 							R${item.valor_diaria}/noite
-// 						</span>
-// 						<div className="fpRating">
-// 							<button>{item.avaliacao}</button>
-// 							<span>
-// 								{item.avaliacao > 8 ? "Excelente" : "Bom"}
-// 							</span>
-// 						</div>
-// 					</div>
-// 				);
-// 			})}
-// 		</div>
-// 	);
-// };
-
 export default FeaturedProperties;

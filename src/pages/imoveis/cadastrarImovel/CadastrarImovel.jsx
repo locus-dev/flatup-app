@@ -9,6 +9,8 @@ import FlatUpContext from "../../../components/context/FlatUpContext";
 import ImageUploading from "react-images-uploading";
 import ButtonComponent from "../../../components/elements/ButtonComponent";
 import CadastroContratoLocacao from "../../../components/cadastroContratoLocacao/CadastroContratoLocacao";
+import { getStorage, ref, uploadString } from "firebase/storage";
+import { initializeApp } from "firebase/app";
 
 const CadastrarImovel = () => {
 	const [userData, setUserData] = useContext(FlatUpContext);
@@ -18,6 +20,19 @@ const CadastrarImovel = () => {
 	const [valorDiaria, setValorDiaria] = useState("");
 
 	const [localizacao, setLocalizacao] = useState({});
+
+	const firebaseConfig = {
+		apiKey: "AIzaSyAdfLPSnZEzmyvvQpJB_2z2yij8I9ZL0u8",
+		authDomain: "flatup-e23c8.firebaseapp.com",
+		projectId: "flatup-e23c8",
+		storageBucket: "flatup-e23c8.appspot.com",
+		messagingSenderId: "293462764439",
+		appId: "1:293462764439:web:984942318223cbe2ac32d2",
+	};
+
+	const app = initializeApp(firebaseConfig);
+
+	const storage = getStorage(app, "gs://flatup-e23c8.appspot.com");
 
 	console.log(userData.userEnderecoId);
 	const [payload, setPayload] = useState({
@@ -37,6 +52,30 @@ const CadastrarImovel = () => {
 
 	const navigate = useNavigate();
 	const maxNumber = 30;
+
+	function getImageType(image) {
+		let tipoImagem = image.type;
+		tipoImagem = tipoImagem.slice(tipoImagem.indexOf("/") + 1);
+		if (tipoImagem === "jpeg") {
+			tipoImagem = "jpg";
+		}
+		return tipoImagem;
+	}
+
+	function uploadImage(idImovel) {
+		images.forEach((image, index) => {
+			let tipo = getImageType(image.file);
+			const storageRef = ref(
+				storage,
+				`imovel_id-${idImovel}/imagem-${index}.${tipo}`
+			);
+			uploadString(storageRef, image.data_url, "data_url").then(
+				(snapshot) => {
+					console.log("Uploaded a blob or file!");
+				}
+			);
+		});
+	}
 
 	function postImovel() {
 		console.log(userData.municipio);
@@ -70,6 +109,7 @@ const CadastrarImovel = () => {
 					...prevState,
 					idImovel: resposta.data.idImovel,
 				}));
+				uploadImage(resposta.data.idImovel);
 				// images
 				// 	.map((image) => {
 				// 		axios.post(
@@ -138,8 +178,10 @@ const CadastrarImovel = () => {
 					<div className="container" id="slide-2">
 						<h2>Informações adicionais</h2>
 						<div className="d-flex flex-column w-100 mb-3">
-							<label className="exampleInputEmail1">Título do Anúncio</label>
-						
+							<label className="exampleInputEmail1">
+								Título do Anúncio
+							</label>
+
 							<input
 								className=""
 								placeholder="Ex: ..."
@@ -396,81 +438,91 @@ const CadastrarImovel = () => {
 							</div>
 						</div>
 						<div>
-      <label>Valor da Diária</label>
-      <input type="text" placeholder="Valor" 
-	  onChange={(e)=> {
-		setValorDiaria(Number(e.target.value))
-	  }}/>
-      
-      <label>Quer aluguem antes do dia</label>
-      <input type="date" placeholder="" onChange={(e)=> {
-		setValidadePromocao(e.target.value)
-	  }}/>
-    </div>
-						<div >
-							
-						<ImageUploading
-						className="d-flex border w-100"
-							multiple
-							value={images}
-							onChange={(imageList, addUpdateIndex) => {
-								// data for submit
-								console.log(imageList, addUpdateIndex);
-								setImages(imageList);
-							}}
-							maxNumber={maxNumber}
-							dataURLKey="data_url"
-							acceptType={["jpg"]}
-						>
-							{({
-								imageList,
-								onImageUpload,
-								onImageRemoveAll,
-								onImageUpdate,
-								onImageRemove,
-								isDragging,
-								dragProps,
-							}) => (
-								// write your building UI
-								<div className="upload__image-wrapper">
-									<ButtonComponent
-										style={
-											isDragging ? { color: "red" } : null
-										}
-										func={onImageUpload}
-										{...dragProps}
-										buttonName="Selecionar Imagens"
-									/>
-									{/* &nbsp;
+							<label>Valor da Diária</label>
+							<input
+								type="text"
+								placeholder="Valor"
+								onChange={(e) => {
+									setValorDiaria(Number(e.target.value));
+								}}
+							/>
+
+							<label>Quer aluguem antes do dia</label>
+							<input
+								type="date"
+								placeholder=""
+								onChange={(e) => {
+									setValidadePromocao(e.target.value);
+								}}
+							/>
+						</div>
+						<div>
+							<ImageUploading
+								className="d-flex border w-100"
+								multiple
+								value={images}
+								onChange={(imageList, addUpdateIndex) => {
+									// data for submit
+									console.log(imageList, addUpdateIndex);
+									setImages(imageList);
+								}}
+								maxNumber={maxNumber}
+								dataURLKey="data_url"
+								acceptType={["jpg", "png", "gif"]}
+							>
+								{({
+									imageList,
+									onImageUpload,
+									onImageRemoveAll,
+									onImageUpdate,
+									onImageRemove,
+									isDragging,
+									dragProps,
+								}) => (
+									// write your building UI
+									<div className="upload__image-wrapper">
+										<ButtonComponent
+											style={
+												isDragging
+													? { color: "red" }
+													: null
+											}
+											func={onImageUpload}
+											{...dragProps}
+											buttonName="Selecionar Imagens"
+										/>
+										{/* &nbsp;
 									<ButtonComponent
 										func={onImageRemoveAll}
 										buttonName="Remover imagens"
 									/> */}
-									{imageList.map((image, index) => (
-										<div key={index} className="image-item">
-											<img
-												src={image.data_url}
-												alt=""
-												width="500"
-											/>
-											<div className="image-item__btn-wrapper">
-												{/* <ButtonComponent func={() => onImageUpdate(index)}
+										{imageList.map((image, index) => (
+											<div
+												key={index}
+												className="image-item"
+											>
+												<img
+													src={image.data_url}
+													alt=""
+													width="500"
+												/>
+												<div className="image-item__btn-wrapper">
+													{/* <ButtonComponent func={() => onImageUpdate(index)}
 													buttonName="Atualizar imagens"
 												/> */}
-												<ButtonComponent
-												theme="danger"
-													func={() =>
-														onImageRemove(index)
-													}
-													buttonName="X"
-												/>
+													<ButtonComponent
+														theme="danger"
+														func={() =>
+															onImageRemove(index)
+														}
+														buttonName="X"
+													/>
+												</div>
 											</div>
-										</div>
-									))}
-								</div>
-							)}
-						</ImageUploading>
-
+										))}
+									</div>
+								)}
+							</ImageUploading>
 						</div>
 
 						<div className="form-footer">
