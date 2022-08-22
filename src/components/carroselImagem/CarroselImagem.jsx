@@ -5,7 +5,7 @@ import DATA from "../../DATAFILL";
 import { initializeApp } from "firebase/app";
 
 import { ref, getStorage, listAll, getDownloadURL } from "firebase/storage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CarroselImagem = ({ props }) => {
 	const location = useLocation();
@@ -27,7 +27,8 @@ const CarroselImagem = ({ props }) => {
 	const storage = getStorage(app, "gs://flatup-e23c8.appspot.com");
 	const listRef = ref(storage, `/imovel_id-${id}`);
 
-	listAll(listRef)
+  function listarImagens() {
+    listAll(listRef)
 		.then((res) => {
 			res.items.forEach((itemRef) => {
 				let imagemRef = ref(storage, itemRef._location.path_);
@@ -43,15 +44,20 @@ const CarroselImagem = ({ props }) => {
 		.catch((error) => {
 			console.log(error);
 		});
+  }
 
+  useEffect(listarImagens,[]);
+  
 	const captionStyle = {
 		fontSize: "2em",
 		fontWeight: "bold",
 	};
+
 	const slideNumberStyle = {
 		fontSize: "20px",
 		fontWeight: "bold",
 	};
+
 	return (
 		<div className="App">
 			<div style={{ textAlign: "center" }}>
