@@ -3,15 +3,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
 }
 
 .fpItem{
-    flex: 1;
-    gap: 10px;
+    /* flex: 1;
+    gap: 10px; */
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: 250px;
     margin-right: 20px;
     margin-bottom: 20px;
     cursor: pointer;
