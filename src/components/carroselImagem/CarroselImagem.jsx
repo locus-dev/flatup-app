@@ -69,7 +69,6 @@ const CarroselImagem = ({ props }) => {
 						margin: "20px auto",
 					}}
 				>
-					<img id="myimg" src="" alt="Imagem" />
 					<Carousel
 						slideBackgroundColor={"none"}
 						interval={8000}
