@@ -1,16 +1,15 @@
-import { ref, getStorage, listAll, getBlob } from "firebase/storage";
 import { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import FlatUpContext from "../../../components/context/FlatUpContext";
+import { ref, getStorage, listAll, getBlob } from "firebase/storage";
+import axios from "axios";
+
 import Navbar from "../../../components/navbar/Navbar";
-import "./telaImovel.css";
-import React from "react";
 import CarroselImagem from "../../../components/carroselImagem/CarroselImagem";
 import ImovelDetalhe from "../imovelDetalhes/imovelDetalhes";
-import { Button } from "reactstrap";
+
 import DATA from "../../../DATAFILL";
-import app from '../../../config'
-import axios from "axios";
-import FlatUpContext from "../../../components/context/FlatUpContext";
+import "./telaImovel.css";
 
 const TelaImovel = () => {
 	const location = useLocation();
@@ -40,6 +39,9 @@ const TelaImovel = () => {
 
 	},[])
 	
+	
+	//  Listagem de objetos (imagens e pastas com imagens) no bucket do firebase storage
+
 	// const storage = getStorage(app, "gs://flatup-e23c8.appspot.com");
 
 	// // Create a reference under which you want to list
@@ -72,10 +74,6 @@ const TelaImovel = () => {
 	//   }).catch((error) => {
 	// 	// Uh-oh, an error occurred!
 	//   });
-
-
-
-
 
 	return (
 		<div>

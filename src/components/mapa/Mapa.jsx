@@ -14,7 +14,7 @@ import Overlay from "ol/Overlay";
 import "./mapa.css";
 import DATA from "../../DATAFILL";
 import { useState } from "react";
-import {transform} from "ol/proj";
+import { transform } from "ol/proj";
 
 import Geolocation from "ol/Geolocation";
 
@@ -67,7 +67,7 @@ const Mapa = ({ coord, modoExibicao, usarGps, funcao }) => {
 		});
 
 		const target = document.getElementById("map");
-		
+
 		const map = new Map({
 			target: target,
 			layers: [
@@ -117,18 +117,22 @@ const Mapa = ({ coord, modoExibicao, usarGps, funcao }) => {
 			const overlaySource = modify.getOverlay().getSource();
 			overlaySource.on(["addfeature", "removefeature"], function (evt) {
 				target.style.cursor =
-				evt.type === "addfeature" ? "pointer" : "";
+					evt.type === "addfeature" ? "pointer" : "";
 				setCoordPino(pino.getGeometry().getCoordinates());
 			});
-			
+
 			map.addInteraction(modify);
 			console.log(coordPino);
 
-			map.on('click', function(evt){
-				coord = transform(evt.coordinate, evt.map.getView().getProjection(), 'EPSG:4326');
+			map.on("click", function (evt) {
+				coord = transform(
+					evt.coordinate,
+					evt.map.getView().getProjection(),
+					"EPSG:4326"
+				);
 				setCoordPino(coord);
 				console.log(`new coord: ${coord}`);
-				funcao(coord)
+				funcao(coord);
 			});
 
 			// // Pega localização atual do usuário e move o ponteiro para ele

@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from "react";
-// import API from "../../services/API";
-import axios from "axios";
 import FlatUpContext from "../context/FlatUpContext";
+import axios from "axios";
 import Mapa from "../mapa/Mapa";
-import "./cadastroEndereco.css";
 import BotaoLocalizacao from "../botaoLocalizacao/BotaoLocalizacao";
+import "./cadastroEndereco.css";
 
-const CadastroEndereco = ({funcao}) => {
+const CadastroEndereco = ({ funcao }) => {
+	const [userData, setUserData] = useContext(FlatUpContext);
+
 	const [bairro, setBairro] = useState("");
 	const [cep, setCep] = useState("");
 	const [complemento, setComplemento] = useState("");
@@ -15,23 +16,27 @@ const CadastroEndereco = ({funcao}) => {
 	const [ponto_referencia, setPonto_referencia] = useState("");
 	const [uf, setUf] = useState("");
 	const [cidade, setCidade] = useState("");
-	const [usarGps, setUsarGps] = useState(null);
+
 	const [geolocalizacao, setGeolocalizacao] = useState([]);
-	const [userData, setUserData] = useContext(FlatUpContext);
-	
+
+	const [usarGps, setUsarGps] = useState(null);
+
+	const [listaUF, setListaUF] = useState([]);
+	const [listaCidade, setListaCidade] = useState([]);
+
 	function salvarLocalizacao(enderecoId) {
 		axios
 			.post(
 				`${process.env.REACT_APP_API_URL}/localizacao/salvar`,
 				{
-					'latitude': geolocalizacao[0],
-					'longitude': geolocalizacao[1],
-					'endereco_id': enderecoId,
+					latitude: geolocalizacao[0],
+					longitude: geolocalizacao[1],
+					endereco_id: enderecoId,
 				},
 				{
 					headers: {
 						Authorization: `Bearer ${userData.userToken}`,
-					}
+					},
 				}
 			)
 			.then((result) => {
@@ -43,20 +48,20 @@ const CadastroEndereco = ({funcao}) => {
 	}
 
 	function registroEndereco(pessoaId) {
-		console.log(`PessoaId: ${pessoaId}`)
+		console.log(`PessoaId: ${pessoaId}`);
 		axios
 			.post(
 				`${process.env.REACT_APP_API_URL}/endereco/salvar`,
 				{
-					'bairro': bairro,
-					'cep': cep,
-					'cidade': cidade,
-					'complemento': complemento,
-					'logradouro': logradouro,
-					'numero': numero,
-					'pessoa_id': pessoaId,
-					'ponto_referencia': ponto_referencia,
-					'uf': uf,
+					bairro: bairro,
+					cep: cep,
+					cidade: cidade,
+					complemento: complemento,
+					logradouro: logradouro,
+					numero: numero,
+					pessoa_id: pessoaId,
+					ponto_referencia: ponto_referencia,
+					uf: uf,
 				},
 				{
 					headers: {
@@ -70,33 +75,33 @@ const CadastroEndereco = ({funcao}) => {
 					userEnderecoId: result.data.endereco_id,
 					municipio: result.data.cidade,
 				}));
-				salvarLocalizacao(result.data.endereco_id)
-			}).catch((err) => {
+				salvarLocalizacao(result.data.endereco_id);
+			})
+			.catch((err) => {
 				console.log(err);
 			});
 	}
 
 	function salvarEndereco() {
 		axios
-			.get(process.env.REACT_APP_API_URL+`/pessoa/possui-user/${userData.userId}`, {
-				headers: {
-					Authorization: `Bearer ${userData.userToken}`,
-				},
-			})
-			.then((data)=>{
-				registroEndereco(data.data.pessoa_id)
+			.get(
+				process.env.REACT_APP_API_URL +
+					`/pessoa/possui-user/${userData.userId}`,
+				{
+					headers: {
+						Authorization: `Bearer ${userData.userToken}`,
+					},
+				}
+			)
+			.then((data) => {
+				registroEndereco(data.data.pessoa_id);
 			})
 			.catch((err) => {
-				console.log(`Erro ao consultar: ${err}`)
+				console.log(`Erro ao consultar: ${err}`);
 			});
 	}
 
-
-	const [listaUF, setListaUF] = useState([]);
-	const [listaCidade, setListaCidade] = useState([]);
-
 	var estado = [];
-	var municipio = [];
 
 	const definirCoordenadas = (coordenadas) => {
 		console.log(`coordenadas: ${coordenadas}`);
@@ -118,15 +123,11 @@ const CadastroEndereco = ({funcao}) => {
 			});
 	}, []);
 
-	function buscarCep() {
-		// Implementar depois e depois nunca chegou...
-	}
-
 	function selectUF(sigla) {
 		console.log(sigla);
 
 		listaUF.forEach((uf) => {
-			if (uf.sigla == sigla) {
+			if (uf.sigla === sigla) {
 				estado = sigla;
 			}
 		});
@@ -147,6 +148,7 @@ const CadastroEndereco = ({funcao}) => {
 				console.log(error);
 			});
 	}
+
 	return (
 		<div className="container" id="">
 			<div className=" d-flex flex-column mb-3">
@@ -206,7 +208,6 @@ const CadastroEndereco = ({funcao}) => {
 						setCep(String(e.target.value));
 					}}
 				/>
-				{/* <button onClick={buscarCep()}>Buscar CEP</button> */}
 			</div>
 			<div className=" d-flex flex-column mb-3">
 				<label className="exampleInputEmail1">Bairro</label>
@@ -263,7 +264,6 @@ const CadastroEndereco = ({funcao}) => {
 				</div>
 				<div className="  d-flex flex-column w-50">
 					<label className="exampleInputEmail1">Cidade</label>
-					{/* <input className="input" type="text" name="cidade"/> */}
 					<select className="input select" name="cidade">
 						<option selected>Selecione sua cidade</option>
 						{listaCidade.map((item) => {
@@ -297,11 +297,15 @@ const CadastroEndereco = ({funcao}) => {
 							funcao={definirCoordenadas}
 						/>
 					) : (
-						<Mapa coord={[-34.92, -8.2]} modoExibicao={false} funcao={definirCoordenadas} />
+						<Mapa
+							coord={[-34.92, -8.2]}
+							modoExibicao={false}
+							funcao={definirCoordenadas}
+						/>
 					)}
 				</div>
 				<div>
-					<BotaoLocalizacao funcao={definirCoordenadas}/>
+					<BotaoLocalizacao funcao={definirCoordenadas} />
 					<span className="exampleInputEmail1">Usar GPS</span>
 				</div>
 			</div>
