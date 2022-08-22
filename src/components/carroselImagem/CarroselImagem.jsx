@@ -11,11 +11,8 @@ const CarroselImagem = ({ props }) => {
 	const location = useLocation();
 	const id = location.state.id;
 
-	var images = [
-		"https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel_id-15%2Fimagem-3.png?alt=media&token=100fbcab-1dd1-4dff-9da8-f57d83b9d407",
-	];
+	const [images, setImages] = useState(["https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel_id-15%2Fimagem-3.png?alt=media&token=100fbcab-1dd1-4dff-9da8-f57d83b9d407"]);
 
-	//  Listagem de objetos (imagens e pastas com imagens) no bucket do firebase storage
 	const firebaseConfig = {
 		apiKey: "AIzaSyAdfLPSnZEzmyvvQpJB_2z2yij8I9ZL0u8",
 		authDomain: "flatup-e23c8.firebaseapp.com",
@@ -28,7 +25,6 @@ const CarroselImagem = ({ props }) => {
 	const app = initializeApp(firebaseConfig);
 
 	const storage = getStorage(app, "gs://flatup-e23c8.appspot.com");
-
 	const listRef = ref(storage, `/imovel_id-${id}`);
 
 	listAll(listRef)
@@ -37,14 +33,10 @@ const CarroselImagem = ({ props }) => {
 				let imagemRef = ref(storage, itemRef._location.path_);
 				getDownloadURL(imagemRef)
 					.then((url) => {
-						images.push(String(url));
-            // console.log(String(url));
-            const img = document.getElementById('myimg');
-            img.setAttribute('src', url);
-        
+						setImages((prevState) => [...prevState, String(url)]);
 					})
 					.catch((error) => {
-						// Handle any errors
+						console.log(error);
 					});
 			});
 		})
@@ -52,7 +44,6 @@ const CarroselImagem = ({ props }) => {
 			console.log(error);
 		});
 
-    console.log(typeof images[3]);
 	const captionStyle = {
 		fontSize: "2em",
 		fontWeight: "bold",
@@ -72,7 +63,7 @@ const CarroselImagem = ({ props }) => {
 					<Carousel
 						slideBackgroundColor={"none"}
 						interval={8000}
-						data={DATA.imoveis[id].imagens}
+						data={images}
 						time={8000}
 						width="100vw"
 						height="450px"

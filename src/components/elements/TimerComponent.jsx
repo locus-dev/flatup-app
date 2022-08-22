@@ -24,7 +24,9 @@ const TimerComponent = ({ duracao, idSeletor }) => {
 	}
 	var duration = 60 * 60 * duracao; // Converter para segundos
 	var display = document.querySelector(`#${idSeletor}`); // selecionando o timer
-	startTimer(duration, display); // iniciando o timer
+	if (display) {
+		startTimer(duration, display); // iniciando o timer
+	}
 };
 
 export default TimerComponent;
