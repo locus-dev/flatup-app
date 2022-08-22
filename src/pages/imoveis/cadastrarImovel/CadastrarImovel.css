@@ -12,6 +12,8 @@ body {
 }
 .exampleInputEmail1{
     color: black;
+    margin-right: 7px;
+    margin-left: 7px;
 }
 .form-control,
 #slide-1,
@@ -74,7 +76,7 @@ input .select{
 }
 
 .button {
-    width: 8rem;
+    width: 13rem;
     height: 2rem;
     margin-top: 1rem;
     margin-bottom: -1rem;

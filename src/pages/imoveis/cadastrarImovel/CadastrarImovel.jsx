@@ -277,14 +277,14 @@ const CadastrarImovel = () => {
 							</div>
 						</div>
 
-						<h3 className="text-dark mt-3">comodidades</h3>
+						<h3 className="text-dark mt-3">Comodidades</h3>
 						<div className="py-3 w-100 mb-4 d-flex justify-content-between">
 							<div
 								className=" d-flex flex-column border 	  p-4 comodidade"
 								style={{ width: "30%", height: "150px" }}
 							>
 								<h3 className="exampleInputEmail1">
-									Climatizado
+									Possui Climatização?
 								</h3>
 								<div className=" d-flex mb-2 align-items-center">
 									<input
@@ -383,7 +383,7 @@ const CadastrarImovel = () => {
 								className=" d-flex flex-column mb-3 border 	  p-4 comodidade"
 								style={{ width: "30%", height: "150px" }}
 							>
-								<h3 className="exampleInputEmail1">Piscina</h3>
+								<h3 className="exampleInputEmail1">Possui Piscina?</h3>
 								<div className=" d-flex mb-2 align-items-center">
 									<input
 										// className=""
@@ -438,16 +438,16 @@ const CadastrarImovel = () => {
 							</div>
 						</div>
 						<div>
-							<label>Valor da Diária</label>
+							<label className="exampleInputEmail1">Valor da Diária</label>
 							<input
 								type="text"
-								placeholder="Valor"
+								placeholder="EX: 100"
 								onChange={(e) => {
 									setValorDiaria(Number(e.target.value));
 								}}
 							/>
 
-							<label>Quer aluguem antes do dia</label>
+							<label className="exampleInputEmail1">Quer aluguem antes do dia: </label>
 							<input
 								type="date"
 								placeholder=""
