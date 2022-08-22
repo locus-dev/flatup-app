@@ -14,7 +14,7 @@ import DATA from "../../../DATAFILL";
 import TimerComponent from "../../../components/elements/TimerComponent";
 // import Countdown from "react-countdown";
 
-const ImovelDetalhe = ({props}) => {
+const ImovelDetalhe = ({ dados, coords }) => {
 	// TODO: Implementar com o PUBLIC_KEY
 	// const mercadopago = new MercadoPago('PUBLIC_KEY', {locale: 'pt-BR'});
 
@@ -29,6 +29,22 @@ const ImovelDetalhe = ({props}) => {
 	//         }
 	//       });
 	// }
+
+	var data = new Date(dados.validadePromocao);
+	// const [validadePromocaoHoras, setValidadePromocaoHoras] = useState(data.getHours());
+
+	const msInHour = 1000 * 60 * 60;
+	var validadePromocaoHoras = Math.round(
+		Math.abs(data - Date.now()) / msInHour
+	);
+
+	var desconto;
+	if (validadePromocaoHoras > 24 && validadePromocaoHoras < 100) {
+		desconto = validadePromocaoHoras - (validadePromocaoHoras - 24);
+	} else {
+		desconto = 0;
+	}
+
 
 	const navigate = useNavigate();
 	const editarImovel = (e, id) => {
@@ -52,15 +68,13 @@ const ImovelDetalhe = ({props}) => {
 		navigate("/imoveis", { state: {} });
 	};
 
-	console.log(props);
-
 	return (
 		<main className="d-flex justify-content-between my-5 align-items-start">
 			<div className="w-100 d-flex">
 				<div className="localização-texto mt-5 w-75">
 					<div className="mb-5">
 						<h4>Descrição:</h4>
-						<p>{DATA.imoveis[props].descricao}</p>
+						<p>{dados.descricao}</p>
 					</div>
 					{/* <h4
 						className="mb-3"
@@ -79,15 +93,10 @@ const ImovelDetalhe = ({props}) => {
 					></div>
 					<hr />
 					<h4 className="py-2 d-flex align-items-start">Endereço:</h4>
-					<h6>{DATA.imoveis[props].endereco}</h6>
+					<h6>{`${dados.logradouro}, ${dados.numero} ${dados.complemento}, ${dados.bairro}, ${dados.municipio}, ${dados.uf}`}</h6>
 					{/* substituir por localização em endereco */}
-					<Mapa coord={DATA.imoveis[props].geolocalizacao} modoExibicao={true} />
-					{/* {console.log(DATA.imoveis[props.props].geolocalizacao)} */}
+					<Mapa coord={[-35.0986, -8.1258]} modoExibicao={true} />
 					<hr />
-
-
-
-
 				</div>
 
 				<div className="flex-column">
@@ -102,22 +111,17 @@ const ImovelDetalhe = ({props}) => {
 								<CardTitle tag="h3">
 									<div className=" d-flex">
 										<span className="promocao-texto">
-											R${" "}
-											{
-												DATA.imoveis[props].valor_diaria
-											}
+											R$ {dados.valorDiaria}
 											/noite
 										</span>
 										<span className="promocao-porcentagem">
-											-25% off
+											-{desconto}% off
 										</span>
 									</div>
 									<span className="promocao-texto-novopreco">
 										R${" "}
-										{DATA.imoveis[props].valor_diaria -
-											(DATA.imoveis[props].valor_diaria *
-												25) /
-											100}
+										{dados.valorDiaria -
+											(dados.valorDiaria * desconto) / 100}
 										/noite
 									</span>
 								</CardTitle>
@@ -130,9 +134,7 @@ const ImovelDetalhe = ({props}) => {
 											className="promocao-contador text-danger"
 										></span>
 										<TimerComponent
-											duracao={
-												DATA.imoveis[props].validadePromocao
-											}
+											duracao={validadePromocaoHoras}
 											idSeletor={"promocao-contador"}
 										/>
 									</div>

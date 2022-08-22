@@ -38,7 +38,7 @@ const CarroselImagem = ({ props }) => {
 				getDownloadURL(imagemRef)
 					.then((url) => {
 						images.push(String(url));
-            console.log(String(url));
+            // console.log(String(url));
             const img = document.getElementById('myimg');
             img.setAttribute('src', url);
         

@@ -17,6 +17,7 @@ const TelaImovel = () => {
 	var id = location.state.id;
 
 	const [dados, setDados] = useState({});
+	const [coord, setCoord] = useState([]);
 	const [userData, setUserData] = useContext(FlatUpContext);
 
 	function curtir() {
@@ -43,6 +44,7 @@ const TelaImovel = () => {
 			.then((data) => {
 				console.log(data.data);
 				setDados(data.data);
+				setCoord([data.data.latitude, data.data.longitude]);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -55,13 +57,10 @@ const TelaImovel = () => {
 			<main>
 				<div id="carrosel">
 					<h2 id="tituloImovel">
-						{DATA.imoveis[id - 1].titulo_anuncio}
+						{dados.tituloAnuncio}
 					</h2>
-					{/* {console.log(`Id vindo por parâmetro: ${location.state.id}`)}
-					{console.log("Dados simulados:")}
-					{console.log(DATA.imoveis[location.state.id-1])} */}
 					<CarroselImagem props={id}/>
-					<ImovelDetalhe props={id-1}/>
+					<ImovelDetalhe dados={dados} coords={coord}/>
 				</div>
 			</main>
 		</div>

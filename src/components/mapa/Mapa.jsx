@@ -24,6 +24,7 @@ const Mapa = ({ coord, modoExibicao, usarGps, funcao }) => {
 	// Define o padrão de projeção para o mapa como Geográfico
 	useGeographic();
 
+	console.log(coord);
 	// Coordenadas do ponteiro caso ele seja movido
 	const [coordPino, setCoordPino] = useState(null);
 
