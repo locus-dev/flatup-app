@@ -7,14 +7,16 @@ import Navbar from '../../../components/navbar/Navbar'
 import SearchItem from "../../../components/searchItem/SearchItem"
 import ImovelCard from "../../../components/ImovelCard/ImovelCard"
 import Space from "../../../components/space/Space"
+import { useLocation } from "react-router-dom";
 
 const Immobile = () => {
+  const location = useLocation();
 
   return (
     <main>
 
       <Navbar />
-      <ImovelCard/>
+      <ImovelCard props={location.state.props} outrosDados={location.state.outrosDados}/>
         
     </main>
   )

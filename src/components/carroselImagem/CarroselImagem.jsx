@@ -73,9 +73,8 @@ const CarroselImagem = ({ props }) => {
 				>
 					<Carousel
 						slideBackgroundColor={"none"}
-						interval={8000}
 						data={images}
-						time={8000}
+						// time={8000}
 						width="100vw"
 						height="450px"
 						captionStyle={captionStyle}
@@ -83,7 +82,7 @@ const CarroselImagem = ({ props }) => {
 						slideNumber={false}
 						slideNumberStyle={slideNumberStyle}
 						captionPosition="bottom"
-						automatic={true}
+						automatic={false}
 						dots={true}
 						pauseIconColor="white"
 						pauseIconSize="40px"

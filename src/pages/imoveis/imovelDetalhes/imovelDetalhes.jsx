@@ -30,6 +30,10 @@ const ImovelDetalhe = ({ dados, coords }) => {
 	//       });
 	// }
 
+	const [qtdHospedes, setQtdHospedes] = useState(1);
+	const [checkout, setCheckout] = useState({});
+	const [checkin, setCheckin] = useState({});
+
 	var data = new Date(dados.validadePromocao);
 	// const [validadePromocaoHoras, setValidadePromocaoHoras] = useState(data.getHours());
 
@@ -44,7 +48,6 @@ const ImovelDetalhe = ({ dados, coords }) => {
 	} else {
 		desconto = 0;
 	}
-
 
 	const navigate = useNavigate();
 	const editarImovel = (e, id) => {
@@ -64,8 +67,16 @@ const ImovelDetalhe = ({ dados, coords }) => {
 		}
 	};
 
+	var outrosDados = {
+		qtdHospedes: qtdHospedes,
+		checkout: checkout,
+		checkin: checkin,
+		desconto: desconto,
+	}
 	const reservar = () => {
-		navigate("/imoveis", { state: {} });
+		navigate(`/imoveis/${dados.idImovel}/confirmar-reserva`, {
+			state: { props: dados, outrosDados: outrosDados },
+		});
 	};
 
 	return (
@@ -121,7 +132,8 @@ const ImovelDetalhe = ({ dados, coords }) => {
 									<span className="promocao-texto-novopreco">
 										R${" "}
 										{dados.valorDiaria -
-											(dados.valorDiaria * desconto) / 100}
+											(dados.valorDiaria * desconto) /
+												100}
 										/noite
 									</span>
 								</CardTitle>
@@ -163,6 +175,9 @@ const ImovelDetalhe = ({ dados, coords }) => {
 										type="date"
 										name="checkin"
 										placeholder="Check-in"
+										onChange={(e) => {
+											setCheckin(e.target.value);
+										}}
 									/>
 								</Form.Group>
 								<Form.Group className="data w-100">
@@ -171,6 +186,9 @@ const ImovelDetalhe = ({ dados, coords }) => {
 										type="date"
 										name="checkout"
 										placeholder="Check-out"
+										onChange={(e) => {
+											setCheckout(e.target.value);
+										}}
 									/>
 								</Form.Group>
 							</div>
@@ -178,11 +196,56 @@ const ImovelDetalhe = ({ dados, coords }) => {
 							<div>
 								<Form.Select aria-label="Default select example">
 									<option>Quantidade de hóspedes</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
+									<option
+										value="1"
+										onClick={(e) => {
+											setQtdHospedes(
+												Number(e.target.value)
+											);
+										}}
+									>
+										1
+									</option>
+									<option
+										value="2"
+										onClick={(e) => {
+											setQtdHospedes(
+												Number(e.target.value)
+											);
+										}}
+									>
+										2
+									</option>
+									<option
+										value="3"
+										onClick={(e) => {
+											setQtdHospedes(
+												Number(e.target.value)
+											);
+										}}
+									>
+										3
+									</option>
+									<option
+										value="4"
+										onClick={(e) => {
+											setQtdHospedes(
+												Number(e.target.value)
+											);
+										}}
+									>
+										4
+									</option>
+									<option
+										value="5"
+										onClick={(e) => {
+											setQtdHospedes(
+												Number(e.target.value)
+											);
+										}}
+									>
+										5
+									</option>
 								</Form.Select>
 							</div>
 

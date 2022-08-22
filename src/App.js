@@ -30,6 +30,7 @@ const App = () => {
 					<Route path="/" element={<Home />} />
 					<Route path="/imoveis" element={<ListarImoveis />} />
 					<Route path="/imoveis/:id/" element={<TelaImovel />} />
+					<Route path="/imoveis/:id/confirmar-reserva" element={<DetalhesImovel />} />
 					<Route path="/imoveis/cadastrar" element={<CadastrarImovel />}/>
 					<Route path="/login" element={<Login />} />
 					<Route path="/registro" element={<Registro />} />
@@ -39,7 +40,6 @@ const App = () => {
 					<Route path="/perfil/locacoes" element={<MinhasLocacoes />} />
 					<Route path="/perfil/host/imoveis" element={<MeusImoveis />} />
 					<Route path="/pagamento" element={<Pagamento />} />
-					<Route path="/detalhesImovel" element={<DetalhesImovel />} />
 				</Routes>
 			</FlatUpContext.Provider>
 		</BrowserRouter>
