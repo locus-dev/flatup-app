@@ -25,7 +25,7 @@ const Navbar = () => {
 	return (
 		<div className="navegacao">
 			<div className="navContainer">
-				<img className="logo" src="../media/assets/flatapp.png" alt="FlatApp" width={80} onClick={handleHome}/>
+				<img className="logo" src="https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2FMEDIA%2Fflatapp.png?alt=media&token=5e306ba7-83cb-4fcf-a653-83b50cde6f3a" alt="FlatApp" width={80} onClick={handleHome}/>
 				<div className="navItems">
 					<div className="search-box">
 						<input
@@ -72,7 +72,7 @@ const Navbar = () => {
 						<>
 							<img
 								id="icone-perfil"
-								src="./media/assets/perfil.png"
+								src="https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2FMEDIA%2Fperfil.png?alt=media&token=8d3ac929-4cbc-4a40-a8ff-a55ec0312fe8"
 								alt="Perfil"
 								onClick={() =>
 									navigate("/perfil", {

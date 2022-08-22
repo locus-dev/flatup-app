@@ -22,7 +22,7 @@ const Profile = () => {
 				<div className=" d-flex justify-content-center w-25 flex-column align-items-center" style={{borderRight: "1px solid #b1b1b1"}}>
 					<div className="imageSize">
 						<ImagemComponent
-							source={"./media/assets/perfil.png"}
+							source={"https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/ASSETS%2FMEDIA%2Fperfil.png?alt=media&token=8d3ac929-4cbc-4a40-a8ff-a55ec0312fe8"}
 							alt={userData.nome}
 							className="imagem-perfil"
 							fluid={true}
