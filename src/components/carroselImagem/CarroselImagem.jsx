@@ -11,7 +11,11 @@ const CarroselImagem = ({ props }) => {
 	const location = useLocation();
 	const id = location.state.id;
 
-	const [images, setImages] = useState(["https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel_id-15%2Fimagem-3.png?alt=media&token=100fbcab-1dd1-4dff-9da8-f57d83b9d407"]);
+	const [images, setImages] = useState([
+		{
+			image:"https://firebasestorage.googleapis.com/v0/b/flatup-e23c8.appspot.com/o/imovel_id-15%2Fimagem-3.png?alt=media&token=100fbcab-1dd1-4dff-9da8-f57d83b9d407"
+		
+}]);
 
 	const firebaseConfig = {
 		apiKey: "AIzaSyAdfLPSnZEzmyvvQpJB_2z2yij8I9ZL0u8",
@@ -34,7 +38,7 @@ const CarroselImagem = ({ props }) => {
 				let imagemRef = ref(storage, itemRef._location.path_);
 				getDownloadURL(imagemRef)
 					.then((url) => {
-						setImages((prevState) => [...prevState, String(url)]);
+						setImages((prevState) => [...prevState, {image:String(url)}]);
 					})
 					.catch((error) => {
 						console.log(error);
@@ -44,6 +48,7 @@ const CarroselImagem = ({ props }) => {
 		.catch((error) => {
 			console.log(error);
 		});
+		console.log(images);
   }
 
   useEffect(listarImagens,[]);
