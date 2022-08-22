@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import FlatUpContext from "../context/FlatUpContext";
 import "./imovelCard.css";
 
 const ImovelCard = ({ props, outrosDados }) => {
 	const [userData, setUserData] = useContext(FlatUpContext);
+      
+      const navigate = useNavigate();
 
 	var dataCheckin = new Date(outrosDados.checkin);
 	var dataCheckout = new Date(outrosDados.checkout);
@@ -37,6 +40,7 @@ const ImovelCard = ({ props, outrosDados }) => {
 			)
 			.then((res) => {
 				console.log(res);
+                        navigate('/perfil/locacoes/', {state: {statusOperacao: "sucesso",dados: res.data}})
 			})
 			.catch((err) => {
 				console.log(err);
