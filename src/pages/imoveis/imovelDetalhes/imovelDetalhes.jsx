@@ -14,7 +14,7 @@ import DATA from "../../../DATAFILL";
 import TimerComponent from "../../../components/elements/TimerComponent";
 // import Countdown from "react-countdown";
 
-const ImovelDetalhe = ({ dados, coords }) => {
+const ImovelDetalhe = ({ dados, coords, imagemCapa }) => {
 	// TODO: Implementar com o PUBLIC_KEY
 	// const mercadopago = new MercadoPago('PUBLIC_KEY', {locale: 'pt-BR'});
 
@@ -72,6 +72,7 @@ const ImovelDetalhe = ({ dados, coords }) => {
 		checkout: checkout,
 		checkin: checkin,
 		desconto: desconto,
+		imagemCapa: imagemCapa,
 	}
 	const reservar = () => {
 		navigate(`/imoveis/${dados.idImovel}/confirmar-reserva`, {

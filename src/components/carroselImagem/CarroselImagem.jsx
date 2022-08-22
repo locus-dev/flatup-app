@@ -7,7 +7,7 @@ import { initializeApp } from "firebase/app";
 import { ref, getStorage, listAll, getDownloadURL } from "firebase/storage";
 import { useEffect, useState } from "react";
 
-const CarroselImagem = ({ props }) => {
+const CarroselImagem = ({ props, funcao }) => {
 	const location = useLocation();
 	const id = location.state.id;
 
@@ -49,6 +49,7 @@ const CarroselImagem = ({ props }) => {
 			console.log(error);
 		});
 		console.log(images);
+		funcao(images[0]);
   }
 
   useEffect(listarImagens,[]);

@@ -16,6 +16,8 @@ const TelaImovel = () => {
 
 	var id = location.state.id;
 
+	const [imagemCapa, setImagemCapa] = useState({})
+
 	const [dados, setDados] = useState({});
 	const [coord, setCoord] = useState([]);
 	const [userData, setUserData] = useContext(FlatUpContext);
@@ -59,8 +61,8 @@ const TelaImovel = () => {
 					<h2 id="tituloImovel">
 						{dados.tituloAnuncio}
 					</h2>
-					<CarroselImagem props={id}/>
-					<ImovelDetalhe dados={dados} coords={coord}/>
+					<CarroselImagem props={id} funcao={setImagemCapa}/>
+					<ImovelDetalhe dados={dados} coords={coord} imagemCapa={imagemCapa}/>
 				</div>
 			</main>
 		</div>

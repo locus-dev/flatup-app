@@ -63,7 +63,7 @@ const ImovelCard = ({ props, outrosDados }) => {
 							<div
 								className="bg-primary"
 								style={{
-									backgroundImage: "(url())",
+									backgroundImage: `url(${outrosDados.imagemCapa.image})`,
 									borderRadius: "10px",
 									backgroundSize: "cover",
 									width: "200px",
@@ -94,17 +94,17 @@ const ImovelCard = ({ props, outrosDados }) => {
 							<div className="d-flex mt-3 justify-content-between">
 								<h5>Desconto</h5>
 								<h5 className="text-danger">
-									-{outrosDados.desconto}%
+									{outrosDados.desconto}%
 								</h5>
 							</div>
 							<div className="d-flex mt-3 justify-content-between">
-								<h5>Horas de ocupação</h5>
+								<h5>Período de ocupação</h5>
 								<h5 className="text-danger">
-									{horasDeOcupacao}h
+									{horasDeOcupacao/24}{horasDeOcupacao/24 === 1 ? " dia" : " dias"}
 								</h5>
 							</div>
 							<div className="d-flex mt-3 justify-content-between">
-								<h5>SubTotal</h5>
+								<h5>Cálculo</h5>
 								<h5 className="text-danger">
 									valor da diária x dias - desconto
 								</h5>
