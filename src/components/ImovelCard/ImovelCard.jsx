@@ -6,8 +6,8 @@ import "./imovelCard.css";
 
 const ImovelCard = ({ props, outrosDados }) => {
 	const [userData, setUserData] = useContext(FlatUpContext);
-      
-      const navigate = useNavigate();
+
+	const navigate = useNavigate();
 
 	var dataCheckin = new Date(outrosDados.checkin);
 	var dataCheckout = new Date(outrosDados.checkout);
@@ -40,7 +40,25 @@ const ImovelCard = ({ props, outrosDados }) => {
 			)
 			.then((res) => {
 				console.log(res);
-                        navigate('/perfil/locacoes/', {state: {statusOperacao: "sucesso",dados: res.data}})
+				axios
+					.post(`${process.env.REACT_APP_API_URL}/locacao/salvar`,{
+                                    contrato_locacao_id: res.data.locacao_id,
+                                    imovel_id: props.idImovel,
+                                    usuario_id: userData.userId,
+                                    status_locacao: "AGENDADA",
+                              }, {
+						headers: {
+							Authorization: `Bearer ${userData.userToken}`,
+						},
+					})
+					.then(
+                                    ()=>{
+
+                                          navigate("/perfil/locacoes/", {
+                                                state: { statusOperacao: "sucesso", dados: res.data },
+                                          });
+                                    }
+                                    );
 			})
 			.catch((err) => {
 				console.log(err);
@@ -104,7 +122,10 @@ const ImovelCard = ({ props, outrosDados }) => {
 							<div className="d-flex mt-3 justify-content-between">
 								<h5>Período de ocupação</h5>
 								<h5 className="text-danger">
-									{horasDeOcupacao/24}{horasDeOcupacao/24 === 1 ? " dia" : " dias"}
+									{horasDeOcupacao / 24}
+									{horasDeOcupacao / 24 === 1
+										? " dia"
+										: " dias"}
 								</h5>
 							</div>
 							<div className="d-flex mt-3 justify-content-between">
