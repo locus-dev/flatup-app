@@ -1,19 +1,10 @@
 #sucesso {
-    background-color: #00000069;
     z-index: 1000;
-    width: 100%;
-    height: 100%;
-    color: aliceblue;
     position: absolute;
-    top: 0;
-
-}
-
-#sucesso div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    top: 30px;
+    right: 30px;
+    z-index: 222222111;
+    transition: all 400ms;
 }
 
 #close {
