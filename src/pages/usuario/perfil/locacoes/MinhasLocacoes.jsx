@@ -4,25 +4,27 @@ import FeaturedProperties from "../../../../components/featuredProperties/Featur
 import { useLocation } from "react-router-dom";
 import './MinhasLocacoes.css'
 import { useState } from "react";
+import Toast from 'react-bootstrap/Toast';
+import Alert from 'react-bootstrap/Alert';
 
 const MinhasLocacoes = () => {
     const location = useLocation();
 
-	return (
-    <>
-        <Navbar />
-        <div className="container d-flex flex-column align-items-center justify-content-center" style={{height: "100vh"}}>
-            <h2 className="mb-4">Histórico de imóveis</h2>
-            <FeaturedProperties />
-        </div>
-        <div style={{display: "hidden"}} id="sucesso">
-            {/* <span onClick={()=>{setLiga("")}} id="close">X</span> */}
-            <div>
-            <h1>Reserva registrada</h1>
-            <p>Sua reserva foi registrada com sucesso!</p>
+    function setShow(){
+        document.getElementById('sucesso').style.top = '-100px'
+    }
+
+    return (
+        <>
+            <Navbar />
+            <div className="container d-flex flex-column align-items-center justify-content-center" style={{ height: "100vh" }}>
+                <h2 className="mb-4">Histórico de imóveis</h2>
+                <FeaturedProperties />
             </div>
-        </div>
-    </>
+            <Alert variant="success" id="sucesso" onClose={() => setShow()} dismissible>
+                <Alert.Heading>Sua reserva foi registrada com sucesso!</Alert.Heading>
+            </Alert>
+        </>
     )
 };
 
