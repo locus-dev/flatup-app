@@ -88,7 +88,7 @@ const ListHotels = () => {
                     data: userData
                 })
                 setImoveis(response.data);
-
+                
             } catch (error) {
                 console.log(error);
             }
@@ -116,13 +116,13 @@ const ListHotels = () => {
                 <Navbar />
                 <div className='botaoPDF'>
 
-                    {/* <button
+               {/*  <button
 
 
                         onClick={() => navigate("/hotels/new")}
                         className='botaoAdd '>
                         Adicionar Imovel
-                    </button> */}
+                    </button>  */}
 
                     <a
                         _target="_blank"
@@ -146,7 +146,7 @@ const ListHotels = () => {
                                     <TableCell className="tableCell">ID</TableCell>
                                     <TableCell className="tableCell">Climatizado</TableCell>
                                     <TableCell className="tableCell">Status Da Ocupação</TableCell>
-                                    <TableCell className="tableCell">Endereço</TableCell>
+                                    <TableCell className="tableCell">Endereço *logradouro</TableCell>
                                     <TableCell className="tableCell">Qtde De Quartos</TableCell>
                                     <TableCell className="tableCell">Área De Lazer</TableCell>
                                     <TableCell className="tableCell">Área m²</TableCell>

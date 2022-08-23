@@ -71,10 +71,10 @@ const Sidebar = () => {
           </Link>
 
           <p className="title">Usuário</p>
-          <li>
+         {/*  <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Perfil</span>
-          </li>
+          </li> */}
           <Link to="/" style={{ textDecoration: "none" }}>
             <li>
               <ExitToAppIcon className="icon" />

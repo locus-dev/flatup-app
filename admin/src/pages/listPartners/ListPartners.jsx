@@ -108,7 +108,7 @@ const ListPartners = () => {
                 <Navbar />
                 <div className='botaoPDF'>
                   
-                    {/* <button
+                   {/*  <button
 
 
                         onClick={() => navigate("/partners/new")}

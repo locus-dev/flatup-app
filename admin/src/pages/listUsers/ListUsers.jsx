@@ -16,8 +16,12 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { TablePagination, TableSortLabel } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
+
+
+import MaterialTable from "material-table";
 
 const ListUsers = () => {
 
@@ -26,16 +30,12 @@ const ListUsers = () => {
 
     const [userData, setUserData] = useContext(FlatUpContext);
 
-    console.log(userData.userToken + 'asdasda');
+   
     const navigate = useNavigate();
 
-    const [carregando, setCarregando] = useState(true);
+    
     const [usuarios, setUsuarios] = useState([]);
 
-    const [usersPerPage, setUsersPerPage] = useState(5)
-    const [currentPage, setCurrentPage] = useState(0)
-
-    const pages = Math.ceil(usuarios.length / usersPerPage)
 
 
 
@@ -43,7 +43,7 @@ const ListUsers = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setCarregando(true);
+            
             try {
 
                 const response = await axios.get(process.env.REACT_APP_API_URL + `/usuario/listar`, {
@@ -60,10 +60,10 @@ const ListUsers = () => {
             } catch (error) {
                 console.log(error);
             }
-            setCarregando(false);
+            
         };
         fetchData();
-    }, [usuarios.idUsuario]);
+    }, []);
 
     const GERAROPDFPO = async () => {
         const response = await axios.get(process.env.REACT_APP_API_URL + '/usuario/pdf', {
@@ -106,6 +106,9 @@ const ListUsers = () => {
 
 
 
+
+  
+
     return (
 
         <div className="list">
@@ -115,7 +118,7 @@ const ListUsers = () => {
 
                 <div className='botaoPDF'>
 
-                    {/*  <button
+                  {/*   <button
 
 
                         onClick={() => navigate("/users/new")}
@@ -136,38 +139,57 @@ const ListUsers = () => {
                 </div>
 
                 <div className="newContainer">
-
-
-
                     <TableContainer component={Paper} className="table">
-                        <Table sx={{ minWidth: 450 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
+                        <Table sx={{ minWidth: 450 }} aria-label=" table">
+                            <TableHead />
 
-                                    <TableCell className="tableCell">ID</TableCell>
-                                    <TableCell className="tableCell">E-mail</TableCell>
-                                    <TableCell className="tableCell">Senha</TableCell>
-                                    {/* <TableCell className="tableCell">Ações</TableCell> */}
+                            <TableRow >
 
-                                </TableRow>
-                            </TableHead>
-                            
+                                <TableCell className="tableCell">
+
+
+                                    ID
+
+                                </TableCell>
+                                <TableCell className="tableCell">
+
+                                    E-mail
+
+                                </TableCell>
+                                <TableCell className="tableCell" >
+
+                                    Senha
+
+                                </TableCell>
+                                {/* <TableCell className="tableCell">Ações</TableCell> */}
+
+                            </TableRow>
+
+
+
+
+
                             <TableBody>
-                                {usuarios.map((usuario) => (
-                                    <User
-                                        usuario={usuario}
-                                        deleteUsuario={deleteUsuario}
-                                        key={usuario.id} >
+                                {usuarios
 
-                                    </User>
-                                ))}
+                                    .map((usuario) => (
+                                        <User
+                                            usuario={usuario}
+                                            deleteUsuario={deleteUsuario}
+                                            key={usuario.id} >
+
+                                        </User>
+                                    ))}
 
                             </TableBody>
 
                         </Table>
-                       
+
 
                     </TableContainer>
+
+
+
                 </div>
             </div>
 

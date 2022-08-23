@@ -19,55 +19,71 @@ const FormPartner = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8081/usuario/listar').then(response => {
-            setUsers(response.data);
-        });
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(process.env.REACT_APP_API_URL + `/usuario/listar`, {
+                    headers: {
+                        'Authorization':
+                            `Bearer ${userData.userToken}`,
+                        'Access-Control-Allow-Origin':
+                            '*'
+                    },
+                    data: userData.userToken
+                })
+                setUsers(response.data);
+
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchData();
     }, []);
 
-    const [user, setUser] = useState({
-        idUsuario: ''
-    })
+    const [user, setUser] = useState('')
+
+    console.log(user)
 
     const handleUserChange = (e) => {
         const value = e.target.value;
-        setUser({ ...user, [e.target.name]: value });
+        setUser(value);
     };
 
     const [partner, setPartner] = useState({
         descricao: '',
         nomeFantasia: '',
         cnpj: ''
-        
-    })
 
+    })
+    console.log(partner)
 
     const handleChange = (e) => {
-        setPartner((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+        const value = e.target.value;
+        setPartner({ ...partner, [e.target.name]: value });
     };
 
-    const handleClick =  (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
-        const partnerMounted = {
-            descricao: partner.descricao,
-            nomeFantasia: partner.nomeFantasia,
+        const objetoMontado = {
             cnpj: partner.cnpj,
-            idUsuarioFK: {
-                idUsuario: user.idUsuario
-            }
+            descricao: partner.descricao,
+            nome_fantasia: partner.nomeFantasia,
+            usuario_id: Number(user)
         }
-       
-        axios.post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, partnerMounted, {
+
+
+        axios.post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, objetoMontado, {
             headers: {
                 'Authorization':
                     `Bearer ${userData.userToken}`,
                 'Access-Control-Allow-Origin':
                     '*'
             },
-            data: userData
+            data: userData.userToken
         });
-        console.log(partnerMounted.idUsuarioFK.idUsuario + 'EITA OLHA O OBJETO MONTADO PO PARCEIRO')
+        console.log(objetoMontado)
+        //console.log(partnerMounted+ 'EITA OLHA O OBJETO MONTADO PO PARCEIRO')
         navigate("/partners")
-       
+
     };
 
 
@@ -87,7 +103,7 @@ const FormPartner = () => {
                                 <input
                                     type="text"
                                     onChange={(e) => handleChange(e)}
-                                 
+
                                     value={partner.descricao}
                                     className="input"
                                     placeholder="descricao"
@@ -102,7 +118,7 @@ const FormPartner = () => {
                                 <input
                                     type="text"
                                     onChange={(e) => handleChange(e)}
-                                   
+
                                     value={partner.nomeFantasia}
                                     className="input"
                                     placeholder="nomeFantasia"
@@ -132,7 +148,7 @@ const FormPartner = () => {
                                 <div className='mt-2'>
                                     <select className='w-80' onChange={handleUserChange}>
                                         {users.map((user) => (
-                                            <option key={user.id} value={user.id}>{user.email}</option>
+                                            <option key={user.idUsuario} value={user.idUsuario}>{user.email}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -141,70 +157,70 @@ const FormPartner = () => {
                                 // type="submit"
                                 className="botaoSalvar"
                                 onClick={handleClick}
-                                        /* .then(() => {
+                            /* .then(() => {
 
-                                            // Faz login
-                                            axios
-                                                .post(process.env.REACT_APP_API_URL + `/auth`, {
-                                                    email: email,
-                                                    senha: senha,
-                                                })
-                                                .then((data) => {
-                                                    setUserData({
-                                                        userToken: data.data.token,
-                                                    });
-                                                    navigate("/");
-                                                })
-                                                .catch((error) => {
-                                                    console.log(error);
-                                                });
-                                        }) */
+                                // Faz login
+                                axios
+                                    .post(process.env.REACT_APP_API_URL + `/auth`, {
+                                        email: email,
+                                        senha: senha,
+                                    })
+                                    .then((data) => {
+                                        setUserData({
+                                            userToken: data.data.token,
+                                        });
+                                        navigate("/");
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
+                            }) */
 
-                                
-                                    //() => {
 
-                                    // Cadastra o Parceiro
-                                    //axios
-                                    //.post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, 
-                                    //{ headers: { 'Authorization': `Bearer ${userData.userToken}` } 
-                                    //})
-                                    /* .then(() => {
+                            //() => {
 
-                                        // Faz login
-                                        axios
-                                            .post(process.env.REACT_APP_API_URL + `/auth`, {
-                                                email: email,
-                                                senha: senha,
-                                            })
-                                            .then((data) => {
-                                                setUserData({
-                                                    userToken: data.data.token,
-                                                });
-                                                navigate("/");
-                                            })
-                                            .catch((error) => {
-                                                console.log(error);
-                                            });
-                                    }) */
+                            // Cadastra o Parceiro
+                            //axios
+                            //.post(process.env.REACT_APP_API_URL + `/parceiro/salvar`, 
+                            //{ headers: { 'Authorization': `Bearer ${userData.userToken}` } 
+                            //})
+                            /* .then(() => {
 
-                                    
-                                       /*  .catch((erro) => {
-                                            console.log(erro);
-                                        }); */
-                                
+                                // Faz login
+                                axios
+                                    .post(process.env.REACT_APP_API_URL + `/auth`, {
+                                        email: email,
+                                        senha: senha,
+                                    })
+                                    .then((data) => {
+                                        setUserData({
+                                            userToken: data.data.token,
+                                        });
+                                        navigate("/");
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
+                            }) */
+
+
+                            /*  .catch((erro) => {
+                                 console.log(erro);
+                             }); */
+
                             >
-                            Registrar
-                        </button>
+                                Registrar
+                            </button>
 
-                        <button className="botaoCancelar" onClick={() => navigate("/partners")}>Cancelar</button>
+                            <button className="botaoCancelar" onClick={() => navigate("/partners")}>Cancelar</button>
 
 
+                        </div>
+
+
+
+                    </form>
                 </div>
-
-
-
-            </form>
-        </div>
             </div >
         </>
     )
